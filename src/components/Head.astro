@@ -1,0 +1,27 @@
+---
+import { SEO, type Props } from "astro-seo";
+
+const { props } = Astro;
+---
+
+<head>
+  <SEO
+    titleTemplate="%s | Fellipe Utaka"
+    titleDefault="Fellipe Utaka"
+    description="Fellipe Utaka's personal website"
+    twitter={{
+      creator: "@fellipeutaka",
+    }}
+    extend={{
+      link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
+      meta: [
+        {
+          name: "generator",
+          content: Astro.generator,
+        },
+      ],
+    }}
+    charset="utf-8"
+    {...props}
+  />
+</head>

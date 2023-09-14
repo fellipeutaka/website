@@ -1,0 +1,10 @@
+{
+  "cSpell.words": ["astrojs", "lucide"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "astro",
+    "typescript",
+    "typescriptreact"
+  ]
+}
