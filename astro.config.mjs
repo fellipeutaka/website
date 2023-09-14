@@ -1,11 +1,11 @@
-import { defineConfig } from "astro/config";
-
 import tailwind from "@astrojs/tailwind";
+import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://fellipeutaka.vercel.app",
   image: {
-    domains: ["avatars.githubusercontent.com"],
+    domains: ["github.com"],
   },
   integrations: [tailwind()],
 });

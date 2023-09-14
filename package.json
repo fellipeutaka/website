@@ -7,18 +7,16 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "format": "prettier --write .",
-    "lint": "eslint src",
+    "format": "prettier --write . --plugin=prettier-plugin-astro",
+    "lint": "eslint . --fix",
     "types:check": "astro check && tsc --noEmit --incremental false"
-  },
-  "dependencies": {
-    "astro": "^3.0.13"
   },
   "devDependencies": {
     "@astrojs/check": "^0.2.0",
     "@astrojs/tailwind": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
+    "astro": "^3.0.13",
     "astro-seo": "^0.8.0",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",

@@ -5,10 +5,12 @@ const { props } = Astro;
 ---
 
 <head>
+  <slot />
   <SEO
     titleTemplate="%s | Fellipe Utaka"
     titleDefault="Fellipe Utaka"
     description="Fellipe Utaka's personal website"
+    canonical="https://fellipeutaka.vercel.app"
     twitter={{
       creator: "@fellipeutaka",
     }}
@@ -16,8 +18,21 @@ const { props } = Astro;
       link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
       meta: [
         {
+          name: "author",
+          content: "Fellipe Utaka",
+        },
+        {
+          name: "keywords",
+          content:
+            "Fellipe Utaka, Fellipe, Utaka, Software Engineer, Software Developer, Developer, Engineer, Frontend Engineer, Frontend Developer, Frontend, Front-end, Front end, Front, Frontend Development, Frontend Engineering, Frontend Developer",
+        },
+        {
           name: "generator",
           content: Astro.generator,
+        },
+        {
+          name: "viewport",
+          content: "width=device-width, initial-scale=1.0",
         },
       ],
     }}

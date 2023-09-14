@@ -12,6 +12,7 @@ import {
 } from "lucide-astro";
 ---
 
+<!doctype html>
 <html lang="en">
   <Head />
   <body
@@ -19,11 +20,14 @@ import {
   >
     <header>
       <Image
-        class="mx-auto rounded-full"
-        src="https://avatars.githubusercontent.com/u/68625746?v=4&size=256"
+        class="mx-auto h-24 w-24 rounded-full"
+        srcset="https://github.com/fellipeutaka.png?size=144 480w, https://github.com/fellipeutaka.png?size=256 800w"
+        sizes="(max-width: 600px) 480px, 800px"
+        src="https://github.com/fellipeutaka.png"
         alt="Fellipe Utaka's avatar"
         width={96}
         height={96}
+        loading="eager"
       />
       <h1 class="my-3">@fellipeutaka</h1>
       <h2>A Full-Stack Developer who loves experiment new technologies.</h2>
