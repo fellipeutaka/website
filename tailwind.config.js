@@ -1,5 +1,8 @@
+import typography from "@tailwindcss/typography";
+import defaultTheme from "tailwindcss/defaultTheme";
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ["./src/**/*.{astro,md,mdx,ts,tsx}"],
   theme: {
     extend: {
@@ -10,7 +13,10 @@ module.exports = {
           "2xl": "1400px",
         },
       },
+      fontFamily: {
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+      },
     },
   },
-  plugins: [],
+  plugins: [typography],
 };

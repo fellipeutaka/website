@@ -1,0 +1,37 @@
+---
+import Layout from "~/components/Layout.astro";
+
+import { PostService } from "~/services/posts";
+
+export async function getStaticPaths() {
+  const posts = await PostService.getPostsPaths();
+  return posts.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params;
+
+const post = await PostService.getPostBySlug(slug ?? "");
+---
+
+<Layout title={post.title}>
+  <div class="relative overflow-hidden pb-16">
+    <img class="h-96 w-full object-cover" src={post.coverImage.url} />
+
+    <div class="relative px-4 pt-16 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-prose text-lg">
+        <h1>
+          <span
+            class="mt-2 block text-center text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl"
+          >
+            {post.title}
+          </span>
+        </h1>
+      </div>
+
+      <div
+        class="prose prose-lg prose-invert mx-auto mt-6"
+        set:html={post.content.html}
+      />
+    </div>
+  </div>
+</Layout>

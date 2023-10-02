@@ -1,0 +1,15 @@
+---
+import Head, { type Props } from "~/components/Head.astro";
+
+const { props } = Astro;
+---
+
+<!doctype html>
+<html lang="en">
+  <Head {...props} />
+  <body
+    class="container flex min-h-screen flex-col items-center bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-violet-100 via-purple-900 to-teal-900 py-12 text-center text-zinc-50"
+  >
+    <slot />
+  </body>
+</html>

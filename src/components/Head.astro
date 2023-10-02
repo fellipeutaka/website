@@ -1,11 +1,17 @@
 ---
-import { SEO, type Props } from "astro-seo";
+import "@fontsource/inter";
+
+import { SEO, type Props as SEOProps } from "astro-seo";
+import { ViewTransitions } from "astro:transitions";
 
 const { props } = Astro;
+
+export type Props = SEOProps;
 ---
 
 <head>
   <slot />
+  <ViewTransitions />
   <SEO
     titleTemplate="%s | Fellipe Utaka"
     titleDefault="Fellipe Utaka"
