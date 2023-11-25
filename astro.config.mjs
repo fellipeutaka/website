@@ -8,4 +8,7 @@ export default defineConfig({
     domains: ["github.com"],
   },
   integrations: [tailwind()],
+  redirects: {
+    "/": "/links",
+  },
 });
