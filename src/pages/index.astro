@@ -1,0 +1,88 @@
+---
+import Layout from "~/components/Layout.astro";
+
+const projects = [
+  {
+    name: "useful-tools",
+    description: "🛠 A collection of the best tools",
+    url: new URL("https://github.com/fellipeutaka/useful-tools"),
+  },
+  {
+    name: "fellipeutaka/ui",
+    description:
+      "🎨 A Design System with accessible and customizable components powered by shadcn/ui",
+    url: new URL("https://github.com/fellipeutaka/ui"),
+  },
+  {
+    name: "electron-pomodoro-app",
+    description:
+      "💻 A Pomodoro App using Electron, React, styled-components and TypeScript",
+    url: new URL("https://github.com/fellipeutaka/electron-pomodoro-app"),
+  },
+  {
+    name: "react-native-pomodoro-app",
+    description: "📱 A Pomodoro App using React, React Native and TypeScript",
+    url: new URL("https://github.com/fellipeutaka/react-native-pomodoro-app"),
+  },
+  {
+    name: "eslint-config",
+    description: "⚙️ My ESLint configuration",
+    url: new URL("https://github.com/fellipeutaka/eslint-config"),
+  },
+  {
+    name: "ts-init",
+    description: "🖥️ A CLI to initialize a tsconfig file",
+    url: new URL("https://github.com/fellipeutaka/ts-init"),
+  },
+];
+
+const links = [
+  {
+    label: "Links",
+    href: "/links",
+  },
+];
+---
+
+<Layout>
+  <header class="container flex items-center justify-between py-4">
+    <h1 class="text-3xl font-bold">Hey, I'm Fellipe Utaka 👋</h1>
+    <nav class="hidden items-center gap-2 sm:flex">
+      {
+        links.map((link) => (
+          <a class="font-medium underline underline-offset-4" href={link.href}>
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </header>
+
+  <main class="container space-y-5">
+    <p>
+      I'm a dedicated and versatile mid-level full-stack developer with over 3
+      years of hands-on experience in crafting robust and scalable web, mobile,
+      and desktop applications. My passion lies in creating seamless digital
+      experiences, and I thrive on the challenges of turning complex ideas into
+      elegant, user-friendly solutions.
+    </p>
+  </main>
+
+  <article class="container mt-6">
+    <h2 class="text-xl font-semibold">Projects</h2>
+    <ul class="space-y-4 py-4">
+      {
+        projects.map((project) => (
+          <li>
+            <a class="space-y-1.5" href={project.url.toString()}>
+              <p class="font-mono font-medium underline underline-offset-4">
+                {project.name}
+              </p>
+              <p class="text-muted-foreground">{project.description}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+</Layout>

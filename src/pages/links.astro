@@ -10,10 +10,33 @@ import {
   Layers,
   Globe,
 } from "lucide-astro";
+
+const links = [
+  {
+    name: "GitHub",
+    icon: Github,
+    url: new URL("https://github.com/fellipeutaka"),
+  },
+  {
+    name: "Dev.to",
+    icon: Layers,
+    url: new URL("https://dev.to/fellipeutaka"),
+  },
+  {
+    name: "Codepen",
+    icon: Codepen,
+    url: new URL("https://codepen.io/fellipeutaka"),
+  },
+  {
+    name: "Website",
+    icon: Globe,
+    url: new URL(Astro.url.origin),
+  },
+];
 ---
 
 <Layout title="Links">
-  <header>
+  <header class="container">
     <Image
       class="mx-auto h-24 w-24 rounded-full"
       srcset="https://github.com/fellipeutaka.png?size=144 480w, https://github.com/fellipeutaka.png?size=256 800w"
@@ -24,8 +47,10 @@ import {
       height={96}
       loading="eager"
     />
-    <h1 class="my-3">@fellipeutaka</h1>
-    <h2>A Full-Stack Developer who loves experiment new technologies.</h2>
+    <h1 class="my-3 text-center font-semibold">@fellipeutaka</h1>
+    <h2 class="text-center">
+      A Full-Stack Developer who loves experiment new technologies.
+    </h2>
     <div class="my-6 flex items-center justify-center gap-4">
       <a
         class="transition hover:scale-110 hover:text-[#2867b2]"
@@ -48,49 +73,20 @@ import {
     </div>
   </header>
 
-  <main class="w-full space-y-4">
-    <a
-      href="https://github.com/fellipeutaka"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="flex h-16 items-center justify-between rounded-full bg-purple-600 px-4 transition duration-300 hover:scale-105"
-    >
-      <Github />
-      <span>GitHub</span>
-      <Upload />
-    </a>
-
-    <a
-      href="https://dev.to/fellipeutaka"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="flex h-16 items-center justify-between rounded-full bg-purple-600 px-4 transition duration-300 hover:scale-105"
-    >
-      <Layers />
-      <span>Dev.to</span>
-      <Upload />
-    </a>
-
-    <a
-      href="https://codepen.io/fellipeutaka"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="flex h-16 items-center justify-between rounded-full bg-purple-600 px-4 transition duration-300 hover:scale-105"
-    >
-      <Codepen />
-      <span>Codepen</span>
-      <Upload />
-    </a>
-
-    <a
-      href="/"
-      class="flex h-16 items-center justify-between rounded-full bg-purple-600 px-4 transition duration-300 hover:scale-105"
-    >
-      <Globe />
-      <span>Website</span>
-      <Upload />
-    </a>
+  <main class="container w-full space-y-4">
+    {
+      links.map((link) => (
+        <a
+          href={link.url.toString()}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex h-16 items-center justify-between rounded-full bg-primary px-4 text-primary-foreground transition duration-300 hover:scale-105"
+        >
+          <link.icon />
+          <span>{link.name}</span>
+          <Upload />
+        </a>
+      ))
+    }
   </main>
-
-  <footer class="mt-12">Made with ❤️ by Fellipe Utaka</footer>
 </Layout>

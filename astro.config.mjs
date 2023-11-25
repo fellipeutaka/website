@@ -7,8 +7,9 @@ export default defineConfig({
   image: {
     domains: ["github.com"],
   },
-  integrations: [tailwind()],
-  redirects: {
-    "/": "/links",
-  },
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+  ],
 });

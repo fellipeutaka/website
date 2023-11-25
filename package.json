@@ -21,6 +21,7 @@
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "@commitlint/cz-commitlint": "^18.4.3",
+    "@fellipeutaka/styles": "^1.2.0",
     "@tailwindcss/typography": "^0.5.10",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
     "@typescript-eslint/parser": "^6.12.0",

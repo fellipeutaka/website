@@ -25,6 +25,9 @@ devDependencies:
   '@commitlint/cz-commitlint':
     specifier: ^18.4.3
     version: 18.4.3(commitizen@4.3.0)(inquirer@8.2.6)(typescript@5.3.2)
+  '@fellipeutaka/styles':
+    specifier: ^1.2.0
+    version: 1.2.0(tailwindcss@3.3.5)
   '@tailwindcss/typography':
     specifier: ^0.5.10
     version: 0.5.10(tailwindcss@3.3.5)
@@ -1096,6 +1099,23 @@ packages:
   /@eslint/js@8.54.0:
     resolution: {integrity: sha512-ut5V+D+fOoWPgGGNj83GGjnntO39xDy6DWxO0wb7Jp3DcMX0TfIqdzHF85VTQkerdyGmuuMD9AKAo5KiNlf/AQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
+  /@fastify/deepmerge@1.3.0:
+    resolution: {integrity: sha512-J8TOSBq3SoZbDhM9+R/u77hP93gz/rajSA+K2kGyijPpORPWUXHUpTaleoj+92As0S9uPRP7Oi8IqMf0u+ro6A==}
+    dev: true
+
+  /@fellipeutaka/styles@1.2.0(tailwindcss@3.3.5):
+    resolution: {integrity: sha512-Gmc2aDdG8ZnWLwg9nG2co3pAesXkqS/rs4afwdzuMAK0R/8TH3RXlowL2RdG9xk7IBn2dm0qk5H+9SNXFwEnlA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      '@fastify/deepmerge': 1.3.0
+      clsx: 2.0.0
+      tailwind-merge: 1.14.0
+      tailwind-variants: 0.1.18(tailwindcss@3.3.5)
+      tailwindcss: 3.3.5
+      tailwindcss-animate: 1.0.7(tailwindcss@3.3.5)
     dev: true
 
   /@fontsource/inter@5.0.15:
@@ -6202,6 +6222,28 @@ packages:
     dependencies:
       '@pkgr/utils': 2.4.2
       tslib: 2.6.2
+    dev: true
+
+  /tailwind-merge@1.14.0:
+    resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
+    dev: true
+
+  /tailwind-variants@0.1.18(tailwindcss@3.3.5):
+    resolution: {integrity: sha512-yoydMYm3FbZRw7wak+E2sqwYv2Uo3YWRqVZR03DGqDGm0ytzDrEnWO/Q/GMHdhaz8adOvycKw/bwCgQFCfmfhg==}
+    engines: {node: '>=16.x', pnpm: '>=7.x'}
+    peerDependencies:
+      tailwindcss: '*'
+    dependencies:
+      tailwind-merge: 1.14.0
+      tailwindcss: 3.3.5
+    dev: true
+
+  /tailwindcss-animate@1.0.7(tailwindcss@3.3.5):
+    resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      tailwindcss: 3.3.5
     dev: true
 
   /tailwindcss@3.3.5:
