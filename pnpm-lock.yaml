@@ -28,9 +28,6 @@ devDependencies:
   '@fellipeutaka/eslint-config':
     specifier: ^1.12.4
     version: 1.12.4(eslint@8.57.0)(tailwindcss@3.4.1)(typescript@5.4.3)
-  '@fellipeutaka/styles':
-    specifier: ^1.2.0
-    version: 1.2.0(tailwindcss@3.4.1)
   '@tailwindcss/typography':
     specifier: ^0.5.10
     version: 0.5.10(tailwindcss@3.4.1)
@@ -1176,10 +1173,6 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@fastify/deepmerge@1.3.0:
-    resolution: {integrity: sha512-J8TOSBq3SoZbDhM9+R/u77hP93gz/rajSA+K2kGyijPpORPWUXHUpTaleoj+92As0S9uPRP7Oi8IqMf0u+ro6A==}
-    dev: true
-
   /@fellipeutaka/eslint-config@1.12.4(eslint@8.57.0)(tailwindcss@3.4.1)(typescript@5.4.3):
     resolution: {integrity: sha512-relTlmuQCWHj/3rHoDmlgrFeagV8t2yJFaEHboSyxCJGH18sx1N5c4BYZqF94sNcR9CrnzghIYaBtOIWsDp+Yg==}
     peerDependencies:
@@ -1209,19 +1202,6 @@ packages:
       - eslint-import-resolver-webpack
       - supports-color
       - tailwindcss
-    dev: true
-
-  /@fellipeutaka/styles@1.2.0(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-Gmc2aDdG8ZnWLwg9nG2co3pAesXkqS/rs4afwdzuMAK0R/8TH3RXlowL2RdG9xk7IBn2dm0qk5H+9SNXFwEnlA==}
-    peerDependencies:
-      tailwindcss: '>=3.0.0 || insiders'
-    dependencies:
-      '@fastify/deepmerge': 1.3.0
-      clsx: 2.1.0
-      tailwind-merge: 1.14.0
-      tailwind-variants: 0.1.20(tailwindcss@3.4.1)
-      tailwindcss: 3.4.1
-      tailwindcss-animate: 1.0.7(tailwindcss@3.4.1)
     dev: true
 
   /@fontsource/inter@5.0.17:
@@ -7119,28 +7099,6 @@ packages:
     dependencies:
       '@pkgr/core': 0.1.1
       tslib: 2.6.2
-    dev: true
-
-  /tailwind-merge@1.14.0:
-    resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
-    dev: true
-
-  /tailwind-variants@0.1.20(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-AMh7x313t/V+eTySKB0Dal08RHY7ggYK0MSn/ad8wKWOrDUIzyiWNayRUm2PIJ4VRkvRnfNuyRuKbLV3EN+ewQ==}
-    engines: {node: '>=16.x', pnpm: '>=7.x'}
-    peerDependencies:
-      tailwindcss: '*'
-    dependencies:
-      tailwind-merge: 1.14.0
-      tailwindcss: 3.4.1
-    dev: true
-
-  /tailwindcss-animate@1.0.7(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
-    peerDependencies:
-      tailwindcss: '>=3.0.0 || insiders'
-    dependencies:
-      tailwindcss: 3.4.1
     dev: true
 
   /tailwindcss@3.4.1:
