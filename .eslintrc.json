@@ -1,13 +1,10 @@
 {
   "root": true,
   "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:tailwindcss/recommended",
-    "plugin:astro/recommended",
-    "prettier"
+    "@fellipeutaka/eslint-config/node",
+    "@fellipeutaka/eslint-config/tailwind",
+    "plugin:astro/recommended"
   ],
-  "parser": "@typescript-eslint/parser",
   "overrides": [
     {
       "files": ["*.astro"],
@@ -17,30 +14,5 @@
         "extraFileExtensions": [".astro"]
       }
     }
-  ],
-  "plugins": ["@typescript-eslint", "import-helpers", "jsx-a11y"],
-  "rules": {
-    "import-helpers/order-imports": [
-      "warn",
-      {
-        "newlinesBetween": "always",
-        "groups": [
-          "/astro/",
-          "/^react/",
-          "module",
-          "/^~/",
-          ["parent", "sibling", "index"]
-        ],
-        "alphabetize": {
-          "order": "asc",
-          "ignoreCase": true
-        }
-      }
-    ]
-  },
-  "env": {
-    "node": true,
-    "browser": true,
-    "es6": true
-  }
+  ]
 }

@@ -1,5 +1,4 @@
 ---
-import Layout from "~/components/Layout.astro";
 import { Image } from "astro:assets";
 import {
   Linkedin,
@@ -10,6 +9,8 @@ import {
   Layers,
   Globe,
 } from "lucide-astro";
+
+import Layout from "~/components/Layout.astro";
 
 const links = [
   {
@@ -38,7 +39,7 @@ const links = [
 <Layout title="Links">
   <header class="container">
     <Image
-      class="mx-auto h-24 w-24 rounded-full"
+      class="mx-auto size-24 rounded-full"
       srcset="https://github.com/fellipeutaka.png?size=144 480w, https://github.com/fellipeutaka.png?size=256 800w"
       sizes="(max-width: 600px) 480px, 800px"
       src="https://github.com/fellipeutaka.png"
