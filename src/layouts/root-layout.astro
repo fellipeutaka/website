@@ -1,0 +1,19 @@
+---
+import Head, { type Props } from "~/components/head.astro";
+import { SiteFooter } from "~/components/site-footer";
+
+const { props } = Astro;
+
+import "~/styles/globals.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <Head {...props} />
+  <body
+    class="grid bg-gradient-to-bl from-background to-background/95 bg-cover bg-no-repeat"
+  >
+    <slot />
+    <SiteFooter client:visible />
+  </body>
+</html>

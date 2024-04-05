@@ -1,10 +1,21 @@
 {
-  "cSpell.words": ["astrojs", "commitlint", "fontsource", "HYGRAPH", "lucide"],
+  "cSpell.words": [
+    "astrojs",
+    "Codepen",
+    "commitlint",
+    "fontsource",
+    "HYGRAPH",
+    "lucide",
+    "qwik",
+    "qwikdev",
+    "tailwindcss"
+  ],
   "eslint.validate": [
     "javascript",
     "javascriptreact",
     "astro",
     "typescript",
     "typescriptreact"
-  ]
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

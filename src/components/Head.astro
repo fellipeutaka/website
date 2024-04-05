@@ -1,8 +1,10 @@
 ---
-import "@fontsource/inter";
+import "@fontsource/geist-sans";
 
 import { SEO, type Props as SEOProps } from "astro-seo";
 import { ViewTransitions } from "astro:transitions";
+
+import { siteConfig } from "~/config/site";
 
 const { props } = Astro;
 
@@ -13,10 +15,10 @@ export type Props = SEOProps;
   <slot />
   <ViewTransitions />
   <SEO
-    titleTemplate="%s | Fellipe Utaka"
-    titleDefault="Fellipe Utaka"
-    description="Fellipe Utaka's personal website"
-    canonical="https://fellipeutaka.vercel.app"
+    titleTemplate={`%s | ${siteConfig.name}`}
+    titleDefault={siteConfig.name}
+    description={siteConfig.description}
+    canonical={siteConfig.url}
     twitter={{
       creator: "@fellipeutaka",
     }}
@@ -29,8 +31,7 @@ export type Props = SEOProps;
         },
         {
           name: "keywords",
-          content:
-            "Fellipe Utaka, Fellipe, Utaka, Software Engineer, Software Developer, Developer, Engineer, Frontend Engineer, Frontend Developer, Frontend, Front-end, Front end, Front, Frontend Development, Frontend Engineering, Frontend Developer",
+          content: siteConfig.keywords,
         },
         {
           name: "generator",

@@ -1,3 +1,5 @@
+import animate from "tailwindcss-animate";
+import animated from "tailwindcss-animated";
 import { fontFamily } from "tailwindcss/defaultTheme";
 import type { Config } from "tailwindcss/types";
 
@@ -53,10 +55,38 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["Inter"].concat(fontFamily.sans),
+        sans: ["Geist Sans"].concat(fontFamily.sans),
+      },
+      keyframes: {
+        spotlight: {
+          "0%": {
+            opacity: "0",
+            transform: "translate(-72%, -62%) scale(0.5)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translate(-50%,-40%) scale(1)",
+          },
+        },
+        flip: {
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
+        rotate: {
+          to: {
+            transform: "rotate(90deg)",
+          },
+        },
+      },
+      animation: {
+        spotlight: "spotlight 2s ease .75s 1 forwards",
+        flip: "flip 6s infinite steps(2, end)",
+        rotate: "rotate 3s linear infinite both",
       },
     },
   },
+  plugins: [animate, animated],
 };
 
 export default config;
