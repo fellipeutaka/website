@@ -55,7 +55,7 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["Geist Sans"].concat(fontFamily.sans),
+        sans: ["var(--font-geist-sans)"].concat(fontFamily.sans),
       },
       keyframes: {
         spotlight: {

@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 
-import { tv, type VariantProps } from "tailwind-variants";
+import { type VariantProps, tv } from "tailwind-variants";
 
 export const ButtonStyles = tv({
   base: [

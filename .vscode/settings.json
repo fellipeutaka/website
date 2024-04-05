@@ -1,22 +1,10 @@
 {
   "cSpell.words": [
-    "astrojs",
-    "Codepen",
+    "codepen",
     "commitlint",
     "fontsource",
-    "HYGRAPH",
-    "lucide",
-    "qwik",
-    "qwikdev",
     "tailwindcss",
-    "Turborepo"
+    "turborepo"
   ],
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "astro",
-    "typescript",
-    "typescriptreact"
-  ],
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "biomejs.biome"
 }

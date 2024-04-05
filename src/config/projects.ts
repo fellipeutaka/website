@@ -1,4 +1,4 @@
-import { technologies, type Technology } from "./technology";
+import { type Technology, technologies } from "./technology";
 
 export const projects = [
   {

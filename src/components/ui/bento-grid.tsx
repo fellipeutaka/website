@@ -55,7 +55,7 @@ function BentoGridDescription(props: DivProps) {
     <div
       {...props}
       className={cn(
-        "text-xs font-normal text-neutral-600 dark:text-neutral-300",
+        "font-normal text-neutral-600 text-xs dark:text-neutral-300",
         props.className,
       )}
     />

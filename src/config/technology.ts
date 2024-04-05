@@ -1,4 +1,4 @@
-import { Icons, type Icon } from "~/components/ui/icons";
+import { type Icon, Icons } from "~/components/ui/icons";
 
 export const technologies = {
   react: {
