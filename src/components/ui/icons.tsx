@@ -266,4 +266,49 @@ export const Icons = {
       />
     </svg>
   ),
+  Turborepo: (props) => (
+    <svg
+      fill="none"
+      height={32}
+      viewBox="0 0 32 32"
+      width={32}
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <defs>
+        <linearGradient
+          gradientUnits="userSpaceOnUse"
+          id="c"
+          x1={15.0234}
+          x2={3.64419}
+          y1={4.00556}
+          y2={15.3847}
+        >
+          <stop stopColor="#0096FF" />
+          <stop offset={1} stopColor="#FF1E56" />
+        </linearGradient>
+        <linearGradient id="a">
+          <stop offset="0%" />
+          <stop offset="25%" stopColor="#fff" />
+          <stop offset="85%" stopColor="#fff" />
+          <stop offset="100%" />
+        </linearGradient>
+        <mask id="b">
+          <path fill="url(#a)" transform="translate(-8)" d="M0 0H46V26H0z" />
+        </mask>
+      </defs>
+      <g mask="url(#b)">
+        <path
+          className="fill-black dark:fill-white"
+          d="M13.94 6.422c-4.146 0-7.518 3.372-7.518 7.518 0 4.145 3.372 7.518 7.518 7.518 4.145 0 7.518-3.373 7.518-7.518 0-4.146-3.373-7.518-7.518-7.518zm0 11.408a3.89 3.89 0 11-.001-7.78 3.89 3.89 0 010 7.78z"
+        />
+        <path
+          clipRule="evenodd"
+          d="M14.57 5.187V2.38c6.1.326 10.948 5.377 10.948 11.56 0 6.182-4.847 11.232-10.948 11.56v-2.807c4.547-.325 8.148-4.125 8.148-8.753 0-4.629-3.601-8.428-8.148-8.753zM7.31 19.68a8.741 8.741 0 01-2.122-5.11H2.38a11.528 11.528 0 002.941 7.096l1.987-1.986h.001zm6 5.82v-2.807a8.733 8.733 0 01-5.112-2.121l-1.986 1.986a11.527 11.527 0 007.096 2.942h.002z"
+          fill="url(#c)"
+          fillRule="evenodd"
+        />
+      </g>
+    </svg>
+  ),
 } satisfies Record<string, Icon>;

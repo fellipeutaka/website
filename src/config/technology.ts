@@ -41,6 +41,11 @@ export const technologies = {
     icon: Icons.TailwindCSS,
     url: "https://tailwindcss.com",
   },
+  turborepo: {
+    name: "Turborepo",
+    icon: Icons.Turborepo,
+    url: "https://turbo.build/repo",
+  },
 } satisfies Record<string, Technology>;
 
 export type Technologies = typeof technologies;

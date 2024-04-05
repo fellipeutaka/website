@@ -12,7 +12,8 @@ export const projects = [
   },
   {
     name: "useful-tools",
-    description: "🛠️ A free and open source collection of tools",
+    description:
+      "🛠️ A free and open source PWA application with a collection of tools to help you",
     url: "https://github.com/fellipeutaka/useful-tools",
     imageSrc:
       "https://usefultools.vercel.app/en/opengraph-image.png?8d743770033bfb96",
@@ -40,7 +41,7 @@ export const projects = [
   {
     name: "electron-pomodoro-app",
     description:
-      "💻 A Pomodoro App using Electron, React, styled-components and TypeScript",
+      "💻 A desktop pomodoro app to help you manage your time and let you focus on any tasks",
     url: "https://github.com/fellipeutaka/electron-pomodoro-app",
     imageSrc:
       "https://opengraph.githubassets.com/88e80980a1ffa67d23cabf08bd9b3743d9073e1ba835a1b9a7d8b290b3bcb81d/fellipeutaka/electron-pomodoro-app",
@@ -52,7 +53,8 @@ export const projects = [
   },
   {
     name: "react-native-pomodoro-app",
-    description: "📱 A Pomodoro App using React, React Native and TypeScript",
+    description:
+      "📱 A mobile pomodoro app to help you manage your time and let you focus on any tasks",
     url: "https://github.com/fellipeutaka/react-native-pomodoro-app",
     imageSrc:
       "https://opengraph.githubassets.com/88e80980a1ffa67d23cabf08bd9b3743d9073e1ba835a1b9a7d8b290b3bcb81d/fellipeutaka/react-native-pomodoro-app",
@@ -64,15 +66,17 @@ export const projects = [
   },
   {
     name: "eslint-config",
-    description: "⚙️ My ESLint configuration",
+    description:
+      "⚙️ My shareable ESLint configuration for Node.js, React, Expo, Next.js and Tailwind CSS",
     url: "https://github.com/fellipeutaka/eslint-config",
     imageSrc:
       "https://opengraph.githubassets.com/88e80980a1ffa67d23cabf08bd9b3743d9073e1ba835a1b9a7d8b290b3bcb81d/fellipeutaka/eslint-config",
-    technologies: [technologies.react],
+    technologies: [technologies.turborepo],
   },
   {
     name: "ts-init",
-    description: "🖥️ A CLI to initialize a tsconfig file",
+    description:
+      "🖥️ A CLI tool to generate a tsconfig.json file for your TypeScript project with a set of interactive prompts.",
     url: "https://github.com/fellipeutaka/ts-init",
     imageSrc:
       "https://opengraph.githubassets.com/88e80980a1ffa67d23cabf08bd9b3743d9073e1ba835a1b9a7d8b290b3bcb81d/fellipeutaka/ts-init",

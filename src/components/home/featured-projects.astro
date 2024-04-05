@@ -9,48 +9,48 @@ import { projects } from "~/config/projects";
   {
     projects.map((project, i) => (
       <BentoGrid.Item className={i === 3 || i === 6 ? "md:col-span-2" : ""}>
-        <BentoGrid.Body className="flex flex-col justify-end">
-          <div class="flex items-center gap-2">
-            {project.technologies.map((technology) => (
-              <a
-                href={technology.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={technology.name}
-              >
-                <technology.icon className="size-5" />
-              </a>
-            ))}
-          </div>
-          <BentoGrid.Title>{project.name}</BentoGrid.Title>
-          <BentoGrid.Description>{project.description}</BentoGrid.Description>
-          <div class="mt-4 flex items-center justify-between">
-            {project.previewUrl && (
-              <a
-                href={project.previewUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class={ButtonStyles({ class: "rounded-full", size: "sm" })}
-              >
-                <Icons.Eye className="mr-2 size-4" />
-                Preview
-              </a>
-            )}
+        <div class="flex items-center gap-3">
+          {project.technologies.map((technology) => (
             <a
-              href={project.url}
+              href={technology.url}
               target="_blank"
               rel="noopener noreferrer"
-              class={ButtonStyles({
-                class: "rounded-full",
-                size: "sm",
-                variant: "secondary",
-              })}
+              title={technology.name}
             >
-              <Icons.GitHub className="mr-2 size-4" />
-              Source code
+              <technology.icon className="size-6" />
             </a>
-          </div>
+          ))}
+        </div>
+        <BentoGrid.Body className="flex flex-col justify-end">
+          <BentoGrid.Title>{project.name}</BentoGrid.Title>
+          <BentoGrid.Description>{project.description}</BentoGrid.Description>
         </BentoGrid.Body>
+        <div class="mt-4 flex items-center justify-between">
+          {project.previewUrl && (
+            <a
+              href={project.previewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={ButtonStyles({ class: "rounded-full", size: "sm" })}
+            >
+              <Icons.Eye className="mr-2 size-4" />
+              Preview
+            </a>
+          )}
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={ButtonStyles({
+              class: "rounded-full",
+              size: "sm",
+              variant: "secondary",
+            })}
+          >
+            <Icons.GitHub className="mr-2 size-4" />
+            Source code
+          </a>
+        </div>
       </BentoGrid.Item>
     ))
   }

@@ -8,7 +8,8 @@
     "lucide",
     "qwik",
     "qwikdev",
-    "tailwindcss"
+    "tailwindcss",
+    "Turborepo"
   ],
   "eslint.validate": [
     "javascript",

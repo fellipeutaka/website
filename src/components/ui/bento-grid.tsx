@@ -7,7 +7,7 @@ function BentoGridRoot(props: DivProps) {
     <div
       {...props}
       className={cn(
-        "mx-auto grid max-w-7xl grid-cols-1 gap-4 md:auto-rows-[18rem] md:grid-cols-3 ",
+        "mx-auto grid max-w-7xl grid-cols-1 gap-4 md:auto-rows-fr md:grid-cols-3",
         props.className,
       )}
     />
@@ -19,7 +19,7 @@ function BentoGridItem(props: DivProps) {
     <div
       {...props}
       className={cn(
-        "group/bento row-span-1 flex flex-col justify-between gap-4 rounded-xl border border-transparent bg-white p-4 shadow-input transition duration-200 hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none",
+        "group/bento row-span-1 flex flex-col justify-between gap-4 rounded-xl border p-4 shadow-input transition duration-200 hover:shadow-xl",
         props.className,
       )}
     />
