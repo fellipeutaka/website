@@ -46,7 +46,7 @@
     "typescript": "^5.4.4"
   },
   "lint-staged": {
-    "*.{js,ts,astro}": [
+    "*.{js,ts,tsx,astro}": [
       "eslint --fix",
       "prettier --plugin=prettier-plugin-astro --write"
     ],

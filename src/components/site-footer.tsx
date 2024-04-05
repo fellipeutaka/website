@@ -44,6 +44,7 @@ export function SiteFooter() {
                 href={link.href}
                 rel="noopener noreferrer"
                 target="_blank"
+                aria-label={link.label}
               >
                 <link.icon />
               </a>
