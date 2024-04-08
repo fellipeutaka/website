@@ -1,23 +1,23 @@
 import { BadgeAnimated } from "~/components/ui/badge-animated";
 import { Button, ButtonStyles } from "~/components/ui/button";
 import { Icons } from "~/components/ui/icons";
-import { Spotlight } from "~/components/ui/spotlight";
 import { siteConfig } from "~/config/site";
+import { Spotlight } from "../ui/spotlight";
 
 export function Hero() {
   return (
-    <section className="relative flex overflow-hidden rounded-md bg-background/[0.96] py-48 md:items-center md:justify-center">
-      <Spotlight className="fill-foreground" />
+    <section className="relative flex items-center justify-center overflow-hidden rounded-md bg-background/[0.96] py-48">
+      <Spotlight className="fill-foreground max-md:top-0 max-md:left-[10%]" />
       <div className="flex max-w-7xl flex-col items-center space-y-4 p-4 md:p-0">
         <div className="grid animate-fade-up justify-items-center gap-4">
           <BadgeAnimated className="flex items-center gap-2 text-sm">
             <Icons.Circle className="size-2 animate-pulse fill-green-600 text-green-600" />
             Available for work
           </BadgeAnimated>
-          <h1 className="text-center font-bold text-4xl md:text-7xl">
+          <h1 className="text-center font-bold text-5xl md:text-7xl">
             Fellipe Utaka
           </h1>
-          <h2 className="text-center font-bold text-4xl md:text-7xl">
+          <h2 className="text-center font-bold text-5xl md:text-7xl">
             Full-Stack Developer
           </h2>
         </div>

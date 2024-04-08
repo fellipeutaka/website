@@ -1,3 +1,4 @@
+import { Slot } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 
 import { type VariantProps, tv } from "tailwind-variants";
@@ -40,12 +41,16 @@ export const ButtonStyles = tv({
 });
 
 export type ButtonProps = React.ComponentPropsWithoutRef<"button"> &
-  VariantProps<typeof ButtonStyles>;
+  VariantProps<typeof ButtonStyles> & {
+    asChild?: boolean;
+  };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, type = "button", variant, size, ...props }, ref) => {
+  ({ className, type = "button", variant, size, asChild, ...props }, ref) => {
+    const Component = asChild ? Slot : "button";
+
     return (
-      <button
+      <Component
         type={type}
         className={ButtonStyles({ variant, size, className })}
         ref={ref}

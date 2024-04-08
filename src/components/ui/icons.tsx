@@ -2,6 +2,56 @@ type IconProps = React.ComponentPropsWithoutRef<"svg">;
 export type Icon = (props: IconProps) => React.ReactElement;
 
 export const Icons = {
+  Logo: (props) => (
+    <svg
+      width={32}
+      height={32}
+      viewBox="0 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <mask>
+        <path fill="currentColor" d="M0 0H32V32H0z" />
+      </mask>
+      <path
+        fill="currentColor"
+        d="M13.2 23.5H9.5V6h11.6v3.1h-7.9v4.1h7.1v3.1h-7.1v7.2z"
+      />
+    </svg>
+  ),
+  X: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M18 6L6 18M6 6l12 12" />
+    </svg>
+  ),
+  Menu: (props) => (
+    <svg
+      width={15}
+      height={15}
+      viewBox="0 0 15 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M1.5 3a.5.5 0 000 1h12a.5.5 0 000-1h-12zM1 7.5a.5.5 0 01.5-.5h12a.5.5 0 010 1h-12a.5.5 0 01-.5-.5zm0 4a.5.5 0 01.5-.5h12a.5.5 0 010 1h-12a.5.5 0 01-.5-.5z"
+        fill="currentColor"
+        fillRule="evenodd"
+        clipRule="evenodd"
+      />
+    </svg>
+  ),
   Eye: (props) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

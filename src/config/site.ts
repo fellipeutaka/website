@@ -12,3 +12,11 @@ export const siteConfig = {
     codepen: "https://codepen.io/fellipeutaka",
   },
 };
+
+export const navLinks = [
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
+  { href: "/experience", label: "Experience" },
+  { href: "/contributions", label: "Contributions" },
+  { href: "/contact", label: "Contact" },
+];

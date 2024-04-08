@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "~/components/site-footer";
+import { SiteHeader } from "~/components/site-header";
 import { fonts } from "~/config/fonts";
 import { siteConfig } from "~/config/site";
 import { cn } from "~/lib/utils";
@@ -37,6 +38,7 @@ export default function RootLayout({
           fonts.sans.variable,
         )}
       >
+        <SiteHeader />
         {children}
         <SiteFooter />
       </body>

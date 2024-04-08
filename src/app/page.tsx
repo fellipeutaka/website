@@ -6,7 +6,9 @@ export default function Page() {
     <>
       <Hero />
       <main className="container my-20 max-w-6xl animate-delay-700 animate-fade-up">
-        <h2 className="mb-10 font-semibold text-3xl">Featured projects</h2>
+        <h2 className="mb-10 font-semibold text-2xl md:text-3xl">
+          Featured projects
+        </h2>
         <FeaturedProjects />
       </main>
     </>
