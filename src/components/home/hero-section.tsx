@@ -4,7 +4,7 @@ import { Icons } from "~/components/ui/icons";
 import { siteConfig } from "~/config/site";
 import { Spotlight } from "../ui/spotlight";
 
-export function Hero() {
+export function HeroSection() {
   return (
     <section className="relative flex items-center justify-center overflow-hidden rounded-md bg-background/[0.96] py-48">
       <Spotlight className="fill-foreground max-md:top-0 max-md:left-[10%]" />

@@ -1,10 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navLinks } from "~/config/site";
+import { MotionDiv } from "./framer-motion";
 
 export function MainNav() {
   const pathname = usePathname();
@@ -23,7 +23,7 @@ export function MainNav() {
         >
           <span>{item.label}</span>
           {item.href === hoveredPath && (
-            <motion.div
+            <MotionDiv
               className="-z-10 absolute bottom-0 left-0 size-full rounded-full bg-muted"
               layoutId="navbar"
               aria-hidden="true"
@@ -33,7 +33,7 @@ export function MainNav() {
             />
           )}
           {item.href === pathname && (
-            <motion.div
+            <MotionDiv
               className="-z-10 absolute bottom-0 left-0 size-full rounded-full bg-muted"
               aria-hidden="true"
               transition={{

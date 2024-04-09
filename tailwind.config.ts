@@ -1,7 +1,9 @@
 import animate from "tailwindcss-animate";
 import animated from "tailwindcss-animated";
 import { fontFamily } from "tailwindcss/defaultTheme";
+import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 import type { Config } from "tailwindcss/types";
+import type { PluginAPI } from "tailwindcss/types/config";
 
 const config: Config = {
   content: ["./src/**/*.{astro,md,mdx,ts,tsx}"],
@@ -86,7 +88,18 @@ const config: Config = {
       },
     },
   },
-  plugins: [animate, animated],
+  plugins: [animate, animated, addVariablesForColors],
 };
+
+function addVariablesForColors({ addBase, theme }: PluginAPI) {
+  const allColors = flattenColorPalette(theme("colors"));
+  const newVars = Object.fromEntries(
+    Object.entries<string>(allColors).map(([key, val]) => [`--${key}`, val]),
+  );
+
+  addBase({
+    ":root": newVars,
+  });
+}
 
 export default config;

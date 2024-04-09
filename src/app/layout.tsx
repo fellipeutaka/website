@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="motion-safe:scroll-smooth">
       <body
         className={cn(
           "grid bg-cover bg-gradient-to-bl from-background to-background/95 bg-no-repeat font-sans",
