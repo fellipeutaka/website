@@ -7,7 +7,7 @@ import { Icons } from "./ui/icons";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full animate-delay-1000 animate-fade-down border-border/40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full animate-delay-1000 animate-fade-down border-border/40 border-b bg-background backdrop-blur dark:bg-background/95 supports-[backdrop-filter]:dark:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center">
         <Link href="/">
           <Icons.Logo className="size-6" />

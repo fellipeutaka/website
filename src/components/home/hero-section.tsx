@@ -6,9 +6,9 @@ import { Spotlight } from "../ui/spotlight";
 
 export function HeroSection() {
   return (
-    <section className="relative flex items-center justify-center rounded-md bg-background/[0.96] py-48">
+    <section className="relative flex items-center justify-center rounded-md bg-background/[0.96] py-16 md:py-48">
       <Spotlight className="fill-foreground max-md:top-0 max-md:left-[10%]" />
-      <div className="flex max-w-7xl flex-col items-center space-y-4 p-4 md:p-0">
+      <div className="space-y-4">
         <div className="grid animate-fade-up justify-items-center gap-4">
           <BadgeAnimated className="flex items-center gap-2 text-sm">
             <Icons.Circle className="size-2 animate-pulse fill-green-600 text-green-600" />
