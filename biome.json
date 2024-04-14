@@ -61,10 +61,9 @@
         "src/app/**/sitemap.ts",
 
         "src/middleware.ts",
-        "next.config.js",
-        "next.config.mjs",
-        "tailwind.config.ts",
-        "vitest.config.ts",
+        "*.config.js",
+        "*.config.mjs",
+        "*.config.ts",
         "src/lib/i18n/index.ts"
       ],
       "linter": {

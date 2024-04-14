@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Providers } from "~/components/providers";
 import { SiteFooter } from "~/components/site-footer";
 import { SiteHeader } from "~/components/site-header";
 import { fonts } from "~/config/fonts";
@@ -36,11 +37,14 @@ export default function RootLayout({
         className={cn(
           "grid bg-cover bg-gradient-to-bl from-background to-background/95 bg-no-repeat font-sans",
           fonts.sans.variable,
+          fonts.mono.variable,
         )}
       >
-        <SiteHeader />
-        {children}
-        <SiteFooter />
+        <Providers>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+        </Providers>
       </body>
     </html>
   );

@@ -27,6 +27,10 @@
   }
 }
 
+.shiki span {
+  color: var(--shiki-light);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: 240 10% 3.9%;
@@ -48,6 +52,10 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+  }
+
+  .shiki span {
+    color: var(--shiki-dark);
   }
 }
 
@@ -74,4 +82,19 @@
 ::-webkit-scdrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:active {
   @apply bg-foreground/60;
+}
+
+pre.shiki code {
+  all: unset;
+}
+
+pre.shiki .line {
+  font-size: 13px;
+  padding: 0 theme(spacing.4);
+}
+
+pre.shiki .highlighted {
+  width: 100%;
+  display: inline-block;
+  background-color: theme('colors.primary.DEFAULT / 10%');
 }

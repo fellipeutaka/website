@@ -6,6 +6,10 @@ import { useState } from "react";
 import { navLinks } from "~/config/site";
 import { MotionDiv } from "./framer-motion";
 
+function isActive(href: string, path: string) {
+  return path.includes(href);
+}
+
 export function MainNav() {
   const pathname = usePathname();
   const [hoveredPath, setHoveredPath] = useState(pathname);
@@ -16,13 +20,13 @@ export function MainNav() {
         <Link
           key={item.href}
           className="relative px-3 py-2 text-foreground/60 transition-colors data-[active='true']:text-foreground hover:text-foreground"
-          data-active={item.href === pathname}
+          data-active={isActive(item.href, pathname)}
           href={item.href}
           onMouseOver={() => setHoveredPath(item.href)}
           onMouseLeave={() => setHoveredPath(pathname)}
         >
           <span>{item.label}</span>
-          {item.href === hoveredPath && (
+          {isActive(item.href, hoveredPath) && (
             <MotionDiv
               className="-z-10 absolute bottom-0 left-0 size-full rounded-full bg-muted"
               layoutId="navbar"
@@ -32,7 +36,7 @@ export function MainNav() {
               }}
             />
           )}
-          {item.href === pathname && (
+          {isActive(item.href, pathname) && (
             <MotionDiv
               className="-z-10 absolute bottom-0 left-0 size-full rounded-full bg-muted"
               aria-hidden="true"

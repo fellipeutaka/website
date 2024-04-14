@@ -58,8 +58,10 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)"].concat(fontFamily.sans),
+        mono: ["var(--font-geist-mono)"].concat(fontFamily.mono),
       },
       keyframes: {
+        // Animated Spotlight
         spotlight: {
           "0%": {
             opacity: "0",
@@ -70,6 +72,8 @@ const config: Config = {
             transform: "translate(-50%,-40%) scale(1)",
           },
         },
+
+        // Animated Badge
         flip: {
           to: {
             transform: "rotate(360deg)",
@@ -80,11 +84,32 @@ const config: Config = {
             transform: "rotate(90deg)",
           },
         },
+
+        // Radix Collapsible
+        "collapsible-up": {
+          from: {
+            height: "var(--radix-collapsible-content-height)",
+          },
+          to: { height: "0", opacity: "0" },
+        },
+        "collapsible-down": {
+          from: { height: "0", opacity: "0" },
+          to: {
+            height: "var(--radix-collapsible-content-height)",
+          },
+        },
       },
       animation: {
+        // Animated Spotlight
         spotlight: "spotlight 2s ease .75s 1 forwards",
+
+        // Animated Badge
         flip: "flip 6s infinite steps(2, end)",
         rotate: "rotate 3s linear infinite both",
+
+        // Radix Collapsible
+        "collapsible-up": "collapsible-up 150ms ease-out",
+        "collapsible-down": "collapsible-down 150ms ease-out",
       },
     },
   },

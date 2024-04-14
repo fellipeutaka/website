@@ -4,17 +4,17 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "~/lib/utils";
 
-export const TracingBeam = ({
-  children,
-  className,
-}: {
+type TracingBeamProps = {
   children: React.ReactNode;
   className?: string;
-}) => {
+  offset?: NonNullable<Parameters<typeof useScroll>[0]>["offset"];
+};
+
+export function TracingBeam({ children, className, offset }: TracingBeamProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["center end", "end start"],
+    offset: offset ?? ["center end", "end start"],
   });
 
   const contentRef = useRef<HTMLDivElement>(null);
@@ -120,4 +120,4 @@ export const TracingBeam = ({
       <div ref={contentRef}>{children}</div>
     </motion.div>
   );
-};
+}

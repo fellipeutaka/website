@@ -1,4 +1,4 @@
-type IconProps = React.ComponentPropsWithoutRef<"svg">;
+export type IconProps = React.ComponentPropsWithoutRef<"svg">;
 export type Icon = (props: IconProps) => React.ReactElement;
 
 export const Icons = {
@@ -50,6 +50,23 @@ export const Icons = {
         fillRule="evenodd"
         clipRule="evenodd"
       />
+    </svg>
+  ),
+  Link: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+      <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
     </svg>
   ),
   Eye: (props) => (
@@ -107,6 +124,305 @@ export const Icons = {
         strokeLinejoin="round"
         strokeWidth={2}
       />
+    </svg>
+  ),
+  Copy: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect width={14} height={14} x={8} y={8} rx={2} ry={2} />
+      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+    </svg>
+  ),
+  Check: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M20 6L9 17l-5-5" />
+    </svg>
+  ),
+  Settings: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z" />
+      <circle cx={12} cy={12} r={3} />
+    </svg>
+  ),
+  ChevronRight: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M9 18l6-6-6-6" />
+    </svg>
+  ),
+  ChevronLast: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M7 18l6-6-6-6M17 6v12" />
+    </svg>
+  ),
+  Play: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M6 3L20 12 6 21 6 3z" />
+    </svg>
+  ),
+  Pause: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect x={14} y={4} width={4} height={16} rx={1} />
+      <rect x={6} y={4} width={4} height={16} rx={1} />
+    </svg>
+  ),
+  Minimize: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M8 3v3a2 2 0 01-2 2H3M21 8h-3a2 2 0 01-2-2V3M3 16h3a2 2 0 012 2v3M16 21v-3a2 2 0 012-2h3" />
+    </svg>
+  ),
+  Maximize: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M8 3H5a2 2 0 00-2 2v3M21 8V5a2 2 0 00-2-2h-3M3 16v3a2 2 0 002 2h3M16 21h3a2 2 0 002-2v-3" />
+    </svg>
+  ),
+  Subtitle: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect width={18} height={14} x={3} y={5} rx={2} ry={2} />
+      <path d="M7 15h4m4 0h2M7 11h2m4 0h4" />
+    </svg>
+  ),
+  PictureInPicture: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M8 4.5v5H3m-1-6l6 6m13 0v-3c0-1.16-.84-2-2-2h-7m-9 9v2c0 1.05.95 2 2 2h3" />
+      <rect width={10} height={7} x={12} y={13.5} ry={2} />
+    </svg>
+  ),
+  PictureInPicture2: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M21 9V6a2 2 0 00-2-2H4a2 2 0 00-2 2v10c0 1.1.9 2 2 2h4" />
+      <rect width={10} height={7} x={12} y={13} rx={2} />
+    </svg>
+  ),
+  VolumeX: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M11 5L6 9 2 9 2 15 6 15 11 19 11 5z" />
+      <path d="M22 9L16 15" />
+      <path d="M16 9L22 15" />
+    </svg>
+  ),
+  Volume1: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M11 5L6 9 2 9 2 15 6 15 11 19 11 5z" />
+      <path d="M15.54 8.46a5 5 0 010 7.07" />
+    </svg>
+  ),
+  Volume2: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M11 5L6 9 2 9 2 15 6 15 11 19 11 5z" />
+      <path d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14" />
+    </svg>
+  ),
+  File: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M15 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7z" />
+      <path d="M14 2v4a2 2 0 002 2h4" />
+    </svg>
+  ),
+  Folder: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M20 20a2 2 0 002-2V8a2 2 0 00-2-2h-7.9a2 2 0 01-1.69-.9L9.6 3.9A2 2 0 007.93 3H4a2 2 0 00-2 2v13a2 2 0 002 2z" />
+    </svg>
+  ),
+  FolderOpen: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M6 14l1.5-2.9A2 2 0 019.24 10H20a2 2 0 011.94 2.5l-1.54 6a2 2 0 01-1.95 1.5H4a2 2 0 01-2-2V5a2 2 0 012-2h3.9a2 2 0 011.69.9l.81 1.2a2 2 0 001.67.9H18a2 2 0 012 2v2" />
     </svg>
   ),
   GitHub: (props) => (
@@ -263,6 +579,21 @@ export const Icons = {
       </defs>
     </svg>
   ),
+  JavaScript: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={32}
+      height={32}
+      viewBox="0 0 128 128"
+      {...props}
+    >
+      <path fill="#F0DB4F" d="M1.408 1.408h125.184v125.185H1.408z" />
+      <path
+        fill="#323330"
+        d="M116.347 96.736c-.917-5.711-4.641-10.508-15.672-14.981-3.832-1.761-8.104-3.022-9.377-5.926-.452-1.69-.512-2.642-.226-3.665.821-3.32 4.784-4.355 7.925-3.403 2.023.678 3.938 2.237 5.093 4.724 5.402-3.498 5.391-3.475 9.163-5.879-1.381-2.141-2.118-3.129-3.022-4.045-3.249-3.629-7.676-5.498-14.756-5.355l-3.688.477c-3.534.893-6.902 2.748-8.877 5.235-5.926 6.724-4.236 18.492 2.975 23.335 7.104 5.332 17.54 6.545 18.873 11.531 1.297 6.104-4.486 8.08-10.234 7.378-4.236-.881-6.592-3.034-9.139-6.949-4.688 2.713-4.688 2.713-9.508 5.485 1.143 2.499 2.344 3.63 4.26 5.795 9.068 9.198 31.76 8.746 35.83-5.176.165-.478 1.261-3.666.38-8.581M69.462 58.943H57.753l-.048 30.272c0 6.438.333 12.34-.714 14.149-1.713 3.558-6.152 3.117-8.175 2.427-2.059-1.012-3.106-2.451-4.319-4.485-.333-.584-.583-1.036-.667-1.071l-9.52 5.83c1.583 3.249 3.915 6.069 6.902 7.901 4.462 2.678 10.459 3.499 16.731 2.059 4.082-1.189 7.604-3.652 9.448-7.401 2.666-4.915 2.094-10.864 2.07-17.444.06-10.735.001-21.468.001-32.237"
+      />
+    </svg>
+  ),
   TypeScript: (props) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -359,6 +690,128 @@ export const Icons = {
           fillRule="evenodd"
         />
       </g>
+    </svg>
+  ),
+  Mdx: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={32}
+      height={32}
+      viewBox="0 0 32 32"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M20.3 16.5l-3.9 3.9-4-3.9 1.1-1.1 2.1 2.1v-5.7h1.5v5.8l2.1-2.1zm-16.8-.8l2.7 2.7L9 15.7v4.4h1.5V12l-4.3 4.3L2 12v8.1h1.5z"
+      />
+      <path
+        fill="#f9ac00"
+        d="M28.8 20l-3.1-3.1-3.1 3.1-1-1.1 3.1-3.1-3.2-3.2 1.1-1 3.1 3.2 3.2-3.2 1.1 1-3.2 3.2 3.1 3.1z"
+      />
+    </svg>
+  ),
+  Terminal: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M4 17L10 11 4 5" />
+      <path d="M12 19L20 19" />
+    </svg>
+  ),
+  Npm: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={32}
+      height={32}
+      viewBox="0 0 32 32"
+      {...props}
+    >
+      <path
+        fill="#cb3837"
+        d="M2 10.555h28v9.335H16v1.556H9.778v-1.557H2zm1.556 7.779h3.111v-4.668h1.555v4.667h1.556v-6.222H3.556zm7.778-6.223v7.779h3.111v-1.556h3.111v-6.223zm3.111 1.556H16v3.112h-1.556zm4.667-1.556v6.223h3.111v-4.668h1.556v4.667h1.556v-4.667h1.556v4.667h1.556v-6.222z"
+      />
+    </svg>
+  ),
+  Yarn: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={32}
+      height={32}
+      viewBox="0 0 32 32"
+      {...props}
+    >
+      <path
+        fill="#2188b6"
+        d="M28.208 24.409a10.493 10.493 0 00-3.959 1.822 23.743 23.743 0 01-5.835 2.642 1.632 1.632 0 01-.983.55 62.228 62.228 0 01-6.447.577c-1.163.009-1.876-.3-2.074-.776a1.573 1.573 0 01.866-2.074 3.759 3.759 0 01-.514-.379c-.171-.171-.352-.514-.406-.388-.225.55-.343 1.894-.947 2.5-.83.839-2.4.559-3.328.072-1.019-.541.072-1.813.072-1.813a.73.73 0 01-.992-.343 4.847 4.847 0 01-.667-2.949 5.374 5.374 0 011.749-2.895 9.334 9.334 0 01.658-4.4 10.445 10.445 0 013.165-3.661S6.628 10.747 7.35 8.817c.469-1.262.658-1.253.812-1.308a3.633 3.633 0 001.452-.857 5.265 5.265 0 014.41-1.7S15.2 1.4 16.277 2.09a18.349 18.349 0 011.533 2.886s1.281-.748 1.425-.469a11.334 11.334 0 01.523 6.132 14.01 14.01 0 01-2.6 5.411c-.135.225 1.551.938 2.615 3.887.983 2.7.108 4.96.262 5.212.027.045.036.063.036.063s1.127.09 3.391-1.308a8.5 8.5 0 014.277-1.604 1.081 1.081 0 01.469 2.11z"
+      />
+    </svg>
+  ),
+  Pnpm: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={32}
+      height={32}
+      viewBox="0 0 32 32"
+      {...props}
+    >
+      <path
+        fill="#f9ad00"
+        d="M30 10.75h-8.749V2H30zm-9.626 0h-8.75V2h8.75zm-9.625 0H2V2h8.749zM30 20.375h-8.749v-8.75H30z"
+      />
+      <path
+        fill="#4e4e4e"
+        d="M20.374 20.375h-8.75v-8.75h8.75zm0 9.625h-8.75v-8.75h8.75zM30 30h-8.749v-8.75H30zm-19.251 0H2v-8.75h8.749z"
+      />
+    </svg>
+  ),
+  Bun: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={32}
+      height={32}
+      viewBox="0 0 32 32"
+      {...props}
+    >
+      <path
+        fill="#fbf0df"
+        d="M29 17c0 5.65-5.82 10.23-13 10.23S3 22.61 3 17c0-3.5 2.24-6.6 5.66-8.44S14.21 4.81 16 4.81s3.32 1.54 7.34 3.71C26.76 10.36 29 13.46 29 17"
+      />
+      <path
+        fill="none"
+        stroke="#000"
+        d="M16 27.65c7.32 0 13.46-4.65 13.46-10.65 0-3.72-2.37-7-5.89-8.85-1.39-.75-2.46-1.41-3.37-2l-1.13-.69A6.14 6.14 0 0016 4.35a6.88 6.88 0 00-3.3 1.23c-.42.24-.86.51-1.32.8-.87.54-1.83 1.13-3 1.73C4.91 10 2.54 13.24 2.54 17c0 6 6.14 10.65 13.46 10.65z"
+      />
+      <ellipse cx={21.65} cy={18.62} fill="#febbd0" rx={2.17} ry={1.28} />
+      <ellipse cx={10.41} cy={18.62} fill="#febbd0" rx={2.17} ry={1.28} />
+      <path
+        fillRule="evenodd"
+        d="M11.43 18.11a2 2 0 10-2-2.05 2.05 2.05 0 002 2.05m9.2 0a2 2 0 10-2-2.05 2 2 0 002 2.05"
+      />
+      <path
+        fill="#fff"
+        fillRule="evenodd"
+        d="M10.79 16.19a.77.77 0 10-.76-.77.76.76 0 00.76.77m9.2 0a.77.77 0 100-1.53.77.77 0 000 1.53"
+      />
+      <path
+        fill="#b71422"
+        stroke="#000"
+        strokeWidth={0.75}
+        d="M18.62 19.67a3.3 3.3 0 01-1.09 1.75 2.48 2.48 0 01-1.5.69 2.53 2.53 0 01-1.5-.69 3.28 3.28 0 01-1.08-1.75.26.26 0 01.29-.3h4.58a.27.27 0 01.3.3z"
+      />
+      <path
+        fill="#ccbea7"
+        fillRule="evenodd"
+        d="M14.93 5.75a6.09 6.09 0 01-2.09 4.62c-.1.09 0 .27.11.22 1.25-.49 2.94-1.94 2.23-4.88-.03-.15-.25-.11-.25.04m.85 0a6 6 0 01.57 5c0 .13.12.24.21.13.83-1 1.54-3.11-.59-5.31-.1-.11-.27.04-.19.17zm1-.06a6.09 6.09 0 012.53 4.38c0 .14.21.17.24 0 .34-1.3.15-3.51-2.66-4.66-.12-.02-.21.18-.09.27zM9.94 9.55a6.27 6.27 0 003.89-3.33c.07-.13.28-.08.25.07-.64 3-2.79 3.59-4.13 3.51-.14-.01-.14-.21-.01-.25"
+      />
     </svg>
   ),
 } satisfies Record<string, Icon>;
