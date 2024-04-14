@@ -32,6 +32,11 @@ const links = [
     icon: Icons.Codepen,
     href: siteConfig.links.codepen,
   },
+  {
+    label: "Contra",
+    icon: Icons.Contra,
+    href: siteConfig.links.contra,
+  },
 ];
 
 export function SiteFooter() {

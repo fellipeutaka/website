@@ -1,5 +1,5 @@
 import { BadgeAnimated } from "~/components/ui/badge-animated";
-import { Button, ButtonStyles } from "~/components/ui/button";
+import { Button } from "~/components/ui/button";
 import { Icons } from "~/components/ui/icons";
 import { siteConfig } from "~/config/site";
 import { Spotlight } from "../ui/spotlight";
@@ -30,17 +30,12 @@ export function HeroSection() {
             <Icons.Download className="mr-2 size-4" />
             Get resume
           </Button>
-          <a
-            href={siteConfig.links.github}
-            rel="noopener noreferrer"
-            className={ButtonStyles({
-              class: "rounded-full",
-              variant: "outline",
-            })}
-          >
-            <Icons.GitHub className="mr-2 size-4" />
-            GitHub
-          </a>
+          <Button variant="outline" className="rounded-full" asChild>
+            <a href={siteConfig.links.contra} rel="noopener noreferrer">
+              <Icons.Contra className="mr-2 size-4" />
+              Hire me on Contra
+            </a>
+          </Button>
         </div>
       </div>
     </section>
