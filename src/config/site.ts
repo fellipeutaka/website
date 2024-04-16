@@ -1,3 +1,5 @@
+import { Icons } from "~/components/ui/icons";
+
 export const siteConfig = {
   name: "Fellipe Utaka",
   url: "https://fellipeutaka.vercel.app",
@@ -21,4 +23,37 @@ export const navLinks = [
   { href: "/#experience", label: "Experience" },
   { href: "/contributions", label: "Contributions" },
   { href: "/contact", label: "Contact" },
+];
+
+export const socialLinks = [
+  {
+    label: "GitHub",
+    icon: Icons.GitHub,
+    href: siteConfig.links.github,
+  },
+  {
+    label: "Twitter",
+    icon: Icons.Twitter,
+    href: siteConfig.links.twitter,
+  },
+  {
+    label: "Dev.to",
+    icon: Icons.Layers,
+    href: siteConfig.links.devTo,
+  },
+  {
+    label: "LinkedIn",
+    icon: Icons.LinkedIn,
+    href: siteConfig.links.linkedin,
+  },
+  {
+    label: "Codepen",
+    icon: Icons.Codepen,
+    href: siteConfig.links.codepen,
+  },
+  {
+    label: "Contra",
+    icon: Icons.Contra,
+    href: siteConfig.links.contra,
+  },
 ];

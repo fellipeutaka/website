@@ -1,3 +1,4 @@
+await import("./src/lib/env/index.js");
 import { build } from "velite";
 
 /** @type {import('next').NextConfig} */

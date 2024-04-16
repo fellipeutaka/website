@@ -1,49 +1,15 @@
 "use client";
 
-import { siteConfig } from "~/config/site";
+import { socialLinks } from "~/config/site";
 
 import { ButtonStyles } from "./ui/button";
-import { Icons } from "./ui/icons";
 import { Tooltip } from "./ui/tooltip";
-
-const links = [
-  {
-    label: "GitHub",
-    icon: Icons.GitHub,
-    href: siteConfig.links.github,
-  },
-  {
-    label: "Twitter",
-    icon: Icons.Twitter,
-    href: siteConfig.links.twitter,
-  },
-  {
-    label: "Dev.to",
-    icon: Icons.Layers,
-    href: siteConfig.links.devTo,
-  },
-  {
-    label: "LinkedIn",
-    icon: Icons.LinkedIn,
-    href: siteConfig.links.linkedin,
-  },
-  {
-    label: "Codepen",
-    icon: Icons.Codepen,
-    href: siteConfig.links.codepen,
-  },
-  {
-    label: "Contra",
-    icon: Icons.Contra,
-    href: siteConfig.links.contra,
-  },
-];
 
 export function SiteFooter() {
   return (
     <footer className="mx-auto my-12 space-x-4">
       <Tooltip.Provider delayDuration={300}>
-        {links.map((link) => (
+        {socialLinks.map((link) => (
           <Tooltip key={link.href}>
             <Tooltip.Trigger asChild>
               <a

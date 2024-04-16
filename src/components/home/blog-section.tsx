@@ -18,13 +18,13 @@ export function BlogSection() {
     >
       <h2 className="font-semibold text-2xl md:text-3xl">Latest posts</h2>
 
-      <div className="mt-10 mb-4 grid w-full gap-4 md:grid-cols-2">
+      <div className="mt-10 grid w-full gap-4 md:grid-cols-2">
         {posts.slice(0, 2).map((post) => (
           <PostCard key={post.slug} post={post} />
         ))}
       </div>
 
-      <Button variant="outline" asChild>
+      <Button className="mx-auto my-8 flex w-max" variant="outline" asChild>
         <Link href="/blog">See all posts</Link>
       </Button>
     </MotionSection>

@@ -98,6 +98,12 @@ const config: Config = {
             height: "var(--radix-collapsible-content-height)",
           },
         },
+
+        // Marquee
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap, 1rem)))" },
+        },
       },
       animation: {
         // Animated Spotlight
@@ -110,6 +116,9 @@ const config: Config = {
         // Radix Collapsible
         "collapsible-up": "collapsible-up 150ms ease-out",
         "collapsible-down": "collapsible-down 150ms ease-out",
+
+        // Marquee
+        marquee: "marquee var(--duration, 20s) linear infinite",
       },
     },
   },

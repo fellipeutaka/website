@@ -1,3 +1,4 @@
+import { AboutSection } from "~/components/home/about-section";
 import { BlogSection } from "~/components/home/blog-section";
 import { ExperienceSection } from "~/components/home/experience-section";
 import { FeaturedProjectsSection } from "~/components/home/featured-projects";
@@ -8,6 +9,7 @@ export default function Page() {
     <main className="container max-w-6xl [&>*:not(:first-child)]:my-20">
       <HeroSection />
       <FeaturedProjectsSection />
+      <AboutSection />
       <ExperienceSection />
       <BlogSection />
     </main>
