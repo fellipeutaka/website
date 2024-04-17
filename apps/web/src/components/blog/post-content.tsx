@@ -15,7 +15,7 @@ export async function PostContent({ content }: PostContentProps) {
         <Mdx code={content} />
       </article>
       <aside className="lg:min-w-72">
-        <div className="sticky top-24 will-change-[transform,opacity]">
+        <div className="sticky top-24">
           {toc && toc.length > 0 && <TableOfContents toc={toc} />}
         </div>
       </aside>

@@ -18,6 +18,8 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string().min(1),
 
     WAKATIME_API_KEY: z.string(),
+
+    GITHUB_TOKEN: z.string().min(1),
   },
   experimental__runtimeEnv: {},
   emptyStringAsUndefined: true,

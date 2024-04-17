@@ -10,3 +10,16 @@ export const db = drizzle(connection, { schema });
 
 export * from "drizzle-orm";
 export { schema };
+
+export type {
+  AccountDB,
+  CommentDB,
+  CommentUpvoteDB,
+  NewAccountDB,
+  NewCommentDB,
+  NewCommentUpvoteDB,
+  NewPostDB,
+  NewUserDB,
+  PostDB,
+  UserDB,
+} from "./schema";

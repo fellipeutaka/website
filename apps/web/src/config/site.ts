@@ -15,6 +15,8 @@ export const siteConfig = {
     contra:
       "https://contra.com/fellipeutaka?utm_campaign=HireMeOnContra&utm_medium=1c519af6-f220-41f2-9c11-4e491e48e3b2",
   },
+  email: "fellipeutaka@gmail.com",
+  repositoryName: "website",
 };
 
 export const navLinks = [

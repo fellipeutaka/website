@@ -2,6 +2,7 @@
 
 import { signOut, useSession } from "@utaka/auth/react";
 import { AlertDialogAction, Avatar, Button, DropdownMenu } from "@utaka/ui";
+import { getUserInitials } from "@utaka/utils";
 import { SignInDialog } from "./sign-in-dialog";
 import { SignOutAlertDialog } from "./sign-out-alert-dialog";
 
@@ -26,7 +27,7 @@ export function UserDropdownMenu() {
         <Button variant="ghost" className="size-8 rounded-full">
           <Avatar className="size-8">
             <Avatar.Image src={user.image ?? ""} alt={user.name ?? ""} />
-            <Avatar.Fallback>SC</Avatar.Fallback>
+            <Avatar.Fallback>{getUserInitials(user.name)}</Avatar.Fallback>
           </Avatar>
         </Button>
       </DropdownMenu.Trigger>

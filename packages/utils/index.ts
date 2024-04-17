@@ -46,3 +46,37 @@ export function convertNpmCommand(
 
   throw new Error("Invalid command");
 }
+export function getErrorMessage(error: unknown) {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  if (error && typeof error === "object" && "message" in error) {
+    return String(error.message);
+  }
+
+  if (typeof error === "string") {
+    return error;
+  }
+
+  return "Something went wrong";
+}
+
+export function getUserInitials(name?: string | null) {
+  if (!name) return "";
+
+  const initials = name
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase())
+    .join("");
+
+  return initials;
+}
+
+const formatter = new Intl.NumberFormat(undefined, {
+  notation: "compact",
+});
+
+export function formatUpvotes(value: number) {
+  return formatter.format(value);
+}

@@ -20,7 +20,7 @@ import { ImageZoom } from "../image-zoom";
 import { Heading } from "./heading";
 import { Pre } from "./pre";
 
-const components: MDXComponents = {
+export const components = {
   h1: (props) => (
     <h1 className="mt-2 font-bold text-4xl tracking-tight" {...props} />
   ),
@@ -173,7 +173,7 @@ const components: MDXComponents = {
   Files,
   File,
   Folder,
-};
+} satisfies MDXComponents;
 
 interface MdxProps {
   code: string;

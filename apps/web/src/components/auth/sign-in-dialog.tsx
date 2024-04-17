@@ -6,8 +6,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@utaka/ui";
+import { signInWithGithub, signInWithGoogle } from "~/actions/auth";
 import { siteConfig } from "~/config/site";
-import { signInWithGithub, signInWithGoogle } from "./actions";
 import { SignInWithGithubButton } from "./sign-in-with-github-button";
 import { SignInWithGoogleButton } from "./sign-in-with-google-button";
 

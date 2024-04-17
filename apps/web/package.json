@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@utaka/auth": "workspace:*",
+    "@utaka/db": "workspace:*",
     "@utaka/env": "workspace:*",
     "@utaka/mdx": "workspace:*",
     "@utaka/ui": "workspace:*",

@@ -22,22 +22,20 @@ export const serialize = async <T>(
 
   matter(vfile, { strip: true });
 
-  let compiledMdx: VFile;
-
   try {
-    compiledMdx = await compile(vfile, {
-      outputFormat: "function-body",
-      providerImportSource: rsc ? undefined : "@mdx-js/react",
-      development: process.env.NODE_ENV === "development",
-      remarkPlugins,
-      rehypePlugins,
-    });
+    return {
+      compiledSource: String(
+        await compile(vfile, {
+          outputFormat: "function-body",
+          providerImportSource: rsc ? undefined : "@mdx-js/react",
+          development: process.env.NODE_ENV === "development",
+          remarkPlugins,
+          rehypePlugins,
+        }),
+      ),
+      frontmatter: (vfile.data.matter ?? {}) as T,
+    };
   } catch {
     throw new Error("Error compiling MDX");
   }
-
-  return {
-    compiledSource: String(compiledMdx),
-    frontmatter: (vfile.data.matter ?? {}) as T,
-  };
 };

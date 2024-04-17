@@ -17,6 +17,9 @@ export default {
       {
         hostname: "github.com",
       },
+      {
+        hostname: "lh3.googleusercontent.com",
+      },
     ],
   },
 };
