@@ -15,7 +15,6 @@ out/
 
 # production
 build
-dist
 
 # misc
 .DS_Store
@@ -27,7 +26,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env
 .env*
 !.env.example
 
@@ -38,5 +36,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# turborepo
-.turbo
+.vercel
+
+# velite
+.velite

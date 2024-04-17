@@ -18,7 +18,9 @@
         "all": true
       },
       "performance": {
-        "all": true
+        "all": true,
+        "noBarrelFile": "off",
+        "noReExportAll": "off"
       },
       "security": {
         "all": true
@@ -42,26 +44,25 @@
   "overrides": [
     {
       "include": [
-        "src/app/**/page.tsx",
-        "src/app/**/layout.tsx",
-        "src/app/**/template.tsx",
-        "src/app/**/loading.tsx",
-        "src/app/**/error.tsx",
-        "src/app/**/not-found.tsx",
-        "src/app/**/default.tsx",
-        "src/app/**/icon.tsx",
-        "src/app/**/apple-icon.tsx",
-        "src/app/**/manifest.ts",
-        "src/app/**/opengraph-image.tsx",
-        "src/app/**/twitter-image.tsx",
-        "src/app/**/robots.ts",
-        "src/app/**/sitemap.ts",
+        "apps/web/src/app/**/page.tsx",
+        "apps/web/src/app/**/layout.tsx",
+        "apps/web/src/app/**/template.tsx",
+        "apps/web/src/app/**/loading.tsx",
+        "apps/web/src/app/**/error.tsx",
+        "apps/web/src/app/**/not-found.tsx",
+        "apps/web/src/app/**/default.tsx",
+        "apps/web/src/app/**/icon.tsx",
+        "apps/web/src/app/**/apple-icon.tsx",
+        "apps/web/src/app/**/manifest.ts",
+        "apps/web/src/app/**/opengraph-image.tsx",
+        "apps/web/src/app/**/twitter-image.tsx",
+        "apps/web/src/app/**/robots.ts",
+        "apps/web/src/app/**/sitemap.ts",
 
-        "src/middleware.ts",
+        "apps/web/src/middleware.ts",
         "*.config.js",
         "*.config.mjs",
-        "*.config.ts",
-        "src/lib/i18n/index.ts"
+        "*.config.ts"
       ],
       "linter": {
         "rules": {
