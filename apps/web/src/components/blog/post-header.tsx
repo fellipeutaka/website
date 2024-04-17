@@ -61,12 +61,12 @@ export function PostHeader({ title, date, slug }: PostHeaderProps) {
       </div>
       <ImageZoom
         zoomImg={{
-          src: `/images/${slug}/cover.png`,
+          src: `/images/blog/${slug}/cover.png`,
           alt: title,
         }}
       >
         <BlurImage
-          src={`/images/${slug}/cover.png`}
+          src={`/images/blog/${slug}/cover.png`}
           className="rounded-lg"
           width={1200}
           height={630}

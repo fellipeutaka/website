@@ -10,6 +10,7 @@ export function SiteHeader() {
       <div className="container flex h-16 max-w-screen-2xl items-center">
         <Link href="/">
           <Icons.Logo className="size-6" />
+          <span className="sr-only">Fellipe Utaka</span>
         </Link>
         <MainNav />
         <MobileNav />

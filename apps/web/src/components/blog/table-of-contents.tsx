@@ -1,113 +1,45 @@
 "use client";
 
+import type { TOC } from "@utaka/mdx";
 import { cn } from "@utaka/tailwind";
-import { useEffect, useMemo, useState } from "react";
 
-interface TocEntry {
-  items?: TocEntry[];
-  url: string;
-  title: string;
-}
+import { useScrollSpy } from "~/hooks/use-scrollspy";
 
-interface TocProps {
-  toc: TocEntry[];
-}
+type TableOfContentsProps = {
+  toc: TOC[];
+};
 
-export function TableOfContents({ toc }: TocProps) {
-  const itemIds = useMemo(
-    () =>
-      toc
-        ? toc
-            .flatMap((item) => [item.url, item?.items?.map((item) => item.url)])
-            .flat()
-            .filter(Boolean)
-            .map((id) => id?.split("#")[1])
-        : [],
-    [toc],
+export function TableOfContents(props: TableOfContentsProps) {
+  const { toc } = props;
+  const activeId = useScrollSpy(
+    toc.map((item) => `#${item.url}`),
+    { rootMargin: "0% 0% -80% 0%" },
   );
-  const [activeId, setActiveId] = useState("");
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        }
-      },
-      { rootMargin: "0% 0% -80% 0%" },
-    );
-
-    for (const id of itemIds) {
-      if (!id) {
-        return;
-      }
-
-      const element = document.getElementById(id);
-      if (element) {
-        observer.observe(element);
-      }
-    }
-
-    return () => {
-      for (const id of itemIds) {
-        if (!id) {
-          return;
-        }
-
-        const element = document.getElementById(id);
-        if (element) {
-          observer.unobserve(element);
-        }
-      }
-    };
-  }, [itemIds]);
 
   return (
-    <div className="space-y-2">
-      <p className="font-medium">On This Page</p>
-      <Tree tree={toc} activeItem={activeId} />
+    <div className="hidden lg:block">
+      <div className="mb-4 pl-4 font-medium">On this page</div>
+      <div>
+        {toc.map((item) => {
+          const { title, url, depth } = item;
+
+          return (
+            <a
+              key={url}
+              href={`#${url}`}
+              className={cn(
+                "block py-2.5 pr-2.5 text-muted-foreground text-sm leading-[1.2] transition-all hover:text-foreground",
+                url === activeId && "text-foreground",
+              )}
+              style={{
+                paddingLeft: (depth - 1) * 16,
+              }}
+            >
+              {title}
+            </a>
+          );
+        })}
+      </div>
     </div>
   );
-}
-
-interface TreeProps {
-  tree: TocEntry[];
-  level?: number;
-  activeItem?: string | null;
-}
-
-function Tree({ tree, level = 1, activeItem }: TreeProps) {
-  return tree.length && level < 3 ? (
-    <ul
-      style={{
-        paddingLeft: (level - 1) * 16,
-      }}
-    >
-      {tree.map((item, index) => {
-        return (
-          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-          <li key={index} className="mt-2">
-            <a
-              href={item.url}
-              className={cn(
-                "inline-block text-muted-foreground text-sm transition-all hover:text-foreground",
-                item.url === `#${activeItem}` && "text-foreground",
-              )}
-            >
-              {item.title}
-            </a>
-            {item.items?.length ? (
-              <Tree
-                tree={item.items}
-                level={level + 1}
-                activeItem={activeItem}
-              />
-            ) : null}
-          </li>
-        );
-      })}
-    </ul>
-  ) : null;
 }

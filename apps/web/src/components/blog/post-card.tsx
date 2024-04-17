@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Post } from "~/content";
+import type { Post } from "~/lib/mdx";
 import { formatDate } from "~/lib/utils";
 import { BlurImage } from "../blur-image";
 
@@ -9,9 +9,12 @@ type PostCardProps = {
 
 export function PostCard({ post }: PostCardProps) {
   return (
-    <Link href={`/${post.slug}`} className="group rounded-xl border px-2 py-4">
+    <Link
+      href={`/blog/${post.slug}`}
+      className="group rounded-xl border px-2 py-4"
+    >
       <BlurImage
-        src={`/images/${post.slug}/cover.png`}
+        src={`/images/blog/${post.slug}/cover.png`}
         width={1200}
         height={630}
         containerClassName="rounded-lg"

@@ -1,3 +1,4 @@
+import { type MDXComponents, MDXRemoteRSC } from "@utaka/mdx";
 import { cn } from "@utaka/tailwind";
 import {
   Video,
@@ -13,18 +14,11 @@ import {
   VideoProgressBar,
   VideoVolume,
 } from "@utaka/ui";
-import type { MDXComponents } from "mdx/types";
-import * as runtime from "react/jsx-runtime";
 import { BlurImage } from "../blur-image";
 import { File, Files, Folder } from "../files";
 import { ImageZoom } from "../image-zoom";
 import { Heading } from "./heading";
 import { Pre } from "./pre";
-
-const useMDXComponent = (code: string) => {
-  const fn = new Function(code);
-  return fn({ ...runtime }).default;
-};
 
 const components: MDXComponents = {
   h1: (props) => (
@@ -186,7 +180,5 @@ interface MdxProps {
 }
 
 export function Mdx({ code }: MdxProps) {
-  const Component = useMDXComponent(code);
-
-  return <Component components={components} />;
+  return <MDXRemoteRSC source={code} components={components} />;
 }

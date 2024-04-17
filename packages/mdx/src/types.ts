@@ -1,3 +1,15 @@
+import type { MDXProvider } from "@mdx-js/react";
+
+export type MDXComponents = React.ComponentProps<
+  typeof MDXProvider
+>["components"];
+
+export type TOC = {
+  title: string;
+  url: string;
+  depth: number;
+};
+
 import type { Node } from "unist-builder";
 
 export interface UnistNode extends Node {
@@ -10,22 +22,16 @@ export interface UnistNode extends Node {
     __className__?: string;
     __event__?: string;
     [key: string]: unknown;
-  } & NpmCommands;
+  };
   attributes?: {
     name: string;
     value: unknown;
     type?: string;
   }[];
   children?: UnistNode[];
+  lang?: string;
 }
 
 export interface UnistTree extends Node {
   children: UnistNode[];
-}
-
-export interface NpmCommands {
-  __npmCommand__?: string;
-  __yarnCommand__?: string;
-  __pnpmCommand__?: string;
-  __bunCommand__?: string;
 }

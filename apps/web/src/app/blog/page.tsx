@@ -1,7 +1,11 @@
 import { PostCard } from "~/components/blog/post-card";
-import { posts } from "~/content";
+import { getPosts } from "~/lib/mdx";
 
 export default function Page() {
+  const posts = getPosts().sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
+
   return (
     <main className="container my-20 animate-fade-up">
       <h1 className="font-semibold text-2xl md:text-3xl">Blog</h1>

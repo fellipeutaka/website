@@ -1,6 +1,6 @@
 import { Button } from "@utaka/ui";
 import Link from "next/link";
-import { posts } from "~/content";
+import { getPosts } from "~/lib/mdx";
 import { PostCard } from "../blog/post-card";
 import { MotionSection } from "../framer-motion";
 
@@ -19,9 +19,11 @@ export function BlogSection() {
       <h2 className="mb-10 font-semibold text-2xl md:text-3xl">Latest posts</h2>
 
       <div className="grid w-full gap-4 md:grid-cols-2">
-        {posts.slice(0, 2).map((post) => (
-          <PostCard key={post.slug} post={post} />
-        ))}
+        {getPosts()
+          .slice(0, 2)
+          .map((post) => (
+            <PostCard key={post.slug} post={post} />
+          ))}
       </div>
 
       <Button className="mx-auto my-8 flex w-max" variant="outline" asChild>
