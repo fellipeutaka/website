@@ -1,50 +1,51 @@
-import type { User } from "@utaka/auth";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  Button,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@utaka/ui";
-import { logOut } from "./actions";
+"use client";
+
+import { signOut, useSession } from "@utaka/auth/react";
+import { AlertDialogAction, Avatar, Button, DropdownMenu } from "@utaka/ui";
+import { SignInDialog } from "./sign-in-dialog";
 import { SignOutAlertDialog } from "./sign-out-alert-dialog";
-import { SignOutButton } from "./sign-out-button";
 
-type UserDropdownMenuProps = {
-  user: User;
-};
+export function UserDropdownMenu() {
+  const { data: session } = useSession();
 
-export function UserDropdownMenu({ user }: UserDropdownMenuProps) {
+  if (!session?.user) {
+    return (
+      <SignInDialog>
+        <Button size="sm" variant="outline">
+          Log In
+        </Button>
+      </SignInDialog>
+    );
+  }
+
+  const { user } = session;
+
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenu.Trigger asChild>
         <Button variant="ghost" className="size-8 rounded-full">
           <Avatar className="size-8">
-            <AvatarImage src={user.image ?? ""} alt={user.name ?? ""} />
-            <AvatarFallback>SC</AvatarFallback>
+            <Avatar.Image src={user.image ?? ""} alt={user.name ?? ""} />
+            <Avatar.Fallback>SC</Avatar.Fallback>
           </Avatar>
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuLabel className="font-normal">
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content align="end">
+        <DropdownMenu.Label className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="font-medium text-sm leading-none">{user.name}</p>
             <p className="text-muted-foreground text-xs leading-none">
               {user.email}
             </p>
           </div>
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        </DropdownMenu.Label>
+        <DropdownMenu.Separator />
         <SignOutAlertDialog>
-          <form action={logOut}>
-            <SignOutButton />
-          </form>
+          <AlertDialogAction onClick={() => signOut()} variant="destructive">
+            Continue
+          </AlertDialogAction>
         </SignOutAlertDialog>
-      </DropdownMenuContent>
+      </DropdownMenu.Content>
     </DropdownMenu>
   );
 }
