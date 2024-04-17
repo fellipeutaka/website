@@ -1,3 +1,5 @@
+export * from "./src/alert-dialog";
+export * from "./src/avatar";
 export * from "./src/badge-animated";
 export * from "./src/badge";
 export * from "./src/bento-grid";

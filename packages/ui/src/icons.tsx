@@ -19,6 +19,40 @@ export const Icons = {
       />
     </svg>
   ),
+  Loader: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M21 12a9 9 0 11-6.219-8.56" />
+    </svg>
+  ),
+  LogOut: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+      <path d="M16 17L21 12 16 7" />
+      <path d="M21 12L9 12" />
+    </svg>
+  ),
   X: (props) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -523,6 +557,20 @@ export const Icons = {
         clipRule="evenodd"
         d="M2.179 27.255h25.062V1.674A37.602 37.602 0 012.179 27.255zm25.618 1.119H.559a.559.559 0 01-.559-.56v-.677c0-.255.17-.477.416-.54A36.477 36.477 0 0026.421.42a.56.56 0 01.54-.42h.836c.308 0 .558.25.558.56v27.255a.56.56 0 01-.558.559z"
         fill="currentColor"
+      />
+    </svg>
+  ),
+  Google: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={32}
+      height={32}
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10 5.35 0 9.25-3.67 9.25-9.09 0-1.15-.15-1.81-.15-1.81"
       />
     </svg>
   ),

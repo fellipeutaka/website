@@ -1,11 +1,11 @@
+import { formatDate } from "@utaka/utils";
 import Link from "next/link";
 import { siteConfig } from "~/config/site";
-import { formatDate } from "~/lib/utils";
 import { BlurImage } from "../blur-image";
 import { ImageZoom } from "../image-zoom";
 
 type PostHeaderProps = {
-  date: string;
+  date: Date;
   title: string;
   slug: string;
 };

@@ -76,8 +76,6 @@ const postSchema = z.object({
   title: z.string().max(99),
   summary: z.string().max(999).optional(),
   date: z.date(),
-  published: z.boolean().default(true),
-  tags: z.array(z.string()).optional(),
 });
 
 export type Post = z.output<typeof postSchema> & {

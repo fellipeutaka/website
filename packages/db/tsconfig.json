@@ -1,0 +1,5 @@
+{
+  "extends": "@utaka/tsconfig/lib.json",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"]
+}

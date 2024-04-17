@@ -1,0 +1,32 @@
+{
+  "name": "@utaka/db",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "private": true,
+  "scripts": {
+    "generate": "pnpm env:load drizzle-kit generate:pg",
+    "migrate": "pnpm env:load tsx src/migrate.ts",
+    "seed": "pnpm env:load tsx src/seed/index.ts",
+    "drop": "pnpm env:load drizzle-kit drop",
+    "pull": "pnpm env:load drizzle-kit introspect:pg",
+    "push": "pnpm env:load drizzle-kit push:pg",
+    "studio": "pnpm env:load drizzle-kit studio",
+    "check": "pnpm env:load drizzle-kit check:pg",
+    "start": "docker compose up -d",
+    "stop": "docker compose stop",
+    "delete": "docker compose down -v",
+    "env:load": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "@utaka/env": "workspace:*",
+    "drizzle-orm": "^0.30.8",
+    "postgres": "^3.4.4"
+  },
+  "devDependencies": {
+    "next-auth": "beta",
+    "@utaka/tsconfig": "workspace:*",
+    "drizzle-kit": "^0.20.14",
+    "pg": "^8.11.5",
+    "tsx": "^4.7.2"
+  }
+}

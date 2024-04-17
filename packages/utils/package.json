@@ -1,0 +1,12 @@
+{
+  "name": "@utaka/utils",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "private": true,
+  "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2"
+  },
+  "devDependencies": {
+    "@utaka/tsconfig": "workspace:*"
+  }
+}

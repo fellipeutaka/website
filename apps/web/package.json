@@ -12,9 +12,11 @@
     "env:load": "dotenv -e ../../.env --"
   },
   "dependencies": {
+    "@utaka/auth": "workspace:*",
     "@utaka/env": "workspace:*",
     "@utaka/mdx": "workspace:*",
     "@utaka/ui": "workspace:*",
+    "@utaka/utils": "workspace:*",
     "cobe": "^0.6.3",
     "framer-motion": "^11.0.25",
     "geist": "^1.3.0",

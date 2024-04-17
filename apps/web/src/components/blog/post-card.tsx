@@ -1,6 +1,6 @@
+import { formatDate } from "@utaka/utils";
 import Link from "next/link";
 import type { Post } from "~/lib/mdx";
-import { formatDate } from "~/lib/utils";
 import { BlurImage } from "../blur-image";
 
 type PostCardProps = {

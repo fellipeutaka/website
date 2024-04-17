@@ -27,7 +27,8 @@
       },
       "style": {
         "recommended": true,
-        "noDefaultExport": "error"
+        "noDefaultExport": "error",
+        "noNonNullAssertion": "off"
       },
       "suspicious": {
         "all": true

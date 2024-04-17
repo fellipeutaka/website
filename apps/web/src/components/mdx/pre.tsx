@@ -11,12 +11,12 @@ import {
   Icons,
   ScrollArea,
 } from "@utaka/ui";
-import { useCopyToClipboard } from "~/hooks/use-copy-to-clipboard";
 import {
   type PackageManager,
   convertNpmCommand,
   isNpmCommand,
-} from "~/lib/utils";
+} from "@utaka/utils";
+import { useCopyToClipboard } from "~/hooks/use-copy-to-clipboard";
 
 type PreProps = {
   "data-lang"?: string;

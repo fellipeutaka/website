@@ -1,5 +1,5 @@
+import { toast } from "@utaka/ui";
 import { useState } from "react";
-import { toast } from "sonner";
 
 type CopyOptions = {
   text: string;
