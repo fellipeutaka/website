@@ -110,7 +110,7 @@ importers:
         specifier: workspace:*
         version: link:../../config/tsconfig
       autoprefixer:
-        specifier: ^10.0.1
+        specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
       jiti:
         specifier: ^1.21.0
@@ -121,6 +121,9 @@ importers:
       sharp:
         specifier: ^0.33.3
         version: 0.33.3
+      tailwindcss:
+        specifier: ^3.4.3
+        version: 3.4.3
 
   config/tailwind:
     dependencies:
@@ -133,9 +136,6 @@ importers:
       tailwind-variants:
         specifier: ^0.2.1
         version: 0.2.1(tailwindcss@3.4.3)
-      tailwindcss:
-        specifier: ^3.4.3
-        version: 3.4.3
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.3)
@@ -146,6 +146,9 @@ importers:
       '@utaka/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
+      tailwindcss:
+        specifier: ^3.4.3
+        version: 3.4.3
 
   config/tsconfig: {}
 
