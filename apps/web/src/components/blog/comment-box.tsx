@@ -34,7 +34,7 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
     setIsSubmitting(true);
     const toastId = toast.loading("Creating a message...");
 
-    const { serialize } = await import("~/lib/mdx/serialize");
+    const { serialize } = await import("@utaka/mdx/serialize");
     const { compiledSource: processedComment } = await serialize(comment);
 
     const result = await postComment({

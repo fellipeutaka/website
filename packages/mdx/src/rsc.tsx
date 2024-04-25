@@ -13,7 +13,7 @@ export const compileMDX = async ({
   source,
   components = {},
 }: MDXRemoteRSCProps) => {
-  const { serialize } = await import("~/lib/mdx/serialize");
+  const { serialize } = await import("./serialize");
   const { compiledSource, frontmatter } = await serialize(source, {
     rsc: true,
   });

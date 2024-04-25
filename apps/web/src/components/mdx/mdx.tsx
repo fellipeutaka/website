@@ -1,3 +1,5 @@
+import type { MDXComponents } from "@utaka/mdx";
+import { MDXRemoteRSC } from "@utaka/mdx/rsc";
 import { cn } from "@utaka/tailwind";
 import {
   Video,
@@ -13,8 +15,6 @@ import {
   VideoProgressBar,
   VideoVolume,
 } from "@utaka/ui";
-import { MDXRemoteRSC } from "~/lib/mdx/rsc";
-import type { MDXComponents } from "~/lib/mdx/types";
 import { BlurImage } from "../blur-image";
 import { File, Files, Folder } from "../files";
 import { ImageZoom } from "../image-zoom";

@@ -1,8 +1,8 @@
 "use client";
 
+import { MDXRemote } from "@utaka/mdx/client";
 import { cn } from "@utaka/tailwind";
 import { Suspense, cache, use } from "react";
-import { MDXRemote } from "~/lib/mdx/client";
 import { components } from "../mdx/mdx";
 
 type MarkdownProps = {
@@ -43,7 +43,7 @@ export function MarkdownPreview(props: MarkdownProps) {
 const { h1, h2, h3, h4, h5, h6, p, ...mdxComponents } = components;
 
 const getPreview = cache(async (content: string) => {
-  const { serialize } = await import("~/lib/mdx/serialize");
+  const { serialize } = await import("@utaka/mdx/serialize");
 
   return await serialize(content);
 });

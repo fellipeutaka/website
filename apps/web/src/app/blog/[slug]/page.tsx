@@ -1,3 +1,4 @@
+import { getPostBySlug, getPosts } from "@utaka/mdx/utils/fs";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -8,7 +9,6 @@ import {
 import { PostContent } from "~/components/blog/post-content";
 import { PostFooter } from "~/components/blog/post-footer";
 import { PostHeader } from "~/components/blog/post-header";
-import { getPostBySlug, getPosts } from "~/lib/mdx/utils/fs";
 
 type PageProps = {
   params: {

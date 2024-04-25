@@ -1,8 +1,8 @@
 import { env } from "@utaka/env";
+import { getGithubLastEdit } from "@utaka/mdx/utils/git-api";
 import { Icons } from "@utaka/ui";
 import { formatDate } from "@utaka/utils";
 import { siteConfig } from "~/config/site";
-import { getGithubLastEdit } from "~/lib/mdx/utils/git-api";
 
 const filePath = (slug: string) => `apps/web/src/content/blog/${slug}.mdx`;
 

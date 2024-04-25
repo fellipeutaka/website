@@ -29,7 +29,7 @@ type GetAllPostsOptions = {
   limit?: number;
 };
 
-export const getPage = <TData>(filePath: string, schema: Schema<TData>) => {
+const getPage = <TData>(filePath: string, schema: Schema<TData>) => {
   const fullPath = path.join(mdxFilesRootDirectory, `${filePath}.mdx`);
 
   if (!fs.existsSync(fullPath)) {
@@ -47,7 +47,7 @@ export const getPage = <TData>(filePath: string, schema: Schema<TData>) => {
   };
 };
 
-export const getAllPages = <TData>(
+const getAllPages = <TData>(
   directoryPath: string,
   schema: Schema<TData>,
   options: GetAllPostsOptions = {},

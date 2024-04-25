@@ -2,8 +2,8 @@
 
 import { cn } from "@utaka/tailwind";
 
+import type { TOC } from "@utaka/mdx";
 import { useScrollSpy } from "~/hooks/use-scrollspy";
-import type { TOC } from "~/lib/mdx/types";
 
 type TableOfContentsProps = {
   toc: TOC[];

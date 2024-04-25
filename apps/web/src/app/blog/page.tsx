@@ -1,5 +1,5 @@
+import { getPosts } from "@utaka/mdx/utils/fs";
 import { PostCard } from "~/components/blog/post-card";
-import { getPosts } from "~/lib/mdx/utils/fs";
 
 export default function Page() {
   const posts = getPosts().sort((a, b) => {
