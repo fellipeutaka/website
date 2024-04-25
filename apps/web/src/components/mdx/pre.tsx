@@ -10,6 +10,7 @@ import {
   type IconProps,
   Icons,
   ScrollArea,
+  ScrollBar,
 } from "@utaka/ui";
 import {
   type PackageManager,
@@ -75,7 +76,7 @@ export function Pre(props: PreProps) {
   }, []);
 
   return (
-    <figure className="group relative my-6 overflow-hidden rounded-lg border bg-secondary/50 text-sm">
+    <figure className="group relative my-6 max-w-[calc(100vw-4rem)] overflow-hidden rounded-lg border bg-secondary/50 text-sm">
       {title ? (
         <div className="flex flex-row items-center gap-2 border-b bg-muted px-4 py-1.5">
           {lang && (
@@ -102,6 +103,7 @@ export function Pre(props: PreProps) {
         <pre ref={textInput} className={cn("py-4", className)} {...rest}>
           {children}
         </pre>
+        <ScrollBar orientation="horizontal" />
       </ScrollArea>
     </figure>
   );

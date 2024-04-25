@@ -170,11 +170,16 @@ export function CommentContent(props: CommentContentProps) {
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-2 text-sm">
         <Avatar className="size-8">
-          <Avatar.Image src={user?.image ?? ""} alt={user?.name ?? ""} />
-          <Avatar.Fallback>{getUserInitials(user?.name)}</Avatar.Fallback>
+          <Avatar.Image
+            src={comment.user?.image ?? ""}
+            alt={comment.user?.name ?? ""}
+          />
+          <Avatar.Fallback>
+            {getUserInitials(comment.user?.name)}
+          </Avatar.Fallback>
         </Avatar>
 
-        <div className="font-semibold">{user?.name}</div>
+        <div className="font-semibold">{comment.user?.name}</div>
         <div className="text-muted-foreground">
           <Tooltip.Provider>
             <Tooltip>
@@ -187,7 +192,7 @@ export function CommentContent(props: CommentContentProps) {
             </Tooltip>
           </Tooltip.Provider>
         </div>
-        {user?.email === siteConfig.email && <Badge>Author</Badge>}
+        {comment.user.email === siteConfig.email && <Badge>Author</Badge>}
       </div>
       {user && user.email === comment.user.email && !comment.deletedAt && (
         <AlertDialog>
