@@ -4,7 +4,7 @@
   "types": "./index.ts",
   "private": true,
   "dependencies": {
-    "@t3-oss/env-nextjs": "^0.9.2"
+    "@t3-oss/env-nextjs": "^0.10.1"
   },
   "devDependencies": {
     "@utaka/tsconfig": "workspace:*"

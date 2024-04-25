@@ -1,5 +1,6 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "turbo run dev --parallel --",
     "build": "turbo run build --",

@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   postgres:
     image: "bitnami/postgresql:16"
