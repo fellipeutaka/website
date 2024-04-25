@@ -4,6 +4,7 @@
 import rehypeShiki, { type RehypeShikiOptions } from "@shikijs/rehype";
 import { transformerMetaHighlight } from "@shikijs/transformers";
 import type { Root } from "hast";
+import type { BundledTheme } from "shiki";
 import type { Plugin } from "unified";
 
 const titleRegex = /title="([^"]*)"/;
@@ -11,7 +12,7 @@ const titleRegex = /title="([^"]*)"/;
 export const DEFAULT_SHIKI_THEMES = {
   light: "github-light-default",
   dark: "github-dark-default",
-};
+} satisfies Record<string, BundledTheme>;
 
 export const rehypeCode: [
   Plugin<[RehypeShikiOptions], Root>,

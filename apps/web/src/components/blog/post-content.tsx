@@ -1,4 +1,4 @@
-import { getTOC } from "@utaka/mdx";
+import { getTOC } from "~/lib/mdx/utils/get-toc";
 import { Mdx } from "../mdx/mdx";
 import { TableOfContents } from "./table-of-contents";
 

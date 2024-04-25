@@ -2,7 +2,6 @@ import * as jsxDevRuntime from "react/jsx-dev-runtime";
 import * as jsxRuntime from "react/jsx-runtime";
 import type { VFileCompatible } from "vfile";
 
-import { serialize } from "./serialize";
 import type { MDXComponents } from "./types";
 
 export type MDXRemoteRSCProps = {
@@ -14,6 +13,7 @@ export const compileMDX = async ({
   source,
   components = {},
 }: MDXRemoteRSCProps) => {
+  const { serialize } = await import("~/lib/mdx/serialize");
   const { compiledSource, frontmatter } = await serialize(source, {
     rsc: true,
   });

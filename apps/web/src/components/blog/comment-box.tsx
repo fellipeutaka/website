@@ -3,7 +3,6 @@
 import { Button, Icons, Tabs, Textarea, toast } from "@utaka/ui";
 import { useState } from "react";
 import { postComment } from "~/actions/comment";
-import { getMarkdownPreview } from "~/lib/get-markdown-preview";
 import { MarkdownPreview } from "./markdown-preview";
 
 type CommentBoxProps = {
@@ -35,9 +34,8 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
     setIsSubmitting(true);
     const toastId = toast.loading("Creating a message...");
 
-    const {
-      result: { compiledSource: processedComment },
-    } = await getMarkdownPreview(comment);
+    const { serialize } = await import("~/lib/mdx/serialize");
+    const { compiledSource: processedComment } = await serialize(comment);
 
     const result = await postComment({
       slug,

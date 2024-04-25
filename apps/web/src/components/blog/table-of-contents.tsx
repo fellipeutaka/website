@@ -1,9 +1,9 @@
 "use client";
 
-import type { TOC } from "@utaka/mdx";
 import { cn } from "@utaka/tailwind";
 
 import { useScrollSpy } from "~/hooks/use-scrollspy";
+import type { TOC } from "~/lib/mdx/types";
 
 type TableOfContentsProps = {
   toc: TOC[];

@@ -1,9 +1,8 @@
 "use client";
 
-import { MDXRemote } from "@utaka/mdx";
 import { cn } from "@utaka/tailwind";
 import { Suspense, cache, use } from "react";
-import { getMarkdownPreview } from "~/lib/get-markdown-preview";
+import { MDXRemote } from "~/lib/mdx/client";
 import { components } from "../mdx/mdx";
 
 type MarkdownProps = {
@@ -43,7 +42,11 @@ export function MarkdownPreview(props: MarkdownProps) {
 
 const { h1, h2, h3, h4, h5, h6, p, ...mdxComponents } = components;
 
-const getPreview = cache(getMarkdownPreview);
+const getPreview = cache(async (content: string) => {
+  const { serialize } = await import("~/lib/mdx/serialize");
+
+  return await serialize(content);
+});
 
 type CommentRendererProps =
   | { source?: never; compiledSource: string }
@@ -51,7 +54,7 @@ type CommentRendererProps =
 
 function CommentRenderer({ compiledSource, source }: CommentRendererProps) {
   if (source) {
-    const { result } = use(getPreview(source));
+    const result = use(getPreview(source));
 
     return (
       <MDXRemote
