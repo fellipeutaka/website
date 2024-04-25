@@ -2,7 +2,7 @@
 
 import { and, db, eq, isNotNull, schema } from "@utaka/db";
 import { createId, getErrorMessage } from "@utaka/utils";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 
 import { z } from "zod";
 
@@ -67,7 +67,7 @@ export const postComment = (input: PostCommentProps) =>
       };
     }
 
-    revalidatePath("/blog/[slug]", "page");
+    revalidateTag("comments");
     return {
       message: "Posted a comment.",
     };
@@ -156,7 +156,7 @@ export const deleteComment = (id: string) =>
       };
     }
 
-    revalidatePath("/blog/[slug]", "page");
+    revalidateTag("comments");
     return {
       message: "Deleted a comment.",
     };
@@ -202,7 +202,7 @@ export const upvoteComment = (id: string) =>
         .delete(schema.commentUpvotes)
         .where(eq(schema.commentUpvotes.id, comment.upvotes[0]!.id));
 
-      revalidatePath("/blog/[slug]", "page");
+      revalidateTag("comments");
       return {
         message: "Removed an upvote.",
       };
@@ -221,7 +221,7 @@ export const upvoteComment = (id: string) =>
       };
     }
 
-    revalidatePath("/blog/[slug]", "page");
+    revalidateTag("comments");
     return {
       message: "Upvoted a comment.",
     };
