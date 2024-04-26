@@ -38,8 +38,6 @@ export const postComment = (input: PostCommentProps) =>
       parentId: parsedParentId,
     } = parsed.data;
 
-    await new Promise((resolve) => setTimeout(resolve, 4000));
-
     try {
       const commentId = createId();
 
