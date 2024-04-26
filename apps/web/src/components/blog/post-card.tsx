@@ -22,12 +22,8 @@ export function PostCard({ post }: PostCardProps) {
         alt={post.title}
       />
       <div className="flex items-center justify-between gap-2 px-2 pt-4 text-muted-foreground text-sm">
-        {formatDate(post.date)}
-        <div className="flex gap-2">
-          <div>{56} likes</div>
-          <div>&middot;</div>
-          <div>{32} views</div>
-        </div>
+        <time dateTime={post.date.toISOString()}>{formatDate(post.date)}</time>
+        <p>{32} views</p>
       </div>
       <div className="flex flex-col px-2 py-4">
         <h3 className="font-bold font-title text-2xl">{post.title}</h3>

@@ -14,8 +14,7 @@
     "@trpc/client": "next",
     "@trpc/react-query": "next",
     "@trpc/server": "next",
-    "superjson": "^2.2.1",
-    "ulid": "^2.3.0"
+    "superjson": "^2.2.1"
   },
   "devDependencies": {
     "@utaka/tsconfig": "workspace:*"
