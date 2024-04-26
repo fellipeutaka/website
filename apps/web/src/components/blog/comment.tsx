@@ -198,7 +198,7 @@ export function CommentContent(props: CommentContentProps) {
         </div>
         {comment.user.email === siteConfig.email && <Badge>Author</Badge>}
       </div>
-      {user && user.email === comment.user.email && !comment.deletedAt && (
+      {user?.email === comment.user.email && !comment.deletedAt && (
         <DeleteCommentDialog commentId={comment.id} />
       )}
     </div>
