@@ -3,17 +3,13 @@
 import { reactClient } from "@utaka/api/client/react";
 import { AlertDialogAction, Avatar, Button, DropdownMenu } from "@utaka/ui";
 import { getUserInitials } from "@utaka/utils";
+import { useSignOutMutation } from "~/hooks/use-sign-out-mutation";
 import { SignInDialog } from "./sign-in-dialog";
 import { SignOutAlertDialog } from "./sign-out-alert-dialog";
 
 export function UserDropdownMenu() {
-  const clientUtils = reactClient.useUtils();
   const { data: user } = reactClient.auth.me.useQuery();
-  const signOutMutation = reactClient.auth.signOut.useMutation({
-    onSuccess() {
-      clientUtils.auth.me.setData(undefined, null);
-    },
-  });
+  const signOutMutation = useSignOutMutation();
 
   if (!user) {
     return (

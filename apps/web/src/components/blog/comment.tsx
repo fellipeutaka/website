@@ -16,6 +16,7 @@ import { formatDate, formatUpvotes, getUserInitials } from "@utaka/utils";
 import type React from "react";
 import { useState } from "react";
 import { siteConfig } from "~/config/site";
+import { useDeleteCommentMutation } from "~/hooks/use-delete-comment-mutation";
 import { CommentBox } from "./comment-box";
 import { MarkdownPreview } from "./markdown-preview";
 
@@ -210,12 +211,7 @@ interface DeleteCommentDialogProps {
 }
 
 function DeleteCommentDialog({ commentId }: DeleteCommentDialogProps) {
-  const clientUtils = reactClient.useUtils();
-  const deleteCommentMutation = reactClient.comment.deleteById.useMutation({
-    onSuccess() {
-      clientUtils.comment.getBySlug.invalidate();
-    },
-  });
+  const deleteCommentMutation = useDeleteCommentMutation();
 
   const handleDeleteComment: React.MouseEventHandler<HTMLButtonElement> = (
     e,
