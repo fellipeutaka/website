@@ -1,10 +1,6 @@
 "use server";
 
-import { signIn, signOut } from "@utaka/auth";
-
-export async function logOut() {
-  await signOut();
-}
+import { signIn } from "@utaka/auth";
 
 export async function signInWithGithub() {
   await signIn("github");

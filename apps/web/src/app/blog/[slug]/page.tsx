@@ -10,11 +10,11 @@ import { PostContent } from "~/components/blog/post-content";
 import { PostFooter } from "~/components/blog/post-footer";
 import { PostHeader } from "~/components/blog/post-header";
 
-type PageProps = {
+interface PageProps {
   params: {
     slug: string;
   };
-};
+}
 
 export function generateStaticParams() {
   return getPosts().map((post) => ({

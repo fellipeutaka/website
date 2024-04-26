@@ -26,8 +26,9 @@ export const BadgeStyles = tv({
   },
 });
 
-export type BadgeProps = React.ComponentPropsWithoutRef<"div"> &
-  VariantProps<typeof BadgeStyles>;
+export interface BadgeProps
+  extends React.ComponentPropsWithoutRef<"div">,
+    VariantProps<typeof BadgeStyles> {}
 
 export const Badge = forwardRef<React.ElementRef<"div">, BadgeProps>(
   ({ className, variant, ...props }, ref) => {

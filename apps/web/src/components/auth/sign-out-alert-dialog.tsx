@@ -1,10 +1,8 @@
-"use client";
-
 import { AlertDialog, DropdownMenuItem, Icons } from "@utaka/ui";
 
-type SignOutAlertDialogProps = {
+interface SignOutAlertDialogProps {
   children: React.ReactNode;
-};
+}
 
 export function SignOutAlertDialog({ children }: SignOutAlertDialogProps) {
   return (

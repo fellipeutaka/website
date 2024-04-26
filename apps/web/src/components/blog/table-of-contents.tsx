@@ -5,9 +5,9 @@ import { cn } from "@utaka/tailwind";
 import type { TOC } from "@utaka/mdx";
 import { useScrollSpy } from "~/hooks/use-scrollspy";
 
-type TableOfContentsProps = {
+interface TableOfContentsProps {
   toc: TOC[];
-};
+}
 
 export function TableOfContents(props: TableOfContentsProps) {
   const { toc } = props;

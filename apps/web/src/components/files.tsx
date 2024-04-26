@@ -6,14 +6,6 @@ import { useState } from "react";
 import { LanguageIcon } from "./mdx/pre";
 
 type FilesProps = React.ComponentPropsWithoutRef<"div">;
-type FileProps = {
-  name: string;
-  icon?: React.ReactNode;
-} & React.ComponentPropsWithoutRef<"div">;
-type FolderProps = {
-  name: string;
-  defaultOpen?: boolean;
-} & React.ComponentPropsWithoutRef<"div">;
 
 const itemStyles =
   "flex flex-row items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground";
@@ -28,6 +20,11 @@ export const Files = (props: FilesProps) => {
   );
 };
 
+interface FileProps extends React.ComponentPropsWithoutRef<"div"> {
+  name: string;
+  icon?: React.ReactNode;
+}
+
 export const File = (props: FileProps) => {
   const { name, className, ...rest } = props;
 
@@ -38,6 +35,11 @@ export const File = (props: FileProps) => {
     </div>
   );
 };
+
+interface FolderProps extends React.ComponentPropsWithoutRef<"div"> {
+  name: string;
+  defaultOpen?: boolean;
+}
 
 export const Folder = (props: FolderProps) => {
   const { children, name, defaultOpen = false, ...rest } = props;

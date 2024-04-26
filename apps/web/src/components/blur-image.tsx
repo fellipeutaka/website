@@ -5,9 +5,9 @@ import type { ImageProps } from "next/image";
 import NextImage from "next/image";
 import React from "react";
 
-type BlurImageProps = ImageProps & {
+interface BlurImageProps extends ImageProps {
   containerClassName?: string;
-};
+}
 
 export const BlurImage = ({
   className,

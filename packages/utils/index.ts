@@ -1,5 +1,3 @@
-export { createId } from "@paralleldrive/cuid2";
-
 export function formatDate(date: string | number | Date) {
   return new Date(date).toLocaleDateString(undefined, {
     year: "numeric",
@@ -45,21 +43,6 @@ export function convertNpmCommand(
   }
 
   throw new Error("Invalid command");
-}
-export function getErrorMessage(error: unknown) {
-  if (error instanceof Error) {
-    return error.message;
-  }
-
-  if (error && typeof error === "object" && "message" in error) {
-    return String(error.message);
-  }
-
-  if (typeof error === "string") {
-    return error;
-  }
-
-  return "Something went wrong";
 }
 
 export function getUserInitials(name?: string | null) {

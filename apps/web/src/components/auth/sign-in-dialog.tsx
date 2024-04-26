@@ -11,9 +11,9 @@ import { siteConfig } from "~/config/site";
 import { SignInWithGithubButton } from "./sign-in-with-github-button";
 import { SignInWithGoogleButton } from "./sign-in-with-google-button";
 
-type SignInDialogProps = {
+interface SignInDialogProps {
   children: React.ReactNode;
-};
+}
 
 export function SignInDialog({ children }: SignInDialogProps) {
   return (

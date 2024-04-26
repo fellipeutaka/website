@@ -109,10 +109,9 @@ export const AlertDialogAction = forwardRef<
 ));
 AlertDialogAction.displayName = "AlertDialog.Action";
 
-export type AlertDialogCancelProps = React.ComponentPropsWithoutRef<
-  typeof AlertDialogPrimitive.Cancel
-> &
-  Pick<ButtonProps, "size">;
+export interface AlertDialogCancelProps
+  extends React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Cancel>,
+    Pick<ButtonProps, "size"> {}
 
 export const AlertDialogCancel = forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Cancel>,

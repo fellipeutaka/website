@@ -1,3 +1,4 @@
+import { serverClient } from "@utaka/api/client/server";
 import {
   Icons,
   Skeleton,
@@ -6,29 +7,25 @@ import {
   TabsList,
   TabsTrigger,
 } from "@utaka/ui";
-import { getCommentsBySlug } from "~/queries/comments";
-import { Comment } from "./comment";
+import { Suspense } from "react";
 import { CommentBox } from "./comment-box";
+import { CommentList } from "./comment-list";
 
-type CommentSectionProps = {
+interface CommentSectionProps {
   slug: string;
-};
+}
 
 export async function CommentSection({ slug }: CommentSectionProps) {
-  const comments = await getCommentsBySlug(slug);
+  const comments = await serverClient.comment.getBySlug(slug);
 
   return (
     <div className="space-y-6">
-      <div className="rounded-lg border px-2 py-4 dark:bg-zinc-900/30 sm:px-4">
+      <div className="rounded-lg border px-2 py-4 dark:bg-input/30 sm:px-4">
         <CommentBox slug={slug} />
       </div>
-      <div className="space-y-8">
-        {comments
-          .filter((c) => !c.parentId)
-          .map((comment) => (
-            <Comment key={comment.id} slug={slug} comment={comment} />
-          ))}
-      </div>
+      <Suspense fallback={<CommentListSkeleton />}>
+        <CommentList initialData={comments} slug={slug} />
+      </Suspense>
     </div>
   );
 }
@@ -36,14 +33,20 @@ export async function CommentSection({ slug }: CommentSectionProps) {
 export function CommentSectionSkeleton() {
   return (
     <div className="space-y-6">
-      <div className="rounded-lg border px-2 py-4 dark:bg-zinc-900/30 sm:px-4">
+      <div className="rounded-lg border px-2 py-4 dark:bg-input/30 sm:px-4">
         <CommentBoxSkeleton />
       </div>
-      <div className="space-y-8">
-        <CommentSkeleton />
-        <CommentSkeleton />
-        <CommentSkeleton />
-      </div>
+      <CommentListSkeleton />
+    </div>
+  );
+}
+
+function CommentListSkeleton() {
+  return (
+    <div className="space-y-8">
+      <CommentSkeleton />
+      <CommentSkeleton />
+      <CommentSkeleton />
     </div>
   );
 }
@@ -79,7 +82,7 @@ function CommentBoxSkeleton() {
 
 function CommentSkeleton() {
   return (
-    <div className="scroll-mt-20 overflow-hidden rounded-lg border dark:bg-zinc-900/30">
+    <div className="scroll-mt-20 overflow-hidden rounded-lg border dark:bg-input/30">
       <div className="border-b p-2 sm:px-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm">

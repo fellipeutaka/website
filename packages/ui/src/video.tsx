@@ -12,7 +12,7 @@ import {
 import { Icons } from "./icons";
 import { Slider } from "./slider";
 
-type VideoState = {
+interface VideoState {
   playing: boolean;
   muted: boolean;
   caption: boolean | null;
@@ -23,9 +23,9 @@ type VideoState = {
   playbackRate: number;
   currentTime: number;
   duration: number;
-};
+}
 
-type VideoFunctions = {
+interface VideoFunctions {
   handleTimeUpdate: () => void;
   handleDurationChange: () => void;
   onVideoClick: (e: React.MouseEvent<HTMLVideoElement, MouseEvent>) => void;
@@ -37,12 +37,11 @@ type VideoFunctions = {
   handleToggleFullscreen: () => void;
   handleTogglePictureInPicture: () => void;
   handleToggleCaption: () => void;
-};
+}
 
-type VideoContextType = VideoState &
-  VideoFunctions & {
-    videoRef: React.RefObject<HTMLVideoElement>;
-  };
+interface VideoContextType extends VideoState, VideoFunctions {
+  videoRef: React.RefObject<HTMLVideoElement>;
+}
 
 const VideoContext = createContext({} as VideoContextType);
 

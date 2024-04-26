@@ -1,5 +1,5 @@
 {
-  "id": "5d7ce570-4f54-4da2-99fe-0595d759e69b",
+  "id": "4e72be60-b193-4fcd-a81b-69f9dc2f7716",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -101,7 +101,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "serial",
           "primaryKey": true,
           "notNull": true
         },
@@ -188,44 +188,18 @@
           "notNull": false
         }
       },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "post": {
-      "name": "post",
-      "schema": "",
-      "columns": {
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
+      "indexes": {
+        "comment_post_id_index": {
+          "name": "comment_post_id_index",
+          "columns": ["post_id"],
+          "isUnique": false
         },
-        "slug": {
-          "name": "slug",
-          "type": "text",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "likes": {
-          "name": "likes",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "default": 0
-        },
-        "views": {
-          "name": "views",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "default": 0
+        "comment_parent_id_index": {
+          "name": "comment_parent_id_index",
+          "columns": ["parent_id"],
+          "isUnique": false
         }
       },
-      "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}

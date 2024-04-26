@@ -2,12 +2,11 @@ import type { Adapter } from "next-auth/adapters";
 
 import { and, eq, schema } from "@utaka/db";
 import type { db as DB } from "@utaka/db";
-import { createId } from "@utaka/utils";
 
 export const DrizzleAdapter = (db: typeof DB): Adapter => {
   return {
     createUser: async (user) => {
-      const id = createId();
+      const id = crypto.randomUUID();
 
       return await db
         .insert(schema.users)

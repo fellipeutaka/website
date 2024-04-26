@@ -1,12 +1,12 @@
 import { toast } from "@utaka/ui";
 import { useState } from "react";
 
-type CopyOptions = {
+interface CopyOptions {
   text: string;
   timeout?: number;
   successMessage?: React.ReactNode;
   errorMessage?: React.ReactNode;
-};
+}
 
 export const useCopyToClipboard = (): [
   (options: CopyOptions) => Promise<void>,

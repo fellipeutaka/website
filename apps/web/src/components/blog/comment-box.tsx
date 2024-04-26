@@ -1,8 +1,9 @@
 "use client";
 
+import { nativeClient } from "@utaka/api/client/native";
+import { TRPCClientError, reactClient } from "@utaka/api/client/react";
 import { Button, Icons, Tabs, Textarea, toast } from "@utaka/ui";
-import { useState } from "react";
-import { postComment } from "~/actions/comment";
+import { useState, useTransition } from "react";
 import { MarkdownPreview } from "./markdown-preview";
 
 type CommentBoxProps = {
@@ -22,44 +23,52 @@ const MAX_COMMENT_LENGTH = 3_200;
 
 export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
   const [comment, setComment] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const clientUtils = reactClient.useUtils();
 
-  const postCommentHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  const postCommentHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (comment.length > MAX_COMMENT_LENGTH) {
       return toast.error("Comment must contain at most 140 characters");
     }
 
-    setIsSubmitting(true);
     const toastId = toast.loading("Creating a message...");
 
-    const { serialize } = await import("@utaka/mdx/serialize");
-    const { compiledSource: processedComment } = await serialize(comment);
+    startTransition(async () => {
+      try {
+        const { serialize } = await import("@utaka/mdx/serialize");
+        const { compiledSource } = await serialize(comment);
 
-    const result = await postComment({
-      slug,
-      comment: processedComment,
-      parentId,
+        await nativeClient.comment.create.mutate({
+          slug,
+          comment: compiledSource,
+          parentId,
+        });
+
+        toast.success("Message created!");
+        clientUtils.comment.getBySlug.invalidate();
+        setComment("");
+      } catch (error) {
+        if (error instanceof TRPCClientError) {
+          toast.error(error.message);
+          return;
+        }
+
+        toast.error("An error occurred while creating the message");
+      } finally {
+        toast.dismiss(toastId);
+      }
     });
-
-    toast.dismiss(toastId);
-
-    if (result.error) {
-      toast.error(result.message);
-    } else {
-      toast.success(result.message);
-      setComment("");
-    }
-
-    setIsSubmitting(false);
   };
+
+  const isCommentEmpty = comment.trim().length < 1;
 
   return (
     <Tabs defaultValue="write">
       <Tabs.List>
         <Tabs.Trigger value="write">Write</Tabs.Trigger>
-        <Tabs.Trigger disabled={comment.trim().length < 1} value="preview">
+        <Tabs.Trigger disabled={isCommentEmpty} value="preview">
           Preview
         </Tabs.Trigger>
       </Tabs.List>
@@ -95,8 +104,8 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
                 Cancel
               </Button>
             )}
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting && (
+            <Button type="submit" disabled={isPending || isCommentEmpty}>
+              {isPending && (
                 <Icons.Loader className="mr-2 size-4 animate-spin" />
               )}
               {parentId ? "Reply" : "Comment"}

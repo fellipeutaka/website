@@ -19,13 +19,9 @@ import {
 } from "@utaka/utils";
 import { useCopyToClipboard } from "~/hooks/use-copy-to-clipboard";
 
-type PreProps = {
-  "data-lang"?: string;
-} & React.ComponentPropsWithoutRef<"pre">;
-
-type LanguageIconProps = IconProps & {
+interface LanguageIconProps extends IconProps {
   lang: string;
-};
+}
 
 export function LanguageIcon({ lang, className, ...props }: LanguageIconProps) {
   switch (lang) {
@@ -61,6 +57,10 @@ export function LanguageIcon({ lang, className, ...props }: LanguageIconProps) {
       return <Icons.File className={cn("size-3.5", className)} {...props} />;
     }
   }
+}
+
+interface PreProps extends React.ComponentPropsWithoutRef<"pre"> {
+  "data-lang"?: string;
 }
 
 export function Pre(props: PreProps) {
@@ -109,9 +109,9 @@ export function Pre(props: PreProps) {
   );
 }
 
-type CopyButtonProps = {
+interface CopyButtonProps extends ButtonProps {
   text: string;
-} & ButtonProps;
+}
 
 function CopyButton(props: CopyButtonProps) {
   const { text, className, ...rest } = props;

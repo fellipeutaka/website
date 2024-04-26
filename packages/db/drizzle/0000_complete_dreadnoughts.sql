@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS "account" (
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "comment_upvote" (
-	"id" text PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"user_id" text NOT NULL,
 	"comment_id" text NOT NULL
 );
@@ -30,13 +30,6 @@ CREATE TABLE IF NOT EXISTS "comment" (
 	"deleted_at" timestamp
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "post" (
-	"created_at" timestamp DEFAULT now() NOT NULL,
-	"slug" text PRIMARY KEY NOT NULL,
-	"likes" integer DEFAULT 0 NOT NULL,
-	"views" integer DEFAULT 0 NOT NULL
-);
---> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "user" (
 	"id" text PRIMARY KEY NOT NULL,
 	"name" text,
@@ -47,6 +40,8 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "comment_post_id_index" ON "comment" ("post_id");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "comment_parent_id_index" ON "comment" ("parent_id");--> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "account" ADD CONSTRAINT "account_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION

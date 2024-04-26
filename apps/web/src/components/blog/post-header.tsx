@@ -4,11 +4,11 @@ import { siteConfig } from "~/config/site";
 import { BlurImage } from "../blur-image";
 import { ImageZoom } from "../image-zoom";
 
-type PostHeaderProps = {
+interface PostHeaderProps {
   date: Date;
   title: string;
   slug: string;
-};
+}
 
 export function PostHeader({ title, date, slug }: PostHeaderProps) {
   const viewsIsLoading = false;

@@ -18,8 +18,6 @@ export type {
   NewAccountDB,
   NewCommentDB,
   NewCommentUpvoteDB,
-  NewPostDB,
   NewUserDB,
-  PostDB,
   UserDB,
 } from "./schema";

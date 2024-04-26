@@ -11,9 +11,9 @@ const editURL = (slug: string) =>
     slug,
   )}?plain=1`;
 
-type PostFooterProps = {
+interface PostFooterProps {
   slug: string;
-};
+}
 
 export async function PostFooter({ slug }: PostFooterProps) {
   const modifiedAt = await getGithubLastEdit({

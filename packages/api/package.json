@@ -1,0 +1,23 @@
+{
+  "name": "@utaka/api",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./client/*": "./src/client/*.ts"
+  },
+  "dependencies": {
+    "@utaka/auth": "workspace:*",
+    "@utaka/db": "workspace:*",
+    "@utaka/utils": "workspace:*",
+    "@trpc/client": "next",
+    "@trpc/react-query": "next",
+    "@trpc/server": "next",
+    "superjson": "^2.2.1",
+    "ulid": "^2.3.0"
+  },
+  "devDependencies": {
+    "@utaka/tsconfig": "workspace:*"
+  }
+}

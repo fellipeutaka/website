@@ -3,9 +3,9 @@ import { formatDate } from "@utaka/utils";
 import Link from "next/link";
 import { BlurImage } from "../blur-image";
 
-type PostCardProps = {
+interface PostCardProps {
   post: Post;
-};
+}
 
 export function PostCard({ post }: PostCardProps) {
   return (

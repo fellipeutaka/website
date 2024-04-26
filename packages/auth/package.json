@@ -2,15 +2,10 @@
   "name": "@utaka/auth",
   "main": "./index.ts",
   "types": "./index.ts",
-  "exports": {
-    ".": "./index.ts",
-    "./react": "./react.ts"
-  },
   "private": true,
   "dependencies": {
     "@utaka/db": "workspace:*",
     "@utaka/env": "workspace:*",
-    "@utaka/utils": "workspace:*",
     "next-auth": "beta"
   },
   "devDependencies": {

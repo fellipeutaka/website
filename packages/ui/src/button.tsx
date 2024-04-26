@@ -40,10 +40,11 @@ export const ButtonStyles = tv({
   },
 });
 
-export type ButtonProps = React.ComponentPropsWithoutRef<"button"> &
-  VariantProps<typeof ButtonStyles> & {
-    asChild?: boolean;
-  };
+export interface ButtonProps
+  extends React.ComponentPropsWithoutRef<"button">,
+    VariantProps<typeof ButtonStyles> {
+  asChild?: boolean;
+}
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, type = "button", variant, size, asChild, ...props }, ref) => {

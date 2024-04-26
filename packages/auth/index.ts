@@ -1,7 +1,20 @@
-import NextAuth, { type NextAuthResult } from "next-auth";
+import NextAuth, {
+  type NextAuthResult,
+  type User as DefaultUser,
+} from "next-auth";
 import { config } from "./config";
 
-export type { Session, User } from "next-auth";
+export interface User extends DefaultUser {
+  id: string;
+}
+
+declare module "next-auth" {
+  export interface Session {
+    user: User;
+  }
+}
+
+export type { Session } from "next-auth";
 
 const result = NextAuth(config);
 export const auth: NextAuthResult["auth"] = result.auth;

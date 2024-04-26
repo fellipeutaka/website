@@ -5,8 +5,13 @@
     "commitlint",
     "fontsource",
     "sonner",
+    "superjson",
     "tailwindcss",
-    "turborepo"
+    "trpc",
+    "turborepo",
+    "upvote",
+    "Upvoted",
+    "Upvotes"
   ],
   "editor.defaultFormatter": "biomejs.biome",
   "typescript.enablePromptUseWorkspaceTsdk": true,

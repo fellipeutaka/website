@@ -1,15 +1,21 @@
 "use client";
 
-import { signOut, useSession } from "@utaka/auth/react";
+import { reactClient } from "@utaka/api/client/react";
 import { AlertDialogAction, Avatar, Button, DropdownMenu } from "@utaka/ui";
 import { getUserInitials } from "@utaka/utils";
 import { SignInDialog } from "./sign-in-dialog";
 import { SignOutAlertDialog } from "./sign-out-alert-dialog";
 
 export function UserDropdownMenu() {
-  const { data: session } = useSession();
+  const clientUtils = reactClient.useUtils();
+  const { data: user } = reactClient.auth.me.useQuery();
+  const signOutMutation = reactClient.auth.signOut.useMutation({
+    onSuccess() {
+      clientUtils.auth.me.setData(undefined, null);
+    },
+  });
 
-  if (!session?.user) {
+  if (!user) {
     return (
       <SignInDialog>
         <Button size="sm" variant="outline">
@@ -18,8 +24,6 @@ export function UserDropdownMenu() {
       </SignInDialog>
     );
   }
-
-  const { user } = session;
 
   return (
     <DropdownMenu>
@@ -42,7 +46,11 @@ export function UserDropdownMenu() {
         </DropdownMenu.Label>
         <DropdownMenu.Separator />
         <SignOutAlertDialog>
-          <AlertDialogAction onClick={() => signOut()} variant="destructive">
+          <AlertDialogAction
+            onClick={() => signOutMutation.mutate()}
+            variant="destructive"
+            disabled={signOutMutation.isPending}
+          >
             Continue
           </AlertDialogAction>
         </SignOutAlertDialog>

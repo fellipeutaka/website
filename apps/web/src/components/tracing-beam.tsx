@@ -4,11 +4,11 @@ import { cn } from "@utaka/tailwind";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-type TracingBeamProps = {
+interface TracingBeamProps {
   children: React.ReactNode;
   className?: string;
   offset?: NonNullable<Parameters<typeof useScroll>[0]>["offset"];
-};
+}
 
 export function TracingBeam({ children, className, offset }: TracingBeamProps) {
   const ref = useRef<HTMLDivElement>(null);

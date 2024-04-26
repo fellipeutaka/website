@@ -2,9 +2,9 @@ import { getTOC } from "@utaka/mdx/utils/get-toc";
 import { Mdx } from "../mdx/mdx";
 import { TableOfContents } from "./table-of-contents";
 
-type PostContentProps = {
+interface PostContentProps {
   content: string;
-};
+}
 
 export async function PostContent({ content }: PostContentProps) {
   const toc = await getTOC(content);
