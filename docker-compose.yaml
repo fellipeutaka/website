@@ -7,3 +7,19 @@ services:
       POSTGRES_DB: postgres
     ports:
       - "5432:5432"
+  
+  redis:
+    image: bitnami/redis:7.0
+    ports:
+      - "6379:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
+  serverless-redis-http:
+    ports:
+      - "8079:80"
+    image: hiett/serverless-redis-http:latest
+    environment:
+      SRH_MODE: env
+      SRH_TOKEN: docker_token
+      SRH_CONNECTION_STRING: "redis://redis:6379"

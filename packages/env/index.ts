@@ -9,6 +9,9 @@ export const env = createEnv({
 
     DATABASE_URL: z.string().url(),
 
+    UPSTASH_REDIS_REST_URL: z.string().url(),
+    UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
+
     AUTH_SECRET: z.string().min(1),
 
     GITHUB_CLIENT_ID: z.string().min(1),

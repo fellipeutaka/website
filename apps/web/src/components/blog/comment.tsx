@@ -1,5 +1,5 @@
 import type { RouterOutput } from "@utaka/api";
-import { TRPCClientError, reactClient } from "@utaka/api/client/react";
+import { reactClient } from "@utaka/api/client/react";
 import type { User } from "@utaka/auth";
 import type { CommentDB, UserDB } from "@utaka/db";
 import { cn } from "@utaka/tailwind";
@@ -70,7 +70,8 @@ export function Comment(props: CommentProps) {
       });
       return { previousComments };
     },
-    onError: (_err, _commentId, context) => {
+    onError: (err, _commentId, context) => {
+      toast.error(err.message);
       clientUtils.comment.getBySlug.setData(slug, context?.previousComments);
     },
     onSettled: () => {
@@ -189,7 +190,10 @@ export function CommentContent(props: CommentContentProps) {
           <p className="font-semibold">{comment.user?.name}</p>
           <Tooltip.Provider>
             <Tooltip>
-              <Tooltip.Trigger className="text-muted-foreground">
+              <Tooltip.Trigger
+                suppressHydrationWarning
+                className="text-muted-foreground"
+              >
                 {formattedDate}
               </Tooltip.Trigger>
               <Tooltip.Content>
@@ -226,11 +230,7 @@ function DeleteCommentDialog({ commentId }: DeleteCommentDialogProps) {
       loading: "Deleting comment...",
       success: "Comment deleted!",
       error(error) {
-        if (error instanceof TRPCClientError) {
-          return error.message;
-        }
-
-        return "An error occurred while deleting the comment";
+        return error.message || "An error occurred while deleting the comment";
       },
     });
   };

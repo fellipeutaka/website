@@ -1,0 +1,14 @@
+{
+  "name": "@utaka/redis",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "private": true,
+  "dependencies": {
+    "@upstash/ratelimit": "^1.1.3",
+    "@upstash/redis": "^1.30.0",
+    "@utaka/env": "workspace:*"
+  },
+  "devDependencies": {
+    "@utaka/tsconfig": "workspace:*"
+  }
+}

@@ -1,9 +1,17 @@
 "use client";
 
 import { nativeClient } from "@utaka/api/client/native";
-import { TRPCClientError, reactClient } from "@utaka/api/client/react";
-import { Button, Icons, Tabs, Textarea, toast } from "@utaka/ui";
-import { useState, useTransition } from "react";
+import { reactClient } from "@utaka/api/client/react";
+import {
+  Button,
+  type ButtonProps,
+  Icons,
+  Tabs,
+  Textarea,
+  toast,
+} from "@utaka/ui";
+import { useState } from "react";
+import { useFormStatus } from "react-dom";
 import { MarkdownPreview } from "./markdown-preview";
 
 type CommentBoxProps = {
@@ -23,17 +31,17 @@ const MAX_COMMENT_LENGTH = 3_200;
 
 export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
   const [comment, setComment] = useState("");
-  const [isPending, startTransition] = useTransition();
   const clientUtils = reactClient.useUtils();
 
-  const postCommentHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const postCommentHandler = async () => {
     if (comment.length > MAX_COMMENT_LENGTH) {
-      return toast.error("Comment must contain at most 140 characters");
+      toast.error("Comment must contain at most 140 characters");
+      return;
     }
 
-    async function postComment() {
+    const toastId = toast.loading("Creating a message...");
+
+    try {
       const { serialize } = await import("@utaka/mdx/serialize");
       const { compiledSource } = await serialize(comment);
 
@@ -45,27 +53,15 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
 
       clientUtils.comment.getBySlug.invalidate();
       setComment("");
+      toast.success("Message created!", { id: toastId });
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "An error occurred while creating the message",
+        { id: toastId },
+      );
     }
-
-    toast.promise(postComment, {
-      loading: "Creating a message...",
-      success: "Message created!",
-      error(error) {
-        if (error instanceof TRPCClientError) {
-          return toast.error(error.message);
-        }
-
-        return error.message || "An error occurred while creating the message";
-      },
-    });
-
-    startTransition(async () => {
-      try {
-        await postComment();
-      } catch {
-        // The toast will handle the error
-      }
-    });
   };
 
   const isCommentEmpty = comment.trim().length < 1;
@@ -78,7 +74,7 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
           Preview
         </Tabs.Trigger>
       </Tabs.List>
-      <form onSubmit={postCommentHandler}>
+      <form action={postCommentHandler}>
         <Tabs.Content value="write" tabIndex={-1}>
           <Textarea
             className="max-h-full [field-sizing:content]"
@@ -110,15 +106,24 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
                 Cancel
               </Button>
             )}
-            <Button type="submit" disabled={isPending || isCommentEmpty}>
-              {isPending && (
-                <Icons.Loader className="mr-2 size-4 animate-spin" />
-              )}
+
+            <SubmitButton disabled={isCommentEmpty}>
               {parentId ? "Reply" : "Comment"}
-            </Button>
+            </SubmitButton>
           </div>
         </div>
       </form>
     </Tabs>
+  );
+}
+
+function SubmitButton(props: ButtonProps) {
+  const { pending } = useFormStatus();
+
+  return (
+    <Button type="submit" disabled={pending || props.disabled}>
+      {pending && <Icons.Loader className="mr-2 size-4 animate-spin" />}
+      {props.children}
+    </Button>
   );
 }

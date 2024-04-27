@@ -178,6 +178,9 @@ importers:
       '@utaka/db':
         specifier: workspace:*
         version: link:../db
+      '@utaka/redis':
+        specifier: workspace:*
+        version: link:../redis
       '@utaka/utils':
         specifier: workspace:*
         version: link:../utils
@@ -309,6 +312,22 @@ importers:
       unist-builder:
         specifier: 3.0.0
         version: 3.0.0
+
+  packages/redis:
+    dependencies:
+      '@upstash/ratelimit':
+        specifier: ^1.1.3
+        version: 1.1.3
+      '@upstash/redis':
+        specifier: ^1.30.0
+        version: 1.30.0
+      '@utaka/env':
+        specifier: workspace:*
+        version: link:../env
+    devDependencies:
+      '@utaka/tsconfig':
+        specifier: workspace:*
+        version: link:../../config/tsconfig
 
   packages/ui:
     dependencies:
@@ -2629,6 +2648,16 @@ packages:
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
+  '@upstash/core-analytics@0.0.8':
+    resolution: {integrity: sha512-MCJoF+Y8fkzq4NRLG7kEHjtGyMsZ2DICBdmEdwoK9umoSrfkzgBlYdZiHTIaewyt9PGaMZCHOasz0LAuMpxwxQ==}
+    engines: {node: '>=16.0.0'}
+
+  '@upstash/ratelimit@1.1.3':
+    resolution: {integrity: sha512-rl+GMvPdZJ9xPDIvIrqRl/g0nzAEaH75hwR5lXAKW8zPPplD/AeliDCHwuwcFCPIjg49FKyA1oc5H473WkVFrQ==}
+
+  '@upstash/redis@1.30.0':
+    resolution: {integrity: sha512-bkxl2n7qls27hONXNyItM6ccRT0NBJ8c6zl83wx+TlODpYXehgeiUJTkcTaXLp7hk+zy6Mqpzpeo3GX+wZSvBw==}
+
   '@vitest/expect@1.3.1':
     resolution: {integrity: sha512-xofQFwIzfdmLLlHa6ag0dPV8YsnKOCP1KdAeVVh34vSjN2dcUiXYCD9htu/9eM7t8Xln4v03U9HLxLpPlsXdZw==}
 
@@ -3139,6 +3168,9 @@ packages:
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
+
+  crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
 
   css.escape@1.5.1:
     resolution: {integrity: sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg==}
@@ -8748,6 +8780,18 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
+  '@upstash/core-analytics@0.0.8':
+    dependencies:
+      '@upstash/redis': 1.30.0
+
+  '@upstash/ratelimit@1.1.3':
+    dependencies:
+      '@upstash/core-analytics': 0.0.8
+
+  '@upstash/redis@1.30.0':
+    dependencies:
+      crypto-js: 4.2.0
+
   '@vitest/expect@1.3.1':
     dependencies:
       '@vitest/spy': 1.3.1
@@ -9298,6 +9342,8 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  crypto-js@4.2.0: {}
 
   css.escape@1.5.1: {}
 

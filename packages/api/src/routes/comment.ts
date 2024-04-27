@@ -2,7 +2,12 @@ import { TRPCError } from "@trpc/server";
 import { and, db, eq, isNotNull, schema } from "@utaka/db";
 import { ulid } from "@utaka/utils";
 import { z } from "zod";
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+  ratelimitMiddleware,
+} from "../trpc";
 
 export const commentRoute = createTRPCRouter({
   getBySlug: publicProcedure
@@ -27,6 +32,11 @@ export const commentRoute = createTRPCRouter({
       });
     }),
   create: protectedProcedure
+    .use(
+      ratelimitMiddleware({
+        message: "You are commenting too fast. Please wait a few seconds.",
+      }),
+    )
     .input(
       z.object({
         comment: z.string().min(1, "Comment is required."),
@@ -121,6 +131,11 @@ export const commentRoute = createTRPCRouter({
       }
     }),
   upvoteById: protectedProcedure
+    .use(
+      ratelimitMiddleware({
+        message: "You are upvoting too fast. Please wait a few seconds.",
+      }),
+    )
     .input(z.string().regex(/[0-7][0-9A-HJKMNP-TV-Z]{25}/, "Invalid ID"))
     .mutation(async ({ ctx, input }) => {
       const id = input;
