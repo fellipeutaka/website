@@ -16,6 +16,7 @@ import { formatTimeAgo, formatUpvotes, getUserInitials } from "@utaka/utils";
 import type React from "react";
 import { useState } from "react";
 import { siteConfig } from "~/config/site";
+import { useAuth } from "~/hooks/use-auth";
 import { useDeleteCommentMutation } from "~/hooks/use-delete-comment-mutation";
 import { CommentBox } from "./comment-box";
 import { MarkdownPreview } from "./markdown-preview";
@@ -27,7 +28,7 @@ interface CommentProps {
 
 export function Comment(props: CommentProps) {
   const { slug, comment } = props;
-  const { data: user } = reactClient.auth.me.useQuery();
+  const { user } = useAuth();
 
   const isCurrentUserUpvotedComment = comment.upvotes.some(
     (upvote) => upvote.userId === user?.id,
