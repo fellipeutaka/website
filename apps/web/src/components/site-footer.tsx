@@ -5,7 +5,7 @@ import { socialLinks } from "~/config/site";
 
 export function SiteFooter() {
   return (
-    <footer className="mx-auto my-12 space-x-4">
+    <footer className="my-12 flex flex-wrap items-center justify-center gap-4">
       <Tooltip.Provider delayDuration={300}>
         {socialLinks.map((link) => (
           <Tooltip key={link.href}>

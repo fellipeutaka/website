@@ -40,7 +40,7 @@ export const socialLinks = [
   },
   {
     label: "Dev.to",
-    icon: Icons.Layers,
+    icon: Icons.DevTo,
     href: siteConfig.links.devTo,
   },
   {
