@@ -10,8 +10,9 @@ interface CommentListProps {
 }
 
 export function CommentList({ slug, initialData }: CommentListProps) {
-  const [comments] = reactClient.comment.getBySlug.useSuspenseQuery(slug, {
+  const { data: comments } = reactClient.comment.getBySlug.useQuery(slug, {
     initialData,
+    staleTime: 60 * 1000,
   });
 
   return (

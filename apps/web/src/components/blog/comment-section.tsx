@@ -7,7 +7,6 @@ import {
   TabsList,
   TabsTrigger,
 } from "@utaka/ui";
-import { Suspense } from "react";
 import { CommentBox } from "./comment-box";
 import { CommentList } from "./comment-list";
 
@@ -23,9 +22,7 @@ export async function CommentSection({ slug }: CommentSectionProps) {
       <div className="rounded-lg border px-2 py-4 dark:bg-input/30 sm:px-4">
         <CommentBox slug={slug} />
       </div>
-      <Suspense fallback={<CommentListSkeleton />}>
-        <CommentList initialData={comments} slug={slug} />
-      </Suspense>
+      <CommentList initialData={comments} slug={slug} />
     </div>
   );
 }
