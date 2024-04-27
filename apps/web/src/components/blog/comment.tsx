@@ -12,7 +12,7 @@ import {
   Tooltip,
   toast,
 } from "@utaka/ui";
-import { formatDate, formatUpvotes, getUserInitials } from "@utaka/utils";
+import { formatTimeAgo, formatUpvotes, getUserInitials } from "@utaka/utils";
 import type React from "react";
 import { useState } from "react";
 import { siteConfig } from "~/config/site";
@@ -169,27 +169,27 @@ interface CommentContentProps {
 
 export function CommentContent(props: CommentContentProps) {
   const { user, comment } = props;
-  const formattedDate = formatDate(comment.createdAt);
+  const formattedDate = formatTimeAgo(comment.createdAt);
 
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2 text-sm">
-        <Avatar className="size-8">
-          <Avatar.Image
-            src={comment.user?.image ?? ""}
-            alt={comment.user?.name ?? ""}
-          />
-          <Avatar.Fallback>
-            {getUserInitials(comment.user?.name)}
-          </Avatar.Fallback>
-        </Avatar>
+    <div className="flex items-end justify-between sm:items-center">
+      <div className="grid items-center gap-2 sm:grid-cols-2">
+        <div className="flex items-center gap-2 text-sm">
+          <Avatar className="size-8">
+            <Avatar.Image
+              src={comment.user?.image ?? ""}
+              alt={comment.user?.name ?? ""}
+            />
+            <Avatar.Fallback>
+              {getUserInitials(comment.user?.name)}
+            </Avatar.Fallback>
+          </Avatar>
 
-        <div className="font-semibold">{comment.user?.name}</div>
-        <div className="text-muted-foreground">
+          <p className="font-semibold">{comment.user?.name}</p>
           <Tooltip.Provider>
             <Tooltip>
-              <Tooltip.Trigger>
-                <span>{formattedDate}</span>
+              <Tooltip.Trigger className="text-muted-foreground">
+                {formattedDate}
               </Tooltip.Trigger>
               <Tooltip.Content>
                 {new Date(comment.createdAt).toString()}
@@ -197,7 +197,10 @@ export function CommentContent(props: CommentContentProps) {
             </Tooltip>
           </Tooltip.Provider>
         </div>
-        {comment.user.email === siteConfig.email && <Badge>Author</Badge>}
+
+        {comment.user.email === siteConfig.email && (
+          <Badge className="max-sm:-order-1 w-max">Author</Badge>
+        )}
       </div>
       {user?.email === comment.user.email && !comment.deletedAt && (
         <DeleteCommentDialog commentId={comment.id} />
