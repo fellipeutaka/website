@@ -36,6 +36,6 @@ export const serialize = async <T>(
       frontmatter: (vfile.data.matter ?? {}) as T,
     };
   } catch {
-    throw new Error("Error compiling MDX");
+    throw new Error("Failed to render markdown. Please check your syntax.");
   }
 };

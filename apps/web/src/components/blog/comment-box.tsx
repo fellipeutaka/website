@@ -33,31 +33,37 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
       return toast.error("Comment must contain at most 140 characters");
     }
 
-    const toastId = toast.loading("Creating a message...");
+    async function postComment() {
+      const { serialize } = await import("@utaka/mdx/serialize");
+      const { compiledSource } = await serialize(comment);
+
+      await nativeClient.comment.create.mutate({
+        slug,
+        comment: compiledSource,
+        parentId,
+      });
+
+      clientUtils.comment.getBySlug.invalidate();
+      setComment("");
+    }
+
+    toast.promise(postComment, {
+      loading: "Creating a message...",
+      success: "Message created!",
+      error(error) {
+        if (error instanceof TRPCClientError) {
+          return toast.error(error.message);
+        }
+
+        return error.message || "An error occurred while creating the message";
+      },
+    });
 
     startTransition(async () => {
       try {
-        const { serialize } = await import("@utaka/mdx/serialize");
-        const { compiledSource } = await serialize(comment);
-
-        await nativeClient.comment.create.mutate({
-          slug,
-          comment: compiledSource,
-          parentId,
-        });
-
-        toast.success("Message created!");
-        clientUtils.comment.getBySlug.invalidate();
-        setComment("");
-      } catch (error) {
-        if (error instanceof TRPCClientError) {
-          toast.error(error.message);
-          return;
-        }
-
-        toast.error("An error occurred while creating the message");
-      } finally {
-        toast.dismiss(toastId);
+        await postComment();
+      } catch {
+        // The toast will handle the error
       }
     });
   };

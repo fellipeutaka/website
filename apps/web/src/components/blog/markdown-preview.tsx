@@ -3,6 +3,7 @@
 import { MDXRemote } from "@utaka/mdx/client";
 import { cn } from "@utaka/tailwind";
 import { Suspense, cache, use } from "react";
+import { ErrorBoundary, type FallbackProps } from "react-error-boundary";
 import { components } from "../mdx/mdx";
 
 type MarkdownProps = {
@@ -20,6 +21,10 @@ type MarkdownProps = {
     }
 );
 
+function FallbackRender(props: FallbackProps) {
+  return <p>{props.error.message || "Something went wrong"}</p>;
+}
+
 export function MarkdownPreview(props: MarkdownProps) {
   const { source, compiledSource, className } = props;
 
@@ -30,12 +35,14 @@ export function MarkdownPreview(props: MarkdownProps) {
         className,
       )}
     >
-      {compiledSource && <CommentRenderer compiledSource={compiledSource} />}
-      {source && (
-        <Suspense fallback={<p>Rendering...</p>}>
-          <CommentRenderer source={source} />
-        </Suspense>
-      )}
+      <ErrorBoundary fallbackRender={FallbackRender}>
+        {compiledSource && <CommentRenderer compiledSource={compiledSource} />}
+        {source && (
+          <Suspense fallback={<p>Rendering...</p>}>
+            <CommentRenderer source={source} />
+          </Suspense>
+        )}
+      </ErrorBoundary>
     </div>
   );
 }
