@@ -30,6 +30,7 @@ export const rehypeInlineCode: Plugin<[RehypeShikiCoreOptions], Root> = () => {
 
     const highlighter = await promise;
 
+    // biome-ignore lint:
     return visit(tree, "element", (node, index, parent) => {
       if (node.tagName !== "code") return;
 

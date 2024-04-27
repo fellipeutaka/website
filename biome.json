@@ -37,7 +37,9 @@
         "noNodejsModules": "off",
         "noUndeclaredDependencies": "off",
         "noConsole": "off",
-        "noBarrelFile": "off"
+        "noBarrelFile": "off",
+        "noReExportAll": "off",
+        "noNamespaceImport": "off"
       }
     }
   },

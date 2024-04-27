@@ -4,17 +4,13 @@ import { migrate } from "drizzle-orm/postgres-js/migrator";
 import postgres from "postgres";
 
 export async function runMigrate() {
-  console.log("⏳ Running migrations...");
-
-  const start = Date.now();
+  const _start = Date.now();
 
   const connection = postgres(env.DATABASE_URL, { max: 1 });
   const db = drizzle(connection);
   await migrate(db, { migrationsFolder: "drizzle" });
 
-  const end = Date.now();
-
-  console.log(`✅ Migrations completed in ${end - start}ms`);
+  const _end = Date.now();
 
   process.exit(0);
 }
