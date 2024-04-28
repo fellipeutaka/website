@@ -42,7 +42,7 @@ export function ratelimitMiddleware(options?: RatelimitMiddlewareOptions) {
 
     const ratelimit = new Ratelimit({
       redis,
-      // 15 requests from the same IP in 10 seconds
+      // 15 requests from the same USER in 10 seconds
       limiter: Ratelimit.slidingWindow(
         options?.tokens ?? 15,
         options?.duration ?? "10 s",
