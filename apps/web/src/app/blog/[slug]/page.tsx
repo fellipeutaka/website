@@ -1,11 +1,7 @@
 import { getPostBySlug, getPosts } from "@utaka/mdx/utils/fs";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
-import {
-  CommentSection,
-  CommentSectionSkeleton,
-} from "~/components/blog/comment-section";
+import { CommentSection } from "~/components/blog/comment-section";
 import { PostContent } from "~/components/blog/post-content";
 import { PostFooter } from "~/components/blog/post-footer";
 import { PostHeader } from "~/components/blog/post-header";
@@ -51,9 +47,7 @@ export default function Page({ params }: PageProps) {
       <PostContent content={post.content} />
       <PostFooter slug={params.slug} />
 
-      <Suspense fallback={<CommentSectionSkeleton />}>
-        <CommentSection slug={params.slug} />
-      </Suspense>
+      <CommentSection slug={params.slug} />
     </main>
   );
 }

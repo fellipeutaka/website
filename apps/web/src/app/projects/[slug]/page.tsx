@@ -1,4 +1,4 @@
-import { getPosts, getProjectBySlug } from "@utaka/mdx/utils/fs";
+import { getProjectBySlug, getProjects } from "@utaka/mdx/utils/fs";
 import { ButtonStyles, Icons } from "@utaka/ui";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -12,7 +12,7 @@ interface PageProps {
 }
 
 export function generateStaticParams() {
-  return getPosts().map((post) => ({
+  return getProjects().map((post) => ({
     slug: post.slug,
   }));
 }

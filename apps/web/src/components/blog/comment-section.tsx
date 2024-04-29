@@ -1,4 +1,6 @@
-import { serverClient } from "@utaka/api/client/server";
+"use client";
+
+import { reactClient } from "@utaka/api/client/react";
 import {
   Icons,
   Skeleton,
@@ -7,27 +9,47 @@ import {
   TabsList,
   TabsTrigger,
 } from "@utaka/ui";
+import { Comment } from "./comment";
 import { CommentBox } from "./comment-box";
-import { CommentList } from "./comment-list";
 
 interface CommentSectionProps {
   slug: string;
 }
 
-export async function CommentSection({ slug }: CommentSectionProps) {
-  const comments = await serverClient.comment.getBySlug(slug);
+export function CommentSection({ slug }: CommentSectionProps) {
+  const {
+    data: comments,
+    isLoading,
+    isError,
+  } = reactClient.comment.getBySlug.useQuery(slug, {
+    staleTime: 60 * 1000,
+  });
+
+  if (isLoading) {
+    return <CommentSectionSkeleton />;
+  }
+
+  if (isError) {
+    return <div>Failed to load comments</div>;
+  }
 
   return (
     <div className="space-y-6">
       <div className="rounded-lg border px-2 py-4 dark:bg-input/30 sm:px-4">
         <CommentBox slug={slug} />
       </div>
-      <CommentList initialData={comments} slug={slug} />
+      <div className="space-y-8">
+        {comments
+          ?.filter((c) => !c.parentId)
+          .map((comment) => (
+            <Comment key={comment.id} slug={slug} comment={comment} />
+          ))}
+      </div>
     </div>
   );
 }
 
-export function CommentSectionSkeleton() {
+function CommentSectionSkeleton() {
   return (
     <div className="space-y-6">
       <div className="rounded-lg border px-2 py-4 dark:bg-input/30 sm:px-4">

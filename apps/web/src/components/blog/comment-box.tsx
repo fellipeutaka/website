@@ -1,5 +1,3 @@
-"use client";
-
 import { nativeClient } from "@utaka/api/client/native";
 import { reactClient } from "@utaka/api/client/react";
 import {
