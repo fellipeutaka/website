@@ -11,7 +11,7 @@ export async function PostContent({ content }: PostContentProps) {
 
   return (
     <div className="mt-8 flex flex-col justify-between gap-16 lg:flex-row">
-      <article>
+      <article className="w-full">
         <Mdx code={content} />
       </article>
       <aside className="lg:min-w-72">

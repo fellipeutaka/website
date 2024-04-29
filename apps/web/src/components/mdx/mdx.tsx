@@ -2,6 +2,7 @@ import type { MDXComponents } from "@utaka/mdx";
 import { MDXRemoteRSC } from "@utaka/mdx/rsc";
 import { cn } from "@utaka/tailwind";
 import {
+  Checkbox,
   Video,
   VideoBottom,
   VideoControls,
@@ -150,6 +151,14 @@ export const components = {
   //  Table,
   //  ItemGrid,
   //  Video,
+  input: (props) => (
+    <Checkbox
+      className="size-4"
+      iconClassName="size-3"
+      disabled
+      checked={props.checked}
+    />
+  ),
   Video: (props: React.ComponentPropsWithoutRef<"video">) => (
     <Video>
       <VideoPlayer {...props} />

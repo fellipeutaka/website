@@ -1,56 +1,60 @@
-import { type Icon, Icons } from "@utaka/ui";
+import type { Icon } from "@utaka/ui";
 
 export const technologies = {
   react: {
     name: "React",
-    icon: Icons.React,
+    icon: "React",
     url: "https://react.dev",
   },
   reactNative: {
     name: "React Native",
-    icon: Icons.ReactNative,
+    icon: "ReactNative",
     url: "https://reactnative.dev",
   },
   expo: {
     name: "Expo",
-    icon: Icons.Expo,
+    icon: "Expo",
     url: "https://expo.dev",
   },
   next: {
     name: "Next.js",
-    icon: Icons.NextJS,
+    icon: "NextJS",
     url: "https://nextjs.org",
   },
   node: {
     name: "Node.js",
-    icon: Icons.Node,
+    icon: "Node",
     url: "https://nodejs.org",
   },
   typescript: {
     name: "TypeScript",
-    icon: Icons.TypeScript,
+    icon: "TypeScript",
     url: "https://www.typescriptlang.org",
   },
   electron: {
     name: "Electron",
-    icon: Icons.Electron,
+    icon: "Electron",
     url: "https://www.electronjs.org",
   },
   tailwindcss: {
     name: "Tailwind CSS",
-    icon: Icons.TailwindCSS,
+    icon: "TailwindCSS",
     url: "https://tailwindcss.com",
   },
   turborepo: {
     name: "Turborepo",
-    icon: Icons.Turborepo,
+    icon: "Turborepo",
     url: "https://turbo.build/repo",
   },
-} satisfies Record<string, Technology>;
+} as const satisfies Record<string, Technology>;
+
+export const technologyList = Object.values(technologies).map(
+  (technology) => technology.name,
+);
 
 export type Technologies = typeof technologies;
-export type Technology = {
+export interface Technology {
   name: string;
-  icon: Icon;
   url: string;
-};
+  icon: Icon;
+}

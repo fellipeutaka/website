@@ -4,16 +4,16 @@ import { Suspense } from "react";
 
 export function CodingHours() {
   return (
-    <div className="flex flex-col gap-6 rounded-xl border p-4 lg:p-6">
+    <div className="flex flex-col gap-6 rounded-xl border p-4 pb-10 lg:p-6">
       <div className="flex items-center gap-2">
         <Icons.Clock className="size-4" />
         <h2 className="font-light text-sm">Coding hours</h2>
       </div>
-      <div className="flex grow items-center justify-center font-semibold font-title text-4xl">
+      <p className="flex grow items-center justify-center font-semibold font-title text-4xl">
         <Suspense fallback={"-- hrs"}>
           <CodingHoursValue />
         </Suspense>
-      </div>
+      </p>
     </div>
   );
 }

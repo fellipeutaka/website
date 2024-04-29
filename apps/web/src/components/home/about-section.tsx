@@ -24,13 +24,13 @@ export function AboutSection() {
           duration: 0.3,
         }}
       >
-        <div className="grid gap-4">
+        <div className="grid grid-rows-[1fr,auto] gap-4">
           <LocationCard />
           <StacksCard />
         </div>
         <div className="grid gap-4">
           <Connect />
-          <div className="grid gap-4 [@media(min-width:450px)]:grid-cols-2">
+          <div className="grid gap-4 xs:grid-cols-2">
             <CodingHours />
             <StudyingCard />
           </div>

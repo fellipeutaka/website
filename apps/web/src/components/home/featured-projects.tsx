@@ -1,7 +1,11 @@
+import { getFeaturedProjects } from "@utaka/mdx/utils/fs";
+import { technologies } from "@utaka/tech";
 import { BentoGrid, ButtonStyles, Icons } from "@utaka/ui";
-import { projects } from "~/config/projects";
+import Link from "next/link";
 
 export function FeaturedProjectsSection() {
+  const featuredProjects = getFeaturedProjects();
+
   return (
     <section className="animate-delay-700 animate-fade-up">
       <h2 className="mb-10 font-semibold text-2xl md:text-3xl">
@@ -9,23 +13,30 @@ export function FeaturedProjectsSection() {
       </h2>
 
       <BentoGrid>
-        {projects.map((project, i) => (
+        {featuredProjects.map((project, i) => (
           <BentoGrid.Item
             key={project.name}
             className={i === 3 || i === 6 ? "md:col-span-2" : ""}
           >
             <div className="flex items-center gap-3">
-              {project.technologies.map((technology) => (
-                <a
-                  key={technology.name}
-                  href={technology.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={technology.name}
-                >
-                  <technology.icon className="size-6" />
-                </a>
-              ))}
+              {project.technologies.map((technology) => {
+                const tech = Object.values(technologies).find(
+                  (t) => t.name === technology,
+                )!;
+                const Icon = Icons[tech.icon];
+
+                return (
+                  <a
+                    key={tech.name}
+                    href={tech.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={tech.name}
+                  >
+                    <Icon className="size-6" />
+                  </a>
+                );
+              })}
             </div>
             <BentoGrid.Body className="flex flex-col justify-end">
               <BentoGrid.Title>{project.name}</BentoGrid.Title>
@@ -49,7 +60,7 @@ export function FeaturedProjectsSection() {
                 </a>
               )}
               <a
-                href={project.url}
+                href={project.sourceCodeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={ButtonStyles({
@@ -65,6 +76,16 @@ export function FeaturedProjectsSection() {
           </BentoGrid.Item>
         ))}
       </BentoGrid>
+
+      <Link
+        className={ButtonStyles({
+          className: "mx-auto my-8 flex w-max",
+          variant: "outline",
+        })}
+        href="/projects"
+      >
+        See all projects
+      </Link>
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { technologyList } from "@utaka/tech";
 import matter from "gray-matter";
 import { z } from "zod";
 
@@ -9,9 +10,9 @@ const readFile = (filePath: string) => {
   return fs.readFileSync(filePath, "utf8");
 };
 
-type Schema<TData> = {
+interface Schema<TData> {
   parse: (data: unknown) => TData;
-};
+}
 
 const readMDXFile = <TData>(filePath: string, schema: Schema<TData>) => {
   const rawContent = readFile(filePath);
@@ -25,9 +26,9 @@ const readMDXFile = <TData>(filePath: string, schema: Schema<TData>) => {
   };
 };
 
-type GetAllPostsOptions = {
+interface GetAllPostsOptions {
   limit?: number;
-};
+}
 
 const getPage = <TData>(filePath: string, schema: Schema<TData>) => {
   const fullPath = path.join(mdxFilesRootDirectory, `${filePath}.mdx`);
@@ -78,18 +79,45 @@ const postSchema = z.object({
   date: z.date(),
 });
 
-export type Post = z.output<typeof postSchema> & {
+export interface Post extends z.output<typeof postSchema> {
   slug: string;
-};
+}
 
 export function getPosts() {
-  const posts = getAllPages("blog", postSchema);
-
-  return posts;
+  return getAllPages("blog", postSchema);
 }
 
 export function getPostBySlug(slug: string) {
-  const posts = getPage(`blog/${slug}`, postSchema);
+  return getPage(`blog/${slug}`, postSchema);
+}
 
-  return posts;
+type TechnologyList = (typeof technologyList)[number];
+
+const projectSchema = z.object({
+  name: z.string().max(99),
+  description: z.string().max(999),
+  sourceCodeUrl: z.string().url(),
+  previewUrl: z.string().url().optional(),
+  isFeatured: z.boolean().optional().default(false),
+  technologies: z.array(
+    z.string().refine((value) => (technologyList as string[]).includes(value)),
+  ) as z.ZodArray<z.ZodType<TechnologyList>>,
+});
+
+export interface Project extends z.output<typeof projectSchema> {
+  slug: string;
+}
+
+export function getProjects() {
+  return getAllPages("projects", projectSchema);
+}
+
+export function getFeaturedProjects() {
+  return getAllPages("projects", projectSchema).filter(
+    (project) => project.isFeatured,
+  );
+}
+
+export function getProjectBySlug(slug: string) {
+  return getPage(`projects/${slug}`, projectSchema);
 }

@@ -1,0 +1,10 @@
+{
+  "name": "@utaka/tech",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "private": true,
+  "devDependencies": {
+    "@utaka/tsconfig": "workspace:*",
+    "@utaka/ui": "workspace:*"
+  }
+}

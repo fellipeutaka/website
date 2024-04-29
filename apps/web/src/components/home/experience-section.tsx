@@ -24,7 +24,7 @@ function ExperienceList(props: React.ComponentPropsWithoutRef<"div">) {
   return (
     <div {...props} className={cn("flex flex-col gap-4", props.className)}>
       {experiences.map((experience) => (
-        <Card key={experience.title} className="w-full">
+        <Card key={experience.company} className="w-full">
           <MotionDiv
             initial={{ opacity: 0, y: -50 }}
             whileInView={{

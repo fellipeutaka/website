@@ -98,3 +98,19 @@ pre.shiki .highlighted {
   display: inline-block;
   background-color: theme('colors.primary.DEFAULT / 10%');
 }
+
+.task-list-item {
+  list-style: none;
+  
+
+  [role="checkbox"] {
+    margin-left: -1.5rem;
+    vertical-align: middle;
+    display: inline-flex;
+  }
+
+  .contains-task-list {
+    margin-block: 0.5rem;
+    margin-left: 1rem;
+  }
+}

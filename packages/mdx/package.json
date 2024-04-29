@@ -13,6 +13,7 @@
     "@mdx-js/react": "^3.0.1",
     "@shikijs/rehype": "^1.2.4",
     "@shikijs/transformers": "^1.2.4",
+    "@utaka/tech": "workspace:*",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
     "remark": "^15.0.1",

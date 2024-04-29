@@ -1,0 +1,46 @@
+---
+name: ESLint Config
+description: ⚙️ My shareable ESLint configuration for Node.js, React, Expo, Next.js and Tailwind CSS
+sourceCodeUrl: https://github.com/fellipeutaka/eslint-config
+isFeatured: true
+technologies: ["Turborepo"]
+---
+
+My shareable ESLint configuration for Node.js, React, Expo, Next.js and Tailwind CSS.
+
+## Motivation
+
+I was tired of configuring ESLint for each project, so I decided to create a shareable configuration to use in all my projects.
+
+## Features
+
+- Standard config base
+- React config base
+- Expo config base
+- Next.js config base
+- Node config base
+- React plugin
+- React Hooks plugin
+- JSX a11y plugin
+- Prettier
+
+## How to use
+
+1. Install the dependencies
+
+```bash
+npm install eslint @fellipeutaka/eslint-config -D
+```
+
+2. Create a `.eslintrc.json` file extending the configuration you want to use:
+
+```json
+{
+  "extends": "@fellipeutaka/eslint-config/next"
+  // "extends": "@fellipeutaka/eslint-config/react"
+  // "extends": "@fellipeutaka/eslint-config/expo"
+  // "extends": "@fellipeutaka/eslint-config/node"
+}
+```
+
+> You can also use a `.eslintrc.js` instead of JSON if you prefer.

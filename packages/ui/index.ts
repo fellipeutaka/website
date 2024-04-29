@@ -5,6 +5,7 @@ export * from "./src/badge";
 export * from "./src/bento-grid";
 export * from "./src/button";
 export * from "./src/card";
+export * from "./src/checkbox";
 export * from "./src/collapsible";
 export * from "./src/dialog";
 export * from "./src/dropdown-menu";

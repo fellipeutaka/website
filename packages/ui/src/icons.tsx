@@ -1,5 +1,6 @@
 export type IconProps = React.ComponentPropsWithoutRef<"svg">;
-export type Icon = (props: IconProps) => React.ReactElement;
+export type Icon = keyof typeof Icons;
+export type IconComponent = (props: IconProps) => React.ReactElement;
 
 export const Icons = {
   Logo: (props) => (
@@ -1057,4 +1058,4 @@ export const Icons = {
       />
     </svg>
   ),
-} satisfies Record<string, Icon>;
+} satisfies Record<string, IconComponent>;

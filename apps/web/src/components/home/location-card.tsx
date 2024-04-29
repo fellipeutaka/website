@@ -66,7 +66,7 @@ export function LocationCard() {
   }, [r]);
 
   return (
-    <div className="relative flex h-60 flex-col gap-6 overflow-hidden rounded-xl border p-4 lg:p-6">
+    <div className="relative flex min-h-60 flex-col gap-6 overflow-hidden rounded-xl border p-4 lg:p-6">
       <div className="flex items-center gap-2">
         <Icons.MapPin className="size-4" />
         <h2 className="font-light text-sm">São Paulo, Brazil</h2>

@@ -18,6 +18,7 @@
     "@utaka/db": "workspace:*",
     "@utaka/env": "workspace:*",
     "@utaka/mdx": "workspace:*",
+    "@utaka/tech": "workspace:*",
     "@utaka/ui": "workspace:*",
     "@utaka/utils": "workspace:*",
     "cobe": "^0.6.3",

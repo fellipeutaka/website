@@ -1,4 +1,4 @@
-import { Icons } from "@utaka/ui";
+import { type IconComponent, Icons } from "@utaka/ui";
 
 export const siteConfig = {
   name: "Fellipe Utaka",
@@ -25,9 +25,16 @@ export const navLinks = [
   { href: "/#experience", label: "Experience" },
   { href: "/contributions", label: "Contributions" },
   { href: "/contact", label: "Contact" },
-];
+] satisfies {
+  href: string;
+  label: string;
+}[];
 
-export const socialLinks = [
+export const socialLinks: {
+  label: string;
+  icon: IconComponent;
+  href: string;
+}[] = [
   {
     label: "GitHub",
     icon: Icons.GitHub,

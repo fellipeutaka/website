@@ -14,7 +14,7 @@ export function StudyingCard() {
         <h2 className="font-light text-sm">Currently studying</h2>
       </div>
       <div className="flex items-center justify-center">
-        <TooltipProvider>
+        <TooltipProvider delayDuration={150}>
           <Tooltip>
             <TooltipTrigger>
               <Icons.Php className="size-20" />
