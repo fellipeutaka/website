@@ -1,3 +1,5 @@
+import { ButtonStyles } from "@utaka/ui/button";
+import Link from "next/link";
 import { MotionDiv } from "../framer-motion";
 import { CodingHours } from "./coding-hours";
 import { Connect } from "./connect";
@@ -36,9 +38,15 @@ export function AboutSection() {
           </div>
         </div>
       </MotionDiv>
-      {/* <Button className="mx-auto my-8 flex w-max" variant="outline" asChild>
-        <Link href="/about">Know more about me</Link>
-      </Button> */}
+      <Link
+        className={ButtonStyles({
+          class: "mx-auto my-8 flex w-max",
+          variant: "outline",
+        })}
+        href="/about"
+      >
+        Know more about me
+      </Link>
     </section>
   );
 }

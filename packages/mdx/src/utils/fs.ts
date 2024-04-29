@@ -30,14 +30,17 @@ interface GetAllPostsOptions {
   limit?: number;
 }
 
-const getPage = <TData>(filePath: string, schema: Schema<TData>) => {
+export const getPage = <TData>(filePath: string, schema?: Schema<TData>) => {
   const fullPath = path.join(mdxFilesRootDirectory, `${filePath}.mdx`);
 
   if (!fs.existsSync(fullPath)) {
     return null;
   }
 
-  const { content, metadata } = readMDXFile(fullPath, schema);
+  const { content, metadata } = readMDXFile(
+    fullPath,
+    schema ?? z.record(z.string().or(z.number()).or(z.symbol()), z.any()),
+  );
 
   return {
     content,

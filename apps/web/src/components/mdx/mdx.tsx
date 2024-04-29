@@ -19,6 +19,7 @@ import {
 import { BlurImage } from "../blur-image";
 import { File, Files, Folder } from "../files";
 import { ImageZoom } from "../image-zoom";
+import { DisplayAge } from "./display-age";
 import { Heading } from "./heading";
 import { Pre } from "./pre";
 
@@ -183,6 +184,7 @@ export const components = {
   Files,
   File,
   Folder,
+  DisplayAge,
 } satisfies MDXComponents;
 
 interface MdxProps {

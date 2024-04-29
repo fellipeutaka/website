@@ -23,8 +23,9 @@ export const navLinks = [
   { href: "/projects", label: "Projects" },
   { href: "/blog", label: "Blog" },
   { href: "/#experience", label: "Experience" },
-  { href: "/contributions", label: "Contributions" },
-  { href: "/contact", label: "Contact" },
+  { href: "/about", label: "About" },
+  // { href: "/contributions", label: "Contributions" },
+  // { href: "/contact", label: "Contact" },
 ] satisfies {
   href: string;
   label: string;
