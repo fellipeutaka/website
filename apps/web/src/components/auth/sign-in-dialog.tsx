@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@utaka/ui";
+} from "@utaka/ui/dialog";
 import { signInWithGithub, signInWithGoogle } from "~/actions/auth";
 import { siteConfig } from "~/config/site";
 import { SignInWithGithubButton } from "./sign-in-with-github-button";

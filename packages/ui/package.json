@@ -1,8 +1,9 @@
 {
   "name": "@utaka/ui",
-  "main": "./index.ts",
-  "types": "./index.ts",
   "private": true,
+  "exports": {
+    "./*": "./src/*.tsx"
+  },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",

@@ -1,8 +1,6 @@
 import { type TRPCLink, httpBatchLink } from "@trpc/client";
-import { SuperJSON } from "superjson";
-import type { AppRouter } from "./routes";
-
-export const transformer = SuperJSON;
+import type { AppRouter } from "@utaka/api/routes";
+import { transformer } from "@utaka/api/transformer";
 
 export const apiEndpoint = "/api/trpc";
 

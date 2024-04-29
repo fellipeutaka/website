@@ -1,10 +1,13 @@
 "use client";
 
-import { Avatar, Button, Icons, Sheet } from "@utaka/ui";
-import { getUserInitials } from "@utaka/utils";
+import { getUserInitials } from "@utaka/utils/avatar";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import { Avatar } from "@utaka/ui/avatar";
+import { Button } from "@utaka/ui/button";
+import { Icons } from "@utaka/ui/icons";
+import { Sheet } from "@utaka/ui/sheet";
 import { useState } from "react";
 import { signInWithGithub, signInWithGoogle } from "~/actions/auth";
 import { navLinks } from "~/config/site";

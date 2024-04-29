@@ -1,5 +1,5 @@
 import { cn } from "@utaka/tailwind";
-import { Icons } from "@utaka/ui";
+import { Icons } from "@utaka/ui/icons";
 
 type Types = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 type HeadingProps<T extends Types> = Omit<

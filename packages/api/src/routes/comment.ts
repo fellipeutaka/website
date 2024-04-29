@@ -1,6 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { and, db, eq, isNotNull, schema } from "@utaka/db";
-import { ulid } from "@utaka/utils";
+import { ulid } from "@utaka/utils/ulid";
 import { z } from "zod";
 import {
   createTRPCRouter,

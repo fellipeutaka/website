@@ -1,6 +1,6 @@
 "use client";
 
-import { Icons } from "@utaka/ui";
+import { Icons } from "@utaka/ui/icons";
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 import { useSpring } from "react-spring";

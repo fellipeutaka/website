@@ -1,4 +1,4 @@
-import { toast } from "@utaka/ui";
+import { toast } from "@utaka/ui/toast";
 import { useState } from "react";
 
 interface CopyOptions {

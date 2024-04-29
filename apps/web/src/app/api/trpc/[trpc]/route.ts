@@ -1,1 +1,1 @@
-export { GET, POST } from "@utaka/api";
+export { GET, POST } from "~/lib/api/handler";

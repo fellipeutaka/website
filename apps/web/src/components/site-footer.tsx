@@ -1,15 +1,19 @@
-"use client";
-
-import { ButtonStyles, Tooltip } from "@utaka/ui";
+import { ButtonStyles } from "@utaka/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@utaka/ui/tooltip";
 import { socialLinks } from "~/config/site";
 
 export function SiteFooter() {
   return (
     <footer className="my-12 flex flex-wrap items-center justify-center gap-4">
-      <Tooltip.Provider delayDuration={300}>
+      <TooltipProvider delayDuration={300}>
         {socialLinks.map((link) => (
           <Tooltip key={link.href}>
-            <Tooltip.Trigger asChild>
+            <TooltipTrigger asChild>
               <a
                 className={ButtonStyles({ size: "icon", variant: "outline" })}
                 href={link.href}
@@ -19,11 +23,11 @@ export function SiteFooter() {
               >
                 <link.icon />
               </a>
-            </Tooltip.Trigger>
-            <Tooltip.Content>{link.label}</Tooltip.Content>
+            </TooltipTrigger>
+            <TooltipContent>{link.label}</TooltipContent>
           </Tooltip>
         ))}
-      </Tooltip.Provider>
+      </TooltipProvider>
     </footer>
   );
 }

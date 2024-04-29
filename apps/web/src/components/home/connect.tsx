@@ -1,4 +1,4 @@
-import { Icons } from "@utaka/ui";
+import { Icons } from "@utaka/ui/icons";
 import Link from "next/link";
 import { socialLinks } from "~/config/site";
 

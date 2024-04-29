@@ -1,5 +1,5 @@
 import type { Post } from "@utaka/mdx/utils/fs";
-import { formatDate } from "@utaka/utils";
+import { formatDate } from "@utaka/utils/date";
 import Link from "next/link";
 import { BlurImage } from "../blur-image";
 

@@ -1,4 +1,4 @@
-import { type IconComponent, Icons } from "@utaka/ui";
+import { type IconComponent, Icons } from "@utaka/ui/icons";
 
 export const siteConfig = {
   name: "Fellipe Utaka",

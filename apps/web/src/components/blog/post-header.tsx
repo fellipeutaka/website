@@ -1,4 +1,4 @@
-import { formatDate } from "@utaka/utils";
+import { formatDate } from "@utaka/utils/date";
 import Link from "next/link";
 import { siteConfig } from "~/config/site";
 import { BlurImage } from "../blur-image";

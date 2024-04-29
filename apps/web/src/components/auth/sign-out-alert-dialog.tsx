@@ -1,4 +1,6 @@
-import { AlertDialog, DropdownMenuItem, Icons } from "@utaka/ui";
+import { AlertDialog } from "@utaka/ui/alert-dialog";
+import { DropdownMenuItem } from "@utaka/ui/dropdown-menu";
+import { Icons } from "@utaka/ui/icons";
 
 interface SignOutAlertDialogProps {
   children: React.ReactNode;

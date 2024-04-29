@@ -1,4 +1,4 @@
-import { reactClient } from "@utaka/api/client/react";
+import { reactClient } from "~/lib/api/react";
 
 export function useDeleteCommentMutation() {
   const clientUtils = reactClient.useUtils();

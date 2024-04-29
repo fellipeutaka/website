@@ -1,5 +1,5 @@
 import { env } from "@utaka/env";
-import { Icons } from "@utaka/ui";
+import { Icons } from "@utaka/ui/icons";
 import { Suspense } from "react";
 
 export function CodingHours() {

@@ -1,4 +1,4 @@
-import type { Icon } from "@utaka/ui";
+import type { Icon } from "@utaka/ui/icons";
 
 export const technologies = {
   react: {

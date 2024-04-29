@@ -1,5 +1,6 @@
 import { cn } from "@utaka/tailwind";
-import { Badge, Card } from "@utaka/ui";
+import { Badge } from "@utaka/ui/badge";
+import { Card } from "@utaka/ui/card";
 import { experiences } from "~/config/experiences";
 import { MotionDiv } from "../framer-motion";
 import { TracingBeam } from "../tracing-beam";

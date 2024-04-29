@@ -1,4 +1,5 @@
-import { Button, Icons } from "@utaka/ui";
+import { Button } from "@utaka/ui/button";
+import { Icons } from "@utaka/ui/icons";
 import Link from "next/link";
 import { siteConfig } from "~/config/site";
 import { UserDropdownMenu } from "./auth/user-dropdown-menu";

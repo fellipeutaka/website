@@ -1,10 +1,10 @@
+import { Icons } from "@utaka/ui/icons";
 import {
-  Icons,
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@utaka/ui";
+} from "@utaka/ui/tooltip";
 
 export function StudyingCard() {
   return (

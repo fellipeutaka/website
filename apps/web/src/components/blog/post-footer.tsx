@@ -1,7 +1,7 @@
 import { env } from "@utaka/env";
 import { getGithubLastEdit } from "@utaka/mdx/utils/git-api";
-import { Icons } from "@utaka/ui";
-import { formatDate } from "@utaka/utils";
+import { Icons } from "@utaka/ui/icons";
+import { formatDate } from "@utaka/utils/date";
 import { siteConfig } from "~/config/site";
 
 const editURL = (filePath: string) =>

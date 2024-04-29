@@ -1,4 +1,7 @@
-import { BadgeAnimated, Button, Icons, Spotlight } from "@utaka/ui";
+import { BadgeAnimated } from "@utaka/ui/badge-animated";
+import { Button } from "@utaka/ui/button";
+import { Icons } from "@utaka/ui/icons";
+import { Spotlight } from "@utaka/ui/spotlight";
 import { siteConfig } from "~/config/site";
 
 export function HeroSection() {

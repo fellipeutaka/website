@@ -1,13 +1,11 @@
-import { nativeClient } from "@utaka/api/client/native";
-import { reactClient } from "@utaka/api/client/react";
-import {
-  Button,
-  type ButtonProps,
-  Icons,
-  Tabs,
-  Textarea,
-  toast,
-} from "@utaka/ui";
+import { nativeClient } from "~/lib/api/native";
+import { reactClient } from "~/lib/api/react";
+
+import { Button, type ButtonProps } from "@utaka/ui/button";
+import { Icons } from "@utaka/ui/icons";
+import { Tabs } from "@utaka/ui/tabs";
+import { Textarea } from "@utaka/ui/textarea";
+import { toast } from "@utaka/ui/toast";
 import { useState } from "react";
 import { useFormStatus } from "react-dom";
 import { useAuth } from "~/hooks/use-auth";

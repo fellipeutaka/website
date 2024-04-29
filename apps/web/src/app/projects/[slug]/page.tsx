@@ -1,5 +1,6 @@
 import { getProjectBySlug, getProjects } from "@utaka/mdx/utils/fs";
-import { ButtonStyles, Icons } from "@utaka/ui";
+import { ButtonStyles } from "@utaka/ui/button";
+import { Icons } from "@utaka/ui/icons";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PostContent } from "~/components/blog/post-content";

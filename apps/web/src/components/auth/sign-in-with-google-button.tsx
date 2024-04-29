@@ -1,8 +1,8 @@
 "use client";
 
+import { Button } from "@utaka/ui/button";
+import { Icons } from "@utaka/ui/icons";
 import { useFormStatus } from "react-dom";
-
-import { Button, Icons } from "@utaka/ui";
 
 export function SignInWithGoogleButton() {
   const { pending } = useFormStatus();

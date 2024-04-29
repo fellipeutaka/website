@@ -1,8 +1,10 @@
 {
   "name": "@utaka/utils",
-  "main": "./index.ts",
-  "types": "./index.ts",
+  "type": "module",
   "private": true,
+  "exports": {
+    "./*": "./src/*.ts"
+  },
   "devDependencies": {
     "@utaka/tsconfig": "workspace:*"
   }

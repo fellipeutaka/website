@@ -1,14 +1,10 @@
 "use client";
 
-import { reactClient } from "@utaka/api/client/react";
-import {
-  Icons,
-  Skeleton,
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@utaka/ui";
+import { reactClient } from "~/lib/api/react";
+
+import { Icons } from "@utaka/ui/icons";
+import { Skeleton } from "@utaka/ui/skeleton";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@utaka/ui/tabs";
 import { Comment } from "./comment";
 import { CommentBox } from "./comment-box";
 

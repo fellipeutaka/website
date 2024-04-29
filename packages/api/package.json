@@ -1,19 +1,17 @@
 {
   "name": "@utaka/api",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
   "private": true,
   "exports": {
-    ".": "./src/index.ts",
-    "./client/*": "./src/client/*.ts"
+    ".": "./src/trpc.ts",
+    "./fetch-adapter": "./src/fetch-adapter.ts",
+    "./transformer": "./src/transformer.ts",
+    "./routes": "./src/routes/index.ts"
   },
   "dependencies": {
     "@utaka/auth": "workspace:*",
     "@utaka/db": "workspace:*",
     "@utaka/redis": "workspace:*",
     "@utaka/utils": "workspace:*",
-    "@trpc/client": "next",
-    "@trpc/react-query": "next",
     "@trpc/server": "next",
     "superjson": "^2.2.1"
   },

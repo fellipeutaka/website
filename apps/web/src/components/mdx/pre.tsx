@@ -3,20 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@utaka/tailwind";
-import {
-  Button,
-  type ButtonProps,
-  DropdownMenu,
-  type IconProps,
-  Icons,
-  ScrollArea,
-  ScrollBar,
-} from "@utaka/ui";
+
+import { Button, type ButtonProps } from "@utaka/ui/button";
+import { DropdownMenu } from "@utaka/ui/dropdown-menu";
+import { type IconProps, Icons } from "@utaka/ui/icons";
+import { ScrollArea, ScrollBar } from "@utaka/ui/scroll-area";
 import {
   type PackageManager,
   convertNpmCommand,
   isNpmCommand,
-} from "@utaka/utils";
+} from "@utaka/utils/npm";
 import { useCopyToClipboard } from "~/hooks/use-copy-to-clipboard";
 
 interface LanguageIconProps extends IconProps {

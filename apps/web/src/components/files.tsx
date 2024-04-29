@@ -1,7 +1,8 @@
 "use client";
 
 import { cn } from "@utaka/tailwind";
-import { Collapsible, Icons } from "@utaka/ui";
+import { Collapsible } from "@utaka/ui/collapsible";
+import { Icons } from "@utaka/ui/icons";
 import { useState } from "react";
 import { LanguageIcon } from "./mdx/pre";
 

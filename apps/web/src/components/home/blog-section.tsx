@@ -1,5 +1,5 @@
 import { getPosts } from "@utaka/mdx/utils/fs";
-import { Button } from "@utaka/ui";
+import { Button } from "@utaka/ui/button";
 import Link from "next/link";
 import { PostCard } from "../blog/post-card";
 import { MotionSection } from "../framer-motion";

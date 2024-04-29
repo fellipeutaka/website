@@ -1,5 +1,7 @@
 import { getProjects } from "@utaka/mdx/utils/fs";
-import { ButtonStyles, Card, Icons } from "@utaka/ui";
+import { ButtonStyles } from "@utaka/ui/button";
+import { Card } from "@utaka/ui/card";
+import { Icons } from "@utaka/ui/icons";
 import Link from "next/link";
 
 export default function Page() {

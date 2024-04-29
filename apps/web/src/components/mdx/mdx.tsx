@@ -1,8 +1,8 @@
 import type { MDXComponents } from "@utaka/mdx";
 import { MDXRemoteRSC } from "@utaka/mdx/rsc";
 import { cn } from "@utaka/tailwind";
+import { Checkbox } from "@utaka/ui/checkbox";
 import {
-  Checkbox,
   Video,
   VideoBottom,
   VideoControls,
@@ -15,7 +15,7 @@ import {
   VideoPlayer,
   VideoProgressBar,
   VideoVolume,
-} from "@utaka/ui";
+} from "@utaka/ui/video";
 import { BlurImage } from "../blur-image";
 import { File, Files, Folder } from "../files";
 import { ImageZoom } from "../image-zoom";

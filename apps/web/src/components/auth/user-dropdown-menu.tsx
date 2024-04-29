@@ -1,7 +1,10 @@
 "use client";
 
-import { AlertDialogAction, Avatar, Button, DropdownMenu } from "@utaka/ui";
-import { getUserInitials } from "@utaka/utils";
+import { AlertDialogAction } from "@utaka/ui/alert-dialog";
+import { Avatar } from "@utaka/ui/avatar";
+import { Button } from "@utaka/ui/button";
+import { DropdownMenu } from "@utaka/ui/dropdown-menu";
+import { getUserInitials } from "@utaka/utils/avatar";
 import { useAuth } from "~/hooks/use-auth";
 import { useSignOutMutation } from "~/hooks/use-sign-out-mutation";
 import { SignInDialog } from "./sign-in-dialog";

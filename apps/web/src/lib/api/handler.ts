@@ -1,7 +1,7 @@
-import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import { appRouter } from "./routes";
+import { createTRPCContext } from "@utaka/api";
+import { fetchRequestHandler } from "@utaka/api/fetch-adapter";
+import { appRouter } from "@utaka/api/routes";
 import { apiEndpoint } from "./shared";
-import { createTRPCContext } from "./trpc";
 
 const handler = (req: Request) =>
   fetchRequestHandler({

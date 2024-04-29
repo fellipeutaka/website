@@ -1,6 +1,8 @@
 import { getFeaturedProjects } from "@utaka/mdx/utils/fs";
 import { technologies } from "@utaka/tech";
-import { BentoGrid, ButtonStyles, Icons } from "@utaka/ui";
+import { BentoGrid } from "@utaka/ui/bento-grid";
+import { ButtonStyles } from "@utaka/ui/button";
+import { Icons } from "@utaka/ui/icons";
 import Link from "next/link";
 
 export function FeaturedProjectsSection() {

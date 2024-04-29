@@ -1,12 +1,12 @@
 import { technologies } from "@utaka/tech";
+import { Icons } from "@utaka/ui/icons";
+import { Marquee } from "@utaka/ui/marquee";
 import {
-  Icons,
-  Marquee,
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@utaka/ui";
+} from "@utaka/ui/tooltip";
 
 export function StacksCard() {
   return (

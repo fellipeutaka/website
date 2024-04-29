@@ -1,4 +1,4 @@
-import { reactClient } from "@utaka/api/client/react";
+import { reactClient } from "~/lib/api/react";
 
 export function useAuth(
   options?: Omit<Parameters<typeof reactClient.auth.me.useQuery>[1], "trpc">,

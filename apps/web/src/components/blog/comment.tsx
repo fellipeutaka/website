@@ -1,23 +1,23 @@
-import type { RouterOutput } from "@utaka/api";
-import { reactClient } from "@utaka/api/client/react";
+import type { RouterOutput } from "@utaka/api/routes";
 import type { User } from "@utaka/auth";
 import type { CommentDB, UserDB } from "@utaka/db";
 import { cn } from "@utaka/tailwind";
-import {
-  AlertDialog,
-  Avatar,
-  Badge,
-  Button,
-  Icons,
-  Tooltip,
-  toast,
-} from "@utaka/ui";
-import { formatTimeAgo, formatUpvotes, getUserInitials } from "@utaka/utils";
+import { AlertDialog } from "@utaka/ui/alert-dialog";
+import { Avatar } from "@utaka/ui/avatar";
+import { Badge } from "@utaka/ui/badge";
+import { Button } from "@utaka/ui/button";
+import { Icons } from "@utaka/ui/icons";
+import { toast } from "@utaka/ui/toast";
+import { Tooltip } from "@utaka/ui/tooltip";
+import { getUserInitials } from "@utaka/utils/avatar";
+import { formatTimeAgo } from "@utaka/utils/date";
+import { formatUpvotes } from "@utaka/utils/upvotes";
 import type React from "react";
 import { useState } from "react";
 import { siteConfig } from "~/config/site";
 import { useAuth } from "~/hooks/use-auth";
 import { useDeleteCommentMutation } from "~/hooks/use-delete-comment-mutation";
+import { reactClient } from "~/lib/api/react";
 import { CommentBox } from "./comment-box";
 import { MarkdownPreview } from "./markdown-preview";
 
