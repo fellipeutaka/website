@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { PostContent } from "~/components/blog/post-content";
 import { PostFooter } from "~/components/blog/post-footer";
 
+const filePath = (slug: string) => `apps/web/src/content/projects/${slug}.mdx`;
+
 interface PageProps {
   params: {
     slug: string;
@@ -72,7 +74,7 @@ export default function Page({ params }: PageProps) {
         </a>
       </div>
       <PostContent content={project.content} />
-      <PostFooter slug={params.slug} />
+      <PostFooter filePath={filePath(params.slug)} />
     </main>
   );
 }

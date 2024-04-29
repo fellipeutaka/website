@@ -4,21 +4,17 @@ import { Icons } from "@utaka/ui";
 import { formatDate } from "@utaka/utils";
 import { siteConfig } from "~/config/site";
 
-const filePath = (slug: string) => `apps/web/src/content/blog/${slug}.mdx`;
-
-const editURL = (slug: string) =>
-  `${siteConfig.links.github}/${siteConfig.repositoryName}/blob/main/${filePath(
-    slug,
-  )}?plain=1`;
+const editURL = (filePath: string) =>
+  `${siteConfig.links.github}/${siteConfig.repositoryName}/blob/main/${filePath}?plain=1`;
 
 interface PostFooterProps {
-  slug: string;
+  filePath: string;
 }
 
-export async function PostFooter({ slug }: PostFooterProps) {
+export async function PostFooter({ filePath }: PostFooterProps) {
   const modifiedAt = await getGithubLastEdit({
     owner: "fellipeutaka",
-    path: filePath(slug),
+    path: filePath,
     repo: siteConfig.repositoryName,
     token: env.GITHUB_TOKEN,
     options: {
@@ -36,7 +32,7 @@ export async function PostFooter({ slug }: PostFooterProps) {
 
       <a
         className="flex items-center gap-2 text-muted-foreground transition hover:text-foreground"
-        href={editURL(slug)}
+        href={editURL(filePath)}
       >
         Edit on GitHub <Icons.ExternalLink className="size-3" />
       </a>

@@ -6,6 +6,8 @@ import { PostContent } from "~/components/blog/post-content";
 import { PostFooter } from "~/components/blog/post-footer";
 import { PostHeader } from "~/components/blog/post-header";
 
+const filePath = (slug: string) => `apps/web/src/content/blog/${slug}.mdx`;
+
 interface PageProps {
   params: {
     slug: string;
@@ -45,7 +47,7 @@ export default function Page({ params }: PageProps) {
         slug={params.slug}
       />
       <PostContent content={post.content} />
-      <PostFooter slug={params.slug} />
+      <PostFooter filePath={filePath(params.slug)} />
 
       <CommentSection slug={params.slug} />
     </main>
