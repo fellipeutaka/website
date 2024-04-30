@@ -11,7 +11,7 @@ export function PostCard({ post }: PostCardProps) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group rounded-xl border px-2 py-4"
+      className="group block rounded-xl border px-2 py-4"
     >
       <BlurImage
         src={`/images/blog/${post.slug}/cover.png`}

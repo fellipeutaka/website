@@ -15,10 +15,6 @@ import { useSearchParams } from "next/navigation";
 import { useDeferredValue, useState } from "react";
 import { MotionDiv, MotionP } from "../framer-motion";
 
-interface ProjectListProps {
-  projects: Project[];
-}
-
 function filterProjects(
   initialList: Project[],
   filter: {
@@ -46,6 +42,10 @@ function filterProjects(
 
     return true;
   });
+}
+
+interface ProjectListProps {
+  projects: Project[];
 }
 
 export function ProjectList({ projects }: ProjectListProps) {
