@@ -10,7 +10,7 @@ export default function Page() {
   }
 
   return (
-    <main className="container my-20">
+    <main className="container my-20 animate-fade-up">
       <Mdx code={page.content} />
     </main>
   );
