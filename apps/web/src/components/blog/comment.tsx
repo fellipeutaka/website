@@ -18,6 +18,7 @@ import { siteConfig } from "~/config/site";
 import { useAuth } from "~/hooks/use-auth";
 import { useDeleteCommentMutation } from "~/hooks/use-delete-comment-mutation";
 import { reactClient } from "~/lib/api/react";
+import { SignInDialog } from "../auth/sign-in-dialog";
 import { CommentBox } from "./comment-box";
 import { MarkdownPreview } from "./markdown-preview";
 
@@ -94,20 +95,20 @@ export function Comment(props: CommentProps) {
           </p>
         )}
 
-        <button
-          type="button"
-          disabled={!user}
-          className={cn(
-            "flex gap-2 rounded-xl border px-2 py-1 text-muted-foreground text-xs tabular-nums transition-colors disabled:cursor-not-allowed",
-            isCurrentUserUpvotedComment
-              ? "border-destructive bg-destructive/10 text-destructive dark:brightness-200"
-              : "hover:bg-accent hover:text-accent-foreground",
-          )}
-          onClick={() => upvoteMutation.mutate(comment.id)}
-        >
-          <Icons.ArrowUp className="size-3.5" />
-          {formatUpvotes(comment.upvotes.length)}
-        </button>
+        {user ? (
+          <UpvoteButton
+            isCurrentUserUpvotedComment={isCurrentUserUpvotedComment}
+            upvotesAmount={comment.upvotes.length}
+            onClick={() => upvoteMutation.mutate(comment.id)}
+          />
+        ) : (
+          <SignInDialog>
+            <UpvoteButton
+              isCurrentUserUpvotedComment={isCurrentUserUpvotedComment}
+              upvotesAmount={comment.upvotes.length}
+            />
+          </SignInDialog>
+        )}
       </div>
 
       <div>
@@ -124,18 +125,54 @@ export function Comment(props: CommentProps) {
             parentId={comment.id}
             onCancel={() => setIsReplying(false)}
           />
+        ) : user ? (
+          <ReplyButton onClick={() => setIsReplying(true)} />
         ) : (
-          <button
-            type="button"
-            disabled={!user}
-            className="w-full cursor-text rounded-lg border px-2 py-1 text-left text-muted-foreground text-sm disabled:cursor-not-allowed"
-            onClick={() => user && setIsReplying(true)}
-          >
-            Write a reply
-          </button>
+          <SignInDialog>
+            <ReplyButton />
+          </SignInDialog>
         )}
       </div>
     </div>
+  );
+}
+
+interface UpvoteButtonProps extends React.ComponentPropsWithoutRef<"button"> {
+  isCurrentUserUpvotedComment: boolean;
+  upvotesAmount: number;
+}
+
+function UpvoteButton({
+  isCurrentUserUpvotedComment,
+  upvotesAmount,
+  ...props
+}: UpvoteButtonProps) {
+  return (
+    <button
+      {...props}
+      type="button"
+      className={cn(
+        "flex gap-2 rounded-xl border px-2 py-1 text-muted-foreground text-xs tabular-nums transition-colors",
+        isCurrentUserUpvotedComment
+          ? "border-destructive bg-destructive/10 text-destructive dark:brightness-200"
+          : "hover:bg-accent hover:text-accent-foreground",
+      )}
+    >
+      <Icons.ArrowUp className="size-3.5" />
+      {formatUpvotes(upvotesAmount)}
+    </button>
+  );
+}
+
+function ReplyButton(props: React.ComponentPropsWithoutRef<"button">) {
+  return (
+    <button
+      {...props}
+      type="button"
+      className="w-full cursor-text rounded-lg border px-2 py-1 text-left text-muted-foreground text-sm"
+    >
+      Write a reply
+    </button>
   );
 }
 
