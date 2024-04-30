@@ -9,3 +9,7 @@ export const MotionDiv = (props: React.ComponentProps<typeof motion.div>) => (
 export const MotionSection = (
   props: React.ComponentProps<typeof motion.section>,
 ) => <motion.section {...props} />;
+
+export const MotionP = (props: React.ComponentProps<typeof motion.p>) => (
+  <motion.p {...props} />
+);

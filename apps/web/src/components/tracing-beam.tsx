@@ -58,7 +58,7 @@ export function TracingBeam({ children, className, offset }: TracingBeamProps) {
                 ? "none"
                 : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
           }}
-          className="ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border border-netural-200 shadow-sm"
+          className="ml-[27px] flex size-4 items-center justify-center rounded-full border border-netural-200 shadow-sm"
         >
           <motion.div
             transition={{
