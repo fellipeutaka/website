@@ -1,5 +1,9 @@
 import { getProjects } from "@utaka/mdx/utils/fs";
-import { ProjectList } from "~/components/projects/project-list";
+import { Suspense } from "react";
+import {
+  ProjectList,
+  ProjectListSkeleton,
+} from "~/components/projects/project-list";
 
 export default function Page() {
   const projects = getProjects();
@@ -9,7 +13,10 @@ export default function Page() {
       <h1 className="animate-fade-up font-semibold text-2xl md:text-3xl">
         Projects
       </h1>
-      <ProjectList projects={projects} />
+
+      <Suspense fallback={<ProjectListSkeleton />}>
+        <ProjectList projects={projects} />
+      </Suspense>
     </main>
   );
 }

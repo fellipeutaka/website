@@ -7,9 +7,11 @@ import { Card, CardStyles } from "@utaka/ui/card";
 import { Command } from "@utaka/ui/command";
 import { Icons } from "@utaka/ui/icons";
 import { Popover } from "@utaka/ui/popover";
+import { Skeleton } from "@utaka/ui/skeleton";
 import { TextField } from "@utaka/ui/textfield";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useDeferredValue, useState } from "react";
 import { MotionDiv, MotionP } from "../framer-motion";
 
@@ -47,7 +49,9 @@ function filterProjects(
 }
 
 export function ProjectList({ projects }: ProjectListProps) {
-  const [query, setQuery] = useState("");
+  const searchParams = useSearchParams();
+
+  const query = searchParams.get("q") ?? "";
   const deferredQuery = useDeferredValue(query);
   const [selectedTechnologies, setSelectedTechnologies] = useState<
     typeof technologyList
@@ -57,6 +61,16 @@ export function ProjectList({ projects }: ProjectListProps) {
     query: deferredQuery,
     selectedTechnologies,
   });
+
+  function setQuery(query: string) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (query) {
+      params.set("q", query);
+    } else {
+      params.delete("q");
+    }
+    window.history.replaceState(null, "", `?${params.toString()}`);
+  }
 
   return (
     <section className="mt-10 animate-delay-75 animate-fade-up">
@@ -141,85 +155,122 @@ export function ProjectList({ projects }: ProjectListProps) {
         </Popover>
       </div>
 
-      <ProjectCardList projects={filteredProjects} />
+      <AnimatePresence>
+        {filteredProjects.length > 0 ? (
+          <div className="grid w-full gap-4 md:grid-cols-2">
+            {filteredProjects.map((project) => (
+              <MotionDiv
+                className={CardStyles.Root()}
+                layout
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
+                key={project.slug}
+              >
+                <Card.Header>
+                  <Card.Title>{project.name}</Card.Title>
+                </Card.Header>
+                <Card.Content>
+                  <p>{project.description}</p>
+                </Card.Content>
+                <Card.Footer className="justify-between">
+                  <Link
+                    className={ButtonStyles({
+                      class: "rounded-full",
+                      size: "sm",
+                    })}
+                    href={`/projects/${project.slug}`}
+                  >
+                    Read more
+                  </Link>
+                  <div className="flex items-center gap-4">
+                    {project.previewUrl && (
+                      <a
+                        href={project.previewUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={ButtonStyles({
+                          variant: "outline",
+                          class: "rounded-full",
+                          size: "sm",
+                        })}
+                      >
+                        <Icons.Eye className="mr-2 size-4" />
+                        Preview
+                      </a>
+                    )}
+                    <a
+                      href={project.sourceCodeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={ButtonStyles({
+                        class: "rounded-full",
+                        size: "sm",
+                        variant: "secondary",
+                      })}
+                    >
+                      <Icons.GitHub className="mr-2 size-4" />
+                      Source code
+                    </a>
+                  </div>
+                </Card.Footer>
+              </MotionDiv>
+            ))}
+          </div>
+        ) : (
+          <MotionP
+            layout
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+          >
+            No projects found.
+          </MotionP>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
 
-function ProjectCardList({ projects }: ProjectListProps) {
+export function ProjectListSkeleton() {
   return (
-    <AnimatePresence>
-      {projects.length > 0 ? (
-        <div className="grid w-full gap-4 md:grid-cols-2">
-          {projects.map((project) => (
-            <MotionDiv
-              className={CardStyles.Root()}
-              layout
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              initial={{ opacity: 0 }}
-              key={project.slug}
-            >
-              <Card.Header>
-                <Card.Title>{project.name}</Card.Title>
-              </Card.Header>
-              <Card.Content>
-                <p>{project.description}</p>
-              </Card.Content>
-              <Card.Footer className="justify-between">
-                <Link
-                  className={ButtonStyles({
-                    class: "rounded-full",
-                    size: "sm",
-                  })}
-                  href={`/projects/${project.slug}`}
-                >
-                  Read more
-                </Link>
-                <div className="flex items-center gap-4">
-                  {project.previewUrl && (
-                    <a
-                      href={project.previewUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={ButtonStyles({
-                        variant: "outline",
-                        class: "rounded-full",
-                        size: "sm",
-                      })}
-                    >
-                      <Icons.Eye className="mr-2 size-4" />
-                      Preview
-                    </a>
-                  )}
-                  <a
-                    href={project.sourceCodeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={ButtonStyles({
-                      class: "rounded-full",
-                      size: "sm",
-                      variant: "secondary",
-                    })}
-                  >
-                    <Icons.GitHub className="mr-2 size-4" />
-                    Source code
-                  </a>
-                </div>
-              </Card.Footer>
-            </MotionDiv>
-          ))}
-        </div>
-      ) : (
-        <MotionP
-          layout
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          initial={{ opacity: 0 }}
-        >
-          No projects found.
-        </MotionP>
-      )}
-    </AnimatePresence>
+    <section className="mt-10 animate-delay-75 animate-fade-up">
+      <div className="mb-4 flex items-center justify-between gap-4">
+        <TextField className="grow">
+          <TextField.Slot>
+            <Icons.Search className="size-4 text-muted-foreground" />
+          </TextField.Slot>
+          <TextField.Input placeholder="Search projects" disabled />
+        </TextField>
+
+        <Button disabled size="icon" variant="outline">
+          <Icons.Filter className="size-4" />
+          <span className="sr-only">Filter by technology</span>
+        </Button>
+      </div>
+
+      <div className="grid w-full gap-4 md:grid-cols-2">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <Card
+            // biome-ignore lint/suspicious/noArrayIndexKey: This is a skeleton loader
+            key={index}
+          >
+            <Card.Header>
+              <Skeleton className="h-6 w-64" />
+            </Card.Header>
+            <Card.Content className="space-y-2">
+              <Skeleton className="h-6 w-full" />
+              <Skeleton className="h-6 w-1/2" />
+            </Card.Content>
+            <Card.Footer className="justify-between">
+              <Skeleton className="h-9 w-24 rounded-full" />
+              <div className="flex items-center gap-4">
+                <Skeleton className="h-9 w-32 rounded-full" />
+              </div>
+            </Card.Footer>
+          </Card>
+        ))}
+      </div>
+    </section>
   );
 }
