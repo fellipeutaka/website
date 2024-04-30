@@ -82,35 +82,59 @@ export function ProjectList({ projects }: ProjectListProps) {
           <Popover.Content className="p-0" align="end">
             <Command>
               <Command.Input placeholder="Search a technology" />
-              <Command.List className="p-2">
+              <Command.List>
                 <Command.Empty>No results found.</Command.Empty>
-                {Object.values(technologies).map((technology) => {
-                  const Icon = Icons[technology.icon];
+                <Command.Group>
+                  {Object.values(technologies).map((technology) => {
+                    const Icon = Icons[technology.icon];
 
-                  return (
-                    <Command.Item
-                      key={technology.name}
-                      value={technology.name}
-                      onSelect={() =>
-                        setSelectedTechnologies((technologies) =>
-                          technologies.includes(technology.name)
-                            ? technologies.filter((t) => t !== technology.name)
-                            : [...technologies, technology.name],
-                        )
-                      }
+                    return (
+                      <Command.Item
+                        key={technology.name}
+                        value={technology.name}
+                        onSelect={() =>
+                          setSelectedTechnologies((technologies) =>
+                            technologies.includes(technology.name)
+                              ? technologies.filter(
+                                  (t) => t !== technology.name,
+                                )
+                              : [...technologies, technology.name],
+                          )
+                        }
+                      >
+                        <Icons.Check
+                          data-visible={selectedTechnologies.includes(
+                            technology.name,
+                          )}
+                          className="mr-2 size-4 opacity-0 transition-opacity data-[visible='true']:opacity-100"
+                        />
+
+                        <Icon className="mr-2 size-4" />
+                        {technology.name}
+                      </Command.Item>
+                    );
+                  })}
+                </Command.Group>
+                <AnimatePresence>
+                  {selectedTechnologies.length > 0 && (
+                    <MotionDiv
+                      layout
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      initial={{ opacity: 0, height: 0 }}
                     >
-                      <Icons.Check
-                        data-visible={selectedTechnologies.includes(
-                          technology.name,
-                        )}
-                        className="mr-2 size-4 opacity-0 transition-opacity data-[visible='true']:opacity-100"
-                      />
-
-                      <Icon className="mr-2 size-4" />
-                      {technology.name}
-                    </Command.Item>
-                  );
-                })}
+                      <Command.Separator />
+                      <Command.Group>
+                        <Command.Item
+                          onSelect={() => setSelectedTechnologies([])}
+                          className="justify-center text-center"
+                        >
+                          Clear filters
+                        </Command.Item>
+                      </Command.Group>
+                    </MotionDiv>
+                  )}
+                </AnimatePresence>
               </Command.List>
             </Command>
           </Popover.Content>
