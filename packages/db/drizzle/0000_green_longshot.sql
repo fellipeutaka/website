@@ -22,11 +22,13 @@ CREATE TABLE IF NOT EXISTS "comment_upvote" (
 CREATE TABLE IF NOT EXISTS "comment" (
 	"id" text PRIMARY KEY NOT NULL,
 	"body" text NOT NULL,
+	"raw_body" text NOT NULL,
 	"user_id" text NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp DEFAULT now() NOT NULL,
 	"post_id" text NOT NULL,
 	"parent_id" text,
+	"modified_at" timestamp,
 	"deleted_at" timestamp
 );
 --> statement-breakpoint

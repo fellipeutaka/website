@@ -1,7 +1,12 @@
 import { TRPCError } from "@trpc/server";
 import { and, db, eq, isNotNull, schema } from "@utaka/db";
+import {
+  commentIdSchema,
+  createCommentSchema,
+  editCommentSchema,
+  slugSchema,
+} from "@utaka/dto/comment";
 import { ulid } from "@utaka/utils/ulid";
-import { z } from "zod";
 import {
   createTRPCRouter,
   protectedProcedure,
@@ -10,42 +15,34 @@ import {
 } from "../trpc";
 
 export const commentRoute = createTRPCRouter({
-  getBySlug: publicProcedure
-    .input(z.string().min(1, "Slug is required"))
-    .query(async ({ input }) => {
-      const slug = input;
+  getBySlug: publicProcedure.input(slugSchema).query(async ({ input }) => {
+    const slug = input;
 
-      return await db.query.comments.findMany({
-        where: eq(schema.comments.postId, slug),
-        with: {
-          user: true,
-          upvotes: true,
-          replies: {
-            with: {
-              user: true,
-            },
+    return await db.query.comments.findMany({
+      where: eq(schema.comments.postId, slug),
+      with: {
+        user: true,
+        upvotes: true,
+        replies: {
+          with: {
+            user: true,
           },
         },
-        orderBy({ createdAt }, { desc }) {
-          return desc(createdAt);
-        },
-      });
-    }),
+      },
+      orderBy({ createdAt }, { desc }) {
+        return desc(createdAt);
+      },
+    });
+  }),
   create: protectedProcedure
     .use(
       ratelimitMiddleware({
         message: "You are commenting too fast. Please wait a few seconds.",
       }),
     )
-    .input(
-      z.object({
-        comment: z.string().min(1, "Comment is required."),
-        slug: z.string().min(1, "Slug is required."),
-        parentId: z.string().optional(),
-      }),
-    )
+    .input(createCommentSchema)
     .mutation(async ({ ctx, input }) => {
-      const { comment, slug, parentId } = input;
+      const { rawComment, comment, slug, parentId } = input;
       const { user } = ctx;
 
       const commentId = ulid();
@@ -53,6 +50,7 @@ export const commentRoute = createTRPCRouter({
       await db.insert(schema.comments).values({
         id: commentId,
         body: comment,
+        rawBody: rawComment,
         userId: user.id,
         postId: slug,
         ...(parentId && {
@@ -67,8 +65,52 @@ export const commentRoute = createTRPCRouter({
         });
       }
     }),
+  editById: protectedProcedure
+    .use(
+      ratelimitMiddleware({
+        message: "You are commenting too fast. Please wait a few seconds.",
+      }),
+    )
+    .input(editCommentSchema)
+    .mutation(async ({ ctx, input }) => {
+      const { commentId, rawComment, comment, slug } = input;
+      const { user } = ctx;
+
+      const dbComment = await db.query.comments.findFirst({
+        where: eq(schema.comments.id, commentId),
+        with: {
+          user: true,
+        },
+      });
+
+      if (!dbComment) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Comment not found",
+        });
+      }
+
+      if (dbComment.user.email !== user.email) {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: "You do not have permission to edit this comment",
+        });
+      }
+
+      await db
+        .update(schema.comments)
+        .set({
+          id: commentId,
+          body: comment,
+          rawBody: rawComment,
+          userId: user.id,
+          postId: slug,
+          modifiedAt: new Date(),
+        })
+        .where(eq(schema.comments.id, commentId));
+    }),
   deleteById: protectedProcedure
-    .input(z.string().regex(/[0-7][0-9A-HJKMNP-TV-Z]{25}/, "Invalid ID"))
+    .input(commentIdSchema)
     .mutation(async ({ ctx, input }) => {
       const id = input;
       const { user } = ctx;
@@ -136,7 +178,7 @@ export const commentRoute = createTRPCRouter({
         message: "You are upvoting too fast. Please wait a few seconds.",
       }),
     )
-    .input(z.string().regex(/[0-7][0-9A-HJKMNP-TV-Z]{25}/, "Invalid ID"))
+    .input(commentIdSchema)
     .mutation(async ({ ctx, input }) => {
       const id = input;
       const { user } = ctx;

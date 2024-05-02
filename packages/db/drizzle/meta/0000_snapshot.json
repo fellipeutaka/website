@@ -1,5 +1,5 @@
 {
-  "id": "4e72be60-b193-4fcd-a81b-69f9dc2f7716",
+  "id": "28959574-1378-4771-b13d-d97492ce8cd7",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -149,6 +149,12 @@
           "primaryKey": false,
           "notNull": true
         },
+        "raw_body": {
+          "name": "raw_body",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
         "user_id": {
           "name": "user_id",
           "type": "text",
@@ -178,6 +184,12 @@
         "parent_id": {
           "name": "parent_id",
           "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "modified_at": {
+          "name": "modified_at",
+          "type": "timestamp",
           "primaryKey": false,
           "notNull": false
         },

@@ -59,11 +59,13 @@ export const comments = pgTable(
   {
     id: text("id").notNull().primaryKey(),
     body: text("body").notNull(),
+    rawBody: text("raw_body").notNull(),
     userId: text("user_id").notNull(),
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
     postId: text("post_id").notNull(),
     parentId: text("parent_id"),
+    modifiedAt: timestamp("modified_at"),
     deletedAt: timestamp("deleted_at"),
   },
   (table) => ({

@@ -69,6 +69,9 @@ importers:
       '@utaka/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@utaka/dto':
+        specifier: workspace:*
+        version: link:../../packages/dto
       '@utaka/env':
         specifier: workspace:*
         version: link:../../packages/env
@@ -181,6 +184,9 @@ importers:
       '@utaka/db':
         specifier: workspace:*
         version: link:../db
+      '@utaka/dto':
+        specifier: workspace:*
+        version: link:../dto
       '@utaka/redis':
         specifier: workspace:*
         version: link:../redis
@@ -241,6 +247,12 @@ importers:
       tsx:
         specifier: ^4.7.3
         version: 4.7.3
+
+  packages/dto:
+    devDependencies:
+      '@utaka/tsconfig':
+        specifier: workspace:*
+        version: link:../../config/tsconfig
 
   packages/env:
     dependencies:

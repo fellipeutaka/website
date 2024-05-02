@@ -1,11 +1,14 @@
 import { nativeClient } from "~/lib/api/native";
 import { reactClient } from "~/lib/api/react";
 
+import { MAX_COMMENT_LENGTH } from "@utaka/dto/comment";
+import { cn } from "@utaka/tailwind";
 import { Button, type ButtonProps } from "@utaka/ui/button";
 import { Icons } from "@utaka/ui/icons";
 import { Tabs } from "@utaka/ui/tabs";
-import { Textarea } from "@utaka/ui/textarea";
+import { Textarea, type TextareaProps } from "@utaka/ui/textarea";
 import { toast } from "@utaka/ui/toast";
+import { isEmptyString } from "@utaka/utils/string";
 import { useState } from "react";
 import { useFormStatus } from "react-dom";
 import { useAuth } from "~/hooks/use-auth";
@@ -25,10 +28,6 @@ type CommentBoxProps = {
     }
 );
 
-const MAX_COMMENT_LENGTH = 3_200;
-
-const isEmptyString = (str: string) => str.trim().length < 1;
-
 export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
   const [comment, setComment] = useState("");
   const clientUtils = reactClient.useUtils();
@@ -36,7 +35,9 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
 
   const postCommentHandler = async () => {
     if (comment.length > MAX_COMMENT_LENGTH) {
-      toast.error("Comment must contain at most 140 characters");
+      toast.error(
+        `Comment must contain at most ${MAX_COMMENT_LENGTH} characters`,
+      );
       return;
     }
 
@@ -48,8 +49,9 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
 
       await nativeClient.comment.create.mutate({
         slug,
-        comment: compiledSource,
         parentId,
+        comment: compiledSource,
+        rawComment: comment,
       });
 
       clientUtils.comment.getBySlug.invalidate();
@@ -80,11 +82,26 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
               comment={comment}
               setComment={setComment}
               parentId={parentId}
-              onCancel={onCancel}
-              submitProps={{
-                type: "button",
-              }}
-            />
+            >
+              <div className="mt-4 flex items-center justify-between">
+                <MarkdownLink />
+                <div>
+                  {parentId && (
+                    <Button
+                      variant="outline"
+                      className="mr-2"
+                      onClick={onCancel}
+                    >
+                      Cancel
+                    </Button>
+                  )}
+
+                  <SubmitButton type="button" disabled={isEmptyString(comment)}>
+                    {parentId ? "Reply" : "Comment"}
+                  </SubmitButton>
+                </div>
+              </div>
+            </CommentBoxTabContent>
           </div>
         </SignInDialog>
       </Tabs>
@@ -104,36 +121,52 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
           comment={comment}
           setComment={setComment}
           parentId={parentId}
-          onCancel={onCancel}
-        />
+        >
+          <div className="mt-4 flex items-center justify-between">
+            <MarkdownLink />
+            <div>
+              {parentId && (
+                <Button variant="outline" className="mr-2" onClick={onCancel}>
+                  Cancel
+                </Button>
+              )}
+
+              <SubmitButton disabled={isEmptyString(comment)}>
+                {parentId ? "Reply" : "Comment"}
+              </SubmitButton>
+            </div>
+          </div>
+        </CommentBoxTabContent>
       </form>
     </Tabs>
   );
 }
 
-interface CommentBoxTabContentProps extends Omit<CommentBoxProps, "slug"> {
+interface CommentBoxTabContentProps extends TextareaProps {
   comment: string;
   setComment: React.Dispatch<React.SetStateAction<string>>;
-  submitProps?: ButtonProps;
+  parentId?: string;
 }
 
-function CommentBoxTabContent({
+export function CommentBoxTabContent({
   comment,
   setComment,
   parentId,
-  onCancel,
-  submitProps,
+  children,
+  className,
+  ...props
 }: CommentBoxTabContentProps) {
   return (
     <>
       <Tabs.Content value="write" tabIndex={-1}>
         <Textarea
-          className="max-h-full [field-sizing:content]"
+          className={cn("max-h-full [field-sizing:content]", className)}
           maxLength={MAX_COMMENT_LENGTH}
           aria-label={`Write your ${parentId ? "reply" : "comment"} here`}
           placeholder={`Write your ${parentId ? "reply" : "comment"} here...`}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
+          {...props}
         />
       </Tabs.Content>
       <Tabs.Content className="bg-background" value="preview" tabIndex={-1}>
@@ -142,28 +175,21 @@ function CommentBoxTabContent({
           source={comment}
         />
       </Tabs.Content>
-      <div className="mt-4 flex items-center justify-between">
-        <a
-          href="https://guides.github.com/features/mastering-markdown/"
-          className="text-muted-foreground"
-          title="Markdown is supported"
-          aria-label="Markdown is supported"
-        >
-          <Icons.Md className="size-5" />
-        </a>
-        <div>
-          {parentId && (
-            <Button variant="outline" className="mr-2" onClick={onCancel}>
-              Cancel
-            </Button>
-          )}
-
-          <SubmitButton {...submitProps} disabled={isEmptyString(comment)}>
-            {parentId ? "Reply" : "Comment"}
-          </SubmitButton>
-        </div>
-      </div>
+      {children}
     </>
+  );
+}
+
+export function MarkdownLink() {
+  return (
+    <a
+      href="https://guides.github.com/features/mastering-markdown/"
+      className="text-muted-foreground"
+      title="Markdown is supported"
+      aria-label="Markdown is supported"
+    >
+      <Icons.Md className="size-5" />
+    </a>
   );
 }
 

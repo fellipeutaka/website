@@ -2,24 +2,24 @@ import type { RouterOutput } from "@utaka/api/routes";
 import type { User } from "@utaka/auth";
 import type { CommentDB, UserDB } from "@utaka/db";
 import { cn } from "@utaka/tailwind";
-import { AlertDialog } from "@utaka/ui/alert-dialog";
 import { Avatar } from "@utaka/ui/avatar";
 import { Badge } from "@utaka/ui/badge";
-import { Button } from "@utaka/ui/button";
+import { DropdownMenu } from "@utaka/ui/dropdown-menu";
 import { Icons } from "@utaka/ui/icons";
 import { toast } from "@utaka/ui/toast";
 import { Tooltip } from "@utaka/ui/tooltip";
 import { getUserInitials } from "@utaka/utils/avatar";
-import { formatTimeAgo } from "@utaka/utils/date";
+import { formatCommentDate, formatTimeAgo } from "@utaka/utils/date";
 import { formatUpvotes } from "@utaka/utils/upvotes";
 import type React from "react";
 import { useState } from "react";
 import { siteConfig } from "~/config/site";
 import { useAuth } from "~/hooks/use-auth";
-import { useDeleteCommentMutation } from "~/hooks/use-delete-comment-mutation";
 import { reactClient } from "~/lib/api/react";
 import { SignInDialog } from "../auth/sign-in-dialog";
 import { CommentBox } from "./comment-box";
+import { DeleteCommentAlertDialog } from "./delete-comment-alert-dialog";
+import { EditCommentDialog } from "./edit-comment-dialog";
 import { MarkdownPreview } from "./markdown-preview";
 
 interface CommentProps {
@@ -199,7 +199,7 @@ function Reply(props: ReplyProps) {
   );
 }
 
-interface CommentContentProps {
+export interface CommentContentProps {
   user: User | null;
   comment: CommentDB & {
     user: UserDB;
@@ -209,6 +209,11 @@ interface CommentContentProps {
 export function CommentContent(props: CommentContentProps) {
   const { user, comment } = props;
   const formattedDate = formatTimeAgo(comment.createdAt);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  function closeDropdown() {
+    setIsDropdownOpen(false);
+  }
 
   return (
     <div className="flex items-end justify-between sm:items-center">
@@ -232,9 +237,10 @@ export function CommentContent(props: CommentContentProps) {
                 className="text-muted-foreground"
               >
                 {formattedDate}
+                {comment.modifiedAt && " (edited)"}
               </Tooltip.Trigger>
               <Tooltip.Content>
-                {new Date(comment.createdAt).toString()}
+                {formatCommentDate(comment.modifiedAt ?? comment.createdAt)}
               </Tooltip.Content>
             </Tooltip>
           </Tooltip.Provider>
@@ -244,64 +250,29 @@ export function CommentContent(props: CommentContentProps) {
           <Badge className="max-sm:-order-1 w-max">Author</Badge>
         )}
       </div>
-      {user?.email === comment.user.email && !comment.deletedAt && (
-        <DeleteCommentDialog commentId={comment.id} />
-      )}
+      <Tooltip.Provider delayDuration={300}>
+        {user?.email === comment.user.email && !comment.deletedAt && (
+          <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
+            <Tooltip>
+              <DropdownMenu.Trigger asChild>
+                <Tooltip.Trigger>
+                  <Icons.Ellipsis className="size-4" />
+                  <span className="sr-only">More</span>
+                </Tooltip.Trigger>
+              </DropdownMenu.Trigger>
+              <Tooltip.Content>More</Tooltip.Content>
+            </Tooltip>
+            <DropdownMenu.Content align="end">
+              <EditCommentDialog
+                comment={props.comment}
+                user={props.user}
+                closeDropdown={closeDropdown}
+              />
+              <DeleteCommentAlertDialog commentId={comment.id} />
+            </DropdownMenu.Content>
+          </DropdownMenu>
+        )}
+      </Tooltip.Provider>
     </div>
-  );
-}
-
-interface DeleteCommentDialogProps {
-  commentId: string;
-}
-
-function DeleteCommentDialog({ commentId }: DeleteCommentDialogProps) {
-  const deleteCommentMutation = useDeleteCommentMutation();
-
-  const handleDeleteComment: React.MouseEventHandler<HTMLButtonElement> = (
-    e,
-  ) => {
-    e.preventDefault();
-
-    toast.promise(deleteCommentMutation.mutateAsync(commentId), {
-      loading: "Deleting comment...",
-      success: "Comment deleted!",
-      error(error) {
-        return error.message || "An error occurred while deleting the comment";
-      },
-    });
-  };
-
-  return (
-    <AlertDialog>
-      <AlertDialog.Trigger asChild>
-        <Button size="icon" className="size-8" variant="destructive">
-          <Icons.Trash className="size-4" />
-          <span className="sr-only">Delete</span>
-        </Button>
-      </AlertDialog.Trigger>
-      <AlertDialog.Content>
-        <AlertDialog.Header>
-          <AlertDialog.Title>Delete a comment</AlertDialog.Title>
-          <AlertDialog.Description>
-            Are you sure you want to delete this comment? This action cannot be
-            undone.
-          </AlertDialog.Description>
-        </AlertDialog.Header>
-        <AlertDialog.Footer>
-          <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-          <AlertDialog.Action
-            disabled={deleteCommentMutation.isPending}
-            onClick={handleDeleteComment}
-            variant="destructive"
-          >
-            {deleteCommentMutation.isPending && (
-              <Icons.Loader className="mr-2 size-4 animate-spin" />
-            )}
-            Delete
-          </AlertDialog.Action>
-        </AlertDialog.Footer>
-      </AlertDialog.Content>
-    </AlertDialog>
   );
 }

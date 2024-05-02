@@ -10,6 +10,7 @@
   "dependencies": {
     "@utaka/auth": "workspace:*",
     "@utaka/db": "workspace:*",
+    "@utaka/dto": "workspace:*",
     "@utaka/redis": "workspace:*",
     "@utaka/utils": "workspace:*",
     "@trpc/server": "next",

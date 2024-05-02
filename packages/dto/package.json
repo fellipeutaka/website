@@ -1,0 +1,11 @@
+{
+  "name": "@utaka/dto",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "devDependencies": {
+    "@utaka/tsconfig": "workspace:*"
+  }
+}

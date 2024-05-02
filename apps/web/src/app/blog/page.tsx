@@ -7,7 +7,7 @@ import {
 
 export default function Page() {
   const posts = getPosts().sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
+    return b.date.getTime() - a.date.getTime();
   });
 
   return (

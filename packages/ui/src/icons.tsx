@@ -87,6 +87,24 @@ export const Icons = {
       <path d="M22 3L2 3 10 12.46 10 19 14 21 14 12.46 22 3z" />
     </svg>
   ),
+  Ellipsis: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <circle cx={12} cy={12} r={1} />
+      <circle cx={19} cy={12} r={1} />
+      <circle cx={5} cy={12} r={1} />
+    </svg>
+  ),
   X: (props) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -541,6 +559,22 @@ export const Icons = {
       {...props}
     >
       <path d="M4 14a1 1 0 01-.78-1.63l9.9-10.2a.5.5 0 01.86.46l-1.92 6.02A1 1 0 0013 10h7a1 1 0 01.78 1.63l-9.9 10.2a.5.5 0 01-.86-.46l1.92-6.02A1 1 0 0011 14z" />
+    </svg>
+  ),
+  Pencil: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M17 3a2.85 2.83 0 114 4L7.5 20.5 2 22l1.5-5.5zM15 5l4 4" />
     </svg>
   ),
   Trash: (props) => (
