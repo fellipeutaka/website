@@ -125,11 +125,14 @@ function CopyButton(props: CopyButtonProps) {
       aria-label="Copy code to clipboard"
       {...rest}
     >
-      {isCopied ? (
-        <Icons.Check className="size-4" />
-      ) : (
-        <Icons.Copy className="size-4" />
-      )}
+      <Icons.Copy
+        data-visible={isCopied}
+        className="absolute size-4 scale-100 transition-transform data-[visible='true']:scale-0"
+      />
+      <Icons.Check
+        data-visible={isCopied}
+        className="size-4 transition-transform data-[visible='false']:scale-0"
+      />
     </Button>
   );
 }
