@@ -1,9 +1,15 @@
 import { getProjects } from "@utaka/mdx/utils/fs";
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import {
   ProjectList,
   ProjectListSkeleton,
 } from "~/components/projects/project-list";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "A collection of projects that I have worked on.",
+};
 
 export default function Page() {
   const projects = getProjects();
