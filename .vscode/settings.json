@@ -18,5 +18,8 @@
   "editor.defaultFormatter": "biomejs.biome",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.preferTypeOnlyAutoImports": true,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "i18n-ally.localesPaths": ["packages/i18n/messages"],
+  "i18n-ally.enabledFrameworks": ["react", "next-intl", "vscode"],
+  "i18n-ally.keystyle": "nested"
 }

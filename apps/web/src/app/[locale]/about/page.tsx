@@ -1,9 +1,11 @@
+import { useLocale } from "@utaka/i18n/utils/react";
 import { getPage } from "@utaka/mdx/utils/fs";
 import { notFound } from "next/navigation";
 import { Mdx } from "~/components/mdx/mdx";
 
 export default function Page() {
-  const page = getPage("pages/about");
+  const locale = useLocale();
+  const page = getPage(locale, "pages/about");
 
   if (!page) {
     notFound();

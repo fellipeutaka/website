@@ -1,3 +1,4 @@
+import { type Locale, locales } from "@utaka/i18n/shared";
 import { getProjectBySlug, getProjects } from "@utaka/mdx/utils/fs";
 import { ButtonStyles } from "@utaka/ui/button";
 import { Icons } from "@utaka/ui/icons";
@@ -11,17 +12,21 @@ const filePath = (slug: string) => `apps/web/src/content/projects/${slug}.mdx`;
 interface PageProps {
   params: {
     slug: string;
+    locale: Locale;
   };
 }
 
 export function generateStaticParams() {
-  return getProjects().map((post) => ({
-    slug: post.slug,
-  }));
+  return locales.map((locale) =>
+    getProjects(locale).map((project) => ({
+      slug: project.slug,
+      locale,
+    })),
+  );
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {
-  const post = getProjectBySlug(params.slug);
+  const post = getProjectBySlug(params.locale, params.slug);
 
   if (!post) {
     notFound();
@@ -33,7 +38,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
 }
 
 export default function Page({ params }: PageProps) {
-  const project = getProjectBySlug(params.slug);
+  const project = getProjectBySlug(params.locale, params.slug);
 
   if (!project) {
     notFound();

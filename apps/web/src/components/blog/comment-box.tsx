@@ -2,6 +2,7 @@ import { nativeClient } from "~/lib/api/native";
 import { reactClient } from "~/lib/api/react";
 
 import { MAX_COMMENT_LENGTH } from "@utaka/dto/comment";
+import { useTranslations } from "@utaka/i18n";
 import { cn } from "@utaka/tailwind";
 import { Button, type ButtonProps } from "@utaka/ui/button";
 import { Icons } from "@utaka/ui/icons";
@@ -32,22 +33,24 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
   const [comment, setComment] = useState("");
   const clientUtils = reactClient.useUtils();
   const { user } = useAuth();
+  const t = useTranslations("components.blog.comment-box");
 
-  const postCommentHandler = async () => {
+  async function postCommentHandler() {
     if (comment.length > MAX_COMMENT_LENGTH) {
+      // TODO: use `t` for translation
       toast.error(
         `Comment must contain at most ${MAX_COMMENT_LENGTH} characters`,
       );
       return;
     }
 
-    const toastId = toast.loading("Creating a message...");
+    const toastId = toast.loading(t("toast.loading"));
 
     try {
       const { serialize } = await import("@utaka/mdx/serialize");
       const { compiledSource } = await serialize(comment);
 
-      await nativeClient.comment.create.mutate({
+      const { message } = await nativeClient.comment.create.mutate({
         slug,
         parentId,
         comment: compiledSource,
@@ -56,24 +59,21 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
 
       clientUtils.comment.getBySlug.invalidate();
       setComment("");
-      toast.success("Message created!", { id: toastId });
+      toast.success(message, { id: toastId });
     } catch (error) {
-      toast.error(
-        error instanceof Error
-          ? error.message
-          : "An error occurred while creating the message",
-        { id: toastId },
-      );
+      toast.error(error instanceof Error ? error.message : t("toast.error"), {
+        id: toastId,
+      });
     }
-  };
+  }
 
   if (!user) {
     return (
       <Tabs defaultValue="write">
         <Tabs.List>
-          <Tabs.Trigger value="write">Write</Tabs.Trigger>
+          <Tabs.Trigger value="write">{t("write")}</Tabs.Trigger>
           <Tabs.Trigger disabled={isEmptyString(comment)} value="preview">
-            Preview
+            {t("preview")}
           </Tabs.Trigger>
         </Tabs.List>
         <SignInDialog>
@@ -92,12 +92,12 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
                       className="mr-2"
                       onClick={onCancel}
                     >
-                      Cancel
+                      {t("cancel")}
                     </Button>
                   )}
 
                   <SubmitButton type="button" disabled={isEmptyString(comment)}>
-                    {parentId ? "Reply" : "Comment"}
+                    {parentId ? t("reply") : t("comment")}
                   </SubmitButton>
                 </div>
               </div>
@@ -111,9 +111,9 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
   return (
     <Tabs defaultValue="write">
       <Tabs.List>
-        <Tabs.Trigger value="write">Write</Tabs.Trigger>
+        <Tabs.Trigger value="write">{t("write")}</Tabs.Trigger>
         <Tabs.Trigger disabled={isEmptyString(comment)} value="preview">
-          Preview
+          {t("preview")}
         </Tabs.Trigger>
       </Tabs.List>
       <form action={postCommentHandler}>
@@ -127,12 +127,12 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
             <div>
               {parentId && (
                 <Button variant="outline" className="mr-2" onClick={onCancel}>
-                  Cancel
+                  {t("cancel")}
                 </Button>
               )}
 
               <SubmitButton disabled={isEmptyString(comment)}>
-                {parentId ? "Reply" : "Comment"}
+                {parentId ? t("reply") : t("comment")}
               </SubmitButton>
             </div>
           </div>
@@ -156,14 +156,18 @@ export function CommentBoxTabContent({
   className,
   ...props
 }: CommentBoxTabContentProps) {
+  const t = useTranslations("components.blog.comment-box");
+
+  const replyPlaceholder = t("reply-placeholder");
+  const commentPlaceholder = t("comment-placeholder");
+
   return (
     <>
       <Tabs.Content value="write" tabIndex={-1}>
         <Textarea
           className={cn("max-h-full [field-sizing:content]", className)}
           maxLength={MAX_COMMENT_LENGTH}
-          aria-label={`Write your ${parentId ? "reply" : "comment"} here`}
-          placeholder={`Write your ${parentId ? "reply" : "comment"} here...`}
+          placeholder={parentId ? replyPlaceholder : commentPlaceholder}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           {...props}
@@ -181,12 +185,14 @@ export function CommentBoxTabContent({
 }
 
 export function MarkdownLink() {
+  const t = useTranslations("components.blog.comment-box");
+
   return (
     <a
       href="https://guides.github.com/features/mastering-markdown/"
       className="text-muted-foreground"
-      title="Markdown is supported"
-      aria-label="Markdown is supported"
+      title={t("md-support")}
+      aria-label={t("md-support")}
     >
       <Icons.Md className="size-5" />
     </a>

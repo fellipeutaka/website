@@ -20,6 +20,7 @@
     "@utaka/db": "workspace:*",
     "@utaka/dto": "workspace:*",
     "@utaka/env": "workspace:*",
+    "@utaka/i18n": "workspace:*",
     "@utaka/mdx": "workspace:*",
     "@utaka/tech": "workspace:*",
     "@utaka/ui": "workspace:*",

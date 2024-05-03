@@ -1,0 +1,17 @@
+{
+  "name": "@utaka/i18n",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./next": "./src/next.js",
+    "./*": "./src/*.ts",
+    "./messages/*": "./messages/*.json"
+  },
+  "devDependencies": {
+    "@utaka/tsconfig": "workspace:*"
+  },
+  "dependencies": {
+    "next-intl": "^3.12.0"
+  }
+}

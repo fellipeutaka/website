@@ -1,0 +1,79 @@
+{
+  "components": {
+    "auth": {},
+    "blog": {
+      "comment-box": {
+        "preview": "Preview",
+        "toast": {
+          "loading": "Creating a message...",
+          "error": "An error occurred while creating the message"
+        },
+        "write": "Write",
+        "cancel": "Cancel",
+        "reply": "Reply",
+        "comment": "Comment",
+        "md-support": "Markdown is supported",
+        "reply-placeholder": "Write your reply here...",
+        "comment-placeholder": "Write your comment here..."
+      }
+    },
+    "home": {
+      "hero-section": {
+        "avaliable": "Available for work",
+        "description": "Obsessed with developer experience, robust, scalable and user-friendly applications.",
+        "role": "Full-Stack Developer",
+        "get-resume": "Get resume",
+        "hire-me": "Hire me on Contra"
+      },
+      "featured-projects": {
+        "title": "Featured projects",
+        "source-code": "Source code",
+        "see-all": "See all projects"
+      },
+      "about-section": {
+        "title": "About me",
+        "know-more": "Know more about me"
+      },
+      "location-card": {
+        "title": "São Paulo, Brazil"
+      },
+      "stacks-card": {
+        "title": "Stacks"
+      },
+      "connect": {
+        "title": "Connect"
+      },
+      "coding-hours": {
+        "title": "Coding hours",
+        "hours": "{value} hours"
+      },
+      "studying-card": {
+        "title": "Currently studying",
+        "tooltip": "It's a joke 🤣"
+      },
+      "experience-section": {
+        "title": "Experience"
+      }
+    },
+    "mdx": {},
+    "projects": {}
+  },
+  "api": {
+    "comment": {
+      "create": {
+        "success": "Message created!",
+        "rateLimit": "You are commenting too fast. Please try again later."
+      },
+      "edit": {
+        "unauthorized": "You do not have permission to edit this comment"
+      },
+      "delete": {
+        "unauthorized": "You do not have permission to delete this comment"
+      },
+      "upvote": {
+        "rateLimit": "You are upvoting too fast. Please try again later."
+      },
+      "notFound": "Comment not found"
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import { useLocale } from "@utaka/i18n/utils/react";
 import { getProjects } from "@utaka/mdx/utils/fs";
 import { Suspense } from "react";
 import {
@@ -6,7 +7,8 @@ import {
 } from "~/components/projects/project-list";
 
 export default function Page() {
-  const projects = getProjects();
+  const locale = useLocale();
+  const projects = getProjects(locale);
 
   return (
     <main className="container my-20">

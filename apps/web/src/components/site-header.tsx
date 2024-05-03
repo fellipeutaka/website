@@ -3,6 +3,7 @@ import { Icons } from "@utaka/ui/icons";
 import Link from "next/link";
 import { siteConfig } from "~/config/site";
 import { UserDropdownMenu } from "./auth/user-dropdown-menu";
+import { LanguageDropdownMenu } from "./language-dropdown-menu";
 import { MainNav } from "./main-nav";
 import { MobileNav } from "./mobile-nav";
 
@@ -37,6 +38,7 @@ export function SiteHeader() {
               <span className="sr-only">Twitter</span>
             </Link>
           </Button>
+          <LanguageDropdownMenu />
           <UserDropdownMenu />
         </nav>
       </div>

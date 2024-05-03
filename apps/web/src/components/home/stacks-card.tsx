@@ -1,3 +1,4 @@
+import { useTranslations } from "@utaka/i18n";
 import { technologies } from "@utaka/tech";
 import { Icons } from "@utaka/ui/icons";
 import { Marquee } from "@utaka/ui/marquee";
@@ -9,11 +10,13 @@ import {
 } from "@utaka/ui/tooltip";
 
 export function StacksCard() {
+  const t = useTranslations("components.home.stacks-card");
+
   return (
     <div className="flex flex-col gap-2 overflow-hidden rounded-xl border p-4 lg:p-6">
       <div className="flex items-center gap-2">
         <Icons.Zap className="size-4" />
-        <h2 className="font-light text-sm">Stacks</h2>
+        <h2 className="font-light text-sm">{t("title")}</h2>
       </div>
       <TooltipProvider delayDuration={300}>
         <Marquee className="my-auto py-4 [--gap:1.5rem]" pauseOnHover>

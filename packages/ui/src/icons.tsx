@@ -593,6 +593,22 @@ export const Icons = {
       <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
     </svg>
   ),
+  Languages: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6" />
+    </svg>
+  ),
   File: (props) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -1122,6 +1138,71 @@ export const Icons = {
         fill="#ccbea7"
         fillRule="evenodd"
         d="M14.93 5.75a6.09 6.09 0 01-2.09 4.62c-.1.09 0 .27.11.22 1.25-.49 2.94-1.94 2.23-4.88-.03-.15-.25-.11-.25.04m.85 0a6 6 0 01.57 5c0 .13.12.24.21.13.83-1 1.54-3.11-.59-5.31-.1-.11-.27.04-.19.17zm1-.06a6.09 6.09 0 012.53 4.38c0 .14.21.17.24 0 .34-1.3.15-3.51-2.66-4.66-.12-.02-.21.18-.09.27zM9.94 9.55a6.27 6.27 0 003.89-3.33c.07-.13.28-.08.25.07-.64 3-2.79 3.59-4.13 3.51-.14-.01-.14-.21-.01-.25"
+      />
+    </svg>
+  ),
+  UnitedStates: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={32}
+      height={32}
+      viewBox="0 0 72 72"
+      {...props}
+    >
+      <path fill="#fff" d="M5 17h62v38H5z" />
+      <path fill="#d22f27" d="M5 17h62v5H5zm0 9h62v4H5zm0 8h62v4H5z" />
+      <path fill="#1e50a0" d="M5 17h32v21H5z" />
+      <path fill="#d22f27" d="M5 42h62v4H5z" />
+      <circle cx={9.5} cy={22} r={1.75} fill="#fff" />
+      <circle cx={17.5} cy={22} r={1.75} fill="#fff" />
+      <circle cx={25.5} cy={22} r={1.75} fill="#fff" />
+      <circle cx={33.5} cy={22} r={1.75} fill="#fff" />
+      <circle cx={29.5} cy={26} r={1.75} fill="#fff" />
+      <circle cx={21.5} cy={26} r={1.75} fill="#fff" />
+      <circle cx={13.5} cy={26} r={1.75} fill="#fff" />
+      <circle cx={9.5} cy={30} r={1.75} fill="#fff" />
+      <circle cx={17.5} cy={30} r={1.75} fill="#fff" />
+      <circle cx={25.5} cy={30} r={1.75} fill="#fff" />
+      <circle cx={33.5} cy={30} r={1.75} fill="#fff" />
+      <circle cx={29.5} cy={34} r={1.75} fill="#fff" />
+      <circle cx={21.5} cy={34} r={1.75} fill="#fff" />
+      <circle cx={13.5} cy={34} r={1.75} fill="#fff" />
+      <path fill="#d22f27" d="M5 50h62v5H5z" />
+      <path
+        fill="none"
+        stroke="#000"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M5 17h62v38H5z"
+      />
+    </svg>
+  ),
+  Brazil: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={32}
+      height={32}
+      viewBox="0 0 72 72"
+      {...props}
+    >
+      <path fill="#5c9e31" d="M5 17h62v38H5z" />
+      <path
+        fill="#fcea2b"
+        d="M59.023 36.023l-23.157 14.63-22.889-14.362 23.157-14.63z"
+      />
+      <circle cx={36} cy={36} r={9} fill="#1e50a0" />
+      <path
+        fill="#fff"
+        d="M44.159 39.782a9 9 0 00.696-2.26 11.474 11.474 0 00-17.477-4.04 9 9 0 00-.352 2.013 10.998 10.998 0 0117.133 4.287"
+      />
+      <path
+        fill="none"
+        stroke="#000"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M5 17h62v38H5z"
       />
     </svg>
   ),

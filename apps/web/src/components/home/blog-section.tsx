@@ -1,3 +1,4 @@
+import { useLocale } from "@utaka/i18n/utils/react";
 import { getPosts } from "@utaka/mdx/utils/fs";
 import { Button } from "@utaka/ui/button";
 import Link from "next/link";
@@ -5,6 +6,8 @@ import { PostCard } from "../blog/post-card";
 import { MotionSection } from "../framer-motion";
 
 export function BlogSection() {
+  const locale = useLocale();
+
   return (
     <MotionSection
       animate={{
@@ -19,7 +22,7 @@ export function BlogSection() {
       <h2 className="mb-10 font-semibold text-2xl md:text-3xl">Latest posts</h2>
 
       <div className="grid w-full gap-4 md:grid-cols-2">
-        {getPosts()
+        {getPosts(locale)
           .slice(0, 2)
           .map((post) => (
             <PostCard key={post.slug} post={post} />

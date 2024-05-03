@@ -6,6 +6,7 @@ import {
   editCommentSchema,
   slugSchema,
 } from "@utaka/dto/comment";
+import { getTranslations } from "@utaka/i18n/server";
 import { ulid } from "@utaka/utils/ulid";
 import {
   createTRPCRouter,
@@ -37,7 +38,7 @@ export const commentRoute = createTRPCRouter({
   create: protectedProcedure
     .use(
       ratelimitMiddleware({
-        message: "You are commenting too fast. Please wait a few seconds.",
+        message: "api.comment.create.rateLimit",
       }),
     )
     .input(createCommentSchema)
@@ -53,9 +54,7 @@ export const commentRoute = createTRPCRouter({
         rawBody: rawComment,
         userId: user.id,
         postId: slug,
-        ...(parentId && {
-          parentId,
-        }),
+        parentId,
       });
 
       if (!parentId) {
@@ -64,11 +63,17 @@ export const commentRoute = createTRPCRouter({
           commentId,
         });
       }
+
+      const t = await getTranslations({
+        locale: ctx.language,
+      });
+
+      return { message: t("api.comment.create.success") };
     }),
   editById: protectedProcedure
     .use(
       ratelimitMiddleware({
-        message: "You are commenting too fast. Please wait a few seconds.",
+        message: "api.comment.create.rateLimit",
       }),
     )
     .input(editCommentSchema)
@@ -83,17 +88,21 @@ export const commentRoute = createTRPCRouter({
         },
       });
 
+      const t = await getTranslations({
+        locale: ctx.language,
+      });
+
       if (!dbComment) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "Comment not found",
+          message: t("api.comment.notFound"),
         });
       }
 
       if (dbComment.user.email !== user.email) {
         throw new TRPCError({
           code: "FORBIDDEN",
-          message: "You do not have permission to edit this comment",
+          message: t("api.comment.edit.unauthorized"),
         });
       }
 
@@ -124,17 +133,21 @@ export const commentRoute = createTRPCRouter({
         },
       });
 
+      const t = await getTranslations({
+        locale: ctx.language,
+      });
+
       if (!comment) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "Comment not found",
+          message: t("api.comment.notFound"),
         });
       }
 
       if (comment.user.email !== user.email) {
         throw new TRPCError({
           code: "FORBIDDEN",
-          message: "You do not have permission to delete this comment",
+          message: t("api.comment.delete.unauthorized"),
         });
       }
 
@@ -144,6 +157,7 @@ export const commentRoute = createTRPCRouter({
           .update(schema.comments)
           .set({
             body: "[This comment has been deleted]",
+            rawBody: "[This comment has been deleted]",
             deletedAt: new Date(),
           })
           .where(eq(schema.comments.id, id));
@@ -175,7 +189,7 @@ export const commentRoute = createTRPCRouter({
   upvoteById: protectedProcedure
     .use(
       ratelimitMiddleware({
-        message: "You are upvoting too fast. Please wait a few seconds.",
+        message: "api.comment.upvote.rateLimit",
       }),
     )
     .input(commentIdSchema)
@@ -192,10 +206,14 @@ export const commentRoute = createTRPCRouter({
         },
       });
 
+      const t = await getTranslations({
+        locale: ctx.language,
+      });
+
       if (!comment) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "Comment not found",
+          message: t("api.comment.notFound"),
         });
       }
 

@@ -1,3 +1,4 @@
+import { type Locale, locales } from "@utaka/i18n/shared";
 import { getPostBySlug, getPosts } from "@utaka/mdx/utils/fs";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -11,17 +12,21 @@ const filePath = (slug: string) => `apps/web/src/content/blog/${slug}.mdx`;
 interface PageProps {
   params: {
     slug: string;
+    locale: Locale;
   };
 }
 
 export function generateStaticParams() {
-  return getPosts().map((post) => ({
-    slug: post.slug,
-  }));
+  return locales.map((locale) =>
+    getPosts(locale).map((post) => ({
+      slug: post.slug,
+      locale,
+    })),
+  );
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {
-  const post = getPostBySlug(params.slug);
+  const post = getPostBySlug(params.locale, params.slug);
 
   if (!post) {
     notFound();
@@ -33,7 +38,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
 }
 
 export default function Page({ params }: PageProps) {
-  const post = getPostBySlug(params.slug);
+  const post = getPostBySlug(params.locale, params.slug);
 
   if (!post) {
     notFound();

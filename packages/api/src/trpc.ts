@@ -1,18 +1,15 @@
 import { TRPCError, initTRPC } from "@trpc/server";
-import { auth } from "@utaka/auth";
+import type { User } from "@utaka/auth";
+import type { TKey } from "@utaka/i18n";
+import { getTranslations } from "@utaka/i18n/server";
 import { Ratelimit, redis } from "@utaka/redis";
 import { ZodError } from "zod";
 import { transformer } from "./transformer";
 
-export const createTRPCContext = async () => {
-  const session = await auth();
-
-  return {
-    user: session?.user,
-  };
-};
-
-export type TRPCContext = Awaited<ReturnType<typeof createTRPCContext>>;
+export interface TRPCContext {
+  user: User | null;
+  language: string;
+}
 
 const t = initTRPC.context<TRPCContext>().create({
   transformer,
@@ -31,7 +28,7 @@ const t = initTRPC.context<TRPCContext>().create({
 interface RatelimitMiddlewareOptions {
   tokens?: number;
   duration?: Parameters<typeof Ratelimit.slidingWindow>[1];
-  message?: string;
+  message?: TKey;
 }
 
 export function ratelimitMiddleware(options?: RatelimitMiddlewareOptions) {
@@ -50,11 +47,14 @@ export function ratelimitMiddleware(options?: RatelimitMiddlewareOptions) {
     });
 
     const { success } = await ratelimit.limit(ctx.user.id);
+    const t = await getTranslations({
+      locale: ctx.language,
+    });
 
     if (!success) {
       throw new TRPCError({
         code: "TOO_MANY_REQUESTS",
-        message: options?.message ?? "Rate limit exceeded",
+        message: options?.message ? t(options.message) : "Rate limit exceeded",
       });
     }
 

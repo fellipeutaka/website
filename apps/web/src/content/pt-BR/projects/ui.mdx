@@ -1,0 +1,202 @@
+---
+name: fellipeutaka/ui
+description: 🎨 A Design System with accessible and customizable components powered by shadcn/ui
+sourceCodeUrl: https://github.com/fellipeutaka/ui
+isFeatured: true
+technologies: ["React", "Tailwind CSS", "TypeScript"]
+previewUrl: https://fellipeutaka-ui.vercel.app
+---
+
+A Design System with accessible and customizable components powered by [shadcn/ui](https://ui.shadcn.com)
+
+## Motivation
+
+I created this project to help me build web applications faster and following the shadcn/ui components. So, I decided to create and publish these components to NPM to use in my projects.
+The main goal of this project is to set up shadcn/ui faster and easier.
+
+## How to use
+
+1. Install the components package and the icons package
+
+```bash
+npm install @fellipeutaka/ui lucide-react
+```
+
+2. Install the utilities package
+
+```bash
+npm install @fellipeutaka/styles -D
+```
+
+3. Extend the Design System theme on your Tailwind CSS config file.
+
+For ESM (`tailwind.config.js`, `tailwind.config.mjs` `tailwind.config.ts`)
+
+```js
+import { defineTailwindConfig } from "@fellipeutaka/styles";
+
+export default defineTailwindConfig({
+  content: ["./src/{app,screens,components}/**/*.{ts,tsx}"],
+});
+```
+
+For CJS (`tailwind.config.js`, `tailwind.config.cjs`)
+
+```js
+const { defineTailwindConfig } = require("@fellipeutaka/styles");
+
+module.exports = defineTailwindConfig({
+  content: ["./src/{app,screens,components}/**/*.{ts,tsx}"],
+});
+```
+
+4. Import `theme.css` file at your `globals.css`.
+
+```css
+/* default theme */
+@import "@fellipeutaka/styles/theme.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+5. Use the components
+
+```jsx
+import { Button } from "@fellipeutaka/ui/button";
+
+export function App() {
+  return <Button>Hello World!</Button>;
+}
+```
+
+### How to customize the theme
+
+Customizing is as simple as changing CSS variables values.
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer theme {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark:root {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+
+    --radius: 0.5rem;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::-webkit-scrollbar {
+    @apply h-1.5 w-1.5;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-foreground/40 rounded-lg transition-colors;
+  }
+
+  ::-webkit-scdrollbar-thumb:hover,
+  ::-webkit-scrollbar-thumb:active {
+    @apply bg-foreground/60;
+  }
+
+  :autofill {
+    background: none;
+  }
+
+  ::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  ::-webkit-color-swatch {
+    border: 0;
+    border-radius: 0;
+  }
+
+  ::-moz-color-swatch,
+  ::-moz-focus-inner {
+    border: 0;
+  }
+
+  ::-moz-focus-inner {
+    padding: 0;
+  }
+}
+```
+
+## How to contribute
+
+Pull requests are always welcome 😃.
+
+1. Fork this repository.
+2. Create a branch: `git checkout -b <branch_name>`.
+3. Make your changes and commit them: `git commit -m '<commit_message>'`
+4. Push to original branch: `git push origin <project_name> / <local>`
+5. Create the pull request.
+
+Or, see the GitHub documentation on [how to create a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).

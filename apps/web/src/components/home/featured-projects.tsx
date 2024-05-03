@@ -1,3 +1,5 @@
+import { useTranslations } from "@utaka/i18n";
+import { useLocale } from "@utaka/i18n/utils/react";
 import { getFeaturedProjects } from "@utaka/mdx/utils/fs";
 import { technologies } from "@utaka/tech";
 import { BentoGrid } from "@utaka/ui/bento-grid";
@@ -6,13 +8,13 @@ import { Icons } from "@utaka/ui/icons";
 import Link from "next/link";
 
 export function FeaturedProjectsSection() {
-  const featuredProjects = getFeaturedProjects();
+  const t = useTranslations("components.home.featured-projects");
+  const locale = useLocale();
+  const featuredProjects = getFeaturedProjects(locale);
 
   return (
     <section className="animate-delay-700 animate-fade-up">
-      <h2 className="mb-10 font-semibold text-2xl md:text-3xl">
-        Featured projects
-      </h2>
+      <h2 className="mb-10 font-semibold text-2xl md:text-3xl">{t("title")}</h2>
 
       <BentoGrid>
         {featuredProjects.map((project, i) => (
@@ -72,7 +74,7 @@ export function FeaturedProjectsSection() {
                 })}
               >
                 <Icons.GitHub className="mr-2 size-4" />
-                Source code
+                {t("source-code")}
               </a>
             </div>
           </BentoGrid.Item>
@@ -86,7 +88,7 @@ export function FeaturedProjectsSection() {
         })}
         href="/projects"
       >
-        See all projects
+        {t("see-all")}
       </Link>
     </section>
   );

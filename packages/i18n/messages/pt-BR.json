@@ -1,0 +1,79 @@
+{
+  "components": {
+    "auth": {},
+    "blog": {
+      "comment-box": {
+        "preview": "Visualização",
+        "toast": {
+          "loading": "Criando mensagem...",
+          "error": "Ocorreu um erro ao criar a mensagem"
+        },
+        "write": "Escrever",
+        "cancel": "Cancelar",
+        "reply": "Responder",
+        "comment": "Comentar",
+        "md-support": "Markdown é suportado",
+        "reply-placeholder": "Escreva sua resposta aqui...",
+        "comment-placeholder": "Escreva seu comentário aqui..."
+      }
+    },
+    "home": {
+      "hero-section": {
+        "avaliable": "Disponível para trabalho",
+        "get-resume": "Baixar currículo",
+        "hire-me": "Contrate-me no Contra",
+        "role": "Desenvolvedor Full-Stack",
+        "description": "Obcecado por developer experience, aplicações robustas, escaláveis ​​e fáceis de usar."
+      },
+      "featured-projects": {
+        "see-all": "Veja todos os projetos",
+        "source-code": "Código fonte",
+        "title": "Projetos em destaque"
+      },
+      "about-section": {
+        "title": "Sobre mim",
+        "know-more": "Saiba mais sobre mim"
+      },
+      "location-card": {
+        "title": "São Paulo, Brasil"
+      },
+      "stacks-card": {
+        "title": "Tecnologias"
+      },
+      "connect": {
+        "title": "Conectar"
+      },
+      "coding-hours": {
+        "title": "Horas programando",
+        "hours": "{value} horas"
+      },
+      "studying-card": {
+        "tooltip": "É uma piada 🤣",
+        "title": "Atualmente estudando"
+      },
+      "experience-section": {
+        "title": "Experiência"
+      }
+    },
+    "mdx": {},
+    "projects": {}
+  },
+  "api": {
+    "comment": {
+      "create": {
+        "success": "Mensagem criada!",
+        "rateLimit": "Você está comentando muito rápido. Por favor, tente novamente mais tarde."
+      },
+      "edit": {
+        "unauthorized": "Você não tem permissão para editar este comentário"
+      },
+      "delete": {
+        "unauthorized": "Você não tem permissão para excluir este comentário"
+      },
+      "upvote": {
+        "rateLimit": "Você está votando muito rápido. Por favor, tente novamente mais tarde."
+      },
+      "notFound": "Comentário não encontrado"
+    }
+  }
+}

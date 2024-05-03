@@ -1,3 +1,5 @@
+import { useTranslations } from "@utaka/i18n";
+import { useLocale } from "@utaka/i18n/utils/react";
 import { cn } from "@utaka/tailwind";
 import { Badge } from "@utaka/ui/badge";
 import { Card } from "@utaka/ui/card";
@@ -6,12 +8,14 @@ import { MotionDiv } from "../framer-motion";
 import { TracingBeam } from "../tracing-beam";
 
 export function ExperienceSection() {
+  const t = useTranslations("components.home.experience-section");
+
   return (
     <section
       className="animate-delay-700 animate-fade-up scroll-m-32"
       id="experience"
     >
-      <h2 className="mb-10 font-semibold text-2xl md:text-3xl">Experience</h2>
+      <h2 className="mb-10 font-semibold text-2xl md:text-3xl">{t("title")}</h2>
 
       <TracingBeam className="hidden px-6 md:flex md:flex-col">
         <ExperienceList />
@@ -22,6 +26,8 @@ export function ExperienceSection() {
 }
 
 function ExperienceList(props: React.ComponentPropsWithoutRef<"div">) {
+  const locale = useLocale();
+
   return (
     <div {...props} className={cn("flex flex-col gap-4", props.className)}>
       {experiences.map((experience) => (
@@ -36,9 +42,9 @@ function ExperienceList(props: React.ComponentPropsWithoutRef<"div">) {
           >
             <Card.Header>
               <Card.Title>
-                {experience.title} · {experience.company}
+                {experience.title[locale]} · {experience.company}
               </Card.Title>
-              <Card.Description>{experience.date}</Card.Description>
+              <Card.Description>{experience.date[locale]}</Card.Description>
             </Card.Header>
           </MotionDiv>
           <Card.Content className="flex flex-col gap-4">
@@ -50,7 +56,7 @@ function ExperienceList(props: React.ComponentPropsWithoutRef<"div">) {
                 transition: { duration: 0.4 },
               }}
             >
-              <p className="leading-7">{experience.description}</p>
+              <p className="leading-7">{experience.description[locale]}</p>
             </MotionDiv>
             {experience.skills && (
               <div className="flex flex-wrap gap-2">

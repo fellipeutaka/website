@@ -1,3 +1,4 @@
+import { useTranslations } from "@utaka/i18n";
 import { ButtonStyles } from "@utaka/ui/button";
 import Link from "next/link";
 import { MotionDiv } from "../framer-motion";
@@ -8,9 +9,11 @@ import { StacksCard } from "./stacks-card";
 import { StudyingCard } from "./studying-card";
 
 export function AboutSection() {
+  const t = useTranslations("components.home.about-section");
+
   return (
     <section>
-      <h2 className="mb-10 font-semibold text-2xl md:text-3xl">About me</h2>
+      <h2 className="mb-10 font-semibold text-2xl md:text-3xl">{t("title")}</h2>
 
       <MotionDiv
         className="grid gap-4 md:grid-cols-2"
@@ -45,7 +48,7 @@ export function AboutSection() {
         })}
         href="/about"
       >
-        Know more about me
+        {t("know-more")}
       </Link>
     </section>
   );

@@ -1,3 +1,4 @@
+import { NextIntlClientProvider, useMessages } from "@utaka/i18n";
 import { cn } from "@utaka/tailwind";
 import type { Metadata } from "next";
 import { Providers } from "~/components/providers";
@@ -28,11 +29,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
+  const messages = useMessages();
+
   return (
-    <html lang="en" className="motion-safe:scroll-smooth">
+    <html lang={locale} className="motion-safe:scroll-smooth">
       <body
         className={cn(
           "grid bg-cover bg-gradient-to-bl from-background to-background/95 bg-no-repeat font-sans",
@@ -40,11 +45,13 @@ export default function RootLayout({
           fonts.mono.variable,
         )}
       >
-        <Providers>
-          <SiteHeader />
-          {children}
-          <SiteFooter />
-        </Providers>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Providers locale={locale}>
+            <SiteHeader />
+            {children}
+            <SiteFooter />
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

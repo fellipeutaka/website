@@ -11,6 +11,7 @@
     "@utaka/auth": "workspace:*",
     "@utaka/db": "workspace:*",
     "@utaka/dto": "workspace:*",
+    "@utaka/i18n": "workspace:*",
     "@utaka/redis": "workspace:*",
     "@utaka/utils": "workspace:*",
     "@trpc/server": "next",

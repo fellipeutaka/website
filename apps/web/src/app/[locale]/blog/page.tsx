@@ -1,3 +1,4 @@
+import { useLocale } from "@utaka/i18n/utils/react";
 import { getPosts } from "@utaka/mdx/utils/fs";
 import { Suspense } from "react";
 import {
@@ -6,7 +7,8 @@ import {
 } from "~/components/blog/post-card-list";
 
 export default function Page() {
-  const posts = getPosts().sort((a, b) => {
+  const locale = useLocale();
+  const posts = getPosts(locale).sort((a, b) => {
     return b.date.getTime() - a.date.getTime();
   });
 

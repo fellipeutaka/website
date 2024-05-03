@@ -75,6 +75,9 @@ importers:
       '@utaka/env':
         specifier: workspace:*
         version: link:../../packages/env
+      '@utaka/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
       '@utaka/mdx':
         specifier: workspace:*
         version: link:../../packages/mdx
@@ -187,6 +190,9 @@ importers:
       '@utaka/dto':
         specifier: workspace:*
         version: link:../dto
+      '@utaka/i18n':
+        specifier: workspace:*
+        version: link:../i18n
       '@utaka/redis':
         specifier: workspace:*
         version: link:../redis
@@ -264,6 +270,16 @@ importers:
         specifier: workspace:*
         version: link:../../config/tsconfig
 
+  packages/i18n:
+    dependencies:
+      next-intl:
+        specifier: ^3.12.0
+        version: 3.12.0(next@14.3.0-canary.29(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+    devDependencies:
+      '@utaka/tsconfig':
+        specifier: workspace:*
+        version: link:../../config/tsconfig
+
   packages/mdx:
     dependencies:
       '@mdx-js/mdx':
@@ -318,6 +334,9 @@ importers:
       '@types/react':
         specifier: ^18.2.79
         version: 18.3.1
+      '@utaka/i18n':
+        specifier: workspace:*
+        version: link:../i18n
       '@utaka/tailwind':
         specifier: workspace:*
         version: link:../../config/tailwind
@@ -1597,6 +1616,30 @@ packages:
 
   '@floating-ui/utils@0.2.1':
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
+
+  '@formatjs/ecma402-abstract@1.11.4':
+    resolution: {integrity: sha512-EBikYFp2JCdIfGEb5G9dyCkTGDmC57KSHhRQOC3aYxoPWVZvfWCDjZwkGYHN7Lis/fmuWl906bnNTJifDQ3sXw==}
+
+  '@formatjs/ecma402-abstract@1.18.2':
+    resolution: {integrity: sha512-+QoPW4csYALsQIl8GbN14igZzDbuwzcpWrku9nyMXlaqAlwRBgl5V+p0vWMGFqHOw37czNXaP/lEk4wbLgcmtA==}
+
+  '@formatjs/fast-memoize@1.2.1':
+    resolution: {integrity: sha512-Rg0e76nomkz3vF9IPlKeV+Qynok0r7YZjL6syLz4/urSg0IbjPZCB/iYUMNsYA643gh4mgrX3T7KEIFIxJBQeg==}
+
+  '@formatjs/icu-messageformat-parser@2.1.0':
+    resolution: {integrity: sha512-Qxv/lmCN6hKpBSss2uQ8IROVnta2r9jd3ymUEIjm2UyIkUCHVcbUVRGL/KS/wv7876edvsPe+hjHVJ4z8YuVaw==}
+
+  '@formatjs/icu-skeleton-parser@1.3.6':
+    resolution: {integrity: sha512-I96mOxvml/YLrwU2Txnd4klA7V8fRhb6JG/4hm3VMNmeJo1F03IpV2L3wWt7EweqNLES59SZ4d6hVOPCSf80Bg==}
+
+  '@formatjs/intl-localematcher@0.2.25':
+    resolution: {integrity: sha512-YmLcX70BxoSopLFdLr1Ds99NdlTI2oWoLbaUW2M406lxOIPzE1KQhRz2fPUkq34xVZQaihCoU29h0KK7An3bhA==}
+
+  '@formatjs/intl-localematcher@0.2.32':
+    resolution: {integrity: sha512-k/MEBstff4sttohyEpXxCmC3MqbUn9VvHGlZ8fauLzkbwXmVrEeyzS+4uhrvAk9DWU9/7otYWxyDox4nT/KVLQ==}
+
+  '@formatjs/intl-localematcher@0.5.4':
+    resolution: {integrity: sha512-zTwEpWOzZ2CiKcB93BLngUX59hQkuZjT2+SAQEscSm52peDW/getsawMcWF1rGRpMCX6D7nSJA3CzJ8gn13N/g==}
 
   '@hapi/hoek@9.3.0':
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
@@ -4077,6 +4120,9 @@ packages:
     resolution: {integrity: sha512-NGnrKwXzSms2qUUih/ILZ5JBqNTSa1+ZmP6flaIp6KmSElgE9qdndzS3cqjrDovwFdmwsGsLdeFgB6suw+1e9g==}
     engines: {node: '>= 0.4'}
 
+  intl-messageformat@9.13.0:
+    resolution: {integrity: sha512-7sGC7QnSQGa5LZP7bXLDhVDtQOeKGeBFGHF2Y8LVBwYZoQZCgWeKoPGTa5GMG8g/TzDgeXuYJQis7Ggiw2xTOw==}
+
   invariant@2.2.4:
     resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
 
@@ -4895,6 +4941,12 @@ packages:
         optional: true
       nodemailer:
         optional: true
+
+  next-intl@3.12.0:
+    resolution: {integrity: sha512-N3DHT6ce6K4VHVA3y2p3U7wfBx4c31qEgQSTFCFJuNnE7XYzy49O576ewEz7/k2YaB/U5bfxaWWaMMkskofwoQ==}
+    peerDependencies:
+      next: ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
   next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
@@ -6156,6 +6208,11 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  use-intl@3.12.0:
+    resolution: {integrity: sha512-tTJBSaxpVF1ZHqJ5+1JOaBsPmvBPscXHR0soMNQFWIURZspOueLaMXx1XHNdBv9KZGwepBju5aWXkJ0PM6ztXg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
   use-sidecar@1.1.2:
     resolution: {integrity: sha512-epTbsLuzZ7lPClpz2TyryBfztm7m+28DlEv2ZCQ3MDr5ssiwyOwGH/e5F9CkfWjJ1t4clvI58yF822/GUkjjhw==}
@@ -7562,6 +7619,43 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
 
   '@floating-ui/utils@0.2.1': {}
+
+  '@formatjs/ecma402-abstract@1.11.4':
+    dependencies:
+      '@formatjs/intl-localematcher': 0.2.25
+      tslib: 2.6.2
+
+  '@formatjs/ecma402-abstract@1.18.2':
+    dependencies:
+      '@formatjs/intl-localematcher': 0.5.4
+      tslib: 2.6.2
+
+  '@formatjs/fast-memoize@1.2.1':
+    dependencies:
+      tslib: 2.6.2
+
+  '@formatjs/icu-messageformat-parser@2.1.0':
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.11.4
+      '@formatjs/icu-skeleton-parser': 1.3.6
+      tslib: 2.6.2
+
+  '@formatjs/icu-skeleton-parser@1.3.6':
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.11.4
+      tslib: 2.6.2
+
+  '@formatjs/intl-localematcher@0.2.25':
+    dependencies:
+      tslib: 2.6.2
+
+  '@formatjs/intl-localematcher@0.2.32':
+    dependencies:
+      tslib: 2.6.2
+
+  '@formatjs/intl-localematcher@0.5.4':
+    dependencies:
+      tslib: 2.6.2
 
   '@hapi/hoek@9.3.0': {}
 
@@ -10409,6 +10503,13 @@ snapshots:
       hasown: 2.0.2
       side-channel: 1.0.6
 
+  intl-messageformat@9.13.0:
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.11.4
+      '@formatjs/fast-memoize': 1.2.1
+      '@formatjs/icu-messageformat-parser': 2.1.0
+      tslib: 2.6.2
+
   invariant@2.2.4:
     dependencies:
       loose-envify: 1.4.0
@@ -11571,6 +11672,14 @@ snapshots:
       '@auth/core': 0.30.0
       next: 14.3.0-canary.29(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
+
+  next-intl@3.12.0(next@14.3.0-canary.29(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@formatjs/intl-localematcher': 0.2.32
+      negotiator: 0.6.3
+      next: 14.3.0-canary.29(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+      use-intl: 3.12.0(react@18.3.1)
 
   next-tick@1.1.0: {}
 
@@ -12910,6 +13019,12 @@ snapshots:
       tslib: 2.6.2
     optionalDependencies:
       '@types/react': 18.3.1
+
+  use-intl@3.12.0(react@18.3.1):
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.18.2
+      intl-messageformat: 9.13.0
+      react: 18.3.1
 
   use-sidecar@1.1.2(@types/react@18.3.1)(react@18.3.1):
     dependencies:

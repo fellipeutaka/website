@@ -1,13 +1,16 @@
+import { useTranslations } from "@utaka/i18n";
 import { Icons } from "@utaka/ui/icons";
 import Link from "next/link";
 import { socialLinks } from "~/config/site";
 
 export function Connect() {
+  const t = useTranslations("components.home.connect");
+
   return (
     <div className="flex flex-col gap-6 rounded-xl border p-4 lg:p-6">
       <div className="flex items-center gap-2">
         <Icons.Link className="size-4" />
-        <h2 className="font-light text-sm">Connect</h2>
+        <h2 className="font-light text-sm">{t("title")}</h2>
       </div>
       <div className="flex flex-col gap-4 px-2">
         {socialLinks.map((link) => (

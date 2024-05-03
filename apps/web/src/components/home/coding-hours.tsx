@@ -1,16 +1,20 @@
 import { env } from "@utaka/env";
+import { useTranslations } from "@utaka/i18n";
+import { getTranslations } from "@utaka/i18n/server";
 import { Icons } from "@utaka/ui/icons";
 import { Suspense } from "react";
 
 export function CodingHours() {
+  const t = useTranslations("components.home.coding-hours");
+
   return (
     <div className="flex flex-col gap-6 rounded-xl border p-4 pb-10 lg:p-6">
       <div className="flex items-center gap-2">
         <Icons.Clock className="size-4" />
-        <h2 className="font-light text-sm">Coding hours</h2>
+        <h2 className="font-light text-sm">{t("title")}</h2>
       </div>
       <p className="flex grow items-center justify-center font-semibold font-title text-4xl">
-        <Suspense fallback={"-- hrs"}>
+        <Suspense fallback={"--"}>
           <CodingHoursValue />
         </Suspense>
       </p>
@@ -48,11 +52,14 @@ async function getData() {
 }
 
 async function CodingHoursValue() {
-  const data = await getData();
+  const [data, t] = await Promise.all([
+    getData(),
+    getTranslations("components.home.coding-hours"),
+  ]);
 
   if (data === null) {
     return "--";
   }
 
-  return `${Math.round(data.seconds / 60 / 60)} hrs`;
+  return t("hours", { value: Math.round(data.seconds / 60 / 60) });
 }

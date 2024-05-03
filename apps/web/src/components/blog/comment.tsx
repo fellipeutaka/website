@@ -12,7 +12,7 @@ import { getUserInitials } from "@utaka/utils/avatar";
 import { formatCommentDate, formatTimeAgo } from "@utaka/utils/date";
 import { formatUpvotes } from "@utaka/utils/upvotes";
 import type React from "react";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { siteConfig } from "~/config/site";
 import { useAuth } from "~/hooks/use-auth";
 import { reactClient } from "~/lib/api/react";
@@ -142,39 +142,45 @@ interface UpvoteButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   upvotesAmount: number;
 }
 
-function UpvoteButton({
-  isCurrentUserUpvotedComment,
-  upvotesAmount,
-  ...props
-}: UpvoteButtonProps) {
-  return (
-    <button
-      {...props}
-      type="button"
-      className={cn(
-        "flex gap-2 rounded-xl border px-2 py-1 text-muted-foreground text-xs tabular-nums transition-colors",
-        isCurrentUserUpvotedComment
-          ? "border-destructive bg-destructive/10 text-destructive dark:brightness-200"
-          : "hover:bg-accent hover:text-accent-foreground",
-      )}
-    >
-      <Icons.ArrowUp className="size-3.5" />
-      {formatUpvotes(upvotesAmount)}
-    </button>
-  );
-}
+const UpvoteButton = forwardRef<HTMLButtonElement, UpvoteButtonProps>(
+  function UpvoteButton(
+    { isCurrentUserUpvotedComment, upvotesAmount, ...props },
+    ref,
+  ) {
+    return (
+      <button
+        {...props}
+        ref={ref}
+        type="button"
+        className={cn(
+          "flex gap-2 rounded-xl border px-2 py-1 text-muted-foreground text-xs tabular-nums transition-colors",
+          isCurrentUserUpvotedComment
+            ? "border-destructive bg-destructive/10 text-destructive dark:brightness-200"
+            : "hover:bg-accent hover:text-accent-foreground",
+        )}
+      >
+        <Icons.ArrowUp className="size-3.5" />
+        {formatUpvotes(upvotesAmount)}
+      </button>
+    );
+  },
+);
 
-function ReplyButton(props: React.ComponentPropsWithoutRef<"button">) {
+const ReplyButton = forwardRef<
+  HTMLButtonElement,
+  React.ComponentPropsWithoutRef<"button">
+>(function ReplyButton(props, ref) {
   return (
     <button
       {...props}
+      ref={ref}
       type="button"
       className="w-full cursor-text rounded-lg border px-2 py-1 text-left text-muted-foreground text-sm"
     >
       Write a reply
     </button>
   );
-}
+});
 
 interface ReplyProps {
   reply: CommentDB & {

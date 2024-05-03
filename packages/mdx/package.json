@@ -27,6 +27,7 @@
   "devDependencies": {
     "@types/hast": "^3.0.4",
     "@types/react": "^18.2.79",
+    "@utaka/i18n": "workspace:*",
     "@utaka/tailwind": "workspace:*",
     "@utaka/tsconfig": "workspace:*",
     "react": "^18.2.0",

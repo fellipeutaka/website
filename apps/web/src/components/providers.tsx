@@ -6,7 +6,12 @@ import { useState } from "react";
 import { TRPCProvider, reactClient } from "~/lib/api/react";
 import { trpcLinks } from "~/lib/api/shared";
 
-export function Providers(props: React.PropsWithChildren) {
+interface ProvidersProps {
+  children: React.ReactNode;
+  locale: string;
+}
+
+export function Providers(props: ProvidersProps) {
   const [queryClient] = useState(() => new QueryClient());
   const [trpcClient] = useState(() =>
     reactClient.createClient({
