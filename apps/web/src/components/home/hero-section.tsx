@@ -26,9 +26,11 @@ export function HeroSection() {
           applications.
         </p>
         <div className="flex animate-delay-300 animate-fade-up items-center justify-center gap-4">
-          <Button className="rounded-full">
-            <Icons.Download className="mr-2 size-4" />
-            Get resume
+          <Button asChild className="rounded-full">
+            <a href="/documents/resume.pdf" download>
+              <Icons.Download className="mr-2 size-4" />
+              Get resume
+            </a>
           </Button>
           <Button variant="outline" className="rounded-full" asChild>
             <a href={siteConfig.links.contra} rel="noopener noreferrer">
