@@ -1,8 +1,9 @@
 {
   "name": "@utaka/env",
-  "main": "./index.ts",
+  "main": "./index.js",
   "types": "./index.ts",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.10.1"
   },

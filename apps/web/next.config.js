@@ -1,7 +1,4 @@
-import { fileURLToPath } from "node:url";
-import createJiti from "jiti";
-const jiti = createJiti(fileURLToPath(import.meta.url));
-jiti("../../packages/env");
+await import("@utaka/env");
 
 /** @type {import('next').NextConfig} */
 export default {
