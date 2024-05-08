@@ -7,13 +7,9 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
-    "db:generate": {},
-    "db:migrate": {},
-    "db:studio": {},
     "dev": {
       "cache": false,
       "persistent": true
-    },
-    "lint": {}
+    }
   }
 }
