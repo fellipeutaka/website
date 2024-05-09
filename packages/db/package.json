@@ -19,14 +19,14 @@
   },
   "dependencies": {
     "@utaka/env": "workspace:*",
-    "drizzle-orm": "^0.30.9",
+    "drizzle-orm": "^0.30.10",
     "postgres": "^3.4.4"
   },
   "devDependencies": {
-    "next-auth": "beta",
     "@utaka/tsconfig": "workspace:*",
-    "drizzle-kit": "^0.20.17",
+    "drizzle-kit": "^0.20.18",
+    "next-auth": "beta",
     "pg": "^8.11.5",
-    "tsx": "^4.7.3"
+    "tsx": "^4.9.3"
   }
 }
