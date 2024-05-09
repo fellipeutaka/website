@@ -1,5 +1,5 @@
 import { cn } from "@utaka/tailwind";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Providers } from "~/components/providers";
 import { SiteFooter } from "~/components/site-footer";
 import { SiteHeader } from "~/components/site-header";
@@ -24,6 +24,13 @@ export const metadata: Metadata = {
   twitter: {
     creator: "@fellipeutaka",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 };
 
 export default function RootLayout({
