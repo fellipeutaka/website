@@ -16,7 +16,11 @@ export function StacksCard() {
         <h2 className="font-light text-sm">Stacks</h2>
       </div>
       <TooltipProvider delayDuration={300}>
-        <Marquee className="my-auto py-4 [--gap:1.5rem]" pauseOnHover>
+        <Marquee
+          className="my-auto py-4 [--gap:1.5rem]"
+          pauseOnHover
+          motionReduce={false}
+        >
           {Object.values(technologies).map((technology) => {
             const Icon = Icons[technology.icon];
 
