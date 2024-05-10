@@ -184,6 +184,8 @@ export const components = {
   Files,
   File,
   Folder,
+
+  // Pages
   DisplayAge,
 } satisfies MDXComponents;
 

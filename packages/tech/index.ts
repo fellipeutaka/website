@@ -46,6 +46,16 @@ export const technologies = {
     icon: "Turborepo",
     url: "https://turbo.build/repo",
   },
+  swc: {
+    name: "SWC",
+    icon: "SWC",
+    url: "https://swc.rs",
+  },
+  docker: {
+    name: "Docker",
+    icon: "Docker",
+    url: "https://www.docker.com",
+  },
 } as const satisfies Record<string, Technology>;
 
 export const technologyList = Object.values(technologies).map(
