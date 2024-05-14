@@ -1,7 +1,8 @@
 "use client";
 
 import type { Project } from "@utaka/mdx/utils/fs";
-import { technologies, type technologyList } from "@utaka/tech";
+import { getTechnology, technologies, type technologyList } from "@utaka/tech";
+import { BadgeStyles } from "@utaka/ui/badge";
 import { Button, ButtonStyles } from "@utaka/ui/button";
 import { Card, CardStyles } from "@utaka/ui/card";
 import { Command } from "@utaka/ui/command";
@@ -160,7 +161,9 @@ export function ProjectList({ projects }: ProjectListProps) {
           <div className="grid w-full gap-4 md:grid-cols-2">
             {filteredProjects.map((project) => (
               <MotionDiv
-                className={CardStyles.Root()}
+                className={CardStyles.Root({
+                  className: "flex flex-col",
+                })}
                 layout
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -170,20 +173,42 @@ export function ProjectList({ projects }: ProjectListProps) {
                 <Card.Header>
                   <Card.Title>{project.name}</Card.Title>
                 </Card.Header>
-                <Card.Content>
+                <Card.Content className="flex-1">
                   <p>{project.description}</p>
+                  <div className="mt-2 flex flex-wrap items-center gap-2">
+                    {project.technologies.map((technology) => {
+                      const tech = getTechnology(technology);
+                      const Icon = Icons[tech.icon];
+
+                      return (
+                        <a
+                          key={technology}
+                          href={tech.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={BadgeStyles({
+                            className: "py-1",
+                            variant: "secondary",
+                          })}
+                        >
+                          <Icon className="mr-2 size-4" />
+                          {technology}
+                        </a>
+                      );
+                    })}
+                  </div>
                 </Card.Content>
-                <Card.Footer className="justify-between">
+                <Card.Footer className="flex-col justify-between gap-2 sm:flex-row">
                   <Link
                     className={ButtonStyles({
-                      class: "rounded-full",
+                      class: "w-full rounded-full sm:w-max",
                       size: "sm",
                     })}
                     href={`/projects/${project.slug}`}
                   >
                     Read more
                   </Link>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-4 max-sm:w-full">
                     {project.previewUrl && (
                       <a
                         href={project.previewUrl}
@@ -191,7 +216,7 @@ export function ProjectList({ projects }: ProjectListProps) {
                         rel="noopener noreferrer"
                         className={ButtonStyles({
                           variant: "outline",
-                          class: "rounded-full",
+                          class: "w-full rounded-full",
                           size: "sm",
                         })}
                       >
@@ -204,13 +229,13 @@ export function ProjectList({ projects }: ProjectListProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={ButtonStyles({
-                        class: "rounded-full",
+                        class: "w-full rounded-full",
                         size: "sm",
                         variant: "secondary",
                       })}
                     >
                       <Icons.GitHub className="mr-2 size-4" />
-                      Source code
+                      Repository
                     </a>
                   </div>
                 </Card.Footer>

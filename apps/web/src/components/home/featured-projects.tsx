@@ -1,5 +1,5 @@
 import { getFeaturedProjects } from "@utaka/mdx/utils/fs";
-import { technologies } from "@utaka/tech";
+import { getTechnology } from "@utaka/tech";
 import { BentoGrid } from "@utaka/ui/bento-grid";
 import { ButtonStyles } from "@utaka/ui/button";
 import { Icons } from "@utaka/ui/icons";
@@ -22,9 +22,7 @@ export function FeaturedProjectsSection() {
           >
             <div className="flex items-center gap-3">
               {project.technologies.map((technology) => {
-                const tech = Object.values(technologies).find(
-                  (t) => t.name === technology,
-                )!;
+                const tech = getTechnology(technology);
                 const Icon = Icons[tech.icon];
 
                 return (

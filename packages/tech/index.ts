@@ -62,6 +62,10 @@ export const technologyList = Object.values(technologies).map(
   (technology) => technology.name,
 );
 
+export function getTechnology(name: (typeof technologyList)[number]) {
+  return Object.values(technologies).find((t) => t.name === name)!;
+}
+
 export type Technologies = typeof technologies;
 export interface Technology {
   name: string;
