@@ -56,6 +56,26 @@ export const technologies = {
     icon: "Docker",
     url: "https://www.docker.com",
   },
+  trpc: {
+    name: "tRPC",
+    icon: "Trpc",
+    url: "https://trpc.io",
+  },
+  drizzle: {
+    name: "Drizzle",
+    icon: "Drizzle",
+    url: "https://orm.drizzle.team",
+  },
+  postgres: {
+    name: "PostgreSQL",
+    icon: "Postgres",
+    url: "https://www.postgresql.org",
+  },
+  redis: {
+    name: "Redis",
+    icon: "Redis",
+    url: "https://redis.io",
+  },
 } as const satisfies Record<string, Technology>;
 
 export const technologyList = Object.values(technologies).map(

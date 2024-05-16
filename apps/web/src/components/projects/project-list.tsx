@@ -14,7 +14,9 @@ import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useDeferredValue, useState } from "react";
+import { siteConfig } from "~/config/site";
 import { MotionDiv, MotionP } from "../framer-motion";
+import { PreviewRecursiveButton } from "./preview-recursive-button";
 
 function filterProjects(
   initialList: Project[],
@@ -209,21 +211,26 @@ export function ProjectList({ projects }: ProjectListProps) {
                     Read more
                   </Link>
                   <div className="flex items-center gap-4 max-sm:w-full">
-                    {project.previewUrl && (
-                      <a
-                        href={project.previewUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={ButtonStyles({
-                          variant: "outline",
-                          class: "w-full rounded-full",
-                          size: "sm",
-                        })}
-                      >
-                        <Icons.Eye className="mr-2 size-4" />
-                        Preview
-                      </a>
-                    )}
+                    {project.previewUrl &&
+                      (project.previewUrl === siteConfig.url ? (
+                        <PreviewRecursiveButton className="w-full" />
+                      ) : (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="w-full rounded-full"
+                          asChild
+                        >
+                          <a
+                            href={project.previewUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Icons.Eye className="mr-2 size-4" />
+                            Preview
+                          </a>
+                        </Button>
+                      ))}
                     <a
                       href={project.sourceCodeUrl}
                       target="_blank"

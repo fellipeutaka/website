@@ -16,6 +16,7 @@ import {
   VideoProgressBar,
   VideoVolume,
 } from "@utaka/ui/video";
+import Link from "next/link";
 import { BlurImage } from "../blur-image";
 import { File, Files, Folder } from "../files";
 import { ImageZoom } from "../image-zoom";
@@ -184,6 +185,7 @@ export const components = {
   Files,
   File,
   Folder,
+  Link,
 
   // Pages
   DisplayAge,
