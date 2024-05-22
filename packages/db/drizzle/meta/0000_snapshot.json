@@ -1,10 +1,8 @@
 {
-  "id": "28959574-1378-4771-b13d-d97492ce8cd7",
-  "prevId": "00000000-0000-0000-0000-000000000000",
-  "version": "5",
-  "dialect": "pg",
+  "version": "6",
+  "dialect": "postgresql",
   "tables": {
-    "account": {
+    "public.account": {
       "name": "account",
       "schema": "",
       "columns": {
@@ -80,11 +78,11 @@
         "account_user_id_user_id_fk": {
           "name": "account_user_id_user_id_fk",
           "tableFrom": "account",
-          "tableTo": "user",
           "columnsFrom": ["user_id"],
+          "tableTo": "user",
           "columnsTo": ["id"],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {
@@ -95,7 +93,7 @@
       },
       "uniqueConstraints": {}
     },
-    "comment_upvote": {
+    "public.comment_upvote": {
       "name": "comment_upvote",
       "schema": "",
       "columns": {
@@ -123,17 +121,17 @@
         "comment_upvote_comment_id_comment_id_fk": {
           "name": "comment_upvote_comment_id_comment_id_fk",
           "tableFrom": "comment_upvote",
-          "tableTo": "comment",
           "columnsFrom": ["comment_id"],
+          "tableTo": "comment",
           "columnsTo": ["id"],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "comment": {
+    "public.comment": {
       "name": "comment",
       "schema": "",
       "columns": {
@@ -216,7 +214,7 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "user": {
+    "public.user": {
       "name": "user",
       "schema": "",
       "columns": {
@@ -275,8 +273,10 @@
   "enums": {},
   "schemas": {},
   "_meta": {
-    "columns": {},
     "schemas": {},
-    "tables": {}
-  }
+    "tables": {},
+    "columns": {}
+  },
+  "id": "28959574-1378-4771-b13d-d97492ce8cd7",
+  "prevId": "00000000-0000-0000-0000-000000000000"
 }

@@ -4,14 +4,15 @@
   "types": "./src/index.ts",
   "private": true,
   "scripts": {
-    "generate": "pnpm env:load drizzle-kit generate:pg",
+    "generate": "pnpm env:load drizzle-kit generate",
     "migrate": "pnpm env:load tsx src/migrate.ts",
     "seed": "pnpm env:load tsx src/seed/index.ts",
     "drop": "pnpm env:load drizzle-kit drop",
-    "pull": "pnpm env:load drizzle-kit introspect:pg",
-    "push": "pnpm env:load drizzle-kit push:pg",
+    "pull": "pnpm env:load drizzle-kit introspect",
+    "push": "pnpm env:load drizzle-kit push",
     "studio": "pnpm env:load drizzle-kit studio",
-    "check": "pnpm env:load drizzle-kit check:pg",
+    "check": "pnpm env:load drizzle-kit check",
+    "metadata": "pnpm env:load drizzle-kit up",
     "start": "docker compose up -d",
     "stop": "docker compose stop",
     "delete": "docker compose down -v",
@@ -24,9 +25,9 @@
   },
   "devDependencies": {
     "@utaka/tsconfig": "workspace:*",
-    "drizzle-kit": "^0.20.18",
+    "drizzle-kit": "^0.21.3",
     "next-auth": "beta",
     "pg": "^8.11.5",
-    "tsx": "^4.9.3"
+    "tsx": "^4.10.5"
   }
 }
