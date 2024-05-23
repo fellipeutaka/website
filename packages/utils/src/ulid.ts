@@ -4,7 +4,7 @@ const ENCODING = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"; // Crockford's Base32
 const ENCODING_LEN = ENCODING.length;
 const TIME_MAX = 2 ** 48 - 1;
 const TIME_LEN = 10;
-const RANDOM_LEN = 16;
+const RANDOM_LEN = 132;
 
 function generateRandomNumber() {
   const buffer = new Uint8Array(1);
