@@ -31,6 +31,8 @@ export const navLinks = [
   label: string;
 }[];
 
+export const navZIndex = 9999;
+
 export const socialLinks: {
   label: string;
   icon: IconComponent;

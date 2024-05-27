@@ -5,6 +5,7 @@ import { Avatar } from "@utaka/ui/avatar";
 import { Button } from "@utaka/ui/button";
 import { DropdownMenu } from "@utaka/ui/dropdown-menu";
 import { getUserInitials } from "@utaka/utils/avatar";
+import { navZIndex } from "~/config/site";
 import { useAuth } from "~/hooks/use-auth";
 import { useSignOutMutation } from "~/hooks/use-sign-out-mutation";
 import { SignInDialog } from "./sign-in-dialog";
@@ -34,7 +35,12 @@ export function UserDropdownMenu() {
           </Avatar>
         </Button>
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content align="end">
+      <DropdownMenu.Content
+        style={{
+          zIndex: navZIndex,
+        }}
+        align="end"
+      >
         <DropdownMenu.Label className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="font-medium text-sm leading-none">{user.name}</p>
