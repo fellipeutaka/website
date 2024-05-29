@@ -16,11 +16,17 @@ export function StudyingCard() {
       <div className="flex items-center justify-center">
         <TooltipProvider delayDuration={150}>
           <Tooltip>
-            <TooltipTrigger>
-              <Icons.Php className="size-20" />
-              <span className="sr-only">PHP</span>
+            <TooltipTrigger asChild>
+              <a
+                href="https://www.rust-lang.org"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icons.Rust className="size-20" />
+                <span className="sr-only">Rust</span>
+              </a>
             </TooltipTrigger>
-            <TooltipContent sideOffset={-12}>It's a joke 🤣</TooltipContent>
+            <TooltipContent>Rust</TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </div>
