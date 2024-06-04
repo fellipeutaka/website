@@ -1,19 +1,25 @@
 {
   "cSpell.words": [
     "biomejs",
+    "cobe",
     "codepen",
     "commitlint",
     "fontsource",
     "ratelimit",
+    "rehype",
+    "shiki",
+    "shikijs",
     "sonner",
     "superjson",
     "tailwindcss",
+    "tanstack",
     "trpc",
     "turborepo",
     "upstash",
     "upvote",
     "Upvoted",
-    "Upvotes"
+    "Upvotes",
+    "vfile"
   ],
   "editor.defaultFormatter": "biomejs.biome",
   "typescript.enablePromptUseWorkspaceTsdk": true,

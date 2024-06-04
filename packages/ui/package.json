@@ -21,7 +21,7 @@
     "sonner": "^1.4.41"
   },
   "devDependencies": {
-    "@types/react": "^18.3.1",
+    "@types/react": "^18.3.3",
     "@utaka/tailwind": "workspace:*",
     "@utaka/tsconfig": "workspace:*",
     "react": "^18.3.1"
