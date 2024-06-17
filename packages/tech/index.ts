@@ -66,6 +66,11 @@ export const technologies = {
     icon: "Drizzle",
     url: "https://orm.drizzle.team",
   },
+  prisma: {
+    name: "Prisma",
+    icon: "Prisma",
+    url: "https://www.prisma.io",
+  },
   postgres: {
     name: "PostgreSQL",
     icon: "Postgres",
@@ -75,6 +80,26 @@ export const technologies = {
     name: "Redis",
     icon: "Redis",
     url: "https://redis.io",
+  },
+  fastify: {
+    name: "Fastify",
+    icon: "Fastify",
+    url: "https://fastify.dev",
+  },
+  jwt: {
+    name: "JWT",
+    icon: "Jwt",
+    url: "https://jwt.io",
+  },
+  swagger: {
+    name: "Swagger",
+    icon: "Swagger",
+    url: "https://swagger.io",
+  },
+  vitest: {
+    name: "Vitest",
+    icon: "Vitest",
+    url: "https://vitest.dev",
   },
 } as const satisfies Record<string, Technology>;
 

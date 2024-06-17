@@ -1,0 +1,93 @@
+---
+name: Yagami
+description: 🖥️ API for managing homeworks.
+sourceCodeUrl: https://github.com/fellipeutaka/yagami
+previewUrl: https://yagami.apidocumentation.com/reference
+isFeatured: true
+technologies:
+  [
+    "Fastify",
+    "Prisma",
+    "JWT",
+    "Vitest",
+    "Swagger",
+    "Node.js",
+    "TypeScript",
+    "Docker",
+    "PostgreSQL",
+  ]
+---
+
+A REST API for managing homeworks. This project was created to help me manage my homeworks
+and create a API using the SOLID principles.
+
+[![Run in Insomnia](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Yagami&uri=https%3A%2F%2Fraw.githubusercontent.com%2Ffellipeutaka%2Fyagami%2Fmain%2F.github%2Fassets%2Finsomnia.json)
+
+## Why Yagami?
+
+I named this project Yagami because I'm a fan of the anime Death Note, and the main character is Light Yagami.
+So, I decided to name this project Yagami because it's a project to manage homeworks, and Light Yagami is a very smart and organized student.
+
+![Light Yagami](https://shareiitnow.b-cdn.net/wp-content/uploads/2019/12/Light-Yagami-quotes-from-death-note.jpg)
+
+## FRs (Functional requirements)
+
+- [x] It should be possible to register;
+- [x] It should be possible to authenticate;
+- [x] It should be possible to obtain the profile of a logged in user;
+- [x] It should be possible to list all homeworks;
+- [x] It should be possible to add a new homework;
+- [x] It should be possible to edit a homework;
+- [x] It should be possible to delete a homework;
+- [x] It should be possible to mark a homework as completed;
+
+## BRs (Business Rules)
+
+- [x] The user must not be able to register with a duplicate email;
+
+## NFRs (Non-Functional Requirements)
+
+- [x] The user's password must be encrypted;
+- [x] Application data must be persisted in a PostgreSQL database;
+- [x] All data lists must be paginated using cursor-based pagination;
+- [x] The user must be identified by a [JWT (JSON Web Token)](https://jwt.io/introduction);
+
+## How to run
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/fellipeutaka/yagami
+```
+
+2. Enter the project folder
+
+```bash
+cd yagami
+```
+
+3. Install the dependencies
+
+```bash
+npm install
+```
+
+4. Create a `.env` file based on the `.env.example` file
+
+5. Start the PostgreSQL database using Docker
+
+```bash
+npm run db:start
+```
+
+6. Run the migrations
+
+```bash
+npm run db:migrate:dev
+```
+
+7. Run the project
+
+```bash
+npm run start:dev
+```

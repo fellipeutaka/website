@@ -9,6 +9,11 @@ import { DropdownMenu } from "@utaka/ui/dropdown-menu";
 import { type IconProps, Icons } from "@utaka/ui/icons";
 import { ScrollArea, ScrollBar } from "@utaka/ui/scroll-area";
 import {
+  type GitCommand,
+  convertGitCloneCommand,
+  isGitCloneCommand,
+} from "@utaka/utils/git";
+import {
   type PackageManager,
   convertNpmCommand,
   isNpmCommand,
@@ -71,6 +76,12 @@ export function Pre(props: PreProps) {
     }
   }, []);
 
+  const CopyBtn = isNpmCommand(text)
+    ? CopyNpmCommand
+    : isGitCloneCommand(text)
+      ? CopyGitCloneCommand
+      : CopyButton;
+
   return (
     <figure className="group relative my-6 max-w-[calc(100vw-4rem)] overflow-hidden rounded-lg border bg-secondary/50 text-sm">
       {title ? (
@@ -83,16 +94,10 @@ export function Pre(props: PreProps) {
           <figcaption className="flex-1 truncate text-muted-foreground">
             {title}
           </figcaption>
-          {isNpmCommand(text) ? (
-            <CopyNpmCommand text={text} />
-          ) : (
-            <CopyButton text={text} />
-          )}
+          <CopyBtn text={text} />
         </div>
-      ) : isNpmCommand(text) ? (
-        <CopyNpmCommand className="absolute top-3 right-4 z-10" text={text} />
       ) : (
-        <CopyButton className="absolute top-3 right-4 z-10" text={text} />
+        <CopyBtn className="absolute top-3 right-4 z-10" text={text} />
       )}
 
       <ScrollArea>
@@ -136,6 +141,7 @@ function CopyButton(props: CopyButtonProps) {
     </Button>
   );
 }
+
 function CopyNpmCommand(props: CopyButtonProps) {
   const { text, className, ...rest } = props;
   const [copy, isCopied] = useCopyToClipboard();
@@ -161,11 +167,14 @@ function CopyNpmCommand(props: CopyButtonProps) {
           aria-label="Copy code to clipboard"
           {...rest}
         >
-          {isCopied ? (
-            <Icons.Check className="size-4" />
-          ) : (
-            <Icons.Copy className="size-4" />
-          )}
+          <Icons.Copy
+            data-visible={isCopied}
+            className="absolute size-4 scale-100 transition-transform data-[visible='true']:scale-0"
+          />
+          <Icons.Check
+            data-visible={isCopied}
+            className="size-4 transition-transform data-[visible='false']:scale-0"
+          />
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content align="end">
@@ -184,6 +193,55 @@ function CopyNpmCommand(props: CopyButtonProps) {
         <DropdownMenu.Item onClick={() => copyCommand("bun")}>
           <Icons.Bun className="mr-2 size-4" />
           bun
+        </DropdownMenu.Item>
+      </DropdownMenu.Content>
+    </DropdownMenu>
+  );
+}
+
+function CopyGitCloneCommand(props: CopyButtonProps) {
+  const { text, className, ...rest } = props;
+  const [copy, isCopied] = useCopyToClipboard();
+  const [isOpen, setIsOpen] = useState(false);
+
+  function copyCommand(gitCommand: GitCommand) {
+    copy({
+      text: convertGitCloneCommand(text)[gitCommand],
+    });
+  }
+
+  return (
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+      <DropdownMenu.Trigger asChild>
+        <Button
+          className={cn(
+            "size-8 bg-secondary opacity-0 hover:bg-background group-hover:opacity-100",
+            isOpen && "bg-background opacity-100",
+            className,
+          )}
+          size="icon"
+          variant="outline"
+          aria-label="Copy code to clipboard"
+          {...rest}
+        >
+          <Icons.Copy
+            data-visible={isCopied}
+            className="absolute size-4 scale-100 transition-transform data-[visible='true']:scale-0"
+          />
+          <Icons.Check
+            data-visible={isCopied}
+            className="size-4 transition-transform data-[visible='false']:scale-0"
+          />
+        </Button>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content align="end">
+        <DropdownMenu.Item onClick={() => copyCommand("git")}>
+          <Icons.Git className="mr-2 size-4" />
+          Git
+        </DropdownMenu.Item>
+        <DropdownMenu.Item onClick={() => copyCommand("gh")}>
+          <Icons.GitHub className="mr-2 size-4" />
+          GitHub CLI
         </DropdownMenu.Item>
       </DropdownMenu.Content>
     </DropdownMenu>
