@@ -9,10 +9,6 @@ import { reactClient } from "~/lib/api/react";
 import { BlurImage } from "../blur-image";
 import { ImageZoom } from "../image-zoom";
 
-function getRandomNumber(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 interface PostHeaderProps {
   date: Date;
   title: string;
@@ -51,23 +47,15 @@ export function PostHeader({ title, date, slug }: PostHeaderProps) {
           </div>
           <div className="space-y-1 md:mx-auto">
             <div className="text-muted-foreground">Published on</div>
-            <div>{formatDate(date)}</div>
+            <time dateTime={date.toISOString()}>{formatDate(date)}</time>
           </div>
           <div className="space-y-1 md:mx-auto">
             <div className="text-muted-foreground">Views</div>
-            {isLoading ? (
-              "--"
-            ) : (
-              <div>{data?.views ?? getRandomNumber(0, 1_000)}</div>
-            )}
+            {isLoading ? "--" : <div>{data?.views ?? 0}</div>}
           </div>
           <div className="space-y-1 md:mx-auto">
             <div className="text-muted-foreground">Comments</div>
-            {isLoading ? (
-              "--"
-            ) : (
-              <div>{data?.comments ?? getRandomNumber(0, 100)}</div>
-            )}
+            {isLoading ? "--" : <div>{data?.comments ?? 0}</div>}
           </div>
         </div>
       </div>
