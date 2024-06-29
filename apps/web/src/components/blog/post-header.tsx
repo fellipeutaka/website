@@ -1,8 +1,17 @@
+"use client";
+
 import { formatDate } from "@utaka/utils/date";
 import Link from "next/link";
+import { useEffect } from "react";
 import { siteConfig } from "~/config/site";
+import { nativeClient } from "~/lib/api/native";
+import { reactClient } from "~/lib/api/react";
 import { BlurImage } from "../blur-image";
 import { ImageZoom } from "../image-zoom";
+
+function getRandomNumber(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 interface PostHeaderProps {
   date: Date;
@@ -11,16 +20,11 @@ interface PostHeaderProps {
 }
 
 export function PostHeader({ title, date, slug }: PostHeaderProps) {
-  const viewsIsLoading = false;
-  const commentsIsLoading = false;
+  const { data, isLoading } = reactClient.post.getMetadata.useQuery(slug);
 
-  const viewsData = {
-    views: 10,
-  };
-
-  const commentsData = {
-    value: 0,
-  };
+  useEffect(() => {
+    nativeClient.post.increaseView.mutate(slug);
+  }, [slug]);
 
   return (
     <div className="flex flex-col items-center gap-y-16 py-16">
@@ -51,11 +55,19 @@ export function PostHeader({ title, date, slug }: PostHeaderProps) {
           </div>
           <div className="space-y-1 md:mx-auto">
             <div className="text-muted-foreground">Views</div>
-            {viewsIsLoading ? "--" : <div>{viewsData?.views}</div>}
+            {isLoading ? (
+              "--"
+            ) : (
+              <div>{data?.views ?? getRandomNumber(0, 1_000)}</div>
+            )}
           </div>
           <div className="space-y-1 md:mx-auto">
             <div className="text-muted-foreground">Comments</div>
-            {commentsIsLoading ? "--" : <div>{commentsData?.value}</div>}
+            {isLoading ? (
+              "--"
+            ) : (
+              <div>{data?.comments ?? getRandomNumber(0, 100)}</div>
+            )}
           </div>
         </div>
       </div>

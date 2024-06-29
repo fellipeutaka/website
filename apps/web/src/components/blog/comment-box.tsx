@@ -54,7 +54,10 @@ export function CommentBox({ slug, parentId, onCancel }: CommentBoxProps) {
         rawComment: comment,
       });
 
-      clientUtils.comment.getBySlug.invalidate();
+      await Promise.all([
+        clientUtils.comment.getBySlug.invalidate(),
+        clientUtils.post.getMetadata.invalidate(),
+      ]);
       setComment("");
       toast.success("Message created!", { id: toastId });
     } catch (error) {

@@ -6,6 +6,7 @@ import {
   editCommentSchema,
   slugSchema,
 } from "@utaka/dto/comment";
+import { redis } from "@utaka/redis";
 import { ulid } from "@utaka/utils/ulid";
 import {
   createTRPCRouter,
@@ -64,6 +65,8 @@ export const commentRoute = createTRPCRouter({
           commentId,
         });
       }
+
+      await redis.incr(`post:${slug}:comments`);
     }),
   editById: protectedProcedure
     .use(
@@ -153,6 +156,8 @@ export const commentRoute = createTRPCRouter({
 
       await db.delete(schema.comments).where(eq(schema.comments.id, id));
 
+      await redis.decr(`post:${comment.postId}:comments`);
+
       if (comment.parentId) {
         const parentComment = await db.query.comments.findFirst({
           where: and(
@@ -169,6 +174,8 @@ export const commentRoute = createTRPCRouter({
           await db
             .delete(schema.comments)
             .where(eq(schema.comments.id, comment.parentId));
+
+          await redis.decr(`post:${comment.postId}:comments`);
         }
       }
     }),

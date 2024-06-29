@@ -1,10 +1,10 @@
-import { getPosts } from "@utaka/mdx/utils/fs";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import {
   PostCardList,
   PostCardListSkeleton,
 } from "~/components/blog/post-card-list";
+import { getPostsWithViews } from "~/utils/posts";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -12,8 +12,8 @@ export const metadata: Metadata = {
     "A collection of blog posts about software development, web development, and other topics.",
 };
 
-export default function Page() {
-  const posts = getPosts().sort((a, b) => {
+export default async function Page() {
+  const posts = (await getPostsWithViews()).toSorted((a, b) => {
     return b.date.getTime() - a.date.getTime();
   });
 

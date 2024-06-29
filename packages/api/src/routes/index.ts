@@ -2,10 +2,12 @@ import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { createTRPCRouter } from "../trpc";
 import { authRoute } from "./auth";
 import { commentRoute } from "./comment";
+import { postRoute } from "./post";
 
 export const appRouter = createTRPCRouter({
-  comment: commentRoute,
   auth: authRoute,
+  comment: commentRoute,
+  post: postRoute,
 });
 
 export type AppRouter = typeof appRouter;

@@ -1,10 +1,10 @@
-import type { Post } from "@utaka/mdx/utils/fs";
 import { formatDate } from "@utaka/utils/date";
 import Link from "next/link";
+import type { PostWithView } from "~/utils/posts";
 import { BlurImage } from "../blur-image";
 
 interface PostCardProps {
-  post: Post;
+  post: PostWithView;
 }
 
 export function PostCard({ post }: PostCardProps) {
@@ -23,7 +23,9 @@ export function PostCard({ post }: PostCardProps) {
       />
       <div className="flex items-center justify-between gap-2 px-2 pt-4 text-muted-foreground text-sm">
         <time dateTime={post.date.toISOString()}>{formatDate(post.date)}</time>
-        <p>{32} views</p>
+        <p>
+          {post.views} view{post.views !== 1 && "s"}
+        </p>
       </div>
       <div className="flex flex-col px-2 py-4">
         <h3 className="font-bold font-title text-2xl">{post.title}</h3>

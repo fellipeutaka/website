@@ -1,18 +1,13 @@
 import { TRPCError, initTRPC } from "@trpc/server";
-import { auth } from "@utaka/auth";
+import type { User } from "@utaka/auth";
 import { Ratelimit, redis } from "@utaka/redis";
 import { ZodError } from "zod";
 import { transformer } from "./transformer";
 
-export const createTRPCContext = async () => {
-  const session = await auth();
-
-  return {
-    user: session?.user,
-  };
-};
-
-export type TRPCContext = Awaited<ReturnType<typeof createTRPCContext>>;
+export interface TRPCContext {
+  user?: User;
+  headers: Headers;
+}
 
 const t = initTRPC.context<TRPCContext>().create({
   transformer,

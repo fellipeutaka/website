@@ -1,17 +1,16 @@
 "use client";
-
-import type { Post } from "@utaka/mdx/utils/fs";
 import { Icons } from "@utaka/ui/icons";
 import { Skeleton } from "@utaka/ui/skeleton";
 import { TextField } from "@utaka/ui/textfield";
 import { AnimatePresence } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 import { useDeferredValue } from "react";
+import type { PostWithView } from "~/utils/posts";
 import { MotionDiv, MotionP } from "../framer-motion";
 import { PostCard } from "./post-card";
 
 function filterPosts(
-  initialList: Post[],
+  initialList: PostWithView[],
   filter: {
     query: string;
   },
@@ -28,7 +27,7 @@ function filterPosts(
 }
 
 interface PostCardListProps {
-  posts: Post[];
+  posts: PostWithView[];
 }
 
 export function PostCardList({ posts }: PostCardListProps) {
