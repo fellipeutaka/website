@@ -34,14 +34,14 @@ export function MobileNav() {
         >
           <div
             className={cn(
-              "-translate-y-1 absolute h-0.5 w-3.5 bg-muted-foreground transition",
+              "-translate-y-1 absolute h-0.5 w-3.5 transform-gpu bg-muted-foreground transition-transform",
               open && "translate-y-0 rotate-45",
             )}
             aria-hidden
           />
           <div
             className={cn(
-              "absolute h-0.5 w-3.5 translate-y-1 bg-muted-foreground transition",
+              "absolute h-0.5 w-3.5 translate-y-1 transform-gpu bg-muted-foreground transition-transform",
               open && "-rotate-45 translate-y-0",
             )}
             aria-hidden
