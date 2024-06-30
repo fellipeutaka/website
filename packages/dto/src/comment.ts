@@ -8,6 +8,11 @@ export const commentIdSchema = z.string().regex(ulidRegex, "Invalid ID");
 
 export const slugSchema = z.string().min(1, "Slug is required");
 
+export const getCommentPaginatedSchema = z.object({
+  slug: slugSchema,
+  cursor: commentIdSchema.nullish(),
+});
+
 export const createCommentSchema = z.object({
   rawComment: z
     .string()

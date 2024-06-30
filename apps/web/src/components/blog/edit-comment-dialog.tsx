@@ -49,19 +49,22 @@ export function EditCommentDialog(props: EditCommentDialogProps) {
         rawComment: comment,
       });
 
-      clientUtils.comment.getBySlug.setData(props.comment.postId, (old) => {
-        return old?.map((c) => {
-          if (c.id === props.comment.id) {
-            return {
-              ...c,
-              rawBody: comment,
-              body: compiledSource,
-              modifiedAt: new Date(),
-            };
-          }
-          return c;
-        });
-      });
+      // TODO: Update the comment in the cache
+      // clientUtils.comment.getBySlug.setData(
+      //   {
+      //     slug: props.comment.postId,
+      //     cursor: null,
+      //   },
+      //   (old) => {
+      //     return {
+      //       data: [],
+      //       meta: { lastCursor: old?.meta.lastCursor as string },
+      //     };
+      //   },
+      // );
+
+      clientUtils.comment.getBySlug.invalidate();
+
       toast.success("Message edited!", { id: toastId });
       props.closeDropdown();
     } catch (error) {

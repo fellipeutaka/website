@@ -6,13 +6,12 @@ import { Avatar } from "@utaka/ui/avatar";
 import { Badge } from "@utaka/ui/badge";
 import { DropdownMenu } from "@utaka/ui/dropdown-menu";
 import { Icons } from "@utaka/ui/icons";
-import { toast } from "@utaka/ui/toast";
 import { Tooltip } from "@utaka/ui/tooltip";
 import { getUserInitials } from "@utaka/utils/avatar";
 import { formatCommentDate, formatTimeAgo } from "@utaka/utils/date";
 import { formatUpvotes } from "@utaka/utils/upvotes";
 import type React from "react";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { siteConfig } from "~/config/site";
 import { useAuth } from "~/hooks/use-auth";
 import { reactClient } from "~/lib/api/react";
@@ -24,118 +23,135 @@ import { MarkdownPreview } from "./markdown-preview";
 
 interface CommentProps {
   slug: string;
-  comment: RouterOutput["comment"]["getBySlug"][number];
+  comment: RouterOutput["comment"]["getBySlug"]["data"][number];
 }
 
-export function Comment(props: CommentProps) {
-  const { slug, comment } = props;
-  const { user } = useAuth();
+export const Comment = forwardRef<React.ComponentRef<"div">, CommentProps>(
+  function Comment(props, ref) {
+    const { slug, comment } = props;
+    const { user } = useAuth();
 
-  const isCurrentUserUpvotedComment = comment.upvotes.some(
-    (upvote) => upvote.userId === user?.id,
-  );
+    const isCurrentUserUpvotedComment = comment.upvotes.some(
+      (upvote) => upvote.userId === user?.id,
+    );
 
-  const clientUtils = reactClient.useUtils();
-  const upvoteMutation = reactClient.comment.upvoteById.useMutation({
-    onMutate: async (commentId) => {
-      await clientUtils.comment.getBySlug.cancel();
-      const previousComments = clientUtils.comment.getBySlug.getData();
-      clientUtils.comment.getBySlug.setData(slug, (old) => {
-        if (isCurrentUserUpvotedComment) {
-          return old?.map((c) => {
-            if (c.id === commentId) {
-              return {
-                ...c,
-                upvotes: c.upvotes.filter((u) => u.userId !== user?.id),
-              };
-            }
-            return c;
-          });
-        }
+    const clientUtils = reactClient.useUtils();
+    const upvoteMutation = reactClient.comment.upvoteById.useMutation({
+      // TODO: Implement optimistic updates
+      // onMutate: async (commentId) => {
+      //   await clientUtils.comment.getBySlug.cancel();
+      //   const previousComments = clientUtils.comment.getBySlug.getData();
+      //   clientUtils.comment.getBySlug.setData({ slug }, (old) => {
+      //     if (isCurrentUserUpvotedComment) {
+      //       return {
+      //         data:
+      //           old?.data.map((c) => {
+      //             if (c.id === commentId) {
+      //               return {
+      //                 ...c,
+      //                 upvotes: c.upvotes.filter((u) => u.userId !== user?.id),
+      //               };
+      //             }
+      //             return c;
+      //           }) ?? [],
+      //         meta: { lastCursor: old?.meta?.lastCursor as string },
+      //       };
+      //     }
 
-        return old?.map((c) => {
-          if (c.id === commentId) {
-            return {
-              ...c,
-              upvotes: [
-                {
-                  id: c.upvotes.length + 1,
-                  userId: user?.id ?? crypto.randomUUID(),
-                  commentId: comment.id,
-                },
-              ],
-            };
-          }
-          return c;
-        });
-      });
-      return { previousComments };
-    },
-    onError: (err, _commentId, context) => {
-      toast.error(err.message);
-      clientUtils.comment.getBySlug.setData(slug, context?.previousComments);
-    },
-    onSettled: () => {
-      clientUtils.comment.getBySlug.invalidate();
-    },
-  });
+      //     return {
+      //       data:
+      //         old?.data.map((c) => {
+      //           if (c.id === commentId) {
+      //             return {
+      //               ...c,
+      //               upvotes: [
+      //                 {
+      //                   id: c.upvotes.length + 1,
+      //                   userId: user?.id ?? crypto.randomUUID(),
+      //                   commentId: comment.id,
+      //                 },
+      //               ],
+      //             };
+      //           }
+      //           return c;
+      //         }) ?? [],
+      //       meta: { lastCursor: old?.meta?.lastCursor as string },
+      //     };
+      //   });
+      //   return { previousComments };
+      // },
+      // onError: (err, _commentId, context) => {
+      //   toast.error(err.message);
+      //   clientUtils.comment.getBySlug.setData(
+      //     { slug },
+      //     context?.previousComments,
+      //   );
+      // },
+      onSettled: () => {
+        clientUtils.comment.getBySlug.invalidate();
+      },
+    });
 
-  const [isReplying, setIsReplying] = useState(false);
+    const [isReplying, setIsReplying] = useState(false);
 
-  return (
-    <div className="scroll-mt-20 overflow-hidden rounded-lg border dark:bg-input/30">
-      <div className="border-b p-2 sm:px-4">
-        <CommentContent user={user ?? null} comment={comment} />
+    return (
+      <div
+        ref={ref}
+        className="scroll-mt-20 overflow-hidden rounded-lg border dark:bg-input/30"
+      >
+        <div className="border-b p-2 sm:px-4">
+          <CommentContent user={user ?? null} comment={comment} />
 
-        {!comment.deletedAt ? (
-          <MarkdownPreview className="p-4" compiledSource={comment.body} />
-        ) : (
-          <p className="p-4 text-muted-foreground text-sm italic">
-            {comment.body}
-          </p>
-        )}
+          {!comment.deletedAt ? (
+            <MarkdownPreview className="p-4" compiledSource={comment.body} />
+          ) : (
+            <p className="p-4 text-muted-foreground text-sm italic">
+              {comment.body}
+            </p>
+          )}
 
-        {user ? (
-          <UpvoteButton
-            isCurrentUserUpvotedComment={isCurrentUserUpvotedComment}
-            upvotesAmount={comment.upvotes.length}
-            onClick={() => upvoteMutation.mutate(comment.id)}
-          />
-        ) : (
-          <SignInDialog>
+          {user ? (
             <UpvoteButton
               isCurrentUserUpvotedComment={isCurrentUserUpvotedComment}
               upvotesAmount={comment.upvotes.length}
+              onClick={() => upvoteMutation.mutate(comment.id)}
             />
-          </SignInDialog>
-        )}
-      </div>
+          ) : (
+            <SignInDialog>
+              <UpvoteButton
+                isCurrentUserUpvotedComment={isCurrentUserUpvotedComment}
+                upvotesAmount={comment.upvotes.length}
+              />
+            </SignInDialog>
+          )}
+        </div>
 
-      <div>
-        {comment.replies.length > 0 &&
-          comment.replies.map((reply) => (
-            <Reply key={reply.id} user={user ?? null} reply={reply} />
-          ))}
-      </div>
+        <div>
+          {comment.replies.length > 0 &&
+            comment.replies.map((reply) => (
+              <Reply key={reply.id} user={user ?? null} reply={reply} />
+            ))}
+        </div>
 
-      <div className="p-2 dark:bg-input/30 sm:px-3">
-        {isReplying ? (
-          <CommentBox
-            slug={slug}
-            parentId={comment.id}
-            onCancel={() => setIsReplying(false)}
-          />
-        ) : user ? (
-          <ReplyButton onClick={() => setIsReplying(true)} />
-        ) : (
-          <SignInDialog>
-            <ReplyButton />
-          </SignInDialog>
-        )}
+        <div className="p-2 dark:bg-input/30 sm:px-3">
+          {isReplying ? (
+            <CommentBox
+              slug={slug}
+              parentId={comment.id}
+              onCancel={() => setIsReplying(false)}
+            />
+          ) : user ? (
+            <ReplyButton onClick={() => setIsReplying(true)} />
+          ) : (
+            <SignInDialog>
+              <ReplyButton />
+            </SignInDialog>
+          )}
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  },
+);
 
 interface UpvoteButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   isCurrentUserUpvotedComment: boolean;

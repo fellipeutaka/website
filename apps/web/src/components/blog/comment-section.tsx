@@ -5,6 +5,7 @@ import { reactClient } from "~/lib/api/react";
 import { Icons } from "@utaka/ui/icons";
 import { Skeleton } from "@utaka/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@utaka/ui/tabs";
+import { useEffect, useRef } from "react";
 import { Comment } from "./comment";
 import { CommentBox } from "./comment-box";
 
@@ -14,12 +15,42 @@ interface CommentSectionProps {
 
 export function CommentSection({ slug }: CommentSectionProps) {
   const {
-    data: comments,
+    data,
     isLoading,
+    isFetching,
+    isFetchingNextPage,
     isError,
-  } = reactClient.comment.getBySlug.useQuery(slug, {
-    staleTime: 60 * 1000,
-  });
+    hasNextPage,
+    fetchNextPage,
+  } = reactClient.comment.getBySlug.useInfiniteQuery(
+    {
+      slug,
+    },
+    {
+      staleTime: 60 * 1000,
+      getNextPageParam: (page) => page.meta.lastCursor,
+    },
+  );
+
+  const commentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([{ isIntersecting }]) => {
+      if (isIntersecting && hasNextPage && !isFetching) {
+        fetchNextPage();
+      }
+    });
+
+    if (commentRef.current) {
+      observer.observe(commentRef.current);
+    }
+
+    return () => {
+      if (commentRef.current) {
+        observer.unobserve(commentRef.current);
+      }
+    };
+  }, [fetchNextPage, hasNextPage, isFetching]);
 
   if (isLoading) {
     return <CommentSectionSkeleton />;
@@ -29,6 +60,8 @@ export function CommentSection({ slug }: CommentSectionProps) {
     return <div>Failed to load comments</div>;
   }
 
+  const comments = data?.pages.flatMap((page) => page.data) ?? [];
+
   return (
     <div className="space-y-6">
       <div className="rounded-lg border px-2 py-4 dark:bg-input/30 sm:px-4">
@@ -36,10 +69,18 @@ export function CommentSection({ slug }: CommentSectionProps) {
       </div>
       <div className="space-y-8">
         {comments
-          ?.filter((c) => !c.parentId)
-          .map((comment) => (
-            <Comment key={comment.id} slug={slug} comment={comment} />
+          .filter((c) => !c.parentId)
+          .map((comment, index, { length }) => (
+            <Comment
+              key={comment.id}
+              ref={index === length - 1 ? commentRef : undefined}
+              slug={slug}
+              comment={comment}
+            />
           ))}
+        {isFetchingNextPage && (
+          <Icons.Loader className="mx-auto animate-spin" />
+        )}
       </div>
     </div>
   );

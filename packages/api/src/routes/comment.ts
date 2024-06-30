@@ -1,10 +1,10 @@
 import { TRPCError } from "@trpc/server";
-import { and, db, eq, isNotNull, schema } from "@utaka/db";
+import { and, db, eq, isNotNull, lt, schema } from "@utaka/db";
 import {
   commentIdSchema,
   createCommentSchema,
   editCommentSchema,
-  slugSchema,
+  getCommentPaginatedSchema,
 } from "@utaka/dto/comment";
 import { redis } from "@utaka/redis";
 import { ulid } from "@utaka/utils/ulid";
@@ -16,25 +16,51 @@ import {
 } from "../trpc";
 
 export const commentRoute = createTRPCRouter({
-  getBySlug: publicProcedure.input(slugSchema).query(async ({ input }) => {
-    const slug = input;
+  getBySlug: publicProcedure
+    .input(getCommentPaginatedSchema)
+    .query(async ({ input }) => {
+      const { cursor, slug } = input;
 
-    return await db.query.comments.findMany({
-      where: eq(schema.comments.postId, slug),
-      with: {
-        user: true,
-        upvotes: true,
-        replies: {
-          with: {
-            user: true,
+      const defaultWhere = eq(schema.comments.postId, slug);
+      const where = cursor
+        ? and(defaultWhere, lt(schema.comments.id, cursor))
+        : defaultWhere;
+
+      const data = await db.query.comments.findMany({
+        where,
+        limit: 20,
+        with: {
+          user: true,
+          upvotes: true,
+          replies: {
+            with: {
+              user: true,
+            },
           },
         },
-      },
-      orderBy({ createdAt }, { desc }) {
-        return desc(createdAt);
-      },
-    });
-  }),
+        orderBy({ createdAt }, { desc }) {
+          return desc(createdAt);
+        },
+      });
+
+      const lastCursor = data.at(-1)?.id;
+
+      if (!lastCursor) {
+        return {
+          data: [],
+          meta: {
+            lastCursor: null,
+          },
+        };
+      }
+
+      return {
+        data,
+        meta: {
+          lastCursor,
+        },
+      };
+    }),
   create: protectedProcedure
     .use(
       ratelimitMiddleware({
