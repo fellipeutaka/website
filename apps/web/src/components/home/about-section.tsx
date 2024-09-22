@@ -1,6 +1,6 @@
 import { ButtonStyles } from "@utaka/ui/button";
+import * as motion from "framer-motion/client";
 import Link from "next/link";
-import { MotionDiv } from "../framer-motion";
 import { CodingHours } from "./coding-hours";
 import { Connect } from "./connect";
 import { LocationCard } from "./location-card";
@@ -12,7 +12,7 @@ export function AboutSection() {
     <section>
       <h2 className="mb-10 font-semibold text-2xl md:text-3xl">About me</h2>
 
-      <MotionDiv
+      <motion.div
         className="grid gap-4 md:grid-cols-2"
         initial={{
           y: 40,
@@ -37,7 +37,7 @@ export function AboutSection() {
             <StudyingCard />
           </div>
         </div>
-      </MotionDiv>
+      </motion.div>
       <Link
         className={ButtonStyles({
           class: "mx-auto my-8 flex w-max",

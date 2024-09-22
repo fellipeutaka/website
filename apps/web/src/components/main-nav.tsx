@@ -1,10 +1,10 @@
 "use client";
 
+import * as motion from "framer-motion/client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navLinks } from "~/config/site";
-import { MotionDiv } from "./framer-motion";
 
 function isActive(href: string, path: string) {
   return path.includes(href);
@@ -27,7 +27,7 @@ export function MainNav() {
         >
           <span>{item.label}</span>
           {isActive(item.href, hoveredPath) && (
-            <MotionDiv
+            <motion.div
               className="-z-10 absolute bottom-0 left-0 size-full rounded-full bg-muted"
               layoutId="navbar"
               aria-hidden="true"
@@ -37,7 +37,7 @@ export function MainNav() {
             />
           )}
           {isActive(item.href, pathname) && (
-            <MotionDiv
+            <motion.div
               className="-z-10 absolute bottom-0 left-0 size-full rounded-full bg-muted"
               aria-hidden="true"
               transition={{

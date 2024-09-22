@@ -4,8 +4,8 @@
   "types": "./index.ts",
   "private": true,
   "dependencies": {
-    "@upstash/ratelimit": "^1.1.3",
-    "@upstash/redis": "^1.31.3 ",
+    "@upstash/ratelimit": "^2.0.3",
+    "@upstash/redis": "^1.34.0",
     "@utaka/env": "workspace:*"
   },
   "devDependencies": {

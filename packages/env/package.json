@@ -5,7 +5,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@t3-oss/env-nextjs": "^0.10.1"
+    "@t3-oss/env-nextjs": "^0.11.1"
   },
   "devDependencies": {
     "@utaka/tsconfig": "workspace:*"

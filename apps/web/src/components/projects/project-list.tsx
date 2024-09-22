@@ -11,11 +11,11 @@ import { Popover } from "@utaka/ui/popover";
 import { Skeleton } from "@utaka/ui/skeleton";
 import { TextField } from "@utaka/ui/textfield";
 import { AnimatePresence } from "framer-motion";
+import * as motion from "framer-motion/client";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useDeferredValue, useState } from "react";
 import { siteConfig } from "~/config/site";
-import { MotionDiv, MotionP } from "../framer-motion";
 import { PreviewRecursiveButton } from "./preview-recursive-button";
 
 function filterProjects(
@@ -134,7 +134,7 @@ export function ProjectList({ projects }: ProjectListProps) {
                 </Command.Group>
                 <AnimatePresence>
                   {selectedTechnologies.length > 0 && (
-                    <MotionDiv
+                    <motion.div
                       layout
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
@@ -149,7 +149,7 @@ export function ProjectList({ projects }: ProjectListProps) {
                           Clear filters
                         </Command.Item>
                       </Command.Group>
-                    </MotionDiv>
+                    </motion.div>
                   )}
                 </AnimatePresence>
               </Command.List>
@@ -162,7 +162,7 @@ export function ProjectList({ projects }: ProjectListProps) {
         {filteredProjects.length > 0 ? (
           <div className="grid w-full gap-4 md:grid-cols-2">
             {filteredProjects.map((project) => (
-              <MotionDiv
+              <motion.div
                 className={CardStyles.Root({
                   className: "flex flex-col",
                 })}
@@ -246,18 +246,18 @@ export function ProjectList({ projects }: ProjectListProps) {
                     </a>
                   </div>
                 </Card.Footer>
-              </MotionDiv>
+              </motion.div>
             ))}
           </div>
         ) : (
-          <MotionP
+          <motion.p
             layout
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
           >
             No projects found.
-          </MotionP>
+          </motion.p>
         )}
       </AnimatePresence>
     </section>

@@ -1,14 +1,14 @@
 import { Button } from "@utaka/ui/button";
+import * as motion from "framer-motion/client";
 import Link from "next/link";
 import { getPostsWithViews } from "~/utils/posts";
 import { PostCard } from "../blog/post-card";
-import { MotionSection } from "../framer-motion";
 
 export async function BlogSection() {
   const posts = (await getPostsWithViews()).slice(0, 2);
 
   return (
-    <MotionSection
+    <motion.section
       animate={{
         y: 40,
         opacity: 0,
@@ -29,6 +29,6 @@ export async function BlogSection() {
       <Button className="mx-auto my-8 flex w-max" variant="outline" asChild>
         <Link href="/blog">See all posts</Link>
       </Button>
-    </MotionSection>
+    </motion.section>
   );
 }

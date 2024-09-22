@@ -10,9 +10,9 @@
   },
   "devDependencies": {
     "@utaka/tsconfig": "workspace:*",
-    "next": "14.2.3"
+    "next": "14.2.13"
   },
   "peerDependencies": {
-    "next": "14.2.3"
+    "next": "14.2.13"
   }
 }

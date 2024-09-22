@@ -1,8 +1,8 @@
 import { cn } from "@utaka/tailwind";
 import { Badge } from "@utaka/ui/badge";
 import { Card } from "@utaka/ui/card";
+import * as motion from "framer-motion/client";
 import { experiences } from "~/config/experiences";
-import { MotionDiv } from "../framer-motion";
 import { TracingBeam } from "../tracing-beam";
 
 export function ExperienceSection() {
@@ -26,7 +26,7 @@ function ExperienceList(props: React.ComponentPropsWithoutRef<"div">) {
     <div {...props} className={cn("flex flex-col gap-4", props.className)}>
       {experiences.map((experience) => (
         <Card key={experience.company} className="w-full">
-          <MotionDiv
+          <motion.div
             initial={{ opacity: 0, y: -50 }}
             whileInView={{
               opacity: 1,
@@ -40,9 +40,9 @@ function ExperienceList(props: React.ComponentPropsWithoutRef<"div">) {
               </Card.Title>
               <Card.Description>{experience.date}</Card.Description>
             </Card.Header>
-          </MotionDiv>
+          </motion.div>
           <Card.Content className="flex flex-col gap-4">
-            <MotionDiv
+            <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{
                 opacity: 1,
@@ -51,11 +51,11 @@ function ExperienceList(props: React.ComponentPropsWithoutRef<"div">) {
               }}
             >
               <p className="leading-7">{experience.description}</p>
-            </MotionDiv>
+            </motion.div>
             {experience.skills && (
               <div className="flex flex-wrap gap-2">
                 {experience.skills.map((skill, index) => (
-                  <MotionDiv
+                  <motion.div
                     key={skill}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{
@@ -65,7 +65,7 @@ function ExperienceList(props: React.ComponentPropsWithoutRef<"div">) {
                     }}
                   >
                     <Badge>{skill}</Badge>
-                  </MotionDiv>
+                  </motion.div>
                 ))}
               </div>
             )}

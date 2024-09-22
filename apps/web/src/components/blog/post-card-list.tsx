@@ -1,12 +1,13 @@
 "use client";
+
 import { Icons } from "@utaka/ui/icons";
 import { Skeleton } from "@utaka/ui/skeleton";
 import { TextField } from "@utaka/ui/textfield";
 import { AnimatePresence } from "framer-motion";
+import * as motion from "framer-motion/client";
 import { useSearchParams } from "next/navigation";
 import { useDeferredValue } from "react";
 import type { PostWithView } from "~/utils/posts";
-import { MotionDiv, MotionP } from "../framer-motion";
 import { PostCard } from "./post-card";
 
 function filterPosts(
@@ -67,7 +68,7 @@ export function PostCardList({ posts }: PostCardListProps) {
         {filteredPosts.length > 0 ? (
           <div className="grid w-full gap-4 md:grid-cols-2">
             {filteredPosts.map((post) => (
-              <MotionDiv
+              <motion.div
                 key={post.slug}
                 layout
                 animate={{ opacity: 1 }}
@@ -75,18 +76,18 @@ export function PostCardList({ posts }: PostCardListProps) {
                 initial={{ opacity: 0 }}
               >
                 <PostCard post={post} />
-              </MotionDiv>
+              </motion.div>
             ))}
           </div>
         ) : (
-          <MotionP
+          <motion.p
             layout
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
           >
             No post found.
-          </MotionP>
+          </motion.p>
         )}
       </AnimatePresence>
     </section>
