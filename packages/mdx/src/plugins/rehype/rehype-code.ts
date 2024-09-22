@@ -7,7 +7,8 @@ import type { Root } from "hast";
 import type { BundledTheme } from "shiki";
 import type { Plugin } from "unified";
 
-const titleRegex = /title="([^"]*)"/;
+const TITLE_REGEX = /title="([^"]*)"/;
+const NEW_LINE_REGEX = /\n$/;
 
 export const DEFAULT_SHIKI_THEMES = {
   light: "github-light-default",
@@ -28,10 +29,10 @@ export const rehypeCode: [
          */
         preprocess: (code, { meta }) => {
           if (meta) {
-            meta.__raw = meta.__raw?.replace(titleRegex, "");
+            meta.__raw = meta.__raw?.replace(TITLE_REGEX, "");
           }
 
-          return code.replace(/\n$/, "");
+          return code.replace(NEW_LINE_REGEX, "");
         },
         root(hast) {
           const pre = hast.children[0];
@@ -51,7 +52,7 @@ export const rehypeCode: [
       transformerMetaHighlight(),
     ],
     parseMetaString: (meta) => {
-      const titleMatch = meta.match(titleRegex);
+      const titleMatch = meta.match(TITLE_REGEX);
       const title = titleMatch?.[1] ?? null;
 
       return { title };

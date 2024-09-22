@@ -133,7 +133,7 @@ export const Comment = forwardRef<React.ComponentRef<"div">, CommentProps>(
             ))}
         </div>
 
-        <div className="p-2 dark:bg-input/30 sm:px-3">
+        <div className="p-2 sm:px-3 dark:bg-input/30">
           {isReplying ? (
             <CommentBox
               slug={slug}
@@ -203,7 +203,7 @@ function Reply(props: ReplyProps) {
   const { user, reply } = props;
 
   return (
-    <div className="relative overflow-hidden rounded-lg before:absolute before:inset-y-0 first-of-type:before:top-3 before:left-8 before:w-0.5 before:bg-border dark:bg-input/30 first-of-type:pt-2">
+    <div className="relative overflow-hidden rounded-lg before:absolute before:inset-y-0 before:left-8 before:w-0.5 before:bg-border first-of-type:pt-2 first-of-type:before:top-3 dark:bg-input/30">
       <div className="px-2 sm:px-4">
         <CommentContent user={user} comment={reply} />
         <MarkdownPreview

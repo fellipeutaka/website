@@ -9,7 +9,7 @@ const connection = postgres(env.DATABASE_URL);
 export const db = drizzle(connection, { schema });
 
 export * from "drizzle-orm";
-export { schema };
+export * as schema from "./schema";
 
 export type {
   AccountDB,

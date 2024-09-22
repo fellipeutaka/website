@@ -4,8 +4,7 @@ import { migrate } from "drizzle-orm/postgres-js/migrator";
 import postgres from "postgres";
 
 export async function runMigrate() {
-  // biome-ignore lint/suspicious/noConsoleLog: This is a CLI script
-  console.log("⏳ Running migrations...");
+  console.info("⏳ Running migrations...");
 
   const start = Date.now();
 
@@ -15,8 +14,7 @@ export async function runMigrate() {
 
   const end = Date.now();
 
-  // biome-ignore lint/suspicious/noConsoleLog: This is a CLI script
-  console.log(`✅ Migrations completed in ${end - start}ms`);
+  console.info(`✅ Migrations completed in ${end - start}ms`);
 
   process.exit(0);
 }

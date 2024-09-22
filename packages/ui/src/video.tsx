@@ -222,7 +222,7 @@ export function VideoRoot({ children, className, ...props }: VideoRootProps) {
         muted: videoRef.current?.muted ?? initialState.muted,
         caption:
           captions.length > 0
-            ? captions[0].mode === "showing" ?? initialState.caption
+            ? captions[0].mode === "showing" || initialState.caption
             : null,
         playbackRate:
           videoRef.current?.playbackRate ?? initialState.playbackRate,

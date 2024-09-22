@@ -50,7 +50,7 @@ export function MobileNav() {
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className={DialogStyles.Overlay()} />
-        <Drawer.Content className="data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right fixed inset-y-0 top-16 right-0 z-50 h-full w-3/4 gap-4 border-border border-l bg-background p-6 shadow-lg transition ease-in-out sm:max-w-sm data-[state=closed]:animate-out data-[state=open]:animate-in data-[state=closed]:duration-300 data-[state=open]:duration-500">
+        <Drawer.Content className="data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right fixed inset-y-0 top-16 right-0 z-50 h-full w-3/4 gap-4 border-border border-l bg-background p-6 shadow-lg transition ease-in-out data-[state=closed]:animate-out data-[state=open]:animate-in data-[state=closed]:duration-300 data-[state=open]:duration-500 sm:max-w-sm">
           <div className="my-6 flex flex-col gap-3">
             {user ? (
               <>

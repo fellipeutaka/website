@@ -19,6 +19,7 @@ export function Marquee({
 
   return (
     <div
+      // biome-ignore lint/a11y/useSemanticElements: This is a marquee element
       role="marquee"
       className={cn(
         "group flex gap-[--gap] overflow-x-hidden",

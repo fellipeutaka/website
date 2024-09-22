@@ -64,7 +64,7 @@ export function CommentSection({ slug }: CommentSectionProps) {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-lg border px-2 py-4 dark:bg-input/30 sm:px-4">
+      <div className="rounded-lg border px-2 py-4 sm:px-4 dark:bg-input/30">
         <CommentBox slug={slug} />
       </div>
       <div className="space-y-8">
@@ -89,7 +89,7 @@ export function CommentSection({ slug }: CommentSectionProps) {
 function CommentSectionSkeleton() {
   return (
     <div className="space-y-6">
-      <div className="rounded-lg border px-2 py-4 dark:bg-input/30 sm:px-4">
+      <div className="rounded-lg border px-2 py-4 sm:px-4 dark:bg-input/30">
         <CommentBoxSkeleton />
       </div>
       <CommentListSkeleton />

@@ -1,7 +1,15 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
+  "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
   "organizeImports": {
     "enabled": true
+  },
+  "css": {
+    "formatter": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": false
+    }
   },
   "linter": {
     "enabled": true,
@@ -15,10 +23,15 @@
         "all": true
       },
       "correctness": {
-        "all": true
+        "all": true,
+        "noNodejsModules": "off",
+        "noUndeclaredDependencies": "off",
+        "useImportExtensions": "off"
       },
       "performance": {
-        "all": true
+        "all": true,
+        "noBarrelFile": "off",
+        "noReExportAll": "off"
       },
       "security": {
         "all": true
@@ -26,20 +39,21 @@
       "style": {
         "recommended": true,
         "noDefaultExport": "error",
-        "noNonNullAssertion": "off"
+        "noNonNullAssertion": "off",
+        "noNamespaceImport": "off"
       },
       "suspicious": {
-        "all": true
+        "all": true,
+        "noConsole": "off",
+        "noReactSpecificProps": "off"
       },
       "nursery": {
         "all": true,
         "useImportRestrictions": "off",
-        "noNodejsModules": "off",
-        "noUndeclaredDependencies": "off",
-        "noConsole": "off",
-        "noBarrelFile": "off",
-        "noReExportAll": "off",
-        "noNamespaceImport": "off"
+        "useComponentExportOnlyModules": "off",
+        "useStrictMode": "off",
+        "noProcessEnv": "off",
+        "noSecrets": "off"
       }
     }
   },
@@ -70,6 +84,19 @@
         "rules": {
           "style": {
             "noDefaultExport": "off"
+          },
+          "nursery": {
+            "useComponentExportOnlyModules": {
+              "level": "error",
+              "options": {
+                "allowExportNames": [
+                  "metadata",
+                  "viewport",
+                  "generateMetadata",
+                  "generateStaticParams"
+                ]
+              }
+            }
           }
         }
       }

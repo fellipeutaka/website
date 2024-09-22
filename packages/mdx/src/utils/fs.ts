@@ -51,6 +51,8 @@ export const getPage = <TData>(filePath: string, schema?: Schema<TData>) => {
   };
 };
 
+const MDX_FILE_REGEX = /\.mdx$/;
+
 const getAllPages = <TData>(
   directoryPath: string,
   schema: Schema<TData>,
@@ -64,7 +66,7 @@ const getAllPages = <TData>(
 
   return fileNames
     .map((fileName) => {
-      const slug = fileName.replace(/\.mdx$/, "");
+      const slug = fileName.replace(MDX_FILE_REGEX, "");
       const fullPath = path.join(pagesDirectory, fileName);
       const { metadata } = readMDXFile(fullPath, schema);
 

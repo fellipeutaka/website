@@ -28,7 +28,7 @@ export function PostHeader({ title, date, slug }: PostHeaderProps) {
         <h1 className="text-balance text-center font-bold text-4xl md:text-5xl md:leading-[64px]">
           {title}
         </h1>
-        <div className="grid grid-cols-2 text-sm md:grid-cols-4 max-md:gap-4">
+        <div className="grid grid-cols-2 text-sm max-md:gap-4 md:grid-cols-4">
           <div className="space-y-1 md:mx-auto">
             <div className="text-muted-foreground">Written by</div>
             <Link

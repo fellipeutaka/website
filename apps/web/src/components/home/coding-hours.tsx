@@ -10,7 +10,7 @@ export function CodingHours() {
         <h2 className="font-light text-sm">Coding hours</h2>
       </div>
       <p className="flex grow items-center justify-center font-semibold font-title text-4xl">
-        <Suspense fallback={"-- hrs"}>
+        <Suspense fallback="-- hrs">
           <CodingHoursValue />
         </Suspense>
       </p>

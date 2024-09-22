@@ -32,7 +32,7 @@ export function AboutSection() {
         </div>
         <div className="grid gap-4">
           <Connect />
-          <div className="grid gap-4 xs:grid-cols-2">
+          <div className="grid xs:grid-cols-2 gap-4">
             <CodingHours />
             <StudyingCard />
           </div>
