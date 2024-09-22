@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "next": "node --env-file=../../.env ./node_modules/next/dist/bin/next",
+    "next": "node --env-file=../../.env --env-file=.env ./node_modules/next/dist/bin/next",
     "dev": "pnpm run next dev",
     "build": "pnpm run next build",
     "start": "pnpm run next start",

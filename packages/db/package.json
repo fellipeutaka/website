@@ -4,8 +4,8 @@
   "types": "./src/index.ts",
   "private": true,
   "scripts": {
-    "tsx": "tsx --env-file=../../.env",
-    "drizzle": "node --env-file=../../.env ./node_modules/drizzle-kit/bin.cjs",
+    "tsx": "tsx --env-file=../../.env --env-file=.env",
+    "drizzle": "node --env-file=../../.env --env-file=.env ./node_modules/drizzle-kit/bin.cjs",
     "generate": "pnpm run drizzle generate",
     "migrate": "pnpm run tsx src/migrate.ts",
     "seed": "pnpm run tsx src/seed/index.ts",
