@@ -3,13 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "next": "node --env-file=../../.env --env-file=.env ./node_modules/next/dist/bin/next",
-    "dev": "pnpm run next dev",
-    "build": "pnpm run next build",
-    "start": "pnpm run next start",
+    "dev": "pnpm env:load next dev",
+    "build": "pnpm env:load next build",
+    "start": "pnpm env:load next start",
     "lint": "biome check --apply .",
-    "preview": "pnpm run build && pnpm run start",
-    "type-check": "tsc --noEmit --incremental false"
+    "preview": "pnpm build && pnpm start",
+    "type-check": "tsc --noEmit --incremental false",
+    "env:load": "dotenv -e ../../.env --"
   },
   "dependencies": {
     "@tanstack/react-query": "latest",
