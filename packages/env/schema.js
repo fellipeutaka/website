@@ -22,6 +22,15 @@ export const createEnvOptions = {
     WAKATIME_API_KEY: z.string(),
 
     GITHUB_TOKEN: z.string().min(1),
+
+    // Feature flags
+    AVAILABLE_FOR_WORK: z
+      .string()
+      .default("true")
+      // only allow "true" or "false"
+      .refine((s) => s === "true" || s === "false")
+      // transform to boolean
+      .transform((s) => s === "true"),
   },
   experimental__runtimeEnv: {},
   emptyStringAsUndefined: true,

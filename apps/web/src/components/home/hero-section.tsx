@@ -1,3 +1,4 @@
+import { env } from "@utaka/env";
 import { BadgeAnimated } from "@utaka/ui/badge-animated";
 import { Button } from "@utaka/ui/button";
 import { Icons } from "@utaka/ui/icons";
@@ -10,10 +11,12 @@ export function HeroSection() {
       <Spotlight className="fill-foreground max-md:top-0 max-md:left-[10%]" />
       <div className="space-y-4">
         <div className="grid animate-fade-up justify-items-center gap-4">
-          <BadgeAnimated className="flex items-center gap-2 text-sm">
-            <Icons.Circle className="size-2 animate-pulse fill-green-600 text-green-600" />
-            Available for work
-          </BadgeAnimated>
+          {env.AVAILABLE_FOR_WORK && (
+            <BadgeAnimated className="flex items-center gap-2 text-sm">
+              <Icons.Circle className="size-2 animate-pulse fill-green-600 text-green-600" />
+              Available for work
+            </BadgeAnimated>
+          )}
           <h1 className="text-center font-bold text-5xl md:text-7xl">
             Fellipe Utaka
           </h1>

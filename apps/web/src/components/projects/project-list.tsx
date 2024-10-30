@@ -33,14 +33,13 @@ function filterProjects(
       return false;
     }
 
-    if (technologies.length > 0) {
-      if (
-        !project.technologies.some((technology) =>
-          technologies.includes(technology),
-        )
-      ) {
-        return false;
-      }
+    if (
+      technologies.length > 0 &&
+      !project.technologies.some((technology) =>
+        technologies.includes(technology),
+      )
+    ) {
+      return false;
     }
 
     return true;

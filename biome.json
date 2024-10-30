@@ -53,7 +53,10 @@
         "useComponentExportOnlyModules": "off",
         "useStrictMode": "off",
         "noProcessEnv": "off",
-        "noSecrets": "off"
+        "noSecrets": "off",
+        "useExplicitType": "off",
+        "noNestedTernary": "off",
+        "noImgElement": "off"
       }
     }
   },
