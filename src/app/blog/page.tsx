@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-
-import { LazyMotion, domMax } from "framer-motion";
 import { getPosts } from "~/utils/mdx";
 import {
   PostCardList,
@@ -20,15 +18,13 @@ export default async function Page() {
   });
 
   return (
-    <LazyMotion features={domMax}>
-      <main className="container my-20">
-        <h1 className="animate-fade-up font-semibold text-2xl md:text-3xl">
-          Blog
-        </h1>
-        <Suspense fallback={<PostCardListSkeleton />}>
-          <PostCardList posts={posts} />
-        </Suspense>
-      </main>
-    </LazyMotion>
+    <main className="container my-20">
+      <h1 className="animate-fade-up font-semibold text-2xl md:text-3xl">
+        Blog
+      </h1>
+      <Suspense fallback={<PostCardListSkeleton />}>
+        <PostCardList posts={posts} />
+      </Suspense>
+    </main>
   );
 }

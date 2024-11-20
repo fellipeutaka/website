@@ -1,5 +1,6 @@
 "use client";
 
+import { LazyMotion, domMax } from "framer-motion";
 import { ThemeProvider } from "next-themes";
 import { useRouter } from "next/navigation";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
@@ -24,7 +25,9 @@ export function Providers(props: ProvidersProps) {
   return (
     <ThemeProvider attribute="class" enableSystem>
       <RouterProvider navigate={router.push}>
-        <NuqsAdapter>{props.children}</NuqsAdapter>
+        <NuqsAdapter>
+          <LazyMotion features={domMax}>{props.children}</LazyMotion>
+        </NuqsAdapter>
         <Toaster />
       </RouterProvider>
     </ThemeProvider>
