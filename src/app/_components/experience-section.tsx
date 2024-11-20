@@ -4,6 +4,7 @@ import { Card } from "~/components/ui/card";
 import { TracingBeam } from "~/components/ui/tracing-beam";
 import { experiences } from "~/config/experiences";
 import { cn } from "~/lib/cva";
+import { formatRange } from "~/utils/date";
 
 export function ExperienceSection() {
   return (
@@ -25,7 +26,7 @@ function ExperienceList(props: React.ComponentPropsWithoutRef<"div">) {
   return (
     <div {...props} className={cn("flex flex-col gap-4", props.className)}>
       {experiences.map((experience) => (
-        <Card.Root key={experience.company} className="w-full">
+        <Card.Root key={experience.company} className="w-full overflow-hidden">
           <m.div
             initial={{ opacity: 0, y: -50 }}
             whileInView={{
@@ -39,7 +40,9 @@ function ExperienceList(props: React.ComponentPropsWithoutRef<"div">) {
               <Card.Title>
                 {experience.title} · {experience.company}
               </Card.Title>
-              <Card.Description>{experience.date}</Card.Description>
+              <Card.Description>
+                {formatRange(experience.startedAt, experience.endedAt)}
+              </Card.Description>
             </Card.Header>
           </m.div>
           <Card.Content className="flex flex-col gap-4">

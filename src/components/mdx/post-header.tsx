@@ -37,7 +37,13 @@ export function PostHeader({ title, date, cover }: PostHeaderProps) {
           </div>
           <div className="space-y-1 md:mx-auto">
             <p className="text-muted-fg">Published on</p>
-            <time dateTime={date.toISOString()}>{formatDate(date)}</time>
+            <time dateTime={date.toISOString()}>
+              {formatDate(date, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </time>
           </div>
         </div>
       </div>

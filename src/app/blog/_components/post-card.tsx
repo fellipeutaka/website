@@ -20,7 +20,11 @@ export function PostCard({ post }: PostCardProps) {
       />
       <div className="flex items-center justify-between gap-2 px-2 pt-4 text-muted-fg text-sm">
         <time dateTime={new Date(post.date).toISOString()}>
-          {formatDate(post.date)}
+          {formatDate(post.date, {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
         </time>
       </div>
       <div className="flex flex-col px-2 py-4">

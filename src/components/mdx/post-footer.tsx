@@ -16,7 +16,14 @@ export async function PostFooter({ filePath }: PostFooterProps) {
   return (
     <div className="my-8 flex w-full items-center justify-between py-4 text-sm">
       <div className="text-muted-fg">
-        Last updated: {modifiedAt ? formatDate(modifiedAt) : "--"}
+        Last updated:{" "}
+        {modifiedAt
+          ? formatDate(modifiedAt, {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          : "--"}
       </div>
 
       <a
