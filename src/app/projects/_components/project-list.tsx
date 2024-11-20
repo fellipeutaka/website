@@ -16,9 +16,9 @@ import { TextSearch } from "~/components/ui/text-search";
 import { siteConfig } from "~/config/site";
 import { useFilters } from "~/hooks/use-filters";
 import {
+  type Technologies,
   getTechnology,
   technologies,
-  type technologyList,
 } from "~/lib/technologies";
 import type { Project } from "~/utils/mdx";
 import { PreviewRecursiveButton } from "./preview-recursive-button";
@@ -27,7 +27,7 @@ function filterProjects(
   initialList: Project[],
   filter: {
     query: string;
-    selectedTechnologies: typeof technologyList;
+    selectedTechnologies: Technologies[number]["name"][];
   },
 ) {
   return initialList.filter((project) => {
@@ -92,7 +92,7 @@ export function ProjectList({ projects }: ProjectListProps) {
               <Command.List>
                 <Command.Empty>No results found.</Command.Empty>
                 <Command.Group>
-                  {Object.values(technologies).map((technology) => {
+                  {technologies.map((technology) => {
                     const Icon = Icons[technology.icon];
 
                     return (
@@ -174,7 +174,7 @@ export function ProjectList({ projects }: ProjectListProps) {
 
                       return (
                         <Link
-                          key={technology}
+                          key={tech.name}
                           href={tech.url}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -184,7 +184,7 @@ export function ProjectList({ projects }: ProjectListProps) {
                           })}
                         >
                           <Icon className="mr-2 size-4" />
-                          {technology}
+                          {tech.name}
                         </Link>
                       );
                     })}
@@ -250,12 +250,15 @@ export function ProjectListSkeleton() {
   return (
     <section className="mt-10 animate-delay-75 animate-fade-up">
       <div className="mb-4 flex items-center justify-between gap-4">
-        {/* <TextField className="grow">
-          <TextField.Slot>
-            <Icons.Search className="size-4 text-muted-fg" />
-          </TextField.Slot>
-          <TextField.Input placeholder="Search projects" disabled />
-        </TextField> */}
+        <TextSearch.Root isDisabled className="grow">
+          <Form.Field>
+            <TextSearch.Icon />
+
+            <Input placeholder="Search..." />
+
+            <TextSearch.ClearButton />
+          </Form.Field>
+        </TextSearch.Root>
 
         <Button isDisabled size="icon" variant="outline">
           <Icons.Filter className="size-4" />

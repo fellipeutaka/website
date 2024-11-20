@@ -28,9 +28,9 @@ export async function FeaturedProjectsSection() {
                   <a
                     key={tech.name}
                     href={tech.url}
+                    title={tech.name}
                     target="_blank"
                     rel="noopener noreferrer"
-                    title={tech.name}
                   >
                     <Icon className="size-6" />
                   </a>

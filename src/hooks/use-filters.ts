@@ -4,13 +4,15 @@ import {
   parseAsStringEnum,
   useQueryStates,
 } from "nuqs";
-import { technologyList } from "~/lib/technologies";
+import { technologies } from "~/lib/technologies";
 
 export function useFilters() {
   return useQueryStates(
     {
       q: parseAsString.withDefault(""),
-      techs: parseAsArrayOf(parseAsStringEnum(technologyList)).withDefault([]),
+      techs: parseAsArrayOf(
+        parseAsStringEnum(technologies.map((t) => t.name)),
+      ).withDefault([]),
     },
     {
       clearOnDefault: true,
