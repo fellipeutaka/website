@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 1 0 0;
+    --fg: 0.16 0.01 262.25;
+
+    --card: 1 0 0;
+    --card-fg: 0.16 0.01 262.25;
+
+    --popover: 1 0 0;
+    --popover-fg: 0.16 0.01 262.25;
+
+    --primary: 49.07% 0.241 292.58;
+    --primary-fg: 96.91% 0.016 293.76;
+
+    --secondary: 0.96 0.01 262.25;
+    --secondary-fg: 0.25 0.01 262.25;
+
+    --muted: 0.96 0.01 262.25;
+    --muted-fg: 0.5 0.01 262.25;
+
+    --accent: 0.96 0.01 262.25;
+    --accent-fg: 0.25 0.01 262.25;
+
+    --success: 0.63 0.17 149.21;
+    --success-fg: 0.83 0.13 0.97;
+
+    --info: 0.76 0.19 0.67;
+    --info-fg: 1 0 0.75;
+
+    --warning: 0.5 1 100;
+    --warning-fg: 0.4 0.18 0.3;
+
+    --danger: 0.57 0.22 27.16;
+    --danger-fg: 0.98 0 0;
+
+    --border: 0.89 0.01 262.25;
+    --input: 0.89 0.01 262.25;
+    --ring: var(--primary);
+
+    --radius: 0.5rem;
+  }
+
+  .dark:root {
+    --bg: 0.16 0.01 262.25;
+    --fg: 0.98 0 0;
+
+    --card: 0.16 0.01 262.25;
+    --card-fg: 0.98 0 0;
+
+    --popover: 0.16 0.01 262.25;
+    --popover-fg: 0.98 0 0;
+
+    --primary: 49.07% 0.241 292.58;
+    --primary-fg: 96.91% 0.016 293.76;
+
+    --secondary: 0.23 0.01 262.25;
+    --secondary-fg: 0.98 0 0;
+
+    --muted: 0.23 0.01 262.25;
+    --muted-fg: 0.67 0.01 262.25;
+
+    --accent: 0.23 0.01 262.25;
+    --accent-fg: 0.98 0 0;
+
+    --success: 0.63 0.17 149.21;
+    --success-fg: 0.83 0.13 0.97;
+
+    --info: 0.76 0.19 0.67;
+    --info-fg: 1 0 0.75;
+
+    --warning: 76 0.4 70;
+    --warning-fg: 0.4 0.18 0.3;
+
+    --danger: 0.33 0.15 27.16;
+    --danger-fg: 0.98 0 0;
+
+    --border: 0.23 0.01 262.25;
+    --input: 0.23 0.01 262.25;
+    --ring: var(--primary);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-fg font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::-webkit-scrollbar {
+    @apply size-1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-fg/40 rounded-lg transition-colors;
+  }
+
+  ::-webkit-scdrollbar-thumb:hover,
+  ::-webkit-scrollbar-thumb:active {
+    @apply bg-fg/60;
+  }
+}

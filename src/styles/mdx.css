@@ -1,0 +1,35 @@
+figure[data-rehype-pretty-code-figure] code {
+  @apply p-0 bg-transparent;
+}
+
+figure[data-rehype-pretty-code-figure] [data-line] {
+  @apply px-3;
+}
+
+[data-rehype-pretty-code-figure] span {
+  color: light-dark(var(--shiki-light), var(--shiki-dark));
+}
+
+figure[data-rehype-pretty-code-figure]
+  :where([data-highlighted-chars], [data-highlighted-line]) {
+  @apply bg-muted;
+}
+
+.mdx > .steps:first-child > h3:first-child {
+  @apply mt-0;
+}
+
+.mdx > div:where([dir], [data-orientation]):first-child {
+  @apply mt-0;
+}
+
+.steps > :where(h2, h3) {
+  @apply mt-8 mb-4 text-base font-semibold;
+  counter-increment: step;
+
+  &::before {
+    @apply absolute size-9 bg-muted rounded-full font-mono font-light grid place-content-center -indent-px border-4 border-bg;
+    @apply ml-[-50px] -mt-1;
+    content: counter(step);
+  }
+}
