@@ -52,33 +52,41 @@
         "useImportRestrictions": "off",
         "useComponentExportOnlyModules": "off",
         "useStrictMode": "off",
-        "noProcessEnv": "off",
+        "noProcessEnv": "error",
         "noSecrets": "off",
         "useExplicitType": "off",
         "noNestedTernary": "off",
-        "noImgElement": "off"
+        "noImgElement": "off",
+        "useSortedClasses": {
+          "fix": "safe",
+          "level": "error",
+          "options": {
+            "functions": ["cva", "cx", "cn"]
+          }
+        },
+        "noExportedImports": "off"
       }
     }
   },
   "overrides": [
     {
       "include": [
-        "apps/web/src/app/**/page.tsx",
-        "apps/web/src/app/**/layout.tsx",
-        "apps/web/src/app/**/template.tsx",
-        "apps/web/src/app/**/loading.tsx",
-        "apps/web/src/app/**/error.tsx",
-        "apps/web/src/app/**/not-found.tsx",
-        "apps/web/src/app/**/default.tsx",
-        "apps/web/src/app/**/icon.tsx",
-        "apps/web/src/app/**/apple-icon.tsx",
-        "apps/web/src/app/**/manifest.ts",
-        "apps/web/src/app/**/opengraph-image.tsx",
-        "apps/web/src/app/**/twitter-image.tsx",
-        "apps/web/src/app/**/robots.ts",
-        "apps/web/src/app/**/sitemap.ts",
+        "src/app/**/page.tsx",
+        "src/app/**/layout.tsx",
+        "src/app/**/template.tsx",
+        "src/app/**/loading.tsx",
+        "src/app/**/error.tsx",
+        "src/app/**/not-found.tsx",
+        "src/app/**/default.tsx",
+        "src/app/**/icon.tsx",
+        "src/app/**/apple-icon.tsx",
+        "src/app/**/manifest.ts",
+        "src/app/**/opengraph-image.tsx",
+        "src/app/**/twitter-image.tsx",
+        "src/app/**/robots.ts",
+        "src/app/**/sitemap.ts",
 
-        "apps/web/src/middleware.ts",
+        "src/middleware.ts",
         "*.config.js",
         "*.config.mjs",
         "*.config.ts"

@@ -1,5 +1,0 @@
-{
-  "name": "@utaka/tsconfig",
-  "private": true,
-  "files": ["lib.json", "next.json"]
-}
