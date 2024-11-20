@@ -1,4 +1,5 @@
 import { cn } from "~/lib/cva";
+import { Link } from "../ui/link";
 import { DisplayAge } from "./display-age";
 import { Figcaption } from "./figcaption";
 import { Heading } from "./heading";
@@ -126,6 +127,7 @@ export const mdxComponents = {
     />
   ),
   figcaption: Figcaption,
+  Link,
 
   // Pages
   DisplayAge,
