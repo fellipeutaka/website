@@ -1,0 +1,95 @@
+---
+name: Satoru
+description: ⛏ Manage your Minecraft servers 🤞
+sourceCodeUrl: https://github.com/fellipeutaka/satoru
+isFeatured: true
+technologies:
+  [
+    "Rust",
+    "Tauri",
+    "Turborepo",
+    "React",
+    "Tailwind CSS",
+    "Zod",
+    "Node.js",
+    "TypeScript",
+  ]
+---
+
+A desktop application to manage your Minecraft servers. It allows you to create, delete, start, stop, and open the server folder.
+You can also read the server logs and manage the server settings.
+
+## Screenshots
+
+![Server list](https://github.com/fellipeutaka/satoru/blob/main/.github/screenshot.png?raw=true)
+![Server details](https://github.com/fellipeutaka/satoru/blob/main/.github/screenshot-2.png?raw=true)
+
+## Motivation
+
+My first time creating a Minecraft server was using Hamachi. I had to follow a tutorial on YouTube to set up the server, and it was pretty easy.
+However, it was a bit annoying to start and stop the server, and everyone had to be connected to Hamachi to play.
+My second time creating a server was using the official Minecraft server software. It was a bit more complicated, but I managed to set it up.
+I had to use the terminal to start and stop the server, and I had to edit the `server.properties` file to change the server settings.
+I thought it would be nice to have a desktop application to manage the server, so I decided to create Satoru.
+
+## Why Satoru?
+
+Satoru is the name of a character from the anime [Jujutsu Kaisen](https://en.wikipedia.org/wiki/Jujutsu_Kaisen).
+I chose this name because he's the honored one.
+
+![Nah, I'd win](https://i1.sndcdn.com/avatars-NfIqVSH7aH6y1xD3-1YKdzg-t500x500.jpg)
+
+## Features
+
+- ✅: Supported
+- 🚫: Not in progress
+- ⌛️: In progress
+- ⚠️: Partially supported (with some caveats)
+
+| Feature                | Status                                                      |
+| ---------------------- | ----------------------------------------------------------- |
+| Create a new server    | <span aria-label="Supported" role="img">✅</span>           |
+| Delete a server        | <span aria-label="Supported" role="img">✅</span>           |
+| Start a server         | <span aria-label="Supported" role="img">✅</span>           |
+| Stop a server          | <span aria-label="Supported" role="img">✅</span>           |
+| Open server folder     | <span aria-label="Supported" role="img">✅</span>           |
+| Vanilla software       | <span aria-label="Supported" role="img">✅</span>           |
+| Spigot software        | <span aria-label="Supported" role="img">✅</span>           |
+| CraftBukkit software   | <span aria-label="Supported" role="img">✅</span>           |
+| Backup servers         | <span aria-label="Not in Progress" role="img">🚫</span>     |
+| Add plugins            | <span aria-label="Partially supported" role="img">⚠️</span> |
+| Add mods               | <span aria-label="Partially supported" role="img">⚠️</span> |
+| Read server logs       | <span aria-label="Supported" role="img">✅</span>           |
+| Run commands           | <span aria-label="In Progress" role="img">⌛️</span>        |
+| Track system resources | <span aria-label="In Progress" role="img">⌛️</span>        |
+| Manage server settings | <span aria-label="Supported" role="img">✅</span>           |
+| Minecraft Bedrock      | <span aria-label="Not in Progress" role="img">🚫</span>     |
+| Whitelist              | <span aria-label="Not in Progress" role="img">🚫</span>     |
+
+## How to use
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org)
+- [pnpm (package manager)](https://pnpm.io/installation)
+- [Rust and system dependencies](https://tauri.app/v1/guides/getting-started/prerequisites)
+
+### Steps
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/fellipeutaka/satoru.git
+```
+
+2. Install the dependencies
+
+```bash
+npm install
+```
+
+3. Run the project
+
+```bash
+npm run app dev
+```

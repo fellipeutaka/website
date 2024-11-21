@@ -2,6 +2,11 @@ import type { Icon } from "~/components/ui/icons";
 
 export const technologies = [
   {
+    name: "Tailwind CSS",
+    icon: "TailwindCSS",
+    url: "https://tailwindcss.com",
+  },
+  {
     name: "React",
     icon: "React",
     url: "https://react.dev",
@@ -42,9 +47,14 @@ export const technologies = [
     url: "https://www.electronjs.org",
   },
   {
-    name: "Tailwind CSS",
-    icon: "TailwindCSS",
-    url: "https://tailwindcss.com",
+    name: "Tauri",
+    icon: "Tauri",
+    url: "https://tauri.studio",
+  },
+  {
+    name: "Rust",
+    icon: "Rust",
+    url: "https://www.rust-lang.org",
   },
   {
     name: "Turborepo",
@@ -105,6 +115,11 @@ export const technologies = [
     name: "Vitest",
     icon: "Vitest",
     url: "https://vitest.dev",
+  },
+  {
+    name: "Zod",
+    icon: "Zod",
+    url: "https://zod.dev",
   },
 ] as const satisfies Technology[];
 

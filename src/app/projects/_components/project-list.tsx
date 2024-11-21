@@ -92,35 +92,43 @@ export function ProjectList({ projects }: ProjectListProps) {
               <Command.List>
                 <Command.Empty>No results found.</Command.Empty>
                 <Command.Group>
-                  {technologies.map((technology) => {
-                    const Icon = Icons[technology.icon];
+                  {technologies
+                    .filter((technology) =>
+                      projects.some((project) =>
+                        project.technologies.includes(technology.name),
+                      ),
+                    )
+                    .map((technology) => {
+                      const Icon = Icons[technology.icon];
 
-                    return (
-                      <Command.Item
-                        key={technology.name}
-                        value={technology.name}
-                        onSelect={() =>
-                          setFilters(({ techs }) =>
-                            techs.includes(technology.name)
-                              ? {
-                                  techs: techs.filter(
-                                    (t) => t !== technology.name,
-                                  ),
-                                }
-                              : { techs: [...techs, technology.name] },
-                          )
-                        }
-                      >
-                        <Icons.Check
-                          data-visible={filters.techs.includes(technology.name)}
-                          className="mr-2 size-4 opacity-0 transition-opacity data-[visible='true']:opacity-100"
-                        />
+                      return (
+                        <Command.Item
+                          key={technology.name}
+                          value={technology.name}
+                          onSelect={() =>
+                            setFilters(({ techs }) =>
+                              techs.includes(technology.name)
+                                ? {
+                                    techs: techs.filter(
+                                      (t) => t !== technology.name,
+                                    ),
+                                  }
+                                : { techs: [...techs, technology.name] },
+                            )
+                          }
+                        >
+                          <Icons.Check
+                            data-visible={filters.techs.includes(
+                              technology.name,
+                            )}
+                            className="mr-2 size-4 opacity-0 transition-opacity data-[visible='true']:opacity-100"
+                          />
 
-                        <Icon className="mr-2 size-4" />
-                        {technology.name}
-                      </Command.Item>
-                    );
-                  })}
+                          <Icon className="mr-2 size-4" />
+                          {technology.name}
+                        </Command.Item>
+                      );
+                    })}
                 </Command.Group>
                 <AnimatePresence>
                   {filters.techs.length > 0 && (

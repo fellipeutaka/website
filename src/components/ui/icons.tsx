@@ -509,6 +509,30 @@ export const Icons = {
       />
     </svg>
   ),
+  Tauri: (props) => (
+    <svg
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      width={32}
+      height={32}
+      viewBox="0 0 32 32"
+      {...props}
+    >
+      <path
+        fill="#ffc131"
+        d="M20.923 12.167A2.677 2.677 0 1118.236 9.5h.02a2.667 2.667 0 012.667 2.667"
+      />
+      <circle cx={13.763} cy={19.818} r={2.667} fill="#24c8db" />
+      <path
+        fill="#ffc131"
+        d="M23.791 20.731a10.4 10.4 0 01-3.52 1.434 7.2 7.2 0 00.351-3.229 7.17 7.17 0 10-8.182-10.97 12 12 0 00-3.911 1.143 10.2 10.2 0 1115.262 11.622M8.649 10.974l2.5.3a7.7 7.7 0 01.321-1.424 10.2 10.2 0 00-2.821 1.124"
+      />
+      <path
+        fill="#24c8db"
+        d="M8.208 11.255a10.2 10.2 0 013.55-1.444 7.1 7.1 0 00-.4 3.239 7.17 7.17 0 108.222 10.96 12.2 12.2 0 003.911-1.123A10.208 10.208 0 118.208 11.255M23.349 21"
+      />
+    </svg>
+  ),
   Turborepo: (props) => (
     <svg
       fill="none"
@@ -521,7 +545,7 @@ export const Icons = {
       <defs>
         <linearGradient
           gradientUnits="userSpaceOnUse"
-          id="c"
+          id="turborepo-c"
           x1={15.0234}
           x2={3.64419}
           y1={4.00556}
@@ -530,17 +554,21 @@ export const Icons = {
           <stop stopColor="#0096FF" />
           <stop offset={1} stopColor="#FF1E56" />
         </linearGradient>
-        <linearGradient id="a">
+        <linearGradient id="turborepo-a">
           <stop offset="0%" />
           <stop offset="25%" stopColor="#fff" />
           <stop offset="85%" stopColor="#fff" />
           <stop offset="100%" />
         </linearGradient>
-        <mask id="b">
-          <path fill="url(#a)" transform="translate(-8)" d="M0 0H46V26H0z" />
+        <mask id="turborepo-b">
+          <path
+            fill="url(#turborepo-a)"
+            transform="translate(-8)"
+            d="M0 0H46V26H0z"
+          />
         </mask>
       </defs>
-      <g mask="url(#b)">
+      <g mask="url(#turborepo-b)">
         <path
           className="fill-black dark:fill-white"
           d="M13.94 6.422c-4.146 0-7.518 3.372-7.518 7.518 0 4.145 3.372 7.518 7.518 7.518 4.145 0 7.518-3.373 7.518-7.518 0-4.146-3.373-7.518-7.518-7.518zm0 11.408a3.89 3.89 0 11-.001-7.78 3.89 3.89 0 010 7.78z"
@@ -548,7 +576,7 @@ export const Icons = {
         <path
           clipRule="evenodd"
           d="M14.57 5.187V2.38c6.1.326 10.948 5.377 10.948 11.56 0 6.182-4.847 11.232-10.948 11.56v-2.807c4.547-.325 8.148-4.125 8.148-8.753 0-4.629-3.601-8.428-8.148-8.753zM7.31 19.68a8.741 8.741 0 01-2.122-5.11H2.38a11.528 11.528 0 002.941 7.096l1.987-1.986h.001zm6 5.82v-2.807a8.733 8.733 0 01-5.112-2.121l-1.986 1.986a11.527 11.527 0 007.096 2.942h.002z"
-          fill="url(#c)"
+          fill="url(#turborepo-c)"
           fillRule="evenodd"
         />
       </g>
@@ -1299,6 +1327,64 @@ export const Icons = {
       {...props}
     >
       <path d="M4 14a1 1 0 01-.78-1.63l9.9-10.2a.5.5 0 01.86.46l-1.92 6.02A1 1 0 0013 10h7a1 1 0 01.78 1.63l-9.9 10.2a.5.5 0 01-.86-.46l1.92-6.02A1 1 0 0011 14z" />
+    </svg>
+  ),
+  Zod: (props) => (
+    <svg
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      width={40.36}
+      height={32}
+      viewBox="0 0 256 203"
+      {...props}
+    >
+      <defs>
+        <filter
+          id="zod-a"
+          width="105.2%"
+          height="106.5%"
+          x="-2.2%"
+          y="-2.8%"
+          filterUnits="objectBoundingBox"
+        >
+          <feOffset
+            dx={1}
+            dy={1}
+            in="SourceAlpha"
+            result="shadowOffsetOuter1"
+          />
+          <feGaussianBlur
+            in="shadowOffsetOuter1"
+            result="shadowBlurOuter1"
+            stdDeviation={2}
+          />
+          <feColorMatrix
+            in="shadowBlurOuter1"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.36 0"
+          />
+        </filter>
+        <path
+          id="zod-b"
+          fill="#000"
+          d="M200.42 0H53.63L0 53.355l121.76 146.624 9.714-10.9L252 53.857zm-5.362 12.562l39.84 41.6-112.8 126.558L17 54.162l41.815-41.6z"
+        />
+      </defs>
+      <g transform="translate(2 1.51)">
+        <path
+          fill="#18253F"
+          d="M58.816 12.522h136.278l39.933 41.691-112.989 126.553L16.957 54.213z"
+        />
+        <path
+          fill="#274D82"
+          d="M149.427 150.875H96.013l-24.124-29.534 68.364-.002.002-4.19h39.078z"
+        />
+        <path
+          fill="#274D82"
+          d="M223.56 42.323L76.178 127.414l-19.226-24.052 114.099-65.877-2.096-3.631 30.391-17.546zm-78.964-29.759L33.93 76.457 16.719 54.972l74.095-42.779z"
+        />
+        <use filter="url(#zod-a)" href="#zod-b" />
+        <use fill="#3068B7" href="#zod-b" />
+      </g>
     </svg>
   ),
   Pencil: (props) => (
