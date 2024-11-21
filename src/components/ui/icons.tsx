@@ -1,4 +1,4 @@
-export type IconProps = React.ComponentPropsWithoutRef<"svg">;
+export type IconProps = React.ComponentProps<"svg">;
 export type Icon = keyof typeof Icons;
 export type IconComponent = (props: IconProps) => React.ReactElement;
 
@@ -906,8 +906,10 @@ export const Icons = {
       {...props}
     >
       <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
-      <path d="M7 10L12 15 17 10" />
-      <path d="M12 15L12 3" />
+      <g className="transform-gpu transition-transform ease-in-out group-hover:translate-y-0.5">
+        <path d="M7 10L12 15 17 10" />
+        <path d="M12 15L12 3" />
+      </g>
     </svg>
   ),
   Circle: (props) => (
