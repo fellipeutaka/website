@@ -7,7 +7,7 @@ import { siteConfig } from "~/config/site";
 
 export function HeroSection() {
   return (
-    <section className="relative flex items-center justify-center rounded-md bg-bg/[0.96] py-16 md:py-48">
+    <section className="relative flex items-center justify-center rounded-md py-16 md:py-48">
       <Spotlight className="fill-fg max-md:top-0 max-md:left-[10%]" />
       <div className="space-y-4">
         <div className="grid animate-fade-up justify-items-center gap-4">
