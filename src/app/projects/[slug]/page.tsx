@@ -1,3 +1,5 @@
+import "~/styles/mdx.css";
+
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PostContent } from "~/components/mdx/post-content";

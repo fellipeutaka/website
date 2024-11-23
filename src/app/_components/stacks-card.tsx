@@ -15,12 +15,8 @@ export function StacksCard() {
         <Icons.Zap className="size-4" />
         <h2 className="font-light text-sm">Stacks</h2>
       </div>
-      <Marquee
-        className="my-auto py-4 [--gap:1.5rem]"
-        pauseOnHover
-        motionReduce={false}
-      >
-        {Object.values(technologies).map((technology) => {
+      <Marquee className="my-auto py-4 [--gap:1.5rem]" pauseOnHover>
+        {technologies.map((technology) => {
           const Icon = Icons[technology.icon];
 
           return (

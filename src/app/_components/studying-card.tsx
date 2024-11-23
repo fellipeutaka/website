@@ -5,8 +5,12 @@ import {
   TooltipContent,
   TooltipRoot,
 } from "~/components/ui/tooltip";
+import { getTechnology } from "~/lib/technologies";
 
 export function StudyingCard() {
+  const technology = getTechnology("Rust");
+  const TechIcon = Icons[technology.icon];
+
   return (
     <div className="flex flex-col gap-6 rounded-xl border p-4 lg:p-6">
       <div className="flex items-center gap-2">
@@ -14,20 +18,20 @@ export function StudyingCard() {
         <h2 className="font-light text-sm">Currently studying</h2>
       </div>
       <div className="flex items-center justify-center">
-        <TooltipRoot delay={150}>
+        <TooltipRoot delay={150} closeDelay={200}>
           <LinkPrimitive
             className="outline-none"
-            href="https://www.rust-lang.org"
+            href={technology.url}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icons.Rust className="size-20" />
-            <span className="sr-only">Rust</span>
+            <TechIcon className="size-20" />
+            <span className="sr-only">{technology.name}</span>
           </LinkPrimitive>
 
           <TooltipContent>
             <TooltipArrow />
-            Rust
+            {technology.name}
           </TooltipContent>
         </TooltipRoot>
       </div>

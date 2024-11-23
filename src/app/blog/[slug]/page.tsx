@@ -1,10 +1,11 @@
+import "~/styles/mdx.css";
+
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PostContent } from "~/components/mdx/post-content";
 import { PostFooter } from "~/components/mdx/post-footer";
 import { PostHeader } from "~/components/mdx/post-header";
 import { getItemIds } from "~/utils/get-item-ids";
-// import { PostHeader } from "~/components/blog/post-header";
 import { getPostBySlug, getPosts } from "~/utils/mdx";
 
 const filePath = (slug: string) => `src/content/posts/${slug}.mdx`;

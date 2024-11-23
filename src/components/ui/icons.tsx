@@ -21,6 +21,21 @@ export const Icons = {
       <path d="M20 16V7a2 2 0 00-2-2H6a2 2 0 00-2 2v9m16 0H4m16 0l1.28 2.55a1 1 0 01-.9 1.45H3.62a1 1 0 01-.9-1.45L4 16" />
     </svg>
   ),
+  DotFilled: (props) => (
+    <svg
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 15 15"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M9.875 7.5a2.375 2.375 0 1 1-4.75 0a2.375 2.375 0 0 1 4.75 0"
+      />
+    </svg>
+  ),
   Contra: (props) => (
     <svg fill="none" height={24} viewBox="0 0 60 60" width={24} {...props}>
       <path

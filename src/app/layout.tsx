@@ -1,5 +1,4 @@
 import "~/styles/globals.css";
-import "~/styles/mdx.css";
 
 import type { Metadata, Viewport } from "next";
 import { Providers } from "~/components/providers";
@@ -34,6 +33,7 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{

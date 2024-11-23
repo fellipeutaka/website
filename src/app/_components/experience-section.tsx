@@ -22,7 +22,7 @@ export function ExperienceSection() {
   );
 }
 
-function ExperienceList(props: React.ComponentPropsWithoutRef<"div">) {
+function ExperienceList(props: React.ComponentProps<"div">) {
   return (
     <div {...props} className={cn("flex flex-col gap-4", props.className)}>
       {experiences.map((experience) => (

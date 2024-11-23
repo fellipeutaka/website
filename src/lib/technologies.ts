@@ -131,6 +131,10 @@ export interface Technology {
 export type Technologies = typeof technologies;
 export type TechnologyName = Technologies[number]["name"];
 
-export function getTechnology(name: TechnologyName) {
-  return technologies.find((t) => t.name === name)!;
+type TechnologyMap = {
+  [T in TechnologyName]: Extract<Technologies[number], { name: T }>;
+};
+
+export function getTechnology<T extends TechnologyName>(name: T) {
+  return technologies.find((t) => t.name === name) as TechnologyMap[T];
 }

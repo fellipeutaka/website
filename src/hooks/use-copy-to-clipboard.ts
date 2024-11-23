@@ -8,10 +8,7 @@ interface CopyOptions {
   errorMessage?: React.ReactNode;
 }
 
-export const useCopyToClipboard = (): [
-  (options: CopyOptions) => Promise<void>,
-  boolean,
-] => {
+export function useCopyToClipboard() {
   const [isCopied, setIsCopied] = useState(false);
 
   const copy = async ({
@@ -46,5 +43,5 @@ export const useCopyToClipboard = (): [
     }
   };
 
-  return [copy, isCopied];
-};
+  return [copy, isCopied] as const;
+}

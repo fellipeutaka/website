@@ -61,7 +61,7 @@ export function MobileNav() {
   );
 }
 
-interface MobileLinkProps extends React.ComponentPropsWithoutRef<typeof Link> {
+interface MobileLinkProps extends React.ComponentProps<typeof Link> {
   onOpenChange?: (open: boolean) => void;
 }
 
