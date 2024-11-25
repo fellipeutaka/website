@@ -9,7 +9,7 @@ import { formatRange } from "~/utils/date";
 export function ExperienceSection() {
   return (
     <section
-      className="animate-delay-700 animate-fade-up scroll-m-32"
+      className="container max-w-6xl animate-delay-700 animate-fade-up scroll-m-32"
       id="experience"
     >
       <h2 className="mb-10 font-semibold text-2xl md:text-3xl">Experience</h2>

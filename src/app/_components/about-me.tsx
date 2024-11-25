@@ -8,7 +8,7 @@ import { StudyingCard } from "./studying-card";
 
 export function AboutSection() {
   return (
-    <section>
+    <section className="container max-w-6xl">
       <h2 className="mb-10 font-semibold text-2xl md:text-3xl">About me</h2>
 
       <m.div

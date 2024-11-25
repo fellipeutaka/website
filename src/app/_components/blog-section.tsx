@@ -16,6 +16,7 @@ export async function BlogSection() {
         y: 0,
         opacity: 1,
       }}
+      className="container max-w-6xl"
     >
       <h2 className="mb-10 font-semibold text-2xl md:text-3xl">Latest posts</h2>
 

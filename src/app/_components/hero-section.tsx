@@ -6,11 +6,11 @@ import { siteConfig } from "~/config/site";
 
 export function HeroSection() {
   return (
-    <section className="relative flex items-center justify-center rounded-md py-16 md:py-48">
+    <section className="relative flex items-center justify-center overflow-hidden rounded-md py-16 md:py-48">
       <GridPattern />
       <ShadowEffect />
 
-      <div className="space-y-4">
+      <div className="container max-w-6xl space-y-4">
         <div className="grid animate-fade-up justify-items-center gap-4">
           {env.AVAILABLE_FOR_WORK && (
             <BadgeAnimated className="flex items-center gap-2 text-sm">

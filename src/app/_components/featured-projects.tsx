@@ -8,7 +8,7 @@ export async function FeaturedProjectsSection() {
   const featuredProjects = await getFeaturedProjects();
 
   return (
-    <section className="animate-delay-700 animate-fade-up">
+    <section className="container max-w-6xl animate-delay-700 animate-fade-up">
       <h2 className="mb-10 font-semibold text-2xl md:text-3xl">
         Featured projects
       </h2>
