@@ -8,7 +8,7 @@ import { PostHeader } from "~/components/mdx/post-header";
 import { getItemIds } from "~/utils/get-item-ids";
 import { getPostBySlug, getPosts } from "~/utils/mdx";
 
-const filePath = (slug: string) => `src/content/blog/${slug}.mdx`;
+const filePath = (slug: string) => `src/content/${slug}/index.mdx`;
 
 interface PageProps {
   params: Promise<{
@@ -57,7 +57,7 @@ export default async function Page({ params }: PageProps) {
         cover={post.cover}
       />
       <PostContent itemIds={itemIds} toc={post.toc} content={post.content} />
-      <PostFooter filePath={filePath(slug)} />
+      <PostFooter filePath={filePath(post.slug)} />
     </main>
   );
 }
