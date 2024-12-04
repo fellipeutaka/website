@@ -8,7 +8,7 @@ import { PostHeader } from "~/components/mdx/post-header";
 import { getItemIds } from "~/utils/get-item-ids";
 import { getPostBySlug, getPosts } from "~/utils/mdx";
 
-const filePath = (slug: string) => `src/content/posts/${slug}.mdx`;
+const filePath = (slug: string) => `src/content/blog/${slug}.mdx`;
 
 interface PageProps {
   params: Promise<{
