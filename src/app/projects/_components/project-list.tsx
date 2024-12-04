@@ -1,7 +1,7 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
-import * as m from "framer-motion/m";
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
 import { BadgeStyles } from "~/components/ui/badge";
 import { Button, LinkButton } from "~/components/ui/button";
 import { Card, CardStyles } from "~/components/ui/card";

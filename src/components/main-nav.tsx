@@ -1,6 +1,6 @@
 "use client";
 
-import * as m from "framer-motion/m";
+import * as m from "motion/react-m";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";

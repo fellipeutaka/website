@@ -1,6 +1,6 @@
 "use client";
 
-import { LazyMotion, domMax } from "framer-motion";
+import { LazyMotion, domMax } from "motion/react";
 import { ThemeProvider } from "next-themes";
 import { useRouter } from "next/navigation";
 import { NuqsAdapter } from "nuqs/adapters/next/app";

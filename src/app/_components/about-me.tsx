@@ -1,4 +1,4 @@
-import * as m from "framer-motion/m";
+import * as m from "motion/react-m";
 import { LinkButton } from "~/components/ui/button";
 import { CodingHours } from "./coding-hours";
 import { Connect } from "./connect";

@@ -1,4 +1,4 @@
-import * as m from "framer-motion/m";
+import * as m from "motion/react-m";
 import { Badge } from "~/components/ui/badge";
 import { Card } from "~/components/ui/card";
 import { TracingBeam } from "~/components/ui/tracing-beam";

@@ -1,7 +1,7 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
-import * as m from "framer-motion/m";
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
 import { Form } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import { Skeleton } from "~/components/ui/skeleton";
