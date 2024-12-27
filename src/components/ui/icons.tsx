@@ -1,3 +1,5 @@
+import { cn } from "~/lib/cva";
+
 export type IconProps = React.ComponentProps<"svg">;
 export type Icon = keyof typeof Icons;
 export type IconComponent = (props: IconProps) => React.ReactElement;
@@ -478,6 +480,7 @@ export const Icons = {
       height={32}
       viewBox="0 0 128 128"
       {...props}
+      className={cn("rounded", props.className)}
     >
       <path fill="#fff" d="M22.67 47h99.67v73.67H22.67z" />
       <path
@@ -1346,16 +1349,16 @@ export const Icons = {
   ),
   Zod: (props) => (
     <svg
-      aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
-      width={40.36}
-      height={32}
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      width={256}
+      height={203}
       viewBox="0 0 256 203"
       {...props}
     >
       <defs>
         <filter
-          id="zod-a"
+          id="zod-b"
           width="105.2%"
           height="106.5%"
           x="-2.2%"
@@ -1379,26 +1382,25 @@ export const Icons = {
           />
         </filter>
         <path
-          id="zod-b"
-          fill="#000"
-          d="M200.42 0H53.63L0 53.355l121.76 146.624 9.714-10.9L252 53.857zm-5.362 12.562l39.84 41.6-112.8 126.558L17 54.162l41.815-41.6z"
+          id="zod-a"
+          d="M200.42 0H53.63L0 53.355l121.76 146.624 9.714-10.9L252 53.857 200.42 0zm-5.362 12.562l39.84 41.6-112.8 126.558L17 54.162l41.815-41.6h136.243z"
         />
       </defs>
+      <path
+        fill="#18253F"
+        d="M60.816 14.033h136.278l39.933 41.69-112.989 126.554L18.957 55.724z"
+      />
+      <path
+        fill="#274D82"
+        d="M151.427 152.386H98.013l-24.124-29.534 68.364-.002.002-4.19h39.078z"
+      />
+      <path
+        fill="#274D82"
+        d="M225.56 43.834l-147.382 85.09-19.226-24.051 114.099-65.877-2.096-3.631 30.391-17.546zm-78.964-29.759L35.93 77.968 18.719 56.483l74.095-42.78z"
+      />
       <g transform="translate(2 1.51)">
-        <path
-          fill="#18253F"
-          d="M58.816 12.522h136.278l39.933 41.691-112.989 126.553L16.957 54.213z"
-        />
-        <path
-          fill="#274D82"
-          d="M149.427 150.875H96.013l-24.124-29.534 68.364-.002.002-4.19h39.078z"
-        />
-        <path
-          fill="#274D82"
-          d="M223.56 42.323L76.178 127.414l-19.226-24.052 114.099-65.877-2.096-3.631 30.391-17.546zm-78.964-29.759L33.93 76.457 16.719 54.972l74.095-42.779z"
-        />
-        <use filter="url(#zod-a)" href="#zod-b" />
-        <use fill="#3068B7" href="#zod-b" />
+        <use xlinkHref="#zod-a" filter="url(#zod-b)" />
+        <use xlinkHref="#zod-a" fill="#3068B7" />
       </g>
     </svg>
   ),
