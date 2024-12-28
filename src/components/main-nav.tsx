@@ -3,8 +3,9 @@
 import * as m from "motion/react-m";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { navLinks } from "~/config/site";
+import { useHash } from "~/hooks/use-hash";
 
 function isActive(href: string, path: string) {
   return path.includes(href);
@@ -12,7 +13,12 @@ function isActive(href: string, path: string) {
 
 export function MainNav() {
   const pathname = usePathname();
-  const [hoveredPath, setHoveredPath] = useState(pathname);
+  const hash = useHash();
+  const [hoveredPath, setHoveredPath] = useState(pathname + hash);
+
+  useEffect(() => {
+    setHoveredPath(pathname + hash);
+  }, [pathname, hash]);
 
   return (
     <nav className="ml-6 hidden items-center text-sm md:flex">
