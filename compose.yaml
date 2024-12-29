@@ -1,0 +1,5 @@
+services:
+  latex:
+    build: .
+    volumes:
+      - .:/app

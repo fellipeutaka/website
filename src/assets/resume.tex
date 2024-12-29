@@ -1,0 +1,267 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+	ignoreheadfoot, % set margins without considering header and footer
+	top=1.5 cm, % seperation between body and page edge from the top
+	bottom=1.5 cm, % seperation between body and page edge from the bottom
+	left=1.5 cm, % seperation between body and page edge from the left
+	right=1.5 cm, % seperation between body and page edge from the right
+	footskip=1.0 cm, % seperation between body and footer
+	% showframe % for debugging
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 0, 0} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{etoolbox} % for conditional statements
+\usepackage{amsmath} % for math
+\usepackage[
+	pdftitle={Fellipe Utaka's CV},
+	pdfauthor={Fellipe Utaka},
+	pdfcreator={Fellipe Utaka},
+	colorlinks=true,
+	urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+\input{glyphtounicode}
+\pdfgentounicode=1
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+
+% Some settings:
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0.15cm} % set column seperation
+\pagenumbering{gobble} % no page numbering
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[
+\vspace{1pt}
+\titlerule]
+
+\titlespacing{\section}{
+% left space:
+-1pt }{
+% top space:
+0.3 cm }{
+% bottom space:
+0.2 cm } % section title spacing
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
+\newenvironment{highlights}{ \begin{itemize}[ topsep=0.10 cm, parsep=0.10 cm, partopsep=0pt,
+itemsep=0pt, leftmargin=0 cm + 10pt ] }{ \end{itemize} } % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{ \begin{itemize}[ topsep=0.10 cm,
+parsep=0.10 cm, partopsep=0pt, itemsep=0pt, leftmargin=10pt ] }{ \end{itemize} } % new environment for highlights for bullet entries
+
+\newenvironment{onecolentry}{ \begin{adjustwidth}{ 0 cm + 0.00001 cm }{ 0 cm + 0.00001 cm }
+}{ \end{adjustwidth} } % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{ \onecolentry \def\secondColumn{#2} \setcolumnwidth{\fill, 4.5 cm}
+\begin{paracol}{2} }{ \switchcolumn \raggedleft \secondColumn \end{paracol}
+\endonecolentry } % new environment for two column entries
+
+\newenvironment{threecolentry}[3][]{ \onecolentry \def\thirdColumn{#3} \setcolumnwidth{, \fill, 4.5 cm}
+\begin{paracol}{3} {\raggedright #2} \switchcolumn }{ \switchcolumn \raggedleft \thirdColumn
+\end{paracol} \endonecolentry } % new environment for three column entries
+
+\newenvironment{header}{
+\setlength{\topsep}{0pt}
+\par\kern\topsep
+\centering
+\linespread{1.5} }{ \par\kern\topsep } % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+\AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+\put( \LenToUnit{\paperwidth-2 cm-0 cm+0.05cm}, \LenToUnit{\paperheight-1.0 cm} ){\vtop{{\null}\makebox[0pt][c]{ \small\color{gray}\textit{Last updated in September 2024}\hspace{\widthof{Last updated in September 2024}} }}}%
+}%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+
+\begin{document}
+	\newcommand{\AND}{\unskip \cleaders\copy\ANDbox\hskip\wd\ANDbox \ignorespaces }
+	\newsavebox{\ANDbox}
+	\sbox{\ANDbox}{$|$}
+
+	\begin{header}
+		\fontsize{25 pt}{25 pt}\selectfont Fellipe Utaka
+
+		\vspace{5 pt}
+
+		\normalsize
+		% \mbox{Your Location}%
+		% \kern 5.0 pt%
+		% \AND%
+		% \kern 5.0 pt%
+		\mbox{\hrefWithoutArrow{mailto:fellipeutaka@gmail.com}{fellipeutaka@gmail.com}}%
+		\kern 5.0 pt%
+		\AND%
+		\kern 5.0 pt%
+		% \mbox{\hrefWithoutArrow{tel:+90-541-999-99-99}{0541 999 99 99}}%
+		% \kern 5.0 pt%
+		% \AND%
+		% \kern 5.0 pt%
+		\mbox{\hrefWithoutArrow{https://fellipeutaka.vercel.app/}{fellipeutaka.vercel.app}}%
+		\kern 5.0 pt%
+		\AND%
+		\kern 5.0 pt%
+		\mbox{\hrefWithoutArrow{https://linkedin.com/in/fellipeutaka}{linkedin.com/in/fellipeutaka}}%
+		\kern 5.0 pt%
+		\AND%
+		\kern 5.0 pt%
+		\mbox{\hrefWithoutArrow{https://github.com/fellipeutaka}{github.com/fellipeutaka}}%
+	\end{header}
+
+	\section{Skills}
+
+	Java, JavaScript (ES2015+), TypeScript, HTML, 
+	Sass, SQL, GraphQL, React, Next.js, Gatsby, Astro,
+	Node.js, Tailwind CSS, Styled Components, Framer
+	Motion, Electron, Jest, Vitest, Cypress, Playwright,
+	Spring Boot, Express, Fastify, Nest.js, React Native,
+	Expo, Git, GitHub, Figma, Netlify, Vercel, Heroku,
+	Storybook, Docker, Webpack, Babel, esbuild, swc,
+	Jira, Trello, Monday, Notion, Slack, Discord
+
+	\section{Experience}
+
+	\begin{twocolentry}
+		{ Sep 2024 - Current } \textbf{Front-End Developer}, Blue Company
+	\end{twocolentry}
+
+	\vspace{0.10 cm}
+	\begin{onecolentry}
+		\begin{highlights}
+			\item Developed and maintained web applications for a health tech company
+			\item Collaborated with product managers and designers to create user-friendly interfaces
+			\item Implemented responsive designs using modern web technologies and frameworks
+			\item Wrote clean, maintainable code and conducted code reviews to ensure high code quality and performance
+		\end{highlights}
+	\end{onecolentry}
+
+	\begin{twocolentry}
+		{ Jun 2024 - Sep 2024 } \textbf{Freelance Full-Stack Developer}, Divina Terra Atibaia
+	\end{twocolentry}
+
+	\vspace{0.10 cm}
+	\begin{onecolentry}
+		\begin{highlights}
+			\item Built an admin dashboard with React, TypeScript, TailwindCSS, Next.js,
+			and React Aria
+			\item Developed the back-end using Java, Spring Boot, Postgres,
+			Docker, CI/CD, and GitHub Actions
+			\item Delivered a responsive landing
+			page using Astro and TailwindCSS for optimized user experience
+		\end{highlights}
+	\end{onecolentry}
+
+	\vspace{0.2 cm}
+
+	\begin{twocolentry}
+		{ Jan 2024 - Jun 2024 } \textbf{Freelance Full-Stack Developer}, NextBase
+	\end{twocolentry}
+
+	\vspace{0.10 cm}
+	\begin{onecolentry}
+		\begin{highlights}
+			\item Developed a SaaS boilerplate using React, TypeScript, TailwindCSS,
+			Next.js, shadcn/ui, Supabase and MDX
+			\item Created a scalable and reusable
+			architecture to speed up the development of future SaaS products
+		\end{highlights}
+	\end{onecolentry}
+
+	\vspace{0.2 cm}
+
+	\begin{twocolentry}
+		{ Apr 2023 - Oct 2023 } \textbf{Full-Stack Developer}, Anjun Express
+	\end{twocolentry}
+
+	\vspace{0.10 cm}
+	\begin{onecolentry}
+		\begin{highlights}
+			\item Spearheaded the development and maintenance of internal
+			systems to enhance transport and logistics operations
+			within the cross-border market, adhering to best
+			development practices
+			\item Optimized critical resources, resulting in a remarkable 20%
+			increase in page loading speed
+			\item Established a comprehensive Design System, ensuring
+			accessibility and reusability of components across various
+			projects, subsequently published in NPM for wider
+			utilization
+			\item Collaborated in English with international teams to integrate
+			front and back-end solutions
+		\end{highlights}
+	\end{onecolentry}
+
+	\section{Education}
+
+	\begin{twocolentry}
+		{ Jan 2020 - Dec 2022 } \textbf{ETEC Professor Carmine Biagio Tundisi}, Systems
+		Development Technician
+	\end{twocolentry}
+
+	\vspace{0.10 cm}
+	\begin{onecolentry}
+		\begin{highlights}
+			\item \textbf{Coursework:} Data Structure and Algorithms, Systems Programming,
+			Object-Oriented Programming, Functional Programming
+		\end{highlights}
+	\end{onecolentry}
+
+	\section{Projects}
+
+	\begin{twocolentry}
+		{\href{https://git.new/kanpeki}{git.new/kanpeki}} \textbf{Kanpeki}
+	\end{twocolentry}
+
+	\vspace{0.10cm}
+	A collection of copy-paste components inspired by shadcn/ui, but enhanced with
+	React from Adobe and Radix UI. Highly customizable, featuring beautiful
+	animations and accessible components designed to integrate seamlessly into
+	modern React projects.
+
+	\vspace{0.2cm}
+
+	\begin{twocolentry}
+		{\href{https://git.new/satoru}{git.new/satoru}} \textbf{Satoru}
+	\end{twocolentry}
+
+	\vspace{0.10cm}
+	A desktop application built with Rust, Tauri, React 19, TailwindCSS, shadcn/ui,
+	and Query. It allows users to manage Minecraft servers, monitor server logs,
+	track RAM usage, and access various other management functionalities.
+
+	\section{Languages}
+
+	\begin{onecolentry}
+		\begin{highlights}
+			\item English (C1)
+			\item Portuguese (Native)
+			\item Spanish (B2)
+		\end{highlights}
+	\end{onecolentry}
+\end{document}

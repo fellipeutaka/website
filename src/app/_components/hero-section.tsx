@@ -32,8 +32,9 @@ export function HeroSection() {
         <div className="flex animate-delay-300 animate-fade-up items-center justify-center gap-4">
           <LinkButton
             className="group rounded-full"
+            target="_blank"
             href="/documents/resume.pdf"
-            download
+            rel="noopener noreferrer"
           >
             <Icons.Download className="mr-2 size-4" />
             Get resume
