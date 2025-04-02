@@ -15,4 +15,8 @@ WORKDIR /app
 
 COPY public/documents src/assets .
 
-CMD /bin/bash -c "latexmk -pdf -interaction=nonstopmode -output-directory=public/documents src/assets/resume.tex && latexmk -c -output-directory=public/documents src/assets/resume.tex"
+CMD /bin/bash -c "\
+    for tex_file in src/assets/*.tex; do \
+        latexmk -pdf -interaction=nonstopmode -outdir=public/documents \$tex_file && \
+        latexmk -c -outdir=public/documents \$tex_file; \
+    done"

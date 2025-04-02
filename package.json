@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "biome check",
     "preview": "next build && next start",
-    "type-check": "tsc --noEmit -incremental false"
+    "type-check": "tsc --noEmit -incremental false",
+    "cv:generate": "docker compose up",
+    "cv:recreate": "docker compose up --remove-orphans --build --force-recreate"
   },
   "dependencies": {
     "@better-fetch/fetch": "^1.1.12",
