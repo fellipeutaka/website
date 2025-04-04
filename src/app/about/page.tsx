@@ -1,7 +1,7 @@
-import { pages } from "~:content";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXContent } from "~/components/mdx/mdx-content";
+import { pagesSource } from "~/lib/source";
 
 export const metadata: Metadata = {
   title: "About",
@@ -9,16 +9,18 @@ export const metadata: Metadata = {
     "A brief introduction about me and my journey as a software developer.",
 };
 
-export default function Page() {
-  const page = pages.find((page) => page.slugAsParams === "about");
+export default async function Page() {
+  const page = pagesSource.getPage(["about"]);
 
   if (!page) {
     notFound();
   }
 
+  const { body } = await page.data.load();
+
   return (
     <main className="container my-20 animate-fade-up">
-      <MDXContent code={page.content} />
+      <MDXContent body={body} />
     </main>
   );
 }

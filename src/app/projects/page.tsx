@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { getProjects } from "~/utils/mdx";
+import { projectsSource } from "~/lib/source";
+import { stripNonSerializable } from "~/utils/strip-non-serializable";
 import { ProjectList, ProjectListSkeleton } from "./_components/project-list";
 
 export const metadata: Metadata = {
@@ -8,8 +9,8 @@ export const metadata: Metadata = {
   description: "A collection of projects that I have worked on.",
 };
 
-export default async function Page() {
-  const projects = await getProjects();
+export default function Page() {
+  const projects = stripNonSerializable(projectsSource.getPages());
 
   return (
     <main className="container my-20">

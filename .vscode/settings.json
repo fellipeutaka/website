@@ -1,5 +1,15 @@
 {
-  "cSpell.words": ["cobe", "nuqs", "sonner", "turbopack", "velite"],
+  "cSpell.words": [
+    "cmdk",
+    "cobe",
+    "fumadocs",
+    "nuqs",
+    "shiki",
+    "sonner",
+    "turbopack",
+    "vaul",
+    "velite"
+  ],
   "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
   "typescript.enablePromptUseWorkspaceTsdk": true,

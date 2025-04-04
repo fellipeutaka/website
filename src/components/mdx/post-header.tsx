@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { siteConfig } from "~/config/site";
 import { formatDate } from "~/utils/date";
-import type { CoverImage } from "~/utils/mdx";
+import type { Image } from "~/utils/zod-image";
 import { BlurImage } from "../ui/blur-image";
 import { ImageZoom } from "../ui/image-zoom";
 
 interface PostHeaderProps {
   date: Date;
   title: string;
-  cover: CoverImage;
+  cover: Image;
 }
 
 export function PostHeader({ title, date, cover }: PostHeaderProps) {

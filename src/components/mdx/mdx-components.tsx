@@ -1,5 +1,6 @@
 import { cn } from "~/lib/cva";
 import { Link } from "../ui/link";
+import { Code } from "./code";
 import { DisplayAge } from "./display-age";
 import { Figcaption } from "./figcaption";
 import { Heading } from "./heading";
@@ -107,15 +108,8 @@ export const mdxComponents = {
       {...props}
     />
   ),
-  code: ({ className, ...props }: React.ComponentProps<"code">) => (
-    <code
-      className={cn(
-        "relative rounded bg-muted px-1 py-0.5 font-mono text-sm",
-        className,
-      )}
-      {...props}
-    />
-  ),
+  Code: Code,
+  code: Code,
   pre: Pre,
   figure: ({ className, ...props }: React.ComponentProps<"figure">) => (
     <figure

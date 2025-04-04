@@ -1,18 +1,10 @@
-import * as runtime from "react/jsx-runtime";
+import type { MDXProps } from "mdx/types";
 import { mdxComponents } from "./mdx-components";
-// import { mdxComponents } from "./mdx-components";
-
-const useMDXComponent = (code: string) => {
-  const fn = new Function(code);
-  return fn({ ...runtime }).default;
-};
 
 interface MDXContentProps {
-  code: string;
+  body: React.FC<MDXProps>;
 }
 
-export function MDXContent({ code }: MDXContentProps) {
-  const Component = useMDXComponent(code);
-
-  return <Component components={mdxComponents} />;
+export function MDXContent({ body: Content }: MDXContentProps) {
+  return <Content components={mdxComponents} />;
 }

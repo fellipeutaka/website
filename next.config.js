@@ -1,19 +1,12 @@
 // @ts-check
 
+import { createMDX } from "fumadocs-mdx/next";
+
 // Use a .js file instead of .ts until Next.js support top-level await in next.config.ts
 // https://github.com/vercel/next.js/issues/67765
-
 await import("./src/config/env.js");
 
-const isDev = process.argv.indexOf("dev") !== -1;
-const isBuild = process.argv.indexOf("build") !== -1;
-// biome-ignore lint/nursery/noProcessEnv: This env is injected by velite
-if (!process.env.VELITE_STARTED && (isDev || isBuild)) {
-  // biome-ignore lint/nursery/noProcessEnv: This env is injected by velite
-  process.env.VELITE_STARTED = "1";
-  const { build } = await import("velite");
-  await build({ watch: isDev, clean: !isDev });
-}
+const withMDX = createMDX();
 
 /** @type {import('next').NextConfig} */
 const config = {
@@ -29,6 +22,9 @@ const config = {
       {
         hostname: "github.com",
       },
+      {
+        hostname: "**",
+      },
     ],
   },
   // biome-ignore lint/suspicious/useAwait: This needs to be async
@@ -43,4 +39,4 @@ const config = {
   },
 };
 
-export default config;
+export default withMDX(config);

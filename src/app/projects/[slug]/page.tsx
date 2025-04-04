@@ -2,16 +2,14 @@ import "~/styles/mdx.css";
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { MDXContent } from "~/components/mdx/mdx-content";
 import { PostContent } from "~/components/mdx/post-content";
 import { PostFooter } from "~/components/mdx/post-footer";
 import { LinkButton } from "~/components/ui/button";
 import { Icons } from "~/components/ui/icons";
 import { siteConfig } from "~/config/site";
-import { getItemIds } from "~/utils/get-item-ids";
-import { getProjectBySlug, getProjects } from "~/utils/mdx";
+import { projectsSource } from "~/lib/source";
 import { PreviewRecursiveButton } from "../_components/preview-recursive-button";
-
-const filePath = (slug: string) => `src/content/projects/${slug}.mdx`;
 
 interface PageProps {
   params: Promise<{
@@ -19,55 +17,51 @@ interface PageProps {
   }>;
 }
 
-export async function generateStaticParams() {
-  const projects = await getProjects();
-
-  return projects.map((post) => ({
-    slug: post.slug,
-  }));
+export function generateStaticParams() {
+  return projectsSource.generateParams().map(({ slug }) => slug);
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getProjectBySlug(slug);
+  const project = projectsSource.getPage([slug]);
 
-  if (!post) {
+  if (!project) {
     notFound();
   }
 
   return {
-    title: post.name,
+    title: project.data.name,
   };
 }
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
 
-  const project = await getProjectBySlug(slug);
+  const project = projectsSource.getPage([slug]);
 
   if (!project) {
     notFound();
   }
 
-  const itemIds = getItemIds(project.toc);
+  const { body, toc } = await project.data.load();
 
   return (
     <main className="container my-20">
       <h1 className="mt-16 mb-4 text-balance text-center font-bold text-4xl md:text-5xl md:leading-[64px]">
-        {project.name}
+        {project.data.name}
       </h1>
       <div className="mb-16 flex items-center justify-center gap-4">
-        {project.previewUrl &&
-          (project.previewUrl === siteConfig.url ? (
+        {project.data.previewUrl &&
+          (project.data.previewUrl === siteConfig.url ? (
             <PreviewRecursiveButton />
           ) : (
             <LinkButton
               variant="outline"
               size="sm"
               className="rounded-full"
-              href={project.previewUrl}
+              href={project.data.previewUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -79,7 +73,7 @@ export default async function Page({ params }: PageProps) {
           className="rounded-full"
           size="sm"
           variant="secondary"
-          href={project.sourceCodeUrl}
+          href={project.data.sourceCodeUrl}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -87,12 +81,10 @@ export default async function Page({ params }: PageProps) {
           Source code
         </LinkButton>
       </div>
-      <PostContent
-        itemIds={itemIds}
-        toc={project.toc}
-        content={project.content}
-      />
-      <PostFooter filePath={filePath(slug)} />
+      <PostContent toc={toc}>
+        <MDXContent body={body} />
+      </PostContent>
+      <PostFooter filePath={project.file.path} />
     </main>
   );
 }

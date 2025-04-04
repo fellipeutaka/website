@@ -138,20 +138,6 @@ const config = {
           },
         },
 
-        // Radix Collapsible
-        "collapsible-up": {
-          from: {
-            height: "var(--radix-collapsible-content-height)",
-          },
-          to: { height: "0", opacity: "0" },
-        },
-        "collapsible-down": {
-          from: { height: "0", opacity: "0" },
-          to: {
-            height: "var(--radix-collapsible-content-height)",
-          },
-        },
-
         // Marquee
         marquee: {
           from: { transform: "translateX(0)" },
@@ -165,10 +151,6 @@ const config = {
         // Animated Badge
         flip: "flip 6s infinite steps(2, end)",
         rotate: "rotate 3s linear infinite both",
-
-        // Radix Collapsible
-        "collapsible-up": "collapsible-up 150ms ease-out",
-        "collapsible-down": "collapsible-down 150ms ease-out",
 
         // Marquee
         marquee: "marquee var(--duration, 20s) linear infinite",

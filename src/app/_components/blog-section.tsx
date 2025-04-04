@@ -1,10 +1,11 @@
 import * as m from "motion/react-m";
 import { LinkButton } from "~/components/ui/button";
-import { getPosts } from "~/utils/mdx";
+import { postsSource } from "~/lib/source";
+import { stripNonSerializable } from "~/utils/strip-non-serializable";
 import { PostCard } from "../blog/_components/post-card";
 
 export async function BlogSection() {
-  const posts = (await getPosts()).slice(0, 2);
+  const posts = stripNonSerializable(postsSource.getPages().slice(0, 2));
 
   return (
     <m.section
@@ -22,7 +23,7 @@ export async function BlogSection() {
 
       <div className="grid w-full gap-4 md:grid-cols-2">
         {posts.map((post) => (
-          <PostCard key={post.slug} post={post} />
+          <PostCard key={post.url} post={post} />
         ))}
       </div>
 

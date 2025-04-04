@@ -7,8 +7,14 @@ import { Input } from "~/components/ui/input";
 import { Skeleton } from "~/components/ui/skeleton";
 import { TextSearch } from "~/components/ui/text-search";
 import { useFilters } from "~/hooks/use-filters";
-import type { Post } from "~/utils/mdx";
+import type { StripNonSerializable } from "~/utils/strip-non-serializable";
 import { PostCard } from "./post-card";
+
+type Post = StripNonSerializable<
+  NonNullable<
+    Awaited<ReturnType<typeof import("~/lib/source").postsSource.getPage>>
+  >
+>;
 
 function filterPosts(
   initialList: Post[],
@@ -19,7 +25,7 @@ function filterPosts(
   return initialList.filter((post) => {
     const query = filter.query.trim().toLowerCase();
 
-    if (query && !post.title.toLowerCase().includes(query)) {
+    if (query && !post.data.title.toLowerCase().includes(query)) {
       return false;
     }
 
@@ -59,7 +65,7 @@ export function PostCardList({ posts }: PostCardListProps) {
           <div className="grid w-full gap-4 md:grid-cols-2">
             {filteredPosts.map((post) => (
               <m.div
-                key={post.slug}
+                key={post.url}
                 layout
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}

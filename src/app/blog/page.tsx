@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { getPosts } from "~/utils/mdx";
+import { postsSource } from "~/lib/source";
+import { stripNonSerializable } from "~/utils/strip-non-serializable";
 import {
   PostCardList,
   PostCardListSkeleton,
@@ -12,10 +13,8 @@ export const metadata: Metadata = {
     "A collection of blog posts about software development, web development, and other topics.",
 };
 
-export default async function Page() {
-  const posts = (await getPosts()).toSorted((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
-  });
+export default function Page() {
+  const posts = stripNonSerializable(postsSource.getPages());
 
   return (
     <main className="container my-20">

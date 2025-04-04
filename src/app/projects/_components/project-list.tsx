@@ -20,8 +20,14 @@ import {
   getTechnology,
   technologies,
 } from "~/lib/technologies";
-import type { Project } from "~/utils/mdx";
+import type { StripNonSerializable } from "~/utils/strip-non-serializable";
 import { PreviewRecursiveButton } from "./preview-recursive-button";
+
+type Project = StripNonSerializable<
+  NonNullable<
+    Awaited<ReturnType<typeof import("~/lib/source").projectsSource.getPage>>
+  >
+>;
 
 function filterProjects(
   initialList: Project[],
@@ -34,13 +40,13 @@ function filterProjects(
     const query = filter.query.trim().toLowerCase();
     const technologies = filter.selectedTechnologies;
 
-    if (query && !project.name.toLowerCase().includes(query)) {
+    if (query && !project.data.name.toLowerCase().includes(query)) {
       return false;
     }
 
     if (
       technologies.length > 0 &&
-      !project.technologies.some((technology) =>
+      !project.data.technologies.some((technology) =>
         technologies.includes(technology),
       )
     ) {
@@ -95,7 +101,7 @@ export function ProjectList({ projects }: ProjectListProps) {
                   {technologies
                     .filter((technology) =>
                       projects.some((project) =>
-                        project.technologies.includes(technology.name),
+                        project.data.technologies.includes(technology.name),
                       ),
                     )
                     .map((technology) => {
@@ -168,15 +174,15 @@ export function ProjectList({ projects }: ProjectListProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
-                key={project.slug}
+                key={project.url}
               >
                 <Card.Header>
-                  <Card.Title>{project.name}</Card.Title>
+                  <Card.Title>{project.data.name}</Card.Title>
                 </Card.Header>
                 <Card.Content className="flex-1">
-                  <p>{project.description}</p>
+                  <p>{project.data.description}</p>
                   <div className="mt-2 flex flex-wrap items-center gap-2">
-                    {project.technologies.map((technology) => {
+                    {project.data.technologies.map((technology) => {
                       const tech = getTechnology(technology);
                       const Icon = Icons[tech.icon];
 
@@ -202,20 +208,20 @@ export function ProjectList({ projects }: ProjectListProps) {
                   <LinkButton
                     size="sm"
                     className="w-full rounded-full sm:w-max"
-                    href={project.slug}
+                    href={project.url}
                   >
                     Read more
                   </LinkButton>
                   <div className="flex items-center gap-4 max-sm:w-full">
-                    {project.previewUrl &&
-                      (project.previewUrl === siteConfig.url ? (
+                    {project.data.previewUrl &&
+                      (project.data.previewUrl === siteConfig.url ? (
                         <PreviewRecursiveButton className="w-full" />
                       ) : (
                         <LinkButton
                           variant="outline"
                           size="sm"
                           className="w-full rounded-full"
-                          href={project.previewUrl}
+                          href={project.data.previewUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -224,7 +230,7 @@ export function ProjectList({ projects }: ProjectListProps) {
                         </LinkButton>
                       ))}
                     <LinkButton
-                      href={project.sourceCodeUrl}
+                      href={project.data.sourceCodeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full rounded-full"
