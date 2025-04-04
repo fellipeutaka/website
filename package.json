@@ -43,7 +43,7 @@
     "@types/node": "^20.17.30",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.1",
-    "cva": "1.0.0-beta.2",
+    "cva": "1.0.0-beta.3",
     "fumadocs-mdx": "^11.5.7",
     "postcss": "^8.5.3",
     "sharp": "^0.33.5",
