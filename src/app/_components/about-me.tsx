@@ -25,7 +25,7 @@ export function AboutSection() {
           duration: 0.3,
         }}
       >
-        <div className="grid grid-rows-[1fr,auto] gap-4">
+        <div className="grid grid-rows-[1fr_auto] gap-4">
           <LocationCard />
           <StacksCard />
         </div>

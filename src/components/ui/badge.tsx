@@ -11,7 +11,7 @@ export const BadgeStyles = compose(
     variants: {
       variant: {
         default: [
-          "border-transparent bg-primary text-primary-fg shadow",
+          "border-transparent bg-primary text-primary-fg shadow-sm",
           "hover:bg-primary/80",
         ],
         secondary: [
@@ -19,7 +19,7 @@ export const BadgeStyles = compose(
           "hover:bg-secondary/80",
         ],
         destructive: [
-          "border-transparent bg-destructive text-destructive-fg shadow",
+          "border-transparent bg-destructive text-destructive-fg shadow-sm",
           "hover:bg-destructive/80",
         ],
         outline: ["text-fg"],

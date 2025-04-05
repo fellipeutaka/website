@@ -20,7 +20,7 @@ export const DialogStyles = {
     ],
     variants: {
       isBlurred: {
-        true: ["backdrop-blur"],
+        true: ["backdrop-blur-sm"],
         false: ["bg-black/15 dark:bg-black/60"],
       },
       isSheet: {
@@ -33,7 +33,7 @@ export const DialogStyles = {
   }),
   Content: cva({
     base: [
-      "fixed z-50 w-full bg-bg p-6 shadow-lg outline-none",
+      "fixed z-50 w-full bg-bg p-6 shadow-lg outline-hidden",
       "entering:fade-in-0 entering:animate-in",
       "exiting:fade-out-0 exiting:animate-out",
       "sm:rounded-lg",
@@ -76,7 +76,7 @@ export const DialogStyles = {
   }),
   Close: cva({
     base: [
-      "absolute top-4 right-4 size-4 rounded-sm opacity-70 outline-none ring-offset-bg transition",
+      "absolute top-4 right-4 size-4 rounded-sm opacity-70 outline-hidden ring-offset-bg transition",
       "hover:opacity-100",
       "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
       "disabled:pointer-events-none",
@@ -144,7 +144,7 @@ export function DialogContent({
         isDismissable={_isDismissable}
       >
         {(values) => (
-          <DialogPrimitive className="outline-none" role={role}>
+          <DialogPrimitive className="outline-hidden" role={role}>
             {typeof children === "function" ? children(values) : children}
           </DialogPrimitive>
         )}

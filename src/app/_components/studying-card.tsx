@@ -20,7 +20,7 @@ export function StudyingCard() {
       <div className="flex items-center justify-center">
         <TooltipRoot delay={150} closeDelay={200}>
           <LinkPrimitive
-            className="outline-none"
+            className="outline-hidden"
             href={technology.url}
             target="_blank"
             rel="noopener noreferrer"

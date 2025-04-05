@@ -20,9 +20,9 @@ export const FormStyles = {
       "group-invalid:border-danger group-invalid:focus-within:border-danger group-invalid:focus-within:ring-4 group-invalid:focus-within:ring-danger/20",
       "disabled:bg-secondary disabled:opacity-50",
 
-      "[&>[data-slot=icon]]:shrink-0",
-      "[&>[data-slot=prefix]>button]:ml-[-7px] [&>[data-slot=prefix]]:ml-2.5 [&>[data-slot=prefix]]:text-muted-fg [&>[role=progressbar]]:mr-2.5",
-      "[&>[data-slot=suffix]>button]:mr-[-7px] [&>[data-slot=suffix]]:mr-2.5 [&>[data-slot=suffix]]:text-muted-fg",
+      "*:data-[slot=icon]:shrink-0",
+      "[&>[data-slot=prefix]>button]:ml-[-7px] *:data-[slot=prefix]:ml-2.5 *:data-[slot=prefix]:text-muted-fg [&>[role=progressbar]]:mr-2.5",
+      "[&>[data-slot=suffix]>button]:mr-[-7px] *:data-[slot=suffix]:mr-2.5 *:data-[slot=suffix]:text-muted-fg",
     ],
   }),
   Description: cva({

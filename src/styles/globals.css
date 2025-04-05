@@ -1,6 +1,114 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tailwindcss-animated";
+@import "tw-animate-css";
+@import "./typography.css";
+
+@plugin "tailwindcss-react-aria-components";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --breakpoint-xs: 480px;
+
+  --color-border: oklch(var(--border));
+  --color-input: oklch(var(--input));
+  --color-ring: oklch(var(--ring));
+  --color-bg: oklch(var(--bg));
+  --color-fg: oklch(var(--fg));
+
+  --color-primary: oklch(var(--primary));
+  --color-primary-fg: oklch(var(--primary-fg));
+
+  --color-secondary: oklch(var(--secondary));
+  --color-secondary-fg: oklch(var(--secondary-fg));
+
+  --color-success: oklch(var(--success));
+  --color-success-fg: oklch(var(--success-fg));
+
+  --color-warning: oklch(var(--warning));
+  --color-warning-fg: oklch(var(--warning-fg));
+
+  --color-danger: oklch(var(--danger));
+  --color-danger-fg: oklch(var(--danger-fg));
+
+  --color-muted: oklch(var(--muted));
+  --color-muted-fg: oklch(var(--muted-fg));
+
+  --color-accent: oklch(var(--accent));
+  --color-accent-fg: oklch(var(--accent-fg));
+
+  --color-popover: oklch(var(--popover));
+  --color-popover-fg: oklch(var(--popover-fg));
+
+  --color-card: oklch(var(--card));
+  --color-card-fg: oklch(var(--card-fg));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --font-sans:
+    var(--font-sans), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono:
+    var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+  --animate-flip: flip 6s infinite steps(2, end);
+  --animate-rotate: rotate 3s linear infinite both;
+  --animate-marquee: marquee var(--duration, 20s) linear infinite;
+
+  @keyframes spotlight {
+    0% {
+      opacity: 0;
+      transform: translate(-72%, -62%) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -40%) scale(1);
+    }
+  }
+  @keyframes flip {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rotate {
+    to {
+      transform: rotate(90deg);
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap, 1rem)));
+    }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-xs)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 @layer base {
   :root {
@@ -104,7 +212,7 @@
     @apply bg-fg/40 rounded-lg transition-colors;
   }
 
-  ::-webkit-scdrollbar-thumb:hover,
+  ::-webkit-scrollbar-thumb:hover,
   ::-webkit-scrollbar-thumb:active {
     @apply bg-fg/60;
   }

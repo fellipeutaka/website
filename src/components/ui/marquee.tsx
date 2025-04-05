@@ -19,7 +19,7 @@ export function Marquee({
     <div
       role="marquee"
       className={cn(
-        "group flex gap-[--gap] overflow-x-hidden",
+        "group flex gap-(--gap) overflow-x-hidden",
         "[--duration:20s] [--gap:1rem]",
         "[mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]",
         className,
@@ -28,7 +28,7 @@ export function Marquee({
     >
       <div
         className={cn(
-          "flex animate-marquee items-center gap-[--gap]",
+          "flex animate-marquee items-center gap-(--gap)",
           pauseOnHover && "group-hover:animate-pause",
           reverse && "animate-reverse",
         )}
@@ -37,7 +37,7 @@ export function Marquee({
       </div>
       <div
         className={cn(
-          "flex animate-marquee items-center gap-[--gap]",
+          "flex animate-marquee items-center gap-(--gap)",
           pauseOnHover && "group-hover:animate-pause",
           reverse && "animate-reverse",
         )}
