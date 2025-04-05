@@ -3,13 +3,13 @@ import { api } from "~/lib/fetch";
 
 export async function getCodingTime() {
   try {
+    const API_KEY = Buffer.from(env.WAKATIME_API_KEY).toString("base64");
+
     const { data, error } = await api(
       "https://wakatime.com/api/v1/users/current/all_time_since_today",
       {
-        auth: {
-          type: "Custom",
-          prefix: "Basic",
-          value: env.WAKATIME_API_KEY,
+        headers: {
+          authorization: `Basic ${API_KEY}`,
         },
         next: {
           revalidate: 3600, // 1 hour
