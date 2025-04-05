@@ -1,15 +1,11 @@
-// @ts-check
+import "~/config/env";
 
 import { createMDX } from "fumadocs-mdx/next";
-
-// Use a .js file instead of .ts until Next.js support top-level await in next.config.ts
-// https://github.com/vercel/next.js/issues/67765
-await import("./src/config/env.js");
+import type { NextConfig } from "next";
 
 const withMDX = createMDX();
 
-/** @type {import('next').NextConfig} */
-const config = {
+const config: NextConfig = {
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
@@ -21,9 +17,6 @@ const config = {
     remotePatterns: [
       {
         hostname: "github.com",
-      },
-      {
-        hostname: "**",
       },
     ],
   },
