@@ -23,6 +23,10 @@ export const pages = defineDocs({
   dir: "src/content/pages",
   docs: {
     async: true,
+    schema: z.object({
+      title: z.string().max(99).optional()
+
+    })
   },
 });
 
