@@ -11,11 +11,11 @@ export function useFilters() {
     {
       q: parseAsString.withDefault(""),
       techs: parseAsArrayOf(
-        parseAsStringEnum(technologies.map((t) => t.name)),
+        parseAsStringEnum(technologies.map((t) => t.name))
       ).withDefault([]),
     },
     {
       clearOnDefault: true,
-    },
+    }
   );
 }

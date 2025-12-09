@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["ultracite/core", "ultracite/react", "ultracite/next"],
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        "useBlockStatements": {
+          "fix": "safe",
+          "level": "warn"
+        }
+      },
+      "performance": {
+        "noNamespaceImport": "off"
+      }
+    }
+  }
+}

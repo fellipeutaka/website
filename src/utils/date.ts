@@ -2,7 +2,7 @@ import { DateFormatter } from "@internationalized/date";
 
 export function formatDate(
   date: string | Date,
-  options?: Intl.DateTimeFormatOptions,
+  options?: Intl.DateTimeFormatOptions
 ) {
   return new DateFormatter("en-US", options).format(new Date(date));
 }

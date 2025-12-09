@@ -1,5 +1,4 @@
 import { siteConfig } from "~/config/site";
-import { getGithubLastEdit } from "~/http/get-github-last-edit";
 import { formatDate } from "~/utils/date";
 import { Icons } from "../ui/icons";
 
@@ -7,18 +6,17 @@ const editURL = (filePath: string) =>
   `${siteConfig.links.github}/${siteConfig.repositoryName}/blob/main/${filePath}?plain=1`;
 
 interface PostFooterProps {
+  lastModified: Date | undefined;
   filePath: string;
 }
 
-export async function PostFooter({ filePath }: PostFooterProps) {
-  const modifiedAt = await getGithubLastEdit(filePath);
-
+export async function PostFooter({ filePath, lastModified }: PostFooterProps) {
   return (
     <div className="my-8 flex w-full items-center justify-between py-4 text-sm">
-      <div className="text-muted-fg">
+      <div className="text-muted-foreground">
         Last updated:{" "}
-        {modifiedAt
-          ? formatDate(modifiedAt, {
+        {lastModified
+          ? formatDate(lastModified, {
               year: "numeric",
               month: "long",
               day: "numeric",
@@ -27,7 +25,7 @@ export async function PostFooter({ filePath }: PostFooterProps) {
       </div>
 
       <a
-        className="flex items-center gap-2 text-muted-fg transition hover:text-fg"
+        className="flex items-center gap-2 text-muted-foreground transition hover:text-foreground"
         href={editURL(filePath)}
       >
         Edit on GitHub <Icons.ExternalLink className="size-3" />

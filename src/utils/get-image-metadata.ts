@@ -6,12 +6,14 @@ import type { Image } from "./zod-image";
  * @returns image object with blurDataURL
  */
 export const getImageMetadata = async (
-  buffer: Buffer,
+  buffer: Buffer
 ): Promise<Omit<Image, "src"> | undefined> => {
   const { default: sharp } = await import("sharp");
   const img = sharp(buffer);
   const { width, height } = await img.metadata();
-  if (width == null || height == null) return;
+  if (width == null || height == null) {
+    return;
+  }
   const aspectRatio = width / height;
   const blurWidth = 8;
   const blurHeight = Math.max(1, Math.round(blurWidth / aspectRatio));

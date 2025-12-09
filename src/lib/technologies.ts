@@ -57,6 +57,11 @@ export const technologies = [
     url: "https://www.rust-lang.org",
   },
   {
+    name: "Go",
+    icon: "Go",
+    url: "https://go.dev",
+  },
+  {
     name: "Turborepo",
     icon: "Turborepo",
     url: "https://turbo.build/repo",

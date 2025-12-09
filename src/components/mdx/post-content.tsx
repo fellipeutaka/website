@@ -1,5 +1,4 @@
-import type { TableOfContents } from "fumadocs-core/server";
-import { AnchorProvider } from "fumadocs-core/toc";
+import { AnchorProvider, type TableOfContents } from "fumadocs-core/toc";
 import { TocTree } from "./toc-tree";
 
 interface PostContentProps {

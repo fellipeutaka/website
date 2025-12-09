@@ -1,5 +1,5 @@
 import { BadgeAnimated } from "~/components/ui/badge-animated";
-import { LinkButton } from "~/components/ui/button";
+import { LinkButton } from "~/components/ui/link-button";
 import { Icons } from "~/components/ui/icons";
 import { env } from "~/config/env";
 import { siteConfig } from "~/config/site";
@@ -25,27 +25,27 @@ export function HeroSection() {
             Full-Stack Developer
           </h2>
         </div>
-        <p className="mx-auto max-w-lg animate-delay-100 animate-fade-up text-balance text-center text-muted-fg">
+        <p className="mx-auto max-w-lg animate-delay-100 animate-fade-up text-balance text-center text-muted-foreground">
           Obsessed with developer experience, robust, scalable and user-friendly
           applications.
         </p>
         <div className="flex animate-delay-300 animate-fade-up items-center justify-center gap-4">
           <LinkButton
             className="group rounded-full"
-            target="_blank"
             href="/documents/resume.pdf"
             rel="noopener noreferrer"
+            target="_blank"
           >
-            <Icons.Download className="mr-2 size-4" />
+            <Icons.Download className="size-4" />
             Get resume
           </LinkButton>
           <LinkButton
             className="group rounded-full"
-            variant="outline"
             href={siteConfig.links.contra}
             rel="noopener noreferrer"
+            variant="outline"
           >
-            <Icons.Contra className="mr-2 size-4 transition-transform duration-300 ease-out group-hover:rotate-180" />
+            <Icons.Contra className="size-4 transition-transform duration-300 ease-out group-hover:rotate-180" />
             Hire me on Contra
           </LinkButton>
         </div>
@@ -62,20 +62,20 @@ function GridPattern() {
     >
       <defs>
         <pattern
+          height={200}
+          id="a"
+          patternUnits="userSpaceOnUse"
+          width={200}
           x="50%"
           y={-1}
-          id="a"
-          width={200}
-          height={200}
-          patternUnits="userSpaceOnUse"
         >
           <path d="M.5 200V.5H200" fill="none" />
         </pattern>
       </defs>
-      <svg x="50%" y={-1} className="overflow-visible fill-fg/5">
+      <svg className="overflow-visible fill-foreground/5" x="50%" y={-1}>
         <path d="M-200 0H1v201h-201zm800 0h201v201H600zM-400 600h201v201h-201zm600 200h201v201H200z" />
       </svg>
-      <rect fill="url(#a)" width="100%" height="100%" />
+      <rect fill="url(#a)" height="100%" width="100%" />
     </svg>
   );
 }

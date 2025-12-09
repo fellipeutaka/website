@@ -20,8 +20,8 @@ export function Figcaption({
       className={cn("flex items-center gap-2 border-b px-4 py-1.5", className)}
       {...props}
     >
-      <LanguageIcon title={children} language={language} />
-      <span className="flex-1 truncate text-muted-fg">{children}</span>
+      <LanguageIcon language={language} title={children} />
+      <span className="flex-1 truncate text-muted-foreground">{children}</span>
       <CopyButton text={__rawString__} />
     </figcaption>
   );

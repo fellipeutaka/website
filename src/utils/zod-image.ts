@@ -51,9 +51,16 @@ export function zodImage(options: {
 
       const hashedName = getHashedFilename(buffer, value);
 
-      const outputPath = path.join(process.cwd(), ".next/static/media");
-      await fs.mkdir(outputPath, { recursive: true });
-      await fs.writeFile(path.join(outputPath, hashedName), buffer);
+      const nextDir = path.join(process.cwd(), ".next");
+      const envDirs = await fs.readdir(nextDir, { withFileTypes: true });
+
+      for (const dir of envDirs) {
+        if (dir.isDirectory()) {
+          const outputPath = path.join(nextDir, dir.name, "static/media");
+          await fs.mkdir(outputPath, { recursive: true });
+          await fs.writeFile(path.join(outputPath, hashedName), buffer);
+        }
+      }
 
       return { src: `/_next/static/media/${hashedName}`, ...metadata };
     } catch (err) {

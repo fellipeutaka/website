@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { toast } from "~/components/ui/toast";
+import { toast } from "sonner";
 
 interface CopyOptions {
   text: string;
@@ -23,7 +23,7 @@ export function useCopyToClipboard() {
 
     if (!navigator?.clipboard) {
       toast.error(
-        "Unable to access clipboard. Please grant permission to enable clipboard access.",
+        "Unable to access clipboard. Please grant permission to enable clipboard access."
       );
       return;
     }
@@ -38,7 +38,7 @@ export function useCopyToClipboard() {
       }, timeout ?? 2000);
     } catch {
       toast.error(
-        errorMessage ?? "Unable to copy to clipboard. Please try again.",
+        errorMessage ?? "Unable to copy to clipboard. Please try again."
       );
     }
   };

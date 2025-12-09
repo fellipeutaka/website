@@ -41,12 +41,12 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
       className={cx(
         "motion-safe:scroll-smooth",
         fonts.sans.variable,
-        fonts.mono.variable,
+        fonts.mono.variable
       )}
+      lang="en"
       suppressHydrationWarning
     >
       <body>

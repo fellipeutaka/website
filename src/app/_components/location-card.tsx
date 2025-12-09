@@ -35,7 +35,9 @@ export function LocationCard() {
     };
     onResize();
 
-    if (!canvasRef.current) return;
+    if (!canvasRef.current) {
+      return;
+    }
 
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
@@ -74,33 +76,14 @@ export function LocationCard() {
       <div className="absolute inset-0 top-0 mx-auto aspect-square h-[388px] [@media(max-width:420px)]:bottom-[-140px] [@media(max-width:420px)]:h-[320px] [@media(min-width:768px)_and_(max-width:858px)]:h-[350px]">
         <div className="flex size-full place-content-center place-items-center overflow-visible">
           <div
+            className="aspect-square w-full max-w-[800px]"
             style={{
               WebkitMaskImage: fadeMask,
               maskImage: fadeMask,
             }}
-            className="aspect-square w-full max-w-[800px]"
           >
             <canvas
-              ref={canvasRef}
-              onPointerDown={(e) => {
-                if (canvasRef.current) {
-                  canvasRef.current.style.cursor = "grabbing";
-                }
-                pointerInteracting.current =
-                  e.clientX - pointerInteractionMovement.current;
-              }}
-              onPointerUp={() => {
-                pointerInteracting.current = null;
-                if (canvasRef.current) {
-                  canvasRef.current.style.cursor = "grab";
-                }
-              }}
-              onPointerOut={() => {
-                pointerInteracting.current = null;
-                if (canvasRef.current) {
-                  canvasRef.current.style.cursor = "grab";
-                }
-              }}
+              className="size-full cursor-auto select-none"
               onMouseMove={(e) => {
                 if (pointerInteracting.current !== null) {
                   const delta = e.clientX - pointerInteracting.current;
@@ -108,6 +91,25 @@ export function LocationCard() {
                   api.start({
                     r: delta / 200,
                   });
+                }
+              }}
+              onPointerDown={(e) => {
+                if (canvasRef.current) {
+                  canvasRef.current.style.cursor = "grabbing";
+                }
+                pointerInteracting.current =
+                  e.clientX - pointerInteractionMovement.current;
+              }}
+              onPointerOut={() => {
+                pointerInteracting.current = null;
+                if (canvasRef.current) {
+                  canvasRef.current.style.cursor = "grab";
+                }
+              }}
+              onPointerUp={() => {
+                pointerInteracting.current = null;
+                if (canvasRef.current) {
+                  canvasRef.current.style.cursor = "grab";
                 }
               }}
               onTouchMove={(e) => {
@@ -120,7 +122,7 @@ export function LocationCard() {
                   });
                 }
               }}
-              className="size-full cursor-auto select-none"
+              ref={canvasRef}
               style={{
                 contain: "layout paint size",
               }}

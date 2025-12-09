@@ -1,18 +1,10 @@
-type Primitive = string | number | boolean | null | undefined;
-
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: This is a utility type, so we allow any
 type SAFE_ANY = any;
 
-// biome-ignore lint/complexity/noBannedTypes: <explanation>
-type SAFE_FUNCTION = Function;
+type SAFE_FUNCTION = (...args: SAFE_ANY[]) => SAFE_ANY;
 
-// biome-ignore lint/complexity/noBannedTypes: <explanation>
+// biome-ignore lint/complexity/noBannedTypes: We need to define a safe symbol type
 type SAFE_SYMBOL = Symbol;
-
-type Serializable =
-  | Primitive
-  | Serializable[]
-  | { [key: string]: Serializable };
 
 export type StripNonSerializable<T> = T extends
   | SAFE_FUNCTION
@@ -22,7 +14,7 @@ export type StripNonSerializable<T> = T extends
   | SAFE_SYMBOL
   ? never
   : T extends Array<infer U>
-    ? Array<StripNonSerializable<U>>
+    ? StripNonSerializable<U>[]
     : T extends object
       ? {
           [K in keyof T as T[K] extends
@@ -36,6 +28,7 @@ export type StripNonSerializable<T> = T extends
         }
       : T;
 
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: This function is complex due to the nature of serializable checks
 export function stripNonSerializable<T>(obj: T): StripNonSerializable<T> {
   if (Array.isArray(obj)) {
     return obj

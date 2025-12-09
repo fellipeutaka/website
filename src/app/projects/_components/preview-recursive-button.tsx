@@ -2,7 +2,7 @@
 
 import { Button, type ButtonProps } from "~/components/ui/button";
 import { Icons } from "~/components/ui/icons";
-import { toast } from "~/components/ui/toast";
+import { toast } from "sonner";
 import { cx } from "~/lib/cva";
 
 export function PreviewRecursiveButton(props: ButtonProps) {
@@ -13,12 +13,12 @@ export function PreviewRecursiveButton(props: ButtonProps) {
   return (
     <Button
       {...props}
-      onPress={handleClick}
-      variant="outline"
-      size="sm"
       className={cx("rounded-full", props.className)}
+      onPress={handleClick}
+      size="sm"
+      variant="outline"
     >
-      <Icons.Eye className="mr-2 size-4" />
+      <Icons.Eye className="size-4" />
       Preview
     </Button>
   );

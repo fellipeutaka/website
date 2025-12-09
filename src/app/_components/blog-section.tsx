@@ -1,10 +1,10 @@
 import * as m from "motion/react-m";
-import { LinkButton } from "~/components/ui/button";
+import { LinkButton } from "~/components/ui/link-button";
 import { postsSource } from "~/lib/source";
 import { stripNonSerializable } from "~/utils/strip-non-serializable";
 import { PostCard } from "../blog/_components/post-card";
 
-export async function BlogSection() {
+export function BlogSection() {
   const posts = stripNonSerializable(postsSource.getPages().slice(0, 2));
 
   return (
@@ -13,11 +13,11 @@ export async function BlogSection() {
         y: 40,
         opacity: 0,
       }}
+      className="container max-w-6xl"
       whileInView={{
         y: 0,
         opacity: 1,
       }}
-      className="container max-w-6xl"
     >
       <h2 className="mb-10 font-semibold text-2xl md:text-3xl">Latest posts</h2>
 
@@ -29,8 +29,8 @@ export async function BlogSection() {
 
       <LinkButton
         className="mx-auto my-8 flex w-max"
-        variant="outline"
         href="/blog"
+        variant="outline"
       >
         See all posts
       </LinkButton>

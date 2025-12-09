@@ -14,7 +14,7 @@ export async function getCodingTime() {
         next: {
           revalidate: 3600, // 1 hour
         },
-      },
+      }
     );
 
     if (error) {

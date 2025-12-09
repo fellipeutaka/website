@@ -52,10 +52,7 @@ export const mdxComponents = {
     />
   ),
   p: ({ className, ...props }: React.ComponentProps<"p">) => (
-    <p
-      className={cn("leading-7 not-first:mt-6", className)}
-      {...props}
-    />
+    <p className={cn("not-first:mt-6 leading-7", className)} {...props} />
   ),
   ul: ({ className, ...props }: React.ComponentProps<"ul">) => (
     <ul className={cn("my-6 ml-6 list-disc", className)} {...props} />
@@ -69,14 +66,14 @@ export const mdxComponents = {
   blockquote: ({ className, ...props }: React.ComponentProps<"blockquote">) => (
     <blockquote
       className={cn(
-        "mt-6 border-l-2 pl-6 italic *:text-muted-fg",
-        className,
+        "mt-6 border-l-2 pl-6 italic *:text-muted-foreground",
+        className
       )}
       {...props}
     />
   ),
   img: ({ className, alt, ...props }: React.ComponentProps<"img">) => (
-    <img {...props} className={cn("rounded-md border", className)} alt={alt} />
+    <img {...props} alt={alt} className={cn("rounded-md border", className)} />
   ),
   hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
   table: ({ className, ...props }: React.ComponentProps<"table">) => (
@@ -94,7 +91,7 @@ export const mdxComponents = {
     <th
       className={cn(
         "border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
-        className,
+        className
       )}
       {...props}
     />
@@ -103,19 +100,19 @@ export const mdxComponents = {
     <td
       className={cn(
         "border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
-        className,
+        className
       )}
       {...props}
     />
   ),
-  Code: Code,
+  Code,
   code: Code,
   pre: Pre,
   figure: ({ className, ...props }: React.ComponentProps<"figure">) => (
     <figure
       className={cn(
         "group relative mt-6 overflow-hidden rounded-lg border text-sm",
-        className,
+        className
       )}
       {...props}
     />

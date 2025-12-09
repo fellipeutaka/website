@@ -6,15 +6,20 @@ import { vercelDarkTheme } from "~/lib/mdx-plugins/themes/vercel-dark";
 import { vercelLightTheme } from "~/lib/mdx-plugins/themes/vercel-light";
 import type { TechnologyName } from "~/lib/technologies";
 import { zodImage } from "~/utils/zod-image";
+import lastModified from "fumadocs-mdx/plugins/last-modified";
 
 export const posts = defineDocs({
   dir: "src/content/blog",
   docs: {
-    schema: (options) =>
+    schema: ({ path }) =>
       z.object({
         title: z.string().max(99),
         description: z.string().max(256).optional(),
-        cover: z.string().transform(zodImage(options)),
+        cover: z.string().transform(
+          zodImage({
+            path,
+          })
+        ),
       }),
   },
 });
@@ -22,11 +27,9 @@ export const posts = defineDocs({
 export const pages = defineDocs({
   dir: "src/content/pages",
   docs: {
-    async: true,
     schema: z.object({
-      title: z.string().max(99).optional()
-
-    })
+      title: z.string().max(99).optional(),
+    }),
   },
 });
 
@@ -36,17 +39,16 @@ export const projects = defineDocs({
     schema: z.object({
       name: z.string().max(99),
       description: z.string().max(999),
-      sourceCodeUrl: z.string().url(),
-      previewUrl: z.string().url().optional(),
+      sourceCodeUrl: z.url(),
+      previewUrl: z.url().optional(),
       isFeatured: z.boolean().optional().default(false),
       technologies: z.custom<TechnologyName[]>(),
     }),
-    async: true,
   },
 });
 
 export default defineConfig({
-  lastModifiedTime: "git",
+  plugins: [lastModified()],
   mdxOptions: {
     rehypeCodeOptions: {
       themes: {

@@ -21,7 +21,7 @@ export const BlurImage = ({
       className={cn(
         "overflow-hidden",
         isLoading && "animate-pulse",
-        containerClassName,
+        containerClassName
       )}
     >
       <NextImage
@@ -31,7 +31,7 @@ export const BlurImage = ({
           isLoading
             ? "scale-[1.02] blur-xl grayscale"
             : "scale-100 blur-0 grayscale-0",
-          className,
+          className
         )}
         onLoad={() => setLoading(false)}
       />

@@ -16,7 +16,7 @@ export default async function Page() {
     notFound();
   }
 
-  const { body } = await page.data.load();
+  const { body } = page.data;
 
   return (
     <main className="container my-20 animate-fade-up">

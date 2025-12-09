@@ -41,13 +41,13 @@ const schema = createSchema(
               date: z.string(),
             }),
           }),
-        }),
+        })
       ),
     },
   },
   {
     strict: true,
-  },
+  }
 );
 
 export const api = createFetch({

@@ -1,5 +1,5 @@
-import { pages, posts, projects } from "~:content";
 import { loader } from "fumadocs-core/source";
+import { pages, posts, projects } from "~:content/server";
 
 export const pagesSource = loader({
   baseUrl: "/pages",

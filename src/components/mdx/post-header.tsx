@@ -20,23 +20,23 @@ export function PostHeader({ title, date, cover }: PostHeaderProps) {
         <h1 className="heading-1 text-balance">{title}</h1>
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div className="space-y-1 md:mx-auto">
-            <p className="text-muted-fg">Written by</p>
+            <p className="text-muted-foreground">Written by</p>
             <Link
-              href={siteConfig.links.github}
               className="flex items-center gap-2"
+              href={siteConfig.links.github}
             >
               <BlurImage
-                src="https://github.com/fellipeutaka.png"
-                className="rounded-full"
-                width={24}
-                height={24}
                 alt={siteConfig.name}
+                className="rounded-full"
+                height={24}
+                src="https://github.com/fellipeutaka.png"
+                width={24}
               />
               {siteConfig.name}
             </Link>
           </div>
           <div className="space-y-1 md:mx-auto">
-            <p className="text-muted-fg">Published on</p>
+            <p className="text-muted-foreground">Published on</p>
             <time dateTime={date.toISOString()}>
               {formatDate(date, {
                 year: "numeric",
@@ -56,13 +56,13 @@ export function PostHeader({ title, date, cover }: PostHeaderProps) {
         }}
       >
         <BlurImage
-          src={cover.src}
-          width={cover.width}
-          height={cover.height}
-          className="rounded-lg"
           alt={title}
+          className="rounded-lg"
+          height={cover.height}
           priority
           quality={100}
+          src={cover.src}
+          width={cover.width}
         />
       </ImageZoom>
     </div>

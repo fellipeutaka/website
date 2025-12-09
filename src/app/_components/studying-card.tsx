@@ -1,5 +1,5 @@
 import { Icons } from "~/components/ui/icons";
-import { LinkPrimitive } from "~/components/ui/link";
+import { RACLink } from "~/components/ui/link";
 import {
   TooltipArrow,
   TooltipContent,
@@ -8,7 +8,7 @@ import {
 import { getTechnology } from "~/lib/technologies";
 
 export function StudyingCard() {
-  const technology = getTechnology("Rust");
+  const technology = getTechnology("Go");
   const TechIcon = Icons[technology.icon];
 
   return (
@@ -18,16 +18,16 @@ export function StudyingCard() {
         <h2 className="font-light text-sm">Currently studying</h2>
       </div>
       <div className="flex items-center justify-center">
-        <TooltipRoot delay={150} closeDelay={200}>
-          <LinkPrimitive
+        <TooltipRoot closeDelay={200} delay={150}>
+          <RACLink
             className="outline-hidden"
             href={technology.url}
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
           >
             <TechIcon className="size-20" />
             <span className="sr-only">{technology.name}</span>
-          </LinkPrimitive>
+          </RACLink>
 
           <TooltipContent>
             <TooltipArrow />

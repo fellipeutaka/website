@@ -12,11 +12,11 @@ export const Heading = <T extends Types = "h1">(props: HeadingProps<T>) => {
 
   return (
     <Component className={cn("scroll-m-20", className)} id={id} {...rest}>
-      <a href={`#${id}`} className="group">
+      <a className="group" href={`#${id}`}>
         {children}
         <Icons.Link
           aria-label="Link to section"
-          className="ml-2 inline size-4 text-muted-fg opacity-0 transition-opacity group-hover:opacity-100"
+          className="ml-2 inline size-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100"
         />
       </a>
     </Component>

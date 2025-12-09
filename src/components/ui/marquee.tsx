@@ -13,34 +13,43 @@ export function Marquee({
   children,
   ...props
 }: MarqueeProps) {
-  if (!children) return null;
+  if (!children) {
+    return null;
+  }
 
   return (
     <div
-      role="marquee"
       className={cn(
         "group flex gap-(--gap) overflow-x-hidden",
         "[--duration:20s] [--gap:1rem]",
-        "[mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]",
-        className,
+        "mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]",
+        className
       )}
+      role="marquee"
+      data-slot="marquee"
       {...props}
     >
       <div
         className={cn(
           "flex animate-marquee items-center gap-(--gap)",
-          pauseOnHover && "group-hover:animate-pause",
-          reverse && "animate-reverse",
+          pauseOnHover && "group-hover:motion-paused",
+          // TODO: Use native class if this PR is merged:
+          // https://github.com/romboHQ/tailwindcss-motion/pull/64
+          reverse && "[animation-direction:reverse]"
         )}
+        data-slot="marquee-content"
       >
         {children}
       </div>
       <div
         className={cn(
           "flex animate-marquee items-center gap-(--gap)",
-          pauseOnHover && "group-hover:animate-pause",
-          reverse && "animate-reverse",
+          pauseOnHover && "group-hover:motion-paused",
+          // TODO: Use native class if this PR is merged:
+          // https://github.com/romboHQ/tailwindcss-motion/pull/64
+          reverse && "[animation-direction:reverse]"
         )}
+        data-slot="marquee-content"
       >
         {children}
       </div>

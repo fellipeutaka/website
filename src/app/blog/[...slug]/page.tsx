@@ -8,19 +8,13 @@ import { PostFooter } from "~/components/mdx/post-footer";
 import { PostHeader } from "~/components/mdx/post-header";
 import { postsSource } from "~/lib/source";
 
-interface PageProps {
-  params: Promise<{
-    slug: string[];
-  }>;
-}
-
 export function generateStaticParams() {
   return postsSource.generateParams();
 }
 
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
+}: PageProps<"/blog/[...slug]">): Promise<Metadata> {
   const { slug } = await params;
   const post = postsSource.getPage(slug);
 
@@ -33,7 +27,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: PageProps<"/blog/[...slug]">) {
   const { slug } = await params;
   const post = postsSource.getPage(slug);
 
@@ -46,14 +40,14 @@ export default async function Page({ params }: PageProps) {
   return (
     <main className="container my-20">
       <PostHeader
-        title={post.data.title}
-        date={new Date(lastModified ?? new Date())}
         cover={post.data.cover}
+        date={new Date(lastModified ?? new Date())}
+        title={post.data.title}
       />
       <PostContent toc={toc}>
         <MDXContent body={body} />
       </PostContent>
-      <PostFooter filePath={post.file.path} />
+      <PostFooter filePath={post.path} />
     </main>
   );
 }
