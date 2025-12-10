@@ -22,7 +22,7 @@
       },
       "correctness": {
         "noUnusedVariables": {
-          "fix": "safe",
+          "fix": "unsafe",
           "level": "error",
           "options": {
             "ignoreRestSiblings": true

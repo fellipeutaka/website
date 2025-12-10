@@ -1,7 +1,7 @@
 pre-commit:
   jobs:
-    - run: bun x ultracite fix
-      glob: 
+    - run: bun run lint:fix
+      glob:
         - "*.js"
         - "*.jsx"
         - "*.ts"
