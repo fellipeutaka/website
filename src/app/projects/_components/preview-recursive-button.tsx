@@ -13,10 +13,10 @@ export function PreviewRecursiveButton(props: ButtonProps) {
   return (
     <Button
       {...props}
-      onPress={handleClick}
-      variant="outline"
-      size="sm"
       className={cx("rounded-full", props.className)}
+      onPress={handleClick}
+      size="sm"
+      variant="outline"
     >
       <Icons.Eye className="mr-2 size-4" />
       Preview

@@ -17,12 +17,12 @@ export function AboutSection() {
           y: 40,
           opacity: 0,
         }}
+        transition={{
+          duration: 0.3,
+        }}
         whileInView={{
           y: 0,
           opacity: 1,
-        }}
-        transition={{
-          duration: 0.3,
         }}
       >
         <div className="grid grid-rows-[1fr_auto] gap-4">
@@ -38,9 +38,9 @@ export function AboutSection() {
         </div>
       </m.div>
       <LinkButton
-        variant="outline"
         className="mx-auto my-8 flex w-max"
         href="/about"
+        variant="outline"
       >
         Know more about me
       </LinkButton>

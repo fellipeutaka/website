@@ -58,14 +58,14 @@ export function TextSearchClearButton({
 }: ButtonProps) {
   return (
     <Button
-      size="icon"
-      variant="ghost"
       className={(values) =>
         TextFieldStyles.ClearButton({
           className:
             typeof className === "function" ? className(values) : className,
         })
       }
+      size="icon"
+      variant="ghost"
       {...props}
     >
       {children ?? <Icons.X className="size-4" />}
@@ -73,12 +73,9 @@ export function TextSearchClearButton({
   );
 }
 
-export const TextSearch = Object.assign(
-  {},
-  {
-    Root: TextSearchRoot,
-    Icon: TextSearchIcon,
-    Spinner: TextSearchSpinner,
-    ClearButton: TextSearchClearButton,
-  },
-);
+export const TextSearch = {
+  Root: TextSearchRoot,
+  Icon: TextSearchIcon,
+  Spinner: TextSearchSpinner,
+  ClearButton: TextSearchClearButton,
+};

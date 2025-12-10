@@ -11,5 +11,5 @@ export const {
   },
 });
 
-export { cx } from "cva";
 export type { VariantProps } from "cva";
+export { cx } from "cva";

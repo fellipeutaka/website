@@ -4,7 +4,7 @@ import { Icons } from "~/components/ui/icons";
 import { projectsSource } from "~/lib/source";
 import { getTechnology } from "~/lib/technologies";
 
-export async function FeaturedProjectsSection() {
+export function FeaturedProjectsSection() {
   const featuredProjects = projectsSource
     .getPages()
     .filter((project) => project.data.isFeatured);
@@ -18,8 +18,8 @@ export async function FeaturedProjectsSection() {
       <BentoGrid.Root>
         {featuredProjects.map((project, i) => (
           <BentoGrid.Item
-            key={project.data.name}
             className={i === 3 || i === 6 ? "md:col-span-2" : ""}
+            key={project.data.name}
           >
             <div className="flex items-center gap-3">
               {project.data.technologies.map((technology) => {
@@ -28,11 +28,11 @@ export async function FeaturedProjectsSection() {
 
                 return (
                   <a
-                    key={tech.name}
                     href={tech.url}
-                    title={tech.name}
-                    target="_blank"
+                    key={tech.name}
                     rel="noopener noreferrer"
+                    target="_blank"
+                    title={tech.name}
                   >
                     <Icon className="size-6" />
                   </a>
@@ -48,22 +48,22 @@ export async function FeaturedProjectsSection() {
             <div className="mt-4 flex items-center justify-between">
               {project.data.previewUrl && (
                 <LinkButton
-                  href={project.data.previewUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="rounded-full"
+                  href={project.data.previewUrl}
+                  rel="noopener noreferrer"
                   size="sm"
+                  target="_blank"
                 >
                   <Icons.Eye className="mr-2 size-4" />
                   Preview
                 </LinkButton>
               )}
               <LinkButton
-                href={project.data.sourceCodeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="rounded-full"
+                href={project.data.sourceCodeUrl}
+                rel="noopener noreferrer"
                 size="sm"
+                target="_blank"
                 variant="secondary"
               >
                 <Icons.GitHub className="mr-2 size-4" />
@@ -76,8 +76,8 @@ export async function FeaturedProjectsSection() {
 
       <LinkButton
         className="mx-auto my-8 flex w-max"
-        variant="outline"
         href="/projects"
+        variant="outline"
       >
         See all projects
       </LinkButton>

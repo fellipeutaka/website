@@ -7,9 +7,6 @@ const withMDX = createMDX();
 
 const config: NextConfig = {
   reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -20,16 +17,13 @@ const config: NextConfig = {
       },
     ],
   },
-  // biome-ignore lint/suspicious/useAwait: This needs to be async
-  redirects: async () => {
-    return [
-      {
-        source: "/github",
-        destination: "https://github.com/fellipeutaka/website",
-        permanent: false,
-      },
-    ];
-  },
+  redirects: async () => [
+    {
+      source: "/github",
+      destination: "https://github.com/fellipeutaka/website",
+      permanent: false,
+    },
+  ],
 };
 
 export default withMDX(config);

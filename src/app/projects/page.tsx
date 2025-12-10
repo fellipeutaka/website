@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { projectsSource } from "~/lib/source";
-import { stripNonSerializable } from "~/utils/strip-non-serializable";
+import { mapSourceData, projectsSource } from "~/lib/source";
 import { ProjectList, ProjectListSkeleton } from "./_components/project-list";
 
 export const metadata: Metadata = {
@@ -10,7 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const projects = stripNonSerializable(projectsSource.getPages());
+  const projects = projectsSource.getPages().map((project) => ({
+    ...project,
+    data: mapSourceData(project.data),
+  }));
 
   return (
     <main className="container my-20">

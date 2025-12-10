@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { postsSource } from "~/lib/source";
-import { stripNonSerializable } from "~/utils/strip-non-serializable";
+import { mapSourceData, postsSource } from "~/lib/source";
 import {
   PostCardList,
   PostCardListSkeleton,
@@ -14,7 +13,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const posts = stripNonSerializable(postsSource.getPages());
+  const posts = postsSource.getPages().map((post) => ({
+    ...post,
+    data: mapSourceData(post.data),
+  }));
 
   return (
     <main className="container my-20">

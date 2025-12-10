@@ -1,31 +1,25 @@
 import Link from "next/link";
 import { BlurImage } from "~/components/ui/blur-image";
+import type { PostSource } from "~/lib/source";
 import { formatDate } from "~/utils/date";
-import type { StripNonSerializable } from "~/utils/strip-non-serializable";
-
-type Post = StripNonSerializable<
-  NonNullable<
-    Awaited<ReturnType<typeof import("~/lib/source").postsSource.getPage>>
-  >
->;
 
 interface PostCardProps {
-  post: Post;
+  post: PostSource;
 }
 
 export function PostCard({ post }: PostCardProps) {
-  const postDate = new Date(post.data.lastModified ?? new Date());
+  const postDate = post.data.lastModified ?? new Date();
 
   return (
-    <Link href={post.url} className="group block rounded-xl border px-2 py-4">
+    <Link className="group block rounded-xl border px-2 py-4" href={post.url}>
       <BlurImage
+        alt={post.data.title}
+        blurDataURL={post.data.cover.blurDataURL}
+        className="transition-transform group-hover:scale-105"
+        containerClassName="rounded-lg"
+        height={post.data.cover.height}
         src={post.data.cover.src}
         width={post.data.cover.width}
-        height={post.data.cover.height}
-        blurDataURL={post.data.cover.blurDataURL}
-        containerClassName="rounded-lg"
-        className="transition-transform group-hover:scale-105"
-        alt={post.data.title}
       />
       <div className="flex items-center justify-between gap-2 px-2 pt-4 text-muted-fg text-sm">
         <time dateTime={postDate.toISOString()}>

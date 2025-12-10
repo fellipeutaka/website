@@ -12,9 +12,9 @@ export function Connect() {
       <div className="flex flex-col gap-4 px-2">
         {socialLinks.map((link) => (
           <Link
-            key={link.href}
-            href={link.href}
             className="flex items-center gap-3 text-muted-fg transition-colors hover:text-fg"
+            href={link.href}
+            key={link.href}
           >
             <link.icon className="size-4" />
             <h2 className="font-light">{link.label}</h2>

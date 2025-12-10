@@ -11,19 +11,13 @@ import { siteConfig } from "~/config/site";
 import { projectsSource } from "~/lib/source";
 import { PreviewRecursiveButton } from "../_components/preview-recursive-button";
 
-interface PageProps {
-  params: Promise<{
-    slug: string;
-  }>;
-}
-
 export function generateStaticParams() {
   return projectsSource.generateParams().map(({ slug }) => slug);
 }
 
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
+}: PageProps<"/projects/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const project = projectsSource.getPage([slug]);
 
@@ -36,7 +30,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: PageProps<"/projects/[slug]">) {
   const { slug } = await params;
 
   const project = projectsSource.getPage([slug]);
@@ -45,11 +39,11 @@ export default async function Page({ params }: PageProps) {
     notFound();
   }
 
-  const { body, toc } = await project.data.load();
+  const { body, toc, lastModified } = project.data;
 
   return (
     <main className="container my-20">
-      <h1 className="mt-16 mb-4 text-balance text-center font-bold text-4xl md:text-5xl md:leading-[64px]">
+      <h1 className="mt-16 mb-4 text-balance text-center font-bold text-4xl md:text-5xl md:leading-16">
         {project.data.name}
       </h1>
       <div className="mb-16 flex items-center justify-center gap-4">
@@ -58,12 +52,12 @@ export default async function Page({ params }: PageProps) {
             <PreviewRecursiveButton />
           ) : (
             <LinkButton
-              variant="outline"
-              size="sm"
               className="rounded-full"
               href={project.data.previewUrl}
-              target="_blank"
               rel="noopener noreferrer"
+              size="sm"
+              target="_blank"
+              variant="outline"
             >
               <Icons.Eye className="mr-2 size-4" />
               Preview
@@ -71,11 +65,11 @@ export default async function Page({ params }: PageProps) {
           ))}
         <LinkButton
           className="rounded-full"
-          size="sm"
-          variant="secondary"
           href={project.data.sourceCodeUrl}
-          target="_blank"
           rel="noopener noreferrer"
+          size="sm"
+          target="_blank"
+          variant="secondary"
         >
           <Icons.GitHub className="mr-2 size-4" />
           Source code
@@ -84,7 +78,7 @@ export default async function Page({ params }: PageProps) {
       <PostContent toc={toc}>
         <MDXContent body={body} />
       </PostContent>
-      <PostFooter filePath={project.file.path} />
+      <PostFooter filePath={project.path} modifiedAt={lastModified} />
     </main>
   );
 }

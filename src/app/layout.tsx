@@ -34,25 +34,20 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
       className={cx(
         "motion-safe:scroll-smooth",
         fonts.sans.variable,
-        fonts.mono.variable,
+        fonts.mono.variable
       )}
+      lang="en"
       suppressHydrationWarning
     >
       <body>
         <noscript>
           <style>
-            {/* biome-ignore lint/nursery/useConsistentCurlyBraces: */}
             {".motion { opacity: 1 !important; transform: none !important }"}
           </style>
         </noscript>

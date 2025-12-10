@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  composeRenderProps,
   FieldError,
   type FieldErrorProps,
   Form as FormPrimitive,
@@ -21,8 +22,8 @@ export const FormStyles = {
       "disabled:bg-secondary disabled:opacity-50",
 
       "*:data-[slot=icon]:shrink-0",
-      "[&>[data-slot=prefix]>button]:ml-[-7px] *:data-[slot=prefix]:ml-2.5 *:data-[slot=prefix]:text-muted-fg [&>[role=progressbar]]:mr-2.5",
-      "[&>[data-slot=suffix]>button]:mr-[-7px] *:data-[slot=suffix]:mr-2.5 *:data-[slot=suffix]:text-muted-fg",
+      "*:data-[slot=prefix]:ml-2.5 *:data-[slot=prefix]:text-muted-fg [&>[data-slot=prefix]>button]:ml-[-7px] [&>[role=progressbar]]:mr-2.5",
+      "*:data-[slot=suffix]:mr-2.5 *:data-[slot=suffix]:text-muted-fg [&>[data-slot=suffix]>button]:mr-[-7px]",
     ],
   }),
   Description: cva({
@@ -39,12 +40,9 @@ export function FormField({ className, ...props }: GroupProps) {
   return (
     <Group
       {...props}
-      className={(values) =>
-        FormStyles.Field({
-          className:
-            typeof className === "function" ? className(values) : className,
-        })
-      }
+      className={composeRenderProps(className, (className) =>
+        FormStyles.Field({ className })
+      )}
     />
   );
 }
@@ -61,10 +59,10 @@ export function FormDescription({
   return (
     <Text
       {...props}
-      slot="description"
       className={FormStyles.Description({
         className: isWarning ? "text-warning" : className,
       })}
+      slot="description"
     />
   );
 }
@@ -83,12 +81,9 @@ export function FormError({ className, ...props }: FieldErrorProps) {
   );
 }
 
-export const Form = Object.assign(
-  {},
-  {
-    Root: FormRoot,
-    Field: FormField,
-    Description: FormDescription,
-    Error: FormError,
-  },
-);
+export const Form = {
+  Root: FormRoot,
+  Field: FormField,
+  Description: FormDescription,
+  Error: FormError,
+};

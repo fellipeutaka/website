@@ -1,8 +1,8 @@
 "use client";
 
-import { LazyMotion, domMax } from "motion/react";
-import { ThemeProvider } from "next-themes";
+import { domMax, LazyMotion } from "motion/react";
 import { useRouter } from "next/navigation";
+import { ThemeProvider } from "next-themes";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { RouterProvider } from "react-aria-components";
 import { Toaster } from "./ui/toast";

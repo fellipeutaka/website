@@ -1,7 +1,7 @@
 "use client";
 
 import { Button as ButtonPrimitive, Link } from "react-aria-components";
-import { type VariantProps, cva } from "~/lib/cva";
+import { cva, type VariantProps } from "~/lib/cva";
 
 export const ButtonStyles = cva({
   base: [

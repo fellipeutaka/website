@@ -1,5 +1,4 @@
 import { siteConfig } from "~/config/site";
-import { getGithubLastEdit } from "~/http/get-github-last-edit";
 import { formatDate } from "~/utils/date";
 import { Icons } from "../ui/icons";
 
@@ -8,11 +7,10 @@ const editURL = (filePath: string) =>
 
 interface PostFooterProps {
   filePath: string;
+  modifiedAt: Date | undefined;
 }
 
-export async function PostFooter({ filePath }: PostFooterProps) {
-  const modifiedAt = await getGithubLastEdit(filePath);
-
+export function PostFooter({ filePath, modifiedAt }: PostFooterProps) {
   return (
     <div className="my-8 flex w-full items-center justify-between py-4 text-sm">
       <div className="text-muted-fg">

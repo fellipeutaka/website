@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     "A brief introduction about me and my journey as a software developer.",
 };
 
-export default async function Page() {
+export default function Page() {
   const page = pagesSource.getPage(["about"]);
 
   if (!page) {
     notFound();
   }
 
-  const { body } = await page.data.load();
+  const { body } = page.data;
 
   return (
     <main className="container my-20 animate-fade-up">

@@ -26,15 +26,15 @@ function ExperienceList(props: React.ComponentProps<"div">) {
   return (
     <div {...props} className={cn("flex flex-col gap-4", props.className)}>
       {experiences.map((experience) => (
-        <Card.Root key={experience.company} className="w-full overflow-hidden">
+        <Card.Root className="w-full overflow-hidden" key={experience.company}>
           <m.div
+            className="motion"
             initial={{ opacity: 0, y: -50 }}
             whileInView={{
               opacity: 1,
               y: 0,
               transition: { duration: 0.4 },
             }}
-            className="motion"
           >
             <Card.Header>
               <Card.Title>
@@ -47,28 +47,28 @@ function ExperienceList(props: React.ComponentProps<"div">) {
           </m.div>
           <Card.Content className="flex flex-col gap-4">
             <m.div
+              className="motion"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{
                 opacity: 1,
                 x: 0,
                 transition: { duration: 0.4 },
               }}
-              className="motion"
             >
               <p className="leading-7">{experience.description}</p>
             </m.div>
-            {experience.skills && (
+            {experience.skills.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {experience.skills.map((skill, index) => (
                   <m.div
-                    key={skill}
+                    className="motion"
                     initial={{ opacity: 0, y: 30 }}
+                    key={skill}
                     whileInView={{
                       opacity: 1,
                       y: 0,
                       transition: { duration: 0.1, delay: index / 40 },
                     }}
-                    className="motion"
                   >
                     <Badge>{skill}</Badge>
                   </m.div>

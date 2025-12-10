@@ -59,7 +59,7 @@ export function Pre({
     <figure
       className={cn(
         "group relative mt-6 overflow-hidden rounded-lg border text-sm",
-        className,
+        className
       )}
       data-figure="code"
       {...props}
@@ -68,11 +68,11 @@ export function Pre({
         <figcaption
           className={cn(
             "flex items-center gap-2 border-b px-4 py-1.5",
-            className,
+            className
           )}
           {...props}
         >
-          <LanguageIcon title={title} language={language} />
+          <LanguageIcon language={language} title={title} />
           <span className="flex-1 truncate text-muted-fg">{title}</span>
           <CopyButton text={__rawString__} />
         </figcaption>
@@ -81,9 +81,9 @@ export function Pre({
       <ScrollAreaRoot>
         {title ? null : (
           <CopyBtn
-            text={__rawString__}
-            commands={commands}
             className="absolute top-2.5 right-4 z-10 max-sm:group-has-[[data-state=visible]]:opacity-0"
+            commands={commands}
+            text={__rawString__}
           />
         )}
 

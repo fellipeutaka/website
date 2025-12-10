@@ -14,27 +14,27 @@ export function MobileNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Drawer.Root direction="right" open={open} onOpenChange={setOpen}>
+    <Drawer.Root direction="right" onOpenChange={setOpen} open={open}>
       <Button
-        variant="outline"
-        size="icon"
-        className="ml-auto size-8 rounded-full md:hidden"
         aria-label="Toggle Menu"
+        className="ml-auto size-8 rounded-full md:hidden"
         onPress={() => setOpen((prev) => !prev)}
+        size="icon"
+        variant="outline"
       >
         <div
+          aria-hidden
           className={cx(
             "absolute h-0.5 w-3.5 transform-gpu bg-muted-fg transition-transform",
-            open ? "translate-y-0 rotate-45" : "-translate-y-1",
+            open ? "translate-y-0 rotate-45" : "-translate-y-1"
           )}
-          aria-hidden
         />
         <div
+          aria-hidden
           className={cx(
             "absolute h-0.5 w-3.5 transform-gpu bg-muted-fg transition-transform",
-            open ? "-rotate-45 translate-y-0" : "translate-y-1",
+            open ? "-rotate-45 translate-y-0" : "translate-y-1"
           )}
-          aria-hidden
         />
       </Button>
       <Drawer.Portal>
@@ -47,8 +47,8 @@ export function MobileNav() {
           <div className="my-6 flex flex-col gap-3">
             {navLinks.map((item) => (
               <MobileLink
-                key={item.href}
                 href={item.href}
+                key={item.href}
                 onOpenChange={setOpen}
               >
                 {item.label}
@@ -70,8 +70,8 @@ function MobileLink({ href, onOpenChange, ...props }: MobileLinkProps) {
 
   return (
     <Link
-      href={href}
       className="border-b py-3"
+      href={href}
       onClick={() => {
         router.push(href.toString());
         onOpenChange?.(false);

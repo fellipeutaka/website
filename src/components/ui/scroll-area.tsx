@@ -54,8 +54,8 @@ export function ScrollAreaScrollbar({
   return (
     <Scrollbar
       {...props}
-      orientation={orientation}
       className={ScrollAreaStyles.Scrollbar({ className, orientation })}
+      orientation={orientation}
     />
   );
 }
@@ -66,12 +66,9 @@ export function ScrollAreaThumb({ className, ...props }: ScrollAreaThumbProps) {
   return <Thumb {...props} className={ScrollAreaStyles.Thumb({ className })} />;
 }
 
-export const ScrollArea = Object.assign(
-  {},
-  {
-    Root: ScrollAreaRoot,
-    Viewport: ScrollAreaViewport,
-    Scrollbar: ScrollAreaScrollbar,
-    Thumb: ScrollAreaThumb,
-  },
-);
+export const ScrollArea = {
+  Root: ScrollAreaRoot,
+  Viewport: ScrollAreaViewport,
+  Scrollbar: ScrollAreaScrollbar,
+  Thumb: ScrollAreaThumb,
+};

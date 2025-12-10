@@ -24,19 +24,19 @@ export function MainNav() {
     <nav className="ml-6 hidden items-center text-sm md:flex">
       {navLinks.map((item) => (
         <Link
-          key={item.href}
           className="relative px-3 py-2 text-fg/60 transition-colors hover:text-fg data-[active='true']:text-fg"
           data-active={isActive(item.href, pathname)}
           href={item.href}
-          onMouseOver={() => setHoveredPath(item.href)}
+          key={item.href}
           onMouseLeave={() => setHoveredPath(pathname)}
+          onMouseOver={() => setHoveredPath(item.href)}
         >
           <span>{item.label}</span>
           {isActive(item.href, hoveredPath) && (
             <m.div
+              aria-hidden="true"
               className="-z-10 absolute bottom-0 left-0 size-full rounded-full bg-muted"
               layoutId="navbar"
-              aria-hidden="true"
               transition={{
                 duration: 0.15,
               }}
@@ -44,8 +44,8 @@ export function MainNav() {
           )}
           {isActive(item.href, pathname) && (
             <m.div
-              className="-z-10 absolute bottom-0 left-0 size-full rounded-full bg-muted"
               aria-hidden="true"
+              className="-z-10 absolute bottom-0 left-0 size-full rounded-full bg-muted"
               transition={{
                 duration: 0.15,
               }}

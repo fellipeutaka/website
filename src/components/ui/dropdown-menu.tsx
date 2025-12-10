@@ -97,8 +97,6 @@ export function DropdownMenuItem<T extends object>({
   return (
     <MenuItem
       {...props}
-      data-danger={isDanger}
-      textValue={_textValue}
       className={(values) =>
         DropdownMenuStyles.Item({
           isFocused: values.isFocused,
@@ -108,6 +106,8 @@ export function DropdownMenuItem<T extends object>({
             typeof className === "function" ? className(values) : className,
         })
       }
+      data-danger={isDanger}
+      textValue={_textValue}
     >
       {(values) => (
         <>
@@ -158,11 +158,11 @@ export function DropdownMenuSeparator({
   return (
     <Separator
       {...props}
-      orientation={orientation}
       className={SeparatorStyles({
         className: ["my-1", className],
         orientation,
       })}
+      orientation={orientation}
     />
   );
 }
@@ -189,19 +189,16 @@ export function DropdownMenuItemDetails({
 
 export const DropdownMenuSub = SubmenuTrigger;
 
-export const DropdownMenu = Object.assign(
-  {},
-  {
-    Root: DropdownMenuRoot,
-    Content: DropdownMenuContent,
-    Item: DropdownMenuItem,
-    Header: DropdownMenuHeader,
-    Group: DropdownMenuGroup,
-    Shortcut: DropdownMenuShortcut,
-    Separator: DropdownMenuSeparator,
-    Sub: DropdownMenuSub,
-    Label: DropdownMenuLabel,
-    Description: DropdownMenuDescription,
-    ItemDetails: DropdownMenuItemDetails,
-  },
-);
+export const DropdownMenu = {
+  Root: DropdownMenuRoot,
+  Content: DropdownMenuContent,
+  Item: DropdownMenuItem,
+  Header: DropdownMenuHeader,
+  Group: DropdownMenuGroup,
+  Shortcut: DropdownMenuShortcut,
+  Separator: DropdownMenuSeparator,
+  Sub: DropdownMenuSub,
+  Label: DropdownMenuLabel,
+  Description: DropdownMenuDescription,
+  ItemDetails: DropdownMenuItemDetails,
+};

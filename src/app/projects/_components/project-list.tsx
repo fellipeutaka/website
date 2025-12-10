@@ -15,26 +15,20 @@ import { Skeleton } from "~/components/ui/skeleton";
 import { TextSearch } from "~/components/ui/text-search";
 import { siteConfig } from "~/config/site";
 import { useFilters } from "~/hooks/use-filters";
+import type { ProjectSource } from "~/lib/source";
 import {
-  type Technologies,
   getTechnology,
+  type Technologies,
   technologies,
 } from "~/lib/technologies";
-import type { StripNonSerializable } from "~/utils/strip-non-serializable";
 import { PreviewRecursiveButton } from "./preview-recursive-button";
 
-type Project = StripNonSerializable<
-  NonNullable<
-    Awaited<ReturnType<typeof import("~/lib/source").projectsSource.getPage>>
-  >
->;
-
 function filterProjects(
-  initialList: Project[],
+  initialList: ProjectSource[],
   filter: {
     query: string;
     selectedTechnologies: Technologies[number]["name"][];
-  },
+  }
 ) {
   return initialList.filter((project) => {
     const query = filter.query.trim().toLowerCase();
@@ -47,7 +41,7 @@ function filterProjects(
     if (
       technologies.length > 0 &&
       !project.data.technologies.some((technology) =>
-        technologies.includes(technology),
+        technologies.includes(technology)
       )
     ) {
       return false;
@@ -58,7 +52,7 @@ function filterProjects(
 }
 
 interface ProjectListProps {
-  projects: Project[];
+  projects: ProjectSource[];
 }
 
 export function ProjectList({ projects }: ProjectListProps) {
@@ -73,9 +67,9 @@ export function ProjectList({ projects }: ProjectListProps) {
     <section className="mt-10 animate-delay-75 animate-fade-up">
       <div className="mb-4 flex items-center justify-between gap-4">
         <TextSearch.Root
-          value={filters.q}
-          onChange={(q) => setFilters({ q })}
           className="grow"
+          onChange={(q) => setFilters({ q })}
+          value={filters.q}
         >
           <Form.Field>
             <TextSearch.Icon />
@@ -101,8 +95,8 @@ export function ProjectList({ projects }: ProjectListProps) {
                   {technologies
                     .filter((technology) =>
                       projects.some((project) =>
-                        project.data.technologies.includes(technology.name),
-                      ),
+                        project.data.technologies.includes(technology.name)
+                      )
                     )
                     .map((technology) => {
                       const Icon = Icons[technology.icon];
@@ -110,24 +104,24 @@ export function ProjectList({ projects }: ProjectListProps) {
                       return (
                         <Command.Item
                           key={technology.name}
-                          value={technology.name}
                           onSelect={() =>
                             setFilters(({ techs }) =>
                               techs.includes(technology.name)
                                 ? {
                                     techs: techs.filter(
-                                      (t) => t !== technology.name,
+                                      (t) => t !== technology.name
                                     ),
                                   }
-                                : { techs: [...techs, technology.name] },
+                                : { techs: [...techs, technology.name] }
                             )
                           }
+                          value={technology.name}
                         >
                           <Icons.Check
-                            data-visible={filters.techs.includes(
-                              technology.name,
-                            )}
                             className="mr-2 size-4 opacity-0 transition-opacity data-[visible='true']:opacity-100"
+                            data-visible={filters.techs.includes(
+                              technology.name
+                            )}
                           />
 
                           <Icon className="mr-2 size-4" />
@@ -139,16 +133,16 @@ export function ProjectList({ projects }: ProjectListProps) {
                 <AnimatePresence>
                   {filters.techs.length > 0 && (
                     <m.div
-                      layout
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
                       initial={{ opacity: 0, height: 0 }}
+                      layout
                     >
                       <Command.Separator />
                       <Command.Group>
                         <Command.Item
-                          onSelect={() => setFilters({ techs: [] })}
                           className="justify-center text-center"
+                          onSelect={() => setFilters({ techs: [] })}
                         >
                           Clear filters
                         </Command.Item>
@@ -167,14 +161,14 @@ export function ProjectList({ projects }: ProjectListProps) {
           <div className="grid w-full gap-4 md:grid-cols-2">
             {filteredProjects.map((project) => (
               <m.div
+                animate={{ opacity: 1 }}
                 className={CardStyles.Root({
                   className: "motion flex flex-col",
                 })}
-                layout
-                animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
                 key={project.url}
+                layout
               >
                 <Card.Header>
                   <Card.Title>{project.data.name}</Card.Title>
@@ -188,14 +182,14 @@ export function ProjectList({ projects }: ProjectListProps) {
 
                       return (
                         <Link
-                          key={tech.name}
-                          href={tech.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
                           className={BadgeStyles({
                             className: "pressed:scale-95 select-none py-1",
                             variant: "secondary",
                           })}
+                          href={tech.url}
+                          key={tech.name}
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
                           <Icon className="mr-2 size-4" />
                           {tech.name}
@@ -206,9 +200,9 @@ export function ProjectList({ projects }: ProjectListProps) {
                 </Card.Content>
                 <Card.Footer className="flex-col justify-between gap-2 sm:flex-row">
                   <LinkButton
-                    size="sm"
                     className="w-full rounded-full sm:w-max"
                     href={project.url}
+                    size="sm"
                   >
                     Read more
                   </LinkButton>
@@ -218,23 +212,23 @@ export function ProjectList({ projects }: ProjectListProps) {
                         <PreviewRecursiveButton className="w-full" />
                       ) : (
                         <LinkButton
-                          variant="outline"
-                          size="sm"
                           className="w-full rounded-full"
                           href={project.data.previewUrl}
-                          target="_blank"
                           rel="noopener noreferrer"
+                          size="sm"
+                          target="_blank"
+                          variant="outline"
                         >
                           <Icons.Eye className="mr-2 size-4" />
                           Preview
                         </LinkButton>
                       ))}
                     <LinkButton
-                      href={project.data.sourceCodeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="w-full rounded-full"
+                      href={project.data.sourceCodeUrl}
+                      rel="noopener noreferrer"
                       size="sm"
+                      target="_blank"
                       variant="secondary"
                     >
                       <Icons.GitHub className="mr-2 size-4" />
@@ -247,10 +241,10 @@ export function ProjectList({ projects }: ProjectListProps) {
           </div>
         ) : (
           <m.p
-            layout
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
+            layout
           >
             No projects found.
           </m.p>
@@ -264,7 +258,7 @@ export function ProjectListSkeleton() {
   return (
     <section className="mt-10 animate-delay-75 animate-fade-up">
       <div className="mb-4 flex items-center justify-between gap-4">
-        <TextSearch.Root isDisabled className="grow">
+        <TextSearch.Root className="grow" isDisabled>
           <Form.Field>
             <TextSearch.Icon />
 

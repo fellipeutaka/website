@@ -7,20 +7,14 @@ import { Input } from "~/components/ui/input";
 import { Skeleton } from "~/components/ui/skeleton";
 import { TextSearch } from "~/components/ui/text-search";
 import { useFilters } from "~/hooks/use-filters";
-import type { StripNonSerializable } from "~/utils/strip-non-serializable";
+import type { PostSource } from "~/lib/source";
 import { PostCard } from "./post-card";
 
-type Post = StripNonSerializable<
-  NonNullable<
-    Awaited<ReturnType<typeof import("~/lib/source").postsSource.getPage>>
-  >
->;
-
 function filterPosts(
-  initialList: Post[],
+  initialList: PostSource[],
   filter: {
     query: string;
-  },
+  }
 ) {
   return initialList.filter((post) => {
     const query = filter.query.trim().toLowerCase();
@@ -34,7 +28,7 @@ function filterPosts(
 }
 
 interface PostCardListProps {
-  posts: Post[];
+  posts: PostSource[];
 }
 
 export function PostCardList({ posts }: PostCardListProps) {
@@ -47,9 +41,9 @@ export function PostCardList({ posts }: PostCardListProps) {
   return (
     <section className="mt-10 animate-delay-75 animate-fade-up">
       <TextSearch.Root
-        value={filters.q}
-        onChange={(q) => setFilters({ q })}
         className="mb-4 grow"
+        onChange={(q) => setFilters({ q })}
+        value={filters.q}
       >
         <Form.Field>
           <TextSearch.Icon />
@@ -65,12 +59,12 @@ export function PostCardList({ posts }: PostCardListProps) {
           <div className="grid w-full gap-4 md:grid-cols-2">
             {filteredPosts.map((post) => (
               <m.div
-                key={post.url}
-                layout
                 animate={{ opacity: 1 }}
+                className="motion"
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
-                className="motion"
+                key={post.url}
+                layout
               >
                 <PostCard post={post} />
               </m.div>
@@ -78,11 +72,11 @@ export function PostCardList({ posts }: PostCardListProps) {
           </div>
         ) : (
           <m.p
-            layout
             animate={{ opacity: 1 }}
+            className="motion"
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
-            className="motion"
+            layout
           >
             No post found.
           </m.p>
@@ -95,7 +89,7 @@ export function PostCardList({ posts }: PostCardListProps) {
 export function PostCardListSkeleton() {
   return (
     <section className="mt-10 animate-delay-75 animate-fade-up">
-      <TextSearch.Root isDisabled className="mb-4 grow">
+      <TextSearch.Root className="mb-4 grow" isDisabled>
         <Form.Field>
           <TextSearch.Icon />
 
@@ -108,9 +102,9 @@ export function PostCardListSkeleton() {
       <div className="grid w-full gap-4 md:grid-cols-2">
         {Array.from({ length: 6 }).map((_, index) => (
           <div
+            className="block rounded-xl border px-2 py-4"
             // biome-ignore lint/suspicious/noArrayIndexKey: This is a skeleton loader
             key={index}
-            className="block rounded-xl border px-2 py-4"
           >
             <Skeleton className="h-96 rounded-lg" />
             <div className="flex items-center justify-between gap-2 px-2 pt-4 text-muted-fg text-sm">

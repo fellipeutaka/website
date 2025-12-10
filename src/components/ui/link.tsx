@@ -4,7 +4,7 @@ import {
   Link as LinkPrimitive,
   type LinkProps as LinkPrimitiveProps,
 } from "react-aria-components";
-import { type VariantProps, cva } from "~/lib/cva";
+import { cva, type VariantProps } from "~/lib/cva";
 
 export const LinkStyles = cva({
   base: [

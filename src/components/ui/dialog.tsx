@@ -8,7 +8,7 @@ import {
   ModalOverlay,
   OverlayTriggerStateContext,
 } from "react-aria-components";
-import { type VariantProps, cva } from "~/lib/cva";
+import { cva, type VariantProps } from "~/lib/cva";
 import { ButtonPrimitive } from "./button";
 
 export const DialogStyles = {
@@ -102,7 +102,7 @@ export const DialogRoot = DialogTrigger;
 interface DialogContentProps
   extends Omit<React.ComponentProps<typeof Modal>, "children">,
     Omit<React.ComponentProps<typeof ModalOverlay>, "className">,
-    Omit<DialogProps, "children" | "className" | "style">,
+    Pick<DialogProps, "role">,
     VariantProps<(typeof DialogStyles)["Overlay"]>,
     VariantProps<(typeof DialogStyles)["Content"]> {}
 
@@ -160,8 +160,8 @@ export function DialogHeader({
   return (
     <header
       {...props}
-      data-slot="dialog-header"
       className={DialogStyles.Header({ className })}
+      data-slot="dialog-header"
     />
   );
 }
@@ -181,8 +181,8 @@ export function DialogTitle({
     <Heading
       level={2}
       {...props}
-      data-slot="dialog-title"
       className={DialogStyles.Title({ className })}
+      data-slot="dialog-title"
     />
   );
 }
@@ -216,7 +216,7 @@ export function DialogClose({ children, asChild, ...props }: DialogCloseProps) {
     return cloneElement(children, {
       ...props,
       onPress: ctx.close,
-    });
+    } as React.Attributes);
   }
 
   return (
@@ -230,15 +230,12 @@ export function DialogClose({ children, asChild, ...props }: DialogCloseProps) {
   );
 }
 
-export const Dialog = Object.assign(
-  {},
-  {
-    Root: DialogRoot,
-    Content: DialogContent,
-    Header: DialogHeader,
-    Footer: DialogFooter,
-    Title: DialogTitle,
-    Description: DialogDescription,
-    Close: DialogClose,
-  },
-);
+export const Dialog = {
+  Root: DialogRoot,
+  Content: DialogContent,
+  Header: DialogHeader,
+  Footer: DialogFooter,
+  Title: DialogTitle,
+  Description: DialogDescription,
+  Close: DialogClose,
+};

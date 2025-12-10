@@ -1,7 +1,11 @@
 {
-  "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
-  "organizeImports": {
-    "enabled": true
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["ultracite/core", "ultracite/react", "ultracite/next"],
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
   },
   "css": {
     "formatter": {
@@ -12,65 +16,51 @@
     }
   },
   "linter": {
-    "enabled": true,
     "rules": {
-      "recommended": true,
       "a11y": {
-        "all": true,
         "noSvgWithoutTitle": "off"
       },
-      "complexity": {
-        "all": true
-      },
       "correctness": {
-        "all": true,
-        "noNodejsModules": "off",
-        "noUndeclaredDependencies": "off",
-        "useImportExtensions": "off"
+        "noUnusedVariables": {
+          "fix": "safe",
+          "level": "error",
+          "options": {
+            "ignoreRestSiblings": true
+          }
+        }
       },
       "performance": {
-        "all": true,
         "noBarrelFile": "off",
-        "noReExportAll": "off"
-      },
-      "security": {
-        "all": true
-      },
-      "style": {
-        "recommended": true,
-        "noDefaultExport": "error",
-        "noNonNullAssertion": "off",
         "noNamespaceImport": "off"
       },
-      "suspicious": {
-        "all": true,
-        "noConsole": "off",
-        "noReactSpecificProps": "off"
+      "style": {
+        "noDefaultExport": "error",
+        "noNonNullAssertion": "off",
+        "noExportedImports": "off",
+        "useConsistentTypeDefinitions": {
+          "fix": "safe",
+          "level": "error",
+          "options": {
+            "style": "interface"
+          }
+        }
       },
       "nursery": {
-        "all": true,
-        "useImportRestrictions": "off",
-        "useComponentExportOnlyModules": "off",
-        "useStrictMode": "off",
-        "noProcessEnv": "error",
-        "noSecrets": "off",
-        "useExplicitType": "off",
-        "noNestedTernary": "off",
-        "noImgElement": "off",
+        "noShadow": "off",
+        "noLeakedRender": "off",
         "useSortedClasses": {
           "fix": "safe",
           "level": "error",
           "options": {
             "functions": ["cva", "cx", "cn"]
           }
-        },
-        "noExportedImports": "off"
+        }
       }
     }
   },
   "overrides": [
     {
-      "include": [
+      "includes": [
         "src/app/**/page.tsx",
         "src/app/**/layout.tsx",
         "src/app/**/template.tsx",
@@ -85,7 +75,6 @@
         "src/app/**/twitter-image.tsx",
         "src/app/**/robots.ts",
         "src/app/**/sitemap.ts",
-
         "src/middleware.ts",
         "*.config.js",
         "*.config.mjs",
@@ -94,9 +83,7 @@
       "linter": {
         "rules": {
           "style": {
-            "noDefaultExport": "off"
-          },
-          "nursery": {
+            "noDefaultExport": "off",
             "useComponentExportOnlyModules": {
               "level": "error",
               "options": {
@@ -111,29 +98,11 @@
           }
         }
       }
-    },
-    {
-      "include": ["src/@types/**/*.d.ts"],
-      "linter": {
-        "rules": {
-          "correctness": {
-            "noUndeclaredVariables": "off"
-          }
-        }
-      }
     }
-  ],
-  "javascript": {
-    "globals": ["React"]
-  },
-  "formatter": {
-    "enabled": true,
-    "indentStyle": "space"
-  },
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "useIgnoreFile": true,
-    "defaultBranch": "main"
-  }
+  ]
+  // "javascript": {
+  //   "globals": [
+  //     "React"
+  //   ]
+  // }
 }

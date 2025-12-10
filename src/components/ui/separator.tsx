@@ -28,8 +28,8 @@ export function Separator({
 
   return (
     <div
-      ref={ref}
       className={SeparatorStyles({ className, orientation })}
+      ref={ref}
       {...semanticProps}
       {...props}
     />

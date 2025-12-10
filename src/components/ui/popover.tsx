@@ -58,7 +58,6 @@ export function PopoverContent({
   return (
     <PopoverPrimitive
       {...props}
-      placement={_placement}
       className={(values) =>
         PopoverStyles.Content({
           isMenu,
@@ -66,6 +65,7 @@ export function PopoverContent({
             typeof className === "function" ? className(values) : className,
         })
       }
+      placement={_placement}
     />
   );
 }
@@ -78,9 +78,9 @@ export function PopoverArrow({
     <OverlayArrow className="group">
       <svg
         aria-hidden="true"
-        width={12}
         height={12}
         viewBox="0 0 12 12"
+        width={12}
         {...props}
         className={PopoverStyles.Arrow({ className })}
       >
@@ -90,11 +90,8 @@ export function PopoverArrow({
   );
 }
 
-export const Popover = Object.assign(
-  {},
-  {
-    Root: PopoverRoot,
-    Content: PopoverContent,
-    Arrow: PopoverArrow,
-  },
-);
+export const Popover = {
+  Root: PopoverRoot,
+  Content: PopoverContent,
+  Arrow: PopoverArrow,
+};

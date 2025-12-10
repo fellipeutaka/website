@@ -57,14 +57,11 @@ export function CardFooter({ className, ...props }: CardFooterProps) {
   return <footer {...props} className={CardStyles.Footer({ className })} />;
 }
 
-export const Card = Object.assign(
-  {},
-  {
-    Root: CardRoot,
-    Header: CardHeader,
-    Title: CardTitle,
-    Description: CardDescription,
-    Content: CardContent,
-    Footer: CardFooter,
-  },
-);
+export const Card = {
+  Root: CardRoot,
+  Header: CardHeader,
+  Title: CardTitle,
+  Description: CardDescription,
+  Content: CardContent,
+  Footer: CardFooter,
+};

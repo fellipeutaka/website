@@ -1,4 +1,4 @@
-import { type VariantProps, compose, cva } from "~/lib/cva";
+import { compose, cva, type VariantProps } from "~/lib/cva";
 import { FocusRingStyles } from "~/styles/focus-ring";
 
 export const BadgeStyles = compose(
@@ -28,7 +28,7 @@ export const BadgeStyles = compose(
     defaultVariants: {
       variant: "default",
     },
-  }),
+  })
 );
 
 export type BadgeProps = React.ComponentProps<"div"> &

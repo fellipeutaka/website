@@ -6,14 +6,14 @@ export function SiteFooter() {
   return (
     <footer className="my-12 flex flex-wrap items-center justify-center gap-4">
       {socialLinks.map((link) => (
-        <TooltipRoot key={link.href} delay={300}>
+        <TooltipRoot delay={300} key={link.href}>
           <LinkButton
-            size="icon"
-            variant="outline"
+            aria-label={link.label}
             href={link.href}
             rel="noopener noreferrer"
+            size="icon"
             target="_blank"
-            aria-label={link.label}
+            variant="outline"
           >
             <link.icon className="size-5" />
           </LinkButton>

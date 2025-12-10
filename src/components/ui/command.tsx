@@ -153,17 +153,14 @@ export function CommandShortcut({ className, ...props }: CommandShortcutProps) {
   );
 }
 
-export const Command = Object.assign(
-  {},
-  {
-    Root: CommandRoot,
-    Dialog: CommandDialog,
-    Input: CommandInput,
-    List: CommandList,
-    Empty: CommandEmpty,
-    Group: CommandGroup,
-    Item: CommandItem,
-    Separator: CommandSeparator,
-    Shortcut: CommandShortcut,
-  },
-);
+export const Command = {
+  Root: CommandRoot,
+  Dialog: CommandDialog,
+  Input: CommandInput,
+  List: CommandList,
+  Empty: CommandEmpty,
+  Group: CommandGroup,
+  Item: CommandItem,
+  Separator: CommandSeparator,
+  Shortcut: CommandShortcut,
+};

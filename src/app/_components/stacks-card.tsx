@@ -20,12 +20,12 @@ export function StacksCard() {
           const Icon = Icons[technology.icon];
 
           return (
-            <TooltipRoot key={technology.url} delay={300} closeDelay={0}>
+            <TooltipRoot closeDelay={0} delay={300} key={technology.url}>
               <LinkPrimitive
+                aria-label={technology.name}
                 href={technology.url}
                 rel="noopener noreferrer"
                 target="_blank"
-                aria-label={technology.name}
               >
                 <Icon className="size-10" />
               </LinkPrimitive>
