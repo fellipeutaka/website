@@ -46,7 +46,7 @@ export function TracingBeam({ children, className, offset }: TracingBeamProps) {
       className={cn("relative mx-auto h-full w-full max-w-4xl", className)}
       ref={ref}
     >
-      <div className="-left-4 md:-left-20 absolute top-3">
+      <div className="absolute top-3 -left-4 md:-left-20">
         <motion.div
           animate={{
             boxShadow:

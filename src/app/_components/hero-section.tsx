@@ -58,7 +58,7 @@ function GridPattern() {
   return (
     <svg
       aria-hidden="true"
-      className="-z-10 mask-[radial-gradient(100%_100%_at_top_right,white,transparent)] absolute inset-0 size-full stroke-white/10"
+      className="mask-[radial-gradient(100%_100%_at_top_right,white,transparent)] absolute inset-0 -z-10 size-full stroke-white/10"
     >
       <defs>
         <pattern
@@ -84,7 +84,7 @@ function ShadowEffect() {
   return (
     <div
       aria-hidden="true"
-      className="-z-10 absolute top-10 left-[calc(50%-4rem)] transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:top-[calc(50%-30rem)] lg:left-48 xl:left-[calc(50%-24rem)]"
+      className="absolute top-10 left-[calc(50%-4rem)] -z-10 transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:top-[calc(50%-30rem)] lg:left-48 xl:left-[calc(50%-24rem)]"
     >
       <div
         className="aspect-1108/632 w-277 bg-linear-to-r from-[#80caff] to-[#4f46e5] opacity-20"

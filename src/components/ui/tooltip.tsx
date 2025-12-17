@@ -66,7 +66,7 @@ export function TooltipArrow({
     <OverlayArrow {...props}>
       <svg
         aria-hidden="true"
-        className="arx group-placement-left:-rotate-90 group-placement-bottom:rotate-180 group-placement-right:rotate-90 forced-colors:fill-[Canvas] forced-colors:stroke-[ButtonBorder]"
+        className="arx group-placement-bottom:rotate-180 group-placement-left:-rotate-90 group-placement-right:rotate-90 forced-colors:fill-[Canvas] forced-colors:stroke-[ButtonBorder]"
         height={12}
         viewBox="0 0 12 12"
         width={12}

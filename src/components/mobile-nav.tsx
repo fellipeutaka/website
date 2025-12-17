@@ -33,7 +33,7 @@ export function MobileNav() {
           aria-hidden
           className={cx(
             "absolute h-0.5 w-3.5 transform-gpu bg-muted-fg transition-transform",
-            open ? "-rotate-45 translate-y-0" : "translate-y-1"
+            open ? "translate-y-0 -rotate-45" : "translate-y-1"
           )}
         />
       </Button>

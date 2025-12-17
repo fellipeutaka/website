@@ -35,7 +35,7 @@ export function MainNav() {
           {isActive(item.href, hoveredPath) && (
             <m.div
               aria-hidden="true"
-              className="-z-10 absolute bottom-0 left-0 size-full rounded-full bg-muted"
+              className="absolute bottom-0 left-0 -z-10 size-full rounded-full bg-muted"
               layoutId="navbar"
               transition={{
                 duration: 0.15,
@@ -45,7 +45,7 @@ export function MainNav() {
           {isActive(item.href, pathname) && (
             <m.div
               aria-hidden="true"
-              className="-z-10 absolute bottom-0 left-0 size-full rounded-full bg-muted"
+              className="absolute bottom-0 left-0 -z-10 size-full rounded-full bg-muted"
               transition={{
                 duration: 0.15,
               }}

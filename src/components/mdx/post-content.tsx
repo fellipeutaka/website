@@ -14,7 +14,7 @@ export function PostContent({ toc, children }: PostContentProps) {
       <aside className="lg:min-w-72">
         <div className="sticky top-24">
           {toc && toc.length > 0 && (
-            <div className="-mt-10 sticky top-16 space-y-4 pt-4">
+            <div className="sticky top-16 -mt-10 space-y-4 pt-4">
               <p className="font-medium text-sm">On This Page</p>
 
               <AnchorProvider toc={toc}>

@@ -61,7 +61,7 @@ export const DialogStyles = {
           "exiting:slide-out-to-right",
         ],
         center: [
-          "-translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 grid max-w-lg gap-4 border",
+          "top-1/2 left-1/2 grid max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 border",
           "entering:slide-in-from-left-1/2 entering:slide-in-from-top-1/2 entering:zoom-in-95",
           "exiting:slide-out-to-left-1/2 exiting:slide-out-to-top-1/2 exiting:zoom-out-95",
         ],

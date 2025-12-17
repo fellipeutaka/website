@@ -37,7 +37,7 @@ export const PopoverStyles = {
   Arrow: cva({
     base: [
       "block fill-popover stroke-border",
-      "group-placement-left:-rotate-90 group-placement-bottom:rotate-180 group-placement-right:rotate-90",
+      "group-placement-bottom:rotate-180 group-placement-left:-rotate-90 group-placement-right:rotate-90",
     ],
   }),
 };
