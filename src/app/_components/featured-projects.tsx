@@ -21,7 +21,7 @@ export function FeaturedProjectsSection() {
             className={i === 3 || i === 6 ? "md:col-span-2" : ""}
             key={project.data.name}
           >
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
               {project.data.technologies.map((technology) => {
                 const tech = getTechnology(technology);
                 const Icon = Icons[tech.icon];
