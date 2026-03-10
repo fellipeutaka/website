@@ -124,9 +124,9 @@ export const technologies = [
 ] as const satisfies Technology[];
 
 export interface Technology {
+  icon: Icon;
   name: string;
   url: string;
-  icon: Icon;
 }
 export type Technologies = typeof technologies;
 export type TechnologyName = Technologies[number]["name"];

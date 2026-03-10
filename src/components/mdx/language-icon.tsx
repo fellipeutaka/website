@@ -39,8 +39,8 @@ function getIconByTitle(title: string) {
 }
 
 interface LanguageIconProps extends IconProps {
-  title: string;
   language: string;
+  title: string;
 }
 
 export function LanguageIcon({

@@ -11,8 +11,8 @@ export const SeparatorStyles = cva({
 });
 
 export interface SeparatorProps extends React.ComponentProps<"div"> {
-  orientation?: "horizontal" | "vertical";
   decorative?: boolean;
+  orientation?: "horizontal" | "vertical";
 }
 
 export function Separator({

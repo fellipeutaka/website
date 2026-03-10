@@ -9,6 +9,22 @@ import { getImageMetadata } from "./get-image-metadata";
  */
 export interface Image {
   /**
+   * blurDataURL of the image
+   */
+  blurDataURL: string;
+  /**
+   * blur image height
+   */
+  blurHeight: number;
+  /**
+   * blur image width
+   */
+  blurWidth: number;
+  /**
+   * image height
+   */
+  height: number;
+  /**
    * public url of the image
    */
   src: string;
@@ -16,22 +32,6 @@ export interface Image {
    * image width
    */
   width: number;
-  /**
-   * image height
-   */
-  height: number;
-  /**
-   * blurDataURL of the image
-   */
-  blurDataURL: string;
-  /**
-   * blur image width
-   */
-  blurWidth: number;
-  /**
-   * blur image height
-   */
-  blurHeight: number;
 }
 
 export function zodImage(options: {

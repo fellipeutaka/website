@@ -3,9 +3,9 @@ import { CopyButton } from "./copy-button";
 import { LanguageIcon } from "./language-icon";
 
 interface FigcaptionProps extends React.ComponentProps<"figcaption"> {
-  "data-language": string;
   __rawString__: string;
   children: string;
+  "data-language": string;
 }
 
 export function Figcaption({

@@ -8,9 +8,9 @@ import { BlurImage } from "../ui/blur-image";
 import { ImageZoom } from "../ui/image-zoom";
 
 interface PostHeaderProps {
+  cover: Image;
   date: Date;
   title: string;
-  cover: Image;
 }
 
 export function PostHeader({ title, date, cover }: PostHeaderProps) {

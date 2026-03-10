@@ -2,10 +2,10 @@ import { useState } from "react";
 import { toast } from "~/components/ui/toast";
 
 interface CopyOptions {
+  errorMessage?: React.ReactNode;
+  successMessage?: React.ReactNode;
   text: string;
   timeout?: number;
-  successMessage?: React.ReactNode;
-  errorMessage?: React.ReactNode;
 }
 
 export function useCopyToClipboard() {

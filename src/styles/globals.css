@@ -90,8 +90,8 @@
 }
 
 @utility container {
-  margin-inline: auto;
   padding-inline: 2rem;
+  margin-inline: auto;
   @media (width >= --theme(--breakpoint-xs)) {
     max-width: none;
   }
@@ -200,10 +200,10 @@
   }
 
   body {
-    @apply bg-bg text-fg font-sans antialiased;
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
+    @apply bg-bg text-fg font-sans antialiased;
   }
 
   ::-webkit-scrollbar {

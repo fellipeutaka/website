@@ -7,6 +7,9 @@
     "useIgnoreFile": true,
     "defaultBranch": "main"
   },
+  "files": {
+    "includes": ["!.agents/**/*", "!.claude/**/*", "!.opencode/**/*"]
+  },
   "css": {
     "formatter": {
       "enabled": true
@@ -100,9 +103,4 @@
       }
     }
   ]
-  // "javascript": {
-  //   "globals": [
-  //     "React"
-  //   ]
-  // }
 }

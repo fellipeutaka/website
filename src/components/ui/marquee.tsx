@@ -1,9 +1,9 @@
 import { cn } from "~/lib/cva";
 
 export interface MarqueeProps extends React.ComponentProps<"div"> {
+  children: React.JSX.Element[];
   pauseOnHover?: boolean;
   reverse?: boolean;
-  children: React.JSX.Element[];
 }
 
 export function Marquee({

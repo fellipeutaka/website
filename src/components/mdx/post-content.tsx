@@ -2,8 +2,8 @@ import { AnchorProvider, type TableOfContents } from "fumadocs-core/toc";
 import { TocTree } from "./toc-tree";
 
 interface PostContentProps {
-  toc: TableOfContents;
   children: React.ReactNode;
+  toc: TableOfContents;
 }
 
 export function PostContent({ toc, children }: PostContentProps) {

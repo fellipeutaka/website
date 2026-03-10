@@ -201,8 +201,8 @@ export function DialogDescription({
 }
 
 export interface DialogCloseProps {
-  children: React.ReactElement;
   asChild?: boolean;
+  children: React.ReactElement;
 }
 
 export function DialogClose({ children, asChild, ...props }: DialogCloseProps) {

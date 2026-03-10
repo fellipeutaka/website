@@ -25,12 +25,12 @@ export type NpmCommands = {
 } | null;
 
 interface PreProps extends React.ComponentProps<"pre"> {
-  "data-language": string;
-  "data-source": string;
-  "data-npm"?: string;
-  "data-yarn"?: string;
-  "data-pnpm"?: string;
   "data-bun"?: string;
+  "data-language": string;
+  "data-npm"?: string;
+  "data-pnpm"?: string;
+  "data-source": string;
+  "data-yarn"?: string;
 }
 
 export function Pre({
