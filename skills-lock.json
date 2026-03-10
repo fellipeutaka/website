@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "skills": {
+    "agent-browser": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "2f771f8eb25f9856d2169a4de4766de94e2bdbff999f42c458c8f1e2ca405c03"
+    },
+    "ai-repo-setup": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "49a32f7d84e8e9f9e81a1e754c702fa6dfb54c5cc760565eb7ccfcfd67ff6d30"
+    },
+    "bun": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "86853c0c40e58e2075ca29494564a807b96be43f062ff69be24cf754a8061717"
+    },
+    "clean-code": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "621729bdca70f20330723d0fa8650dfef1ceb8eef1e40697df302736c4c88133"
+    },
+    "commit-work": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "88cec816d028de357ae7ede3ace36a2bc235a225e3e7d2bb18cdb5190ab6c482"
+    },
+    "denji": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "7082f86adee68a3f452d452d870b63bcbfc78db966761d10c6ca8a46730a85c6"
+    },
+    "frontend-design": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "e8118284a6365753790d44bb2758a6032b3af27fa84696428d9233f2be0f4e78"
+    },
+    "interface-design": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "d004c5e5e2e7132e1d64e9c2a339db7f7aaa69053a5c19cddc210dd35dd6fff5"
+    },
+    "kanpeki": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "551b10365a49072ba6c7dd5890284526855d3e566198fa3e55136e21565f2686"
+    },
+    "motion": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "990abca205ab4019b6e48e65d7d4c8385f200bc61d1768b4ed6c78947a029159"
+    },
+    "next-best-practices": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "515ba75178bd44875812d9a560bdf14651f86709f89cf1d4f209638e879807f3"
+    },
+    "next-cache-components": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "a94b83ddcd2ff1c30722577f693b1bfe32f2e1a83abdd6c08c2d6cc6753b53c8"
+    },
+    "next-upgrade": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "be6bbf6ab1dc2cc6f2505cea52d497920c04f5b532c0846ee201f6029b803fb0"
+    },
+    "nuqs": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "6572e46b1f81a46a0d6a932eef1558ebe7e67e3038717365c1061e36a5138540"
+    },
+    "seo-audit": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "52909e6dca8c9f8c33f2088f4c3e8db1115e8a28ee591ef7b9b3a740eb640044"
+    },
+    "vercel-composition-patterns": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "f98931159fa9c7fed043bcd18a891a46dcf89ababa38df13a4c5b7b30dc0ce07"
+    },
+    "vercel-react-best-practices": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "4365be772fd3b41994a72ad478472c6d680678e7f3859860ab010e9c46e48ee0"
+    },
+    "web-design-guidelines": {
+      "source": "fellipeutaka/leon",
+      "sourceType": "github",
+      "computedHash": "a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a"
+    }
+  }
+}
