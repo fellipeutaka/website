@@ -1,6 +1,5 @@
 {
   "name": "website",
-  "packageManager": "pnpm@12.14.0+sha512.c18ba6d87993d3d164cb5e8948f32b2c06ee854487e06cd8d86781342fb3e5bb4634367034711e86802baa9c37bea906ce1929ad08d70884c97d801df13389a6",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,9 +8,10 @@
     "build": "next build",
     "start": "next start",
     "preview": "next build && next start",
-    "format": "biome format --write",
-    "lint": "biome check",
-    "lint:fix": "biome check --write",
+    "format": "oxfmt --write",
+    "format:check": "oxfmt --check",
+    "lint": "ultracite check",
+    "lint:fix": "ultracite fix",
     "lint:doctor": "ultracite doctor",
     "type-check": "fumadocs-mdx && next typegen && tsc --noEmit",
     "cv:generate": "docker compose up",
@@ -37,7 +37,6 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.15",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/mdx": "^2.0.14",
     "@types/node": "^26.6.5",
@@ -46,6 +45,9 @@
     "cva": "1.0.0-beta.12",
     "fumadocs-mdx": "15.4.9",
     "lefthook": "^2.2.2",
+    "oxfmt": "^0.74.0",
+    "oxlint": "^1.89.0",
+    "oxlint-tsgolint": "^7.0.2004",
     "postcss": "^8.5.31",
     "sharp": "^0.35.5",
     "tailwind-merge": "^3.7.0",
@@ -61,5 +63,6 @@
       "version": "^12.14.0",
       "onFail": "warn"
     }
-  }
+  },
+  "packageManager": "pnpm@12.14.0+sha512.c18ba6d87993d3d164cb5e8948f32b2c06ee854487e06cd8d86781342fb3e5bb4634367034711e86802baa9c37bea906ce1929ad08d70884c97d801df13389a6"
 }
