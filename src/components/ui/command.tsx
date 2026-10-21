@@ -33,6 +33,25 @@ export const CommandStyles = {
 
 export type CommandItems<T> = readonly { value: string; items: readonly T[] }[];
 const emptyItems = [] as const;
+
+function matchesCommand<T>(
+  item: T,
+  query: string,
+  itemToString?: (item: T) => string
+) {
+  const label = (
+    itemToString?.(item) ?? (typeof item === "string" ? item : "")
+  ).toLowerCase();
+  let position = 0;
+  for (const character of query.trim().toLowerCase()) {
+    const match = label.indexOf(character, position);
+    if (match === -1) {
+      return false;
+    }
+    position = match + 1;
+  }
+  return true;
+}
 export type CommandRootProps<T> = Omit<Autocomplete.Root.Props<T>, "items"> & {
   className?: string;
   items?: CommandItems<T>;
@@ -50,6 +69,7 @@ export function CommandRoot<T>({
   return (
     <div className={CommandStyles.Root({ className })}>
       <Autocomplete.Root<CommandItems<T>>
+        filter={matchesCommand}
         {...props}
         autoHighlight="always"
         inline
