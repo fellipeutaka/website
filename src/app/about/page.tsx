@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+
 import { MDXContent } from "~/components/mdx/mdx-content";
 import { pagesSource } from "~/lib/source";
 

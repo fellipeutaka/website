@@ -1,4 +1,6 @@
-import { AnchorProvider, type TableOfContents } from "fumadocs-core/toc";
+import { AnchorProvider } from "fumadocs-core/toc";
+import type { TableOfContents } from "fumadocs-core/toc";
+
 import { TocTree } from "./toc-tree";
 
 interface PostContentProps {
@@ -13,9 +15,9 @@ export function PostContent({ toc, children }: PostContentProps) {
 
       <aside className="lg:min-w-72">
         <div className="sticky top-24">
-          {toc && toc.length > 0 && (
+          {toc.length > 0 && (
             <div className="sticky top-16 -mt-10 space-y-4 pt-4">
-              <p className="font-medium text-sm">On This Page</p>
+              <p className="text-sm font-medium">On This Page</p>
 
               <AnchorProvider toc={toc}>
                 <TocTree tree={toc} />

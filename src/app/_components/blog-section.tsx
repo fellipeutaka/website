@@ -1,6 +1,8 @@
 import * as m from "motion/react-m";
+
 import { LinkButton } from "~/components/ui/button";
 import { mapSourceData, postsSource } from "~/lib/source";
+
 import { PostCard } from "../blog/_components/post-card";
 
 export function BlogSection() {
@@ -24,7 +26,7 @@ export function BlogSection() {
         opacity: 1,
       }}
     >
-      <h2 className="mb-10 font-semibold text-2xl md:text-3xl">Latest posts</h2>
+      <h2 className="mb-10 text-2xl font-semibold md:text-3xl">Latest posts</h2>
 
       <div className="grid w-full gap-4 md:grid-cols-2">
         {posts.map((post) => (

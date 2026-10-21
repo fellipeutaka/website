@@ -1,5 +1,7 @@
 import * as m from "motion/react-m";
+
 import { LinkButton } from "~/components/ui/button";
+
 import { CodingHours } from "./coding-hours";
 import { Connect } from "./connect";
 import { LocationCard } from "./location-card";
@@ -9,7 +11,7 @@ import { StudyingCard } from "./studying-card";
 export function AboutSection() {
   return (
     <section className="container max-w-6xl">
-      <h2 className="mb-10 font-semibold text-2xl md:text-3xl">About me</h2>
+      <h2 className="mb-10 text-2xl font-semibold md:text-3xl">About me</h2>
 
       <m.div
         className="motion grid gap-4 md:grid-cols-2"
@@ -31,7 +33,7 @@ export function AboutSection() {
         </div>
         <div className="grid gap-4">
           <Connect />
-          <div className="grid xs:grid-cols-2 gap-4">
+          <div className="grid gap-4 xs:grid-cols-2">
             <CodingHours />
             <StudyingCard />
           </div>

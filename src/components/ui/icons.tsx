@@ -565,8 +565,8 @@ export const Icons = {
           gradientUnits="userSpaceOnUse"
           id="turborepo-c"
           x1={15.0234}
-          x2={3.644_19}
-          y1={4.005_56}
+          x2={3.64419}
+          y1={4.00556}
           y2={15.3847}
         >
           <stop stopColor="#0096FF" />

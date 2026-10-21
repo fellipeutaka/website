@@ -1,4 +1,5 @@
 import type { MDXProps } from "mdx/types";
+
 import { mdxComponents } from "./mdx-components";
 
 interface MDXContentProps {

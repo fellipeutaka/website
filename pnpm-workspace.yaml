@@ -1,0 +1,5 @@
+allowBuilds:
+  esbuild: true
+  lefthook: true
+minimumReleaseAgeExclude:
+  - fumadocs-mdx@15.4.9

@@ -3,7 +3,8 @@
 import * as m from "motion/react-m";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import { navLinks } from "~/config/site";
 import { useHash } from "~/hooks/use-hash";
 
@@ -14,11 +15,11 @@ function isActive(href: string, path: string) {
 export function MainNav() {
   const pathname = usePathname();
   const hash = useHash();
-  const [hoveredPath, setHoveredPath] = useState(pathname + hash);
-
-  useEffect(() => {
-    setHoveredPath(pathname + hash);
-  }, [pathname, hash]);
+  const currentPath = pathname + (hash ?? "");
+  const [hover, setHover] = useState<{ path: string; href: string } | null>(
+    null
+  );
+  const hoveredPath = hover?.path === currentPath ? hover.href : currentPath;
 
   return (
     <nav className="ml-6 hidden items-center text-sm md:flex">
@@ -28,8 +29,12 @@ export function MainNav() {
           data-active={isActive(item.href, pathname)}
           href={item.href}
           key={item.href}
-          onMouseLeave={() => setHoveredPath(pathname)}
-          onMouseOver={() => setHoveredPath(item.href)}
+          onMouseLeave={() => {
+            setHover(null);
+          }}
+          onMouseOver={() => {
+            setHover({ path: currentPath, href: item.href });
+          }}
         >
           <span>{item.label}</span>
           {isActive(item.href, hoveredPath) && (

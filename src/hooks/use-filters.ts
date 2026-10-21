@@ -4,6 +4,7 @@ import {
   parseAsStringEnum,
   useQueryStates,
 } from "nuqs";
+
 import { technologies } from "~/lib/technologies";
 
 export function useFilters() {

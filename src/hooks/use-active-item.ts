@@ -16,7 +16,7 @@ export function useActiveItem(itemIds: string[]) {
     );
 
     for (const id of itemIds) {
-      const element = document.getElementById(id);
+      const element = document.querySelector(`#${id}`);
       if (element) {
         observer.observe(element);
       }
@@ -24,7 +24,7 @@ export function useActiveItem(itemIds: string[]) {
 
     return () => {
       for (const id of itemIds) {
-        const element = document.getElementById(id);
+        const element = document.querySelector(`#${id}`);
         if (element) {
           observer.unobserve(element);
         }

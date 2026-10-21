@@ -3,6 +3,7 @@
 import type { ImageProps } from "next/image";
 import NextImage from "next/image";
 import React from "react";
+
 import { cn } from "~/lib/cva";
 
 interface BlurImageProps extends ImageProps {
@@ -14,7 +15,7 @@ export const BlurImage = ({
   containerClassName,
   ...props
 }: BlurImageProps) => {
-  const [isLoading, setLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   return (
     <div
@@ -30,10 +31,12 @@ export const BlurImage = ({
           "rounded-xl duration-700 ease-in-out",
           isLoading
             ? "scale-[1.02] blur-xl grayscale"
-            : "scale-100 blur-0 grayscale-0",
+            : "blur-0 scale-100 grayscale-0",
           className
         )}
-        onLoad={() => setLoading(false)}
+        onLoad={() => {
+          setIsLoading(false);
+        }}
       />
     </div>
   );

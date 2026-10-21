@@ -10,8 +10,8 @@ export function FeaturedProjectsSection() {
     .filter((project) => project.data.isFeatured);
 
   return (
-    <section className="container max-w-6xl animate-delay-700 animate-fade-up">
-      <h2 className="mb-10 font-semibold text-2xl md:text-3xl">
+    <section className="container max-w-6xl animate-fade-up animate-delay-700">
+      <h2 className="mb-10 text-2xl font-semibold md:text-3xl">
         Featured projects
       </h2>
 
@@ -46,18 +46,19 @@ export function FeaturedProjectsSection() {
               </BentoGrid.Description>
             </BentoGrid.Body>
             <div className="mt-4 flex items-center justify-between">
-              {project.data.previewUrl && (
-                <LinkButton
-                  className="rounded-full"
-                  href={project.data.previewUrl}
-                  rel="noopener noreferrer"
-                  size="sm"
-                  target="_blank"
-                >
-                  <Icons.Eye className="mr-2 size-4" />
-                  Preview
-                </LinkButton>
-              )}
+              {project.data.previewUrl !== undefined &&
+                project.data.previewUrl !== "" && (
+                  <LinkButton
+                    className="rounded-full"
+                    href={project.data.previewUrl}
+                    rel="noopener noreferrer"
+                    size="sm"
+                    target="_blank"
+                  >
+                    <Icons.Eye className="mr-2 size-4" />
+                    Preview
+                  </LinkButton>
+                )}
               <LinkButton
                 className="rounded-full"
                 href={project.data.sourceCodeUrl}

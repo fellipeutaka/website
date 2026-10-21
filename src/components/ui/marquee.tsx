@@ -13,10 +13,6 @@ export function Marquee({
   children,
   ...props
 }: MarqueeProps) {
-  if (!children) {
-    return null;
-  }
-
   return (
     <div
       className={cn(

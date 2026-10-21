@@ -1,12 +1,12 @@
 "use client";
 
+import { Drawer } from "@base-ui/react/drawer";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-
 import { useState } from "react";
-import { Drawer } from "vaul";
+
 import { navLinks } from "~/config/site";
 import { cx } from "~/lib/cva";
+
 import { Button } from "./ui/button";
 import { DialogStyles } from "./ui/dialog";
 
@@ -14,13 +14,16 @@ export function MobileNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Drawer.Root direction="right" onOpenChange={setOpen} open={open}>
-      <Button
-        aria-label="Toggle Menu"
-        className="ml-auto size-8 rounded-full md:hidden"
-        onPress={() => setOpen((prev) => !prev)}
-        size="icon"
-        variant="outline"
+    <Drawer.Root onOpenChange={setOpen} open={open} swipeDirection="right">
+      <Drawer.Trigger
+        render={
+          <Button
+            aria-label="Toggle Menu"
+            className="relative ml-auto size-8 rounded-full md:hidden"
+            size="icon"
+            variant="outline"
+          />
+        }
       >
         <div
           aria-hidden
@@ -36,26 +39,31 @@ export function MobileNav() {
             open ? "translate-y-0 -rotate-45" : "translate-y-1"
           )}
         />
-      </Button>
+      </Drawer.Trigger>
       <Drawer.Portal>
-        <Drawer.Overlay className={DialogStyles.Overlay()} />
-        <Drawer.Content
-          aria-describedby={undefined}
-          className="data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right fixed inset-y-0 top-16 right-0 z-50 h-full w-3/4 gap-4 border-border border-l bg-bg p-6 shadow-lg transition ease-in-out data-[state=closed]:animate-out data-[state=open]:animate-in data-[state=closed]:duration-300 data-[state=open]:duration-500 sm:max-w-sm"
-        >
-          <Drawer.Title className="sr-only">Menu</Drawer.Title>
-          <div className="my-6 flex flex-col gap-3">
-            {navLinks.map((item) => (
-              <MobileLink
-                href={item.href}
-                key={item.href}
-                onOpenChange={setOpen}
-              >
-                {item.label}
-              </MobileLink>
-            ))}
-          </div>
-        </Drawer.Content>
+        <Drawer.Backdrop className={DialogStyles.Overlay()} />
+        <Drawer.Viewport className="pointer-events-none fixed inset-0 z-50">
+          <Drawer.Popup
+            aria-describedby={undefined}
+            className="pointer-events-auto fixed inset-y-0 top-16 right-0 z-50 h-full w-3/4 gap-4 border-l border-border bg-bg p-6 shadow-lg outline-hidden transition-[transform,opacity] duration-500 ease-in-out data-ending-style:translate-x-full data-ending-style:duration-300 data-starting-style:translate-x-full data-swiping:transition-none sm:max-w-sm"
+            style={{
+              transform: "translateX(var(--drawer-swipe-movement-x, 0px))",
+            }}
+          >
+            <Drawer.Title className="sr-only">Menu</Drawer.Title>
+            <div className="my-6 flex flex-col gap-3">
+              {navLinks.map((item) => (
+                <MobileLink
+                  href={item.href}
+                  key={item.href}
+                  onOpenChange={setOpen}
+                >
+                  {item.label}
+                </MobileLink>
+              ))}
+            </div>
+          </Drawer.Popup>
+        </Drawer.Viewport>
       </Drawer.Portal>
     </Drawer.Root>
   );
@@ -66,14 +74,11 @@ interface MobileLinkProps extends React.ComponentProps<typeof Link> {
 }
 
 function MobileLink({ href, onOpenChange, ...props }: MobileLinkProps) {
-  const router = useRouter();
-
   return (
     <Link
       className="border-b py-3"
       href={href}
       onClick={() => {
-        router.push(href.toString());
         onOpenChange?.(false);
       }}
       {...props}

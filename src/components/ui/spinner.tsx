@@ -5,7 +5,7 @@ export function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
     <svg
       aria-label="Loading..."
       className={cn("size-4 stroke-current", className)}
-      role="presentation"
+      role="img"
       viewBox="0 0 2400 2400"
       {...props}
     >

@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+
 import { cn } from "~/lib/cva";
 
 interface TracingBeamProps {
@@ -54,7 +55,7 @@ export function TracingBeam({ children, className, offset }: TracingBeamProps) {
                 ? "none"
                 : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
           }}
-          className="ml-[27px] flex size-4 items-center justify-center rounded-full border border-netural-200 shadow-xs"
+          className="border-netural-200 ml-[27px] flex size-4 items-center justify-center rounded-full border shadow-xs"
           transition={{
             duration: 0.2,
             delay: 0.5,
@@ -77,7 +78,7 @@ export function TracingBeam({ children, className, offset }: TracingBeamProps) {
         <svg
           aria-hidden="true"
           className="ml-4 block"
-          height={svgHeight} // Set the SVG height
+          height={svgHeight}
           viewBox={`0 0 20 ${svgHeight}`}
           width="20"
         >

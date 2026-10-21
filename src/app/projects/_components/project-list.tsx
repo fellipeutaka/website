@@ -2,6 +2,8 @@
 
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
+import { Fragment } from "react";
+
 import { BadgeStyles } from "~/components/ui/badge";
 import { Button, LinkButton } from "~/components/ui/button";
 import { Card, CardStyles } from "~/components/ui/card";
@@ -16,11 +18,9 @@ import { TextSearch } from "~/components/ui/text-search";
 import { siteConfig } from "~/config/site";
 import { useFilters } from "~/hooks/use-filters";
 import type { ProjectSource } from "~/lib/source";
-import {
-  getTechnology,
-  type Technologies,
-  technologies,
-} from "~/lib/technologies";
+import { getTechnology, technologies } from "~/lib/technologies";
+import type { Technologies } from "~/lib/technologies";
+
 import { PreviewRecursiveButton } from "./preview-recursive-button";
 
 function filterProjects(
@@ -55,8 +55,65 @@ interface ProjectListProps {
   projects: ProjectSource[];
 }
 
+interface TechnologyCommand {
+  technology: Technologies[number] | null;
+  value: string;
+}
+
 export function ProjectList({ projects }: ProjectListProps) {
   const [filters, setFilters] = useFilters();
+  const commandGroups: { value: string; items: TechnologyCommand[] }[] = [
+    {
+      value: "technologies",
+      items: technologies
+        .filter((technology) =>
+          projects.some((project) =>
+            project.data.technologies.includes(technology.name)
+          )
+        )
+        .map((technology) => ({ value: technology.name, technology })),
+    },
+    ...(filters.techs.length > 0
+      ? [
+          {
+            value: "actions",
+            items: [{ value: "Clear filters", technology: null }],
+          },
+        ]
+      : []),
+  ];
+
+  function renderTechnologyCommand(item: TechnologyCommand) {
+    const technology = item.technology;
+    const Icon = technology ? Icons[technology.icon] : null;
+    return (
+      <Command.Item
+        className={technology ? undefined : "justify-center text-center"}
+        key={item.value}
+        onClick={() => {
+          if (!technology) {
+            void setFilters({ techs: [] });
+            return;
+          }
+          void setFilters(({ techs }) => ({
+            techs: techs.includes(technology.name)
+              ? techs.filter((name) => name !== technology.name)
+              : [...techs, technology.name],
+          }));
+        }}
+        value={item}
+      >
+        {technology && (
+          <Icons.Check
+            className="mr-2 size-4 opacity-0 transition-opacity data-[visible='true']:opacity-100"
+            data-visible={filters.techs.includes(technology.name)}
+          />
+        )}
+        {Icon && <Icon aria-hidden="true" className="mr-2 size-4" />}
+        {item.value}
+      </Command.Item>
+    );
+  }
 
   const filteredProjects = filterProjects(projects, {
     query: filters.q,
@@ -64,11 +121,13 @@ export function ProjectList({ projects }: ProjectListProps) {
   });
 
   return (
-    <section className="mt-10 animate-delay-75 animate-fade-up">
+    <section className="mt-10 animate-fade-up animate-delay-75">
       <div className="mb-4 flex items-center justify-between gap-4">
         <TextSearch.Root
           className="grow"
-          onChange={(q) => setFilters({ q })}
+          onValueChange={(q) => {
+            void setFilters({ q });
+          }}
           value={filters.q}
         >
           <Form.Field>
@@ -81,75 +140,45 @@ export function ProjectList({ projects }: ProjectListProps) {
         </TextSearch.Root>
 
         <Popover.Root>
-          <Button size="icon" variant="outline">
+          <Popover.Trigger render={<Button size="icon" variant="outline" />}>
             <Icons.Filter className="size-4" />
             <span className="sr-only">Filter by technology</span>
-          </Button>
+          </Popover.Trigger>
 
-          <Popover.Content className="p-0" placement="bottom end">
-            <Command.Root>
+          <Popover.Content align="end" className="p-0">
+            <Command.Root
+              items={commandGroups}
+              itemToStringValue={(item: TechnologyCommand) => item.value}
+            >
               <Command.Input placeholder="Search a technology" />
+              <Command.Empty>No results found.</Command.Empty>
               <Command.List>
-                <Command.Empty>No results found.</Command.Empty>
-                <Command.Group>
-                  {technologies
-                    .filter((technology) =>
-                      projects.some((project) =>
-                        project.data.technologies.includes(technology.name)
-                      )
-                    )
-                    .map((technology) => {
-                      const Icon = Icons[technology.icon];
-
-                      return (
-                        <Command.Item
-                          key={technology.name}
-                          onSelect={() =>
-                            setFilters(({ techs }) =>
-                              techs.includes(technology.name)
-                                ? {
-                                    techs: techs.filter(
-                                      (t) => t !== technology.name
-                                    ),
-                                  }
-                                : { techs: [...techs, technology.name] }
-                            )
-                          }
-                          value={technology.name}
-                        >
-                          <Icons.Check
-                            className="mr-2 size-4 opacity-0 transition-opacity data-[visible='true']:opacity-100"
-                            data-visible={filters.techs.includes(
-                              technology.name
-                            )}
-                          />
-
-                          <Icon className="mr-2 size-4" />
-                          {technology.name}
-                        </Command.Item>
-                      );
-                    })}
-                </Command.Group>
-                <AnimatePresence>
-                  {filters.techs.length > 0 && (
+                {(group: (typeof commandGroups)[number]) =>
+                  group.value === "actions" ? (
                     <m.div
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
                       initial={{ opacity: 0, height: 0 }}
+                      key={group.value}
                       layout
                     >
                       <Command.Separator />
-                      <Command.Group>
-                        <Command.Item
-                          className="justify-center text-center"
-                          onSelect={() => setFilters({ techs: [] })}
-                        >
-                          Clear filters
-                        </Command.Item>
+                      <Command.Group items={group.items}>
+                        <Command.Collection>
+                          {renderTechnologyCommand}
+                        </Command.Collection>
                       </Command.Group>
                     </m.div>
-                  )}
-                </AnimatePresence>
+                  ) : (
+                    <Fragment key={group.value}>
+                      <Command.Group items={group.items}>
+                        <Command.Collection>
+                          {renderTechnologyCommand}
+                        </Command.Collection>
+                      </Command.Group>
+                    </Fragment>
+                  )
+                }
               </Command.List>
             </Command.Root>
           </Popover.Content>
@@ -207,7 +236,8 @@ export function ProjectList({ projects }: ProjectListProps) {
                     Read more
                   </LinkButton>
                   <div className="flex items-center gap-4 max-sm:w-full">
-                    {project.data.previewUrl &&
+                    {project.data.previewUrl !== undefined &&
+                      project.data.previewUrl !== "" &&
                       (project.data.previewUrl === siteConfig.url ? (
                         <PreviewRecursiveButton className="w-full" />
                       ) : (
@@ -256,9 +286,9 @@ export function ProjectList({ projects }: ProjectListProps) {
 
 export function ProjectListSkeleton() {
   return (
-    <section className="mt-10 animate-delay-75 animate-fade-up">
+    <section className="mt-10 animate-fade-up animate-delay-75">
       <div className="mb-4 flex items-center justify-between gap-4">
-        <TextSearch.Root className="grow" isDisabled>
+        <TextSearch.Root className="grow" disabled>
           <Form.Field>
             <TextSearch.Icon />
 
@@ -268,7 +298,7 @@ export function ProjectListSkeleton() {
           </Form.Field>
         </TextSearch.Root>
 
-        <Button isDisabled size="icon" variant="outline">
+        <Button disabled size="icon" variant="outline">
           <Icons.Filter className="size-4" />
           <span className="sr-only">Filter by technology</span>
         </Button>
@@ -276,10 +306,7 @@ export function ProjectListSkeleton() {
 
       <div className="grid w-full gap-4 md:grid-cols-2">
         {Array.from({ length: 6 }).map((_, index) => (
-          <Card.Root
-            // biome-ignore lint/suspicious/noArrayIndexKey: This is a skeleton loader
-            key={index}
-          >
+          <Card.Root key={index}>
             <Card.Header>
               <Skeleton className="h-6 w-64" />
             </Card.Header>

@@ -2,6 +2,7 @@ import { rehypeCodeDefaultOptions } from "fumadocs-core/mdx-plugins";
 import { defineConfig, defineDocs } from "fumadocs-mdx/config";
 import lastModified from "fumadocs-mdx/plugins/last-modified";
 import { z } from "zod";
+
 import { transformerNpmCommands } from "~/lib/mdx-plugins/rehype-npm-commands";
 import { vercelDarkTheme } from "~/lib/mdx-plugins/themes/vercel-dark";
 import { vercelLightTheme } from "~/lib/mdx-plugins/themes/vercel-light";

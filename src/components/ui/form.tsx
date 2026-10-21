@@ -1,15 +1,8 @@
 "use client";
 
-import {
-  composeRenderProps,
-  FieldError,
-  type FieldErrorProps,
-  Form as FormPrimitive,
-  Group,
-  type GroupProps,
-  Text,
-  type TextProps,
-} from "react-aria-components";
+import { Field } from "@base-ui/react/field";
+import { Form as FormPrimitive } from "@base-ui/react/form";
+
 import { cva } from "~/lib/cva";
 
 export const FormStyles = {
@@ -27,27 +20,23 @@ export const FormStyles = {
     ],
   }),
   Description: cva({
-    base: ["text-pretty text-muted-fg text-sm sm:text-xs"],
+    base: ["text-sm text-pretty text-muted-fg sm:text-xs"],
   }),
   Error: cva({
-    base: ["text-danger text-sm sm:text-xs forced-colors:text-[Mark]"],
+    base: ["text-sm text-danger sm:text-xs forced-colors:text-[Mark]"],
   }),
 };
 
 export const FormRoot = FormPrimitive;
 
-export function FormField({ className, ...props }: GroupProps) {
-  return (
-    <Group
-      {...props}
-      className={composeRenderProps(className, (className) =>
-        FormStyles.Field({ className })
-      )}
-    />
-  );
+export function FormField({
+  className,
+  ...props
+}: React.ComponentProps<"fieldset">) {
+  return <fieldset {...props} className={FormStyles.Field({ className })} />;
 }
 
-interface FormDescriptionProps extends Omit<TextProps, "slot"> {
+interface FormDescriptionProps extends Field.Description.Props {
   isWarning?: boolean;
 }
 
@@ -57,21 +46,26 @@ export function FormDescription({
   ...props
 }: FormDescriptionProps) {
   return (
-    <Text
+    <Field.Description
       {...props}
-      className={FormStyles.Description({
-        className: isWarning ? "text-warning" : className,
-      })}
-      slot="description"
+      className={(state) =>
+        FormStyles.Description({
+          className: [
+            isWarning === true && "text-warning",
+            typeof className === "function" ? className(state) : className,
+          ],
+        })
+      }
     />
   );
 }
 
-export function FormError({ className, ...props }: FieldErrorProps) {
+export function FormError({ className, ...props }: Field.Error.Props) {
   return (
-    <FieldError
+    <Field.Error
       {...props}
       className={(values) =>
+        // oxlint-disable-next-line unicorn/throw-new-error -- CVA style factory, not an Error constructor.
         FormStyles.Error({
           className:
             typeof className === "function" ? className(values) : className,

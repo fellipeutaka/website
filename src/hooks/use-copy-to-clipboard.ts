@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { toast } from "~/components/ui/toast";
 
 interface CopyOptions {
@@ -21,7 +22,7 @@ export function useCopyToClipboard() {
       return;
     }
 
-    if (!navigator?.clipboard) {
+    if (typeof navigator.clipboard?.writeText !== "function") {
       toast.error(
         "Unable to access clipboard. Please grant permission to enable clipboard access."
       );

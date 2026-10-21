@@ -1,20 +1,15 @@
 "use client";
 
-import { use } from "react";
-import { DisclosureStateContext } from "react-aria-components";
 import { cn } from "~/lib/cva";
+
 import {
   ScrollAreaRoot,
   ScrollAreaScrollbar,
   ScrollAreaThumb,
   ScrollAreaViewport,
 } from "../ui/scroll-area";
-import {
-  CopyButton,
-  type CopyButtonProps,
-  CopyNpmButton,
-  type CopyNpmButtonProps,
-} from "./copy-button";
+import { CopyButton, CopyNpmButton } from "./copy-button";
+import type { CopyButtonProps, CopyNpmButtonProps } from "./copy-button";
 import { LanguageIcon } from "./language-icon";
 
 export type NpmCommands = {
@@ -44,16 +39,19 @@ export function Pre({
   "data-bun": bunCommand,
   ...props
 }: PreProps) {
-  const state = use(DisclosureStateContext);
-
-  const commands = npmCommand
-    ? ({
-        npm: npmCommand,
-        yarn: yarnCommand,
-        pnpm: pnpmCommand,
-        bun: bunCommand,
-      } as NpmCommands)
-    : null;
+  const commands: NpmCommands =
+    npmCommand !== undefined &&
+    npmCommand !== "" &&
+    yarnCommand !== undefined &&
+    pnpmCommand !== undefined &&
+    bunCommand !== undefined
+      ? {
+          npm: npmCommand,
+          yarn: yarnCommand,
+          pnpm: pnpmCommand,
+          bun: bunCommand,
+        }
+      : null;
 
   return (
     <figure
@@ -64,7 +62,7 @@ export function Pre({
       data-figure="code"
       {...props}
     >
-      {title ? (
+      {title !== undefined && title !== "" ? (
         <figcaption
           className={cn(
             "flex items-center gap-2 border-b px-4 py-1.5",
@@ -79,7 +77,7 @@ export function Pre({
       ) : null}
 
       <ScrollAreaRoot>
-        {title ? null : (
+        {title !== undefined && title !== "" ? null : (
           <CopyBtn
             className="absolute top-2.5 right-4 z-10 max-sm:group-has-[[data-state=visible]]:opacity-0"
             commands={commands}
@@ -90,24 +88,19 @@ export function Pre({
         <ScrollAreaViewport className="max-h-[40rem]">
           <pre className={cn("py-4", className)} {...props} tabIndex={-1} />
         </ScrollAreaViewport>
-        {state && !state.isExpanded ? null : (
-          <ScrollAreaScrollbar orientation="vertical">
-            <ScrollAreaThumb />
-          </ScrollAreaScrollbar>
-        )}
-        {state && !state.isExpanded ? null : (
-          <ScrollAreaScrollbar orientation="horizontal">
-            <ScrollAreaThumb />
-          </ScrollAreaScrollbar>
-        )}
+        <ScrollAreaScrollbar orientation="vertical">
+          <ScrollAreaThumb />
+        </ScrollAreaScrollbar>
+        <ScrollAreaScrollbar orientation="horizontal">
+          <ScrollAreaThumb />
+        </ScrollAreaScrollbar>
       </ScrollAreaRoot>
     </figure>
   );
 }
 
 interface CopyBtnProps
-  extends CopyButtonProps,
-    Omit<CopyNpmButtonProps, "commands"> {
+  extends CopyButtonProps, Omit<CopyNpmButtonProps, "commands"> {
   commands: NpmCommands;
 }
 

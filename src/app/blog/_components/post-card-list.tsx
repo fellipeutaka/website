@@ -2,12 +2,14 @@
 
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
+
 import { Form } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import { Skeleton } from "~/components/ui/skeleton";
 import { TextSearch } from "~/components/ui/text-search";
 import { useFilters } from "~/hooks/use-filters";
 import type { PostSource } from "~/lib/source";
+
 import { PostCard } from "./post-card";
 
 function filterPosts(
@@ -39,10 +41,12 @@ export function PostCardList({ posts }: PostCardListProps) {
   });
 
   return (
-    <section className="mt-10 animate-delay-75 animate-fade-up">
+    <section className="mt-10 animate-fade-up animate-delay-75">
       <TextSearch.Root
         className="mb-4 grow"
-        onChange={(q) => setFilters({ q })}
+        onValueChange={(q) => {
+          void setFilters({ q });
+        }}
         value={filters.q}
       >
         <Form.Field>
@@ -88,8 +92,8 @@ export function PostCardList({ posts }: PostCardListProps) {
 
 export function PostCardListSkeleton() {
   return (
-    <section className="mt-10 animate-delay-75 animate-fade-up">
-      <TextSearch.Root className="mb-4 grow" isDisabled>
+    <section className="mt-10 animate-fade-up animate-delay-75">
+      <TextSearch.Root className="mb-4 grow" disabled>
         <Form.Field>
           <TextSearch.Icon />
 
@@ -101,13 +105,9 @@ export function PostCardListSkeleton() {
 
       <div className="grid w-full gap-4 md:grid-cols-2">
         {Array.from({ length: 6 }).map((_, index) => (
-          <div
-            className="block rounded-xl border px-2 py-4"
-            // biome-ignore lint/suspicious/noArrayIndexKey: This is a skeleton loader
-            key={index}
-          >
+          <div className="block rounded-xl border px-2 py-4" key={index}>
             <Skeleton className="h-96 rounded-lg" />
-            <div className="flex items-center justify-between gap-2 px-2 pt-4 text-muted-fg text-sm">
+            <div className="flex items-center justify-between gap-2 px-2 pt-4 text-sm text-muted-fg">
               <Skeleton className="h-5 w-28" />
               <Skeleton className="h-5 w-14" />
             </div>

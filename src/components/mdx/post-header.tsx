@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+
 import { siteConfig } from "~/config/site";
 import { formatDate } from "~/utils/date";
 import type { Image } from "~/utils/zod-image";
+
 import { BlurImage } from "../ui/blur-image";
 import { ImageZoom } from "../ui/image-zoom";
 
@@ -59,7 +61,7 @@ export function PostHeader({ title, date, cover }: PostHeaderProps) {
           alt={title}
           className="rounded-lg"
           height={cover.height}
-          priority
+          preload
           quality={100}
           src={cover.src}
           width={cover.width}

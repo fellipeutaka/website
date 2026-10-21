@@ -1,6 +1,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+
 import type { RefinementCtx } from "zod";
+import { NEVER } from "zod";
+
 import { getHashedFilename } from "./get-hashed-filename";
 import { getImageMetadata } from "./get-image-metadata";
 
@@ -56,10 +59,10 @@ export function zodImage(options: {
       await fs.writeFile(path.join(outputPath, hashedName), buffer);
 
       return { src: `/_next/static/media/${hashedName}`, ...metadata };
-    } catch (err) {
-      const message = err instanceof Error ? err.message : String(err);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
       ctx.addIssue({ fatal: true, code: "custom", message });
-      return null as never;
+      return NEVER;
     }
   };
 }

@@ -1,7 +1,7 @@
 import "~/styles/mdx.css";
-
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+
 import { MDXContent } from "~/components/mdx/mdx-content";
 import { PostContent } from "~/components/mdx/post-content";
 import { PostFooter } from "~/components/mdx/post-footer";
@@ -41,6 +41,7 @@ export default async function Page({ params }: PageProps<"/blog/[...slug]">) {
     <main className="container my-20">
       <PostHeader
         cover={post.data.cover}
+        // oxlint-disable-next-line react/purity -- Server component computes the publication fallback at render time.
         date={lastModified ?? new Date()}
         title={post.data.title}
       />
