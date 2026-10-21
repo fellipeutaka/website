@@ -1,6 +1,10 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "extends": ["ultracite/core", "ultracite/react", "ultracite/next"],
+  "extends": [
+    "ultracite/biome/core",
+    "ultracite/biome/react",
+    "ultracite/biome/next"
+  ],
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -8,7 +12,20 @@
     "defaultBranch": "main"
   },
   "files": {
-    "includes": ["!.agents/**/*", "!.claude/**/*", "!.opencode/**/*"]
+    "includes": [
+      "!.agents/**/*",
+      "!.claude/**/*",
+      "!.opencode/**/*",
+      "!**/*.svg"
+    ]
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "useSortedKeys": "off",
+        "useSortedPackageJson": "off"
+      }
+    }
   },
   "css": {
     "formatter": {
@@ -34,9 +51,12 @@
       },
       "performance": {
         "noBarrelFile": "off",
-        "noNamespaceImport": "off"
+        "noNamespaceImport": "off",
+        "noJsxPropsBind": "off"
       },
       "style": {
+        "noNegationElse": "off",
+        "useDestructuring": "off",
         "noDefaultExport": "error",
         "noNonNullAssertion": "off",
         "noExportedImports": "off",
@@ -48,9 +68,12 @@
           }
         }
       },
-      "nursery": {
+      "suspicious": {
+        "noUnnecessaryConditions": "off",
         "noShadow": "off",
-        "noLeakedRender": "off",
+        "noLeakedRender": "off"
+      },
+      "nursery": {
         "useSortedClasses": {
           "fix": "safe",
           "level": "error",

@@ -30,10 +30,10 @@ export function LocationCard() {
     const onResize = () => {
       if (canvasRef.current) {
         width = canvasRef.current.offsetWidth;
-        window.addEventListener("resize", onResize);
       }
     };
     onResize();
+    window.addEventListener("resize", onResize);
 
     if (!canvasRef.current) {
       return;
@@ -43,7 +43,7 @@ export function LocationCard() {
       devicePixelRatio: 2,
       width: width * 2,
       height: width * 2,
-      phi: 0,
+      phi: 5.8 + r.get(),
       theta: -0.55,
       dark: 1,
       diffuse: 2,
@@ -55,14 +55,22 @@ export function LocationCard() {
       glowColor: [0.5, 0.5, 0.5],
       markers: [{ location: [-23.5505, -46.6333], size: 0.1 }], // Sao Paulo coordinates
       scale: 1,
-      onRender: (state) => {
-        state.phi = 5.8 + r.get();
-        state.width = width * 2;
-        state.height = width * 2;
-      },
     });
 
+    let frame: number;
+    const render = () => {
+      globe.update({
+        phi: 5.8 + r.get(),
+        width: width * 2,
+        height: width * 2,
+      });
+      frame = requestAnimationFrame(render);
+    };
+    frame = requestAnimationFrame(render);
+
     return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", onResize);
       globe.destroy();
     };
   }, [r]);

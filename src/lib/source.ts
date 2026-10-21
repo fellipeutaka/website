@@ -36,7 +36,7 @@ type NonSerializableDataKeys =
 type SerializableDocData<T> = Omit<T, NonSerializableDataKeys>;
 
 type Source<TName extends keyof SourceDataMap> = Omit<
-  Page<DocCollectionEntry<TName, SourceDataMap[TName]>>,
+  Page<undefined, SourceDataMap[TName]>,
   "data"
 > & {
   data: SerializableDocData<SourceDataMap[TName]>;
