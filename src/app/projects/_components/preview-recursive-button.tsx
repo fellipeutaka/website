@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from '~/components/ui/button';
-import type { ButtonProps } from '~/components/ui/button';
+import { Button } from "~/components/ui/button";
+import type { ButtonProps } from "~/components/ui/button";
 import { Icons } from "~/components/ui/icons";
 import { toast } from "~/components/ui/toast";
 import { cx } from "~/lib/cva";

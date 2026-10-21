@@ -18,18 +18,18 @@ export function HeroSection() {
               Available for work
             </BadgeAnimated>
           )}
-          <h1 className="text-center font-bold text-5xl md:text-7xl">
+          <h1 className="text-center text-5xl font-bold md:text-7xl">
             Fellipe Utaka
           </h1>
-          <h2 className="text-center font-bold text-5xl md:text-7xl">
+          <h2 className="text-center text-5xl font-bold md:text-7xl">
             Full-Stack Developer
           </h2>
         </div>
-        <p className="mx-auto max-w-lg animate-delay-100 animate-fade-up text-balance text-center text-muted-fg">
+        <p className="mx-auto max-w-lg animate-fade-up text-center text-balance text-muted-fg animate-delay-100">
           Obsessed with developer experience, robust, scalable and user-friendly
           applications.
         </p>
-        <div className="flex animate-delay-300 animate-fade-up items-center justify-center gap-4">
+        <div className="flex animate-fade-up items-center justify-center gap-4 animate-delay-300">
           <LinkButton
             className="group rounded-full"
             href="/documents/resume.pdf"
@@ -58,7 +58,7 @@ function GridPattern() {
   return (
     <svg
       aria-hidden="true"
-      className="mask-[radial-gradient(100%_100%_at_top_right,white,transparent)] absolute inset-0 -z-10 size-full stroke-white/10"
+      className="absolute inset-0 -z-10 size-full mask-[radial-gradient(100%_100%_at_top_right,white,transparent)] stroke-white/10"
     >
       <defs>
         <pattern

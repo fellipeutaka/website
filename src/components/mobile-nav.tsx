@@ -3,8 +3,10 @@
 import { Drawer } from "@base-ui/react/drawer";
 import Link from "next/link";
 import { useState } from "react";
+
 import { navLinks } from "~/config/site";
 import { cx } from "~/lib/cva";
+
 import { Button } from "./ui/button";
 import { DialogStyles } from "./ui/dialog";
 
@@ -43,7 +45,7 @@ export function MobileNav() {
         <Drawer.Viewport className="pointer-events-none fixed inset-0 z-50">
           <Drawer.Popup
             aria-describedby={undefined}
-            className="pointer-events-auto fixed inset-y-0 top-16 right-0 z-50 h-full w-3/4 gap-4 border-border border-l bg-bg p-6 shadow-lg outline-hidden transition-[transform,opacity] duration-500 ease-in-out data-ending-style:translate-x-full data-starting-style:translate-x-full data-swiping:transition-none data-ending-style:duration-300 sm:max-w-sm"
+            className="pointer-events-auto fixed inset-y-0 top-16 right-0 z-50 h-full w-3/4 gap-4 border-l border-border bg-bg p-6 shadow-lg outline-hidden transition-[transform,opacity] duration-500 ease-in-out data-ending-style:translate-x-full data-ending-style:duration-300 data-starting-style:translate-x-full data-swiping:transition-none sm:max-w-sm"
             style={{
               transform: "translateX(var(--drawer-swipe-movement-x, 0px))",
             }}

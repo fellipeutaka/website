@@ -1,6 +1,7 @@
 "use client";
 
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
+
 import { cva } from "~/lib/cva";
 
 const { Root, Scrollbar, Thumb, Viewport, Content } = ScrollAreaPrimitive;
@@ -14,7 +15,7 @@ export const ScrollAreaStyles = {
   }),
   Scrollbar: cva({
     base: [
-      "flex touch-none select-none opacity-0 transition-[opacity,color] data-hovering:opacity-100",
+      "flex touch-none opacity-0 transition-[opacity,color] select-none data-hovering:opacity-100",
     ],
     variants: {
       orientation: {
@@ -66,8 +67,9 @@ export function ScrollAreaViewport({
   );
 }
 
-export interface ScrollAreaScrollbarProps
-  extends React.ComponentProps<typeof Scrollbar> {
+export interface ScrollAreaScrollbarProps extends React.ComponentProps<
+  typeof Scrollbar
+> {
   orientation: "vertical" | "horizontal";
 }
 

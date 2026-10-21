@@ -1,16 +1,17 @@
 "use client";
 
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
-import { cva } from '~/lib/cva';
-import type { VariantProps } from '~/lib/cva';
+
+import { cva } from "~/lib/cva";
+import type { VariantProps } from "~/lib/cva";
 
 export const TooltipStyles = cva({
   base: [
     "group rounded-lg border px-3 py-1.5 text-sm will-change-transform dark:shadow-none [&_strong]:font-medium",
-    "entering:placement-left:slide-in-from-right-2 entering:placement-right:slide-in-from-left-2 entering:placement-top:slide-in-from-bottom-2 entering:placement-bottom:slide-in-from-top-2",
+    "entering:placement-top:slide-in-from-bottom-2 entering:placement-bottom:slide-in-from-top-2 entering:placement-left:slide-in-from-right-2 entering:placement-right:slide-in-from-left-2",
 
-    "entering:fade-in entering:animate-in",
-    "exiting:fade-out exiting:animate-out",
+    "entering:animate-in entering:fade-in",
+    "exiting:animate-out exiting:fade-out",
   ],
   variants: {
     intent: {
@@ -18,7 +19,7 @@ export const TooltipStyles = cva({
         "bg-popover text-popover-fg [&_.arx]:fill-popover [&_.arx]:stroke-border",
       ],
       inverse: [
-        "border-transparent bg-dark text-light dark:bg-light dark:text-dark [&_.arx]:fill-dark [&_.arx]:stroke-transparent dark:[&_.arx]:fill-light",
+        "bg-dark text-light dark:bg-light dark:text-dark [&_.arx]:fill-dark dark:[&_.arx]:fill-light border-transparent [&_.arx]:stroke-transparent",
       ],
     },
   },
@@ -31,7 +32,8 @@ export const TooltipRoot = TooltipPrimitive.Root;
 export const TooltipTrigger = TooltipPrimitive.Trigger;
 
 export interface TooltipContentProps
-  extends TooltipPrimitive.Popup.Props,
+  extends
+    TooltipPrimitive.Popup.Props,
     Pick<TooltipPrimitive.Positioner.Props, "side" | "align" | "sideOffset">,
     VariantProps<typeof TooltipStyles> {}
 
@@ -71,7 +73,7 @@ export function TooltipArrow({ ...props }: TooltipPrimitive.Arrow.Props) {
     <TooltipPrimitive.Arrow {...props}>
       <svg
         aria-hidden="true"
-        className="arx group-placement-bottom:rotate-180 group-placement-left:-rotate-90 group-placement-right:rotate-90 forced-colors:fill-[Canvas] forced-colors:stroke-[ButtonBorder]"
+        className="arx forced-colors:fill-[Canvas] forced-colors:stroke-[ButtonBorder] group-placement-bottom:rotate-180 group-placement-left:-rotate-90 group-placement-right:rotate-90"
         height={12}
         viewBox="0 0 12 12"
         width={12}

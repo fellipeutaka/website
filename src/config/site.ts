@@ -1,5 +1,5 @@
-import { Icons } from '~/components/ui/icons';
-import type { IconComponent } from '~/components/ui/icons';
+import { Icons } from "~/components/ui/icons";
+import type { IconComponent } from "~/components/ui/icons";
 
 export const siteConfig = {
   name: "Fellipe Utaka",

@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+
 import { siteConfig } from "~/config/site";
 import { formatDate } from "~/utils/date";
 import type { Image } from "~/utils/zod-image";
+
 import { BlurImage } from "../ui/blur-image";
 import { ImageZoom } from "../ui/image-zoom";
 

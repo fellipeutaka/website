@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+
 import { mapSourceData, postsSource } from "~/lib/source";
+
 import {
   PostCardList,
   PostCardListSkeleton,
@@ -20,7 +22,7 @@ export default function Page() {
 
   return (
     <main className="container my-20">
-      <h1 className="animate-fade-up font-semibold text-2xl md:text-3xl">
+      <h1 className="animate-fade-up text-2xl font-semibold md:text-3xl">
         Blog
       </h1>
       <Suspense fallback={<PostCardListSkeleton />}>

@@ -1,5 +1,5 @@
-import { cva } from '~/lib/cva';
-import type { VariantProps } from '~/lib/cva';
+import { cva } from "~/lib/cva";
+import type { VariantProps } from "~/lib/cva";
 import { FocusRingStyles } from "~/styles/focus-ring";
 
 export const BadgeStyles = cva({
@@ -19,7 +19,7 @@ export const BadgeStyles = cva({
         "hover:bg-secondary/80",
       ],
       destructive: [
-        "border-transparent bg-destructive text-destructive-fg shadow-sm",
+        "bg-destructive text-destructive-fg border-transparent shadow-sm",
         "hover:bg-destructive/80",
       ],
       outline: ["text-fg"],

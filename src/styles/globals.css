@@ -35,7 +35,9 @@
   z-index: 999999999;
   width: 356px;
   font-family:
-    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 13px;
   line-height: 1.5;
   outline: none;
@@ -286,7 +288,7 @@
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
-    @apply bg-bg text-fg font-sans antialiased;
+    @apply bg-bg font-sans text-fg antialiased;
   }
 
   ::-webkit-scrollbar {
@@ -294,7 +296,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-fg/40 rounded-lg transition-colors;
+    @apply rounded-lg bg-fg/40 transition-colors;
   }
 
   ::-webkit-scrollbar-thumb:hover,

@@ -1,5 +1,4 @@
 import "~/config/env";
-
 import { createMDX } from "fumadocs-mdx/next";
 import type { NextConfig } from "next";
 

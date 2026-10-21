@@ -2,9 +2,11 @@
 
 import { Autocomplete } from "@base-ui/react/autocomplete";
 import { useState } from "react";
+
 import { cva } from "~/lib/cva";
-import { Dialog } from './dialog';
-import type { DialogRootProps } from './dialog';
+
+import { Dialog } from "./dialog";
+import type { DialogRootProps } from "./dialog";
 import { Icons } from "./icons";
 
 export const CommandStyles = {
@@ -17,16 +19,16 @@ export const CommandStyles = {
   Input: cva({
     base: "flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-hidden placeholder:text-muted-fg disabled:cursor-not-allowed disabled:opacity-50",
   }),
-  List: cva({ base: "max-h-[300px] overflow-y-auto overflow-x-hidden" }),
+  List: cva({ base: "max-h-[300px] overflow-x-hidden overflow-y-auto" }),
   Empty: cva({ base: "py-6 text-center text-sm empty:hidden" }),
   Group: cva({
-    base: "overflow-hidden p-1 text-fg [&_[data-slot=command-group-heading]]:px-2 [&_[data-slot=command-group-heading]]:py-1.5 [&_[data-slot=command-group-heading]]:font-medium [&_[data-slot=command-group-heading]]:text-muted-fg [&_[data-slot=command-group-heading]]:text-xs",
+    base: "overflow-hidden p-1 text-fg [&_[data-slot=command-group-heading]]:px-2 [&_[data-slot=command-group-heading]]:py-1.5 [&_[data-slot=command-group-heading]]:text-xs [&_[data-slot=command-group-heading]]:font-medium [&_[data-slot=command-group-heading]]:text-muted-fg",
   }),
   Separator: cva({ base: "-mx-1 my-1 h-px bg-border" }),
   Item: cva({
-    base: "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-hidden data-disabled:pointer-events-none data-highlighted:bg-accent data-highlighted:text-accent-fg data-disabled:opacity-50",
+    base: "relative flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-fg",
   }),
-  Shortcut: cva({ base: "ml-auto text-muted-fg text-xs tracking-widest" }),
+  Shortcut: cva({ base: "ml-auto text-xs tracking-widest text-muted-fg" }),
 };
 
 export type CommandItems<T> = readonly { value: string; items: readonly T[] }[];

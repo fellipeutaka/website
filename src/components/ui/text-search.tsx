@@ -1,10 +1,18 @@
 "use client";
 
 import { Field } from "@base-ui/react/field";
-import { createContext, useCallback, useContext, useMemo, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
+
 import { cva } from "~/lib/cva";
-import { Button } from './button';
-import type { ButtonProps } from './button';
+
+import { Button } from "./button";
+import type { ButtonProps } from "./button";
 import { Icons } from "./icons";
 import { Spinner } from "./spinner";
 
@@ -16,8 +24,10 @@ interface SearchState {
 
 export const SearchContext = createContext<SearchState | null>(null);
 
-interface TextSearchRootProps
-  extends Omit<Field.Root.Props, "onChange" | "defaultValue"> {
+interface TextSearchRootProps extends Omit<
+  Field.Root.Props,
+  "onChange" | "defaultValue"
+> {
   defaultValue?: string;
   onValueChange?: (value: string) => void;
   value?: string;
@@ -32,7 +42,7 @@ export const TextFieldStyles = {
   }),
   ClearButton: cva({
     base: [
-      "mr-1 size-8 pressed:bg-transparent pressed:text-fg text-muted-fg hover:bg-transparent hover:text-fg group-empty:invisible",
+      "mr-1 size-8 text-muted-fg hover:bg-transparent hover:text-fg pressed:bg-transparent pressed:text-fg group-empty:invisible",
     ],
   }),
 };
@@ -46,22 +56,26 @@ export function TextSearchRoot({
   ...props
 }: TextSearchRootProps) {
   const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue);
-  const updateValue = useCallback((next: string) => {
-    if (value === undefined) {
-      setUncontrolledValue(next);
-    }
-    onValueChange?.(next);
-  }, [value, onValueChange]);
+  const updateValue = useCallback(
+    (next: string) => {
+      if (value === undefined) {
+        setUncontrolledValue(next);
+      }
+      onValueChange?.(next);
+    },
+    [value, onValueChange]
+  );
   const label = props["aria-label"] ?? "Search...";
-  const context = useMemo(() => ({
-    value: value ?? uncontrolledValue,
-    onValueChange: updateValue,
-    label,
-  }), [value, uncontrolledValue, updateValue, label]);
+  const context = useMemo(
+    () => ({
+      value: value ?? uncontrolledValue,
+      onValueChange: updateValue,
+      label,
+    }),
+    [value, uncontrolledValue, updateValue, label]
+  );
   return (
-    <SearchContext
-      value={context}
-    >
+    <SearchContext value={context}>
       <Field.Root
         {...props}
         className={(values) =>

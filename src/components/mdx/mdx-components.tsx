@@ -1,4 +1,5 @@
 import { cn } from "~/lib/cva";
+
 import { Link } from "../ui/link";
 import { Code } from "./code";
 import { DisplayAge } from "./display-age";
@@ -8,40 +9,42 @@ import { Pre } from "./pre";
 
 export const mdxComponents = {
   h1: ({ children, ...props }) => (
-    <h1 className="mt-2 font-bold text-4xl tracking-tight" {...props}>{children}</h1>
+    <h1 className="mt-2 text-4xl font-bold tracking-tight" {...props}>
+      {children}
+    </h1>
   ),
   h2: (props) => (
     <Heading
       as="h2"
-      className="mt-10 border-b pb-1 font-semibold text-3xl tracking-tight first:mt-0"
+      className="mt-10 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0"
       {...props}
     />
   ),
   h3: (props) => (
     <Heading
       as="h3"
-      className="mt-8 font-semibold text-2xl tracking-tight"
+      className="mt-8 text-2xl font-semibold tracking-tight"
       {...props}
     />
   ),
   h4: (props) => (
     <Heading
       as="h4"
-      className="mt-8 font-semibold text-xl tracking-tight"
+      className="mt-8 text-xl font-semibold tracking-tight"
       {...props}
     />
   ),
   h5: (props) => (
     <Heading
       as="h5"
-      className="mt-8 font-semibold text-lg tracking-tight"
+      className="mt-8 text-lg font-semibold tracking-tight"
       {...props}
     />
   ),
   h6: (props) => (
     <Heading
       as="h6"
-      className="mt-8 font-semibold text-base tracking-tight"
+      className="mt-8 text-base font-semibold tracking-tight"
       {...props}
     />
   ),
@@ -49,10 +52,12 @@ export const mdxComponents = {
     <a
       className={cn("font-medium underline underline-offset-4", className)}
       {...props}
-    >{children}</a>
+    >
+      {children}
+    </a>
   ),
   p: ({ className, ...props }: React.ComponentProps<"p">) => (
-    <p className={cn("not-first:mt-6 leading-7", className)} {...props} />
+    <p className={cn("leading-7 not-first:mt-6", className)} {...props} />
   ),
   ul: ({ className, ...props }: React.ComponentProps<"ul">) => (
     <ul className={cn("my-6 ml-6 list-disc", className)} {...props} />

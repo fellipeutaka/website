@@ -2,12 +2,13 @@
 
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import Link from "next/link";
-import { cva } from '~/lib/cva';
-import type { VariantProps } from '~/lib/cva';
+
+import { cva } from "~/lib/cva";
+import type { VariantProps } from "~/lib/cva";
 
 export const ButtonStyles = cva({
   base: [
-    "inline-flex select-none items-center justify-center whitespace-nowrap rounded-md font-medium text-sm outline-hidden ring-offset-2 ring-offset-bg transition",
+    "inline-flex items-center justify-center rounded-md text-sm font-medium whitespace-nowrap ring-offset-2 ring-offset-bg outline-hidden transition select-none",
     "focus-visible:ring-1",
     "disabled:cursor-not-allowed disabled:opacity-50",
     "pressed:scale-95",
@@ -70,7 +71,8 @@ export const ButtonStyles = cva({
 });
 
 export interface ButtonProps
-  extends React.ComponentProps<typeof ButtonPrimitive>,
+  extends
+    React.ComponentProps<typeof ButtonPrimitive>,
     VariantProps<typeof ButtonStyles> {}
 
 export function Button({ className, variant, size, ...props }: ButtonProps) {
@@ -90,7 +92,8 @@ export function Button({ className, variant, size, ...props }: ButtonProps) {
 }
 
 export interface LinkButtonProps
-  extends React.ComponentProps<typeof Link>,
+  extends
+    React.ComponentProps<typeof Link>,
     VariantProps<typeof ButtonStyles> {}
 
 export function LinkButton({

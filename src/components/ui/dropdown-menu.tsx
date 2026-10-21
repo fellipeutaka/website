@@ -2,7 +2,9 @@
 
 import { Menu } from "@base-ui/react/menu";
 import { useCallback } from "react";
+
 import { cva } from "~/lib/cva";
+
 import { PopoverStyles } from "./popover";
 import { SeparatorStyles } from "./separator";
 
@@ -16,7 +18,7 @@ export const DropdownMenuStyles = {
   }),
   Item: cva({
     base: [
-      "group relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden transition-colors focus:bg-accent focus:text-accent-fg [&>svg]:size-4 [&>svg]:shrink-0",
+      "group relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden transition-colors select-none focus:bg-accent focus:text-accent-fg [&>svg]:size-4 [&>svg]:shrink-0",
     ],
     variants: {
       isDisabled: {
@@ -40,7 +42,7 @@ export const DropdownMenuStyles = {
     base: ["ml-auto text-xs tracking-widest opacity-60"],
   }),
   Header: cva({
-    base: ["px-2 py-1.5 font-semibold text-sm"],
+    base: ["px-2 py-1.5 text-sm font-semibold"],
   }),
   CheckboxIcon: cva({
     base: [
@@ -56,7 +58,8 @@ export const DropdownMenuRoot = Menu.Root;
 export const DropdownMenuTrigger = Menu.Trigger;
 
 interface DropdownMenuContentProps
-  extends Menu.Popup.Props,
+  extends
+    Menu.Popup.Props,
     Pick<
       Menu.Positioner.Props,
       "side" | "align" | "sideOffset" | "alignOffset"

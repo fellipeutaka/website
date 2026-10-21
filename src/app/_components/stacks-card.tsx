@@ -14,7 +14,7 @@ export function StacksCard() {
     <div className="flex flex-col gap-2 overflow-hidden rounded-xl border p-4 lg:p-6">
       <div className="flex items-center gap-2">
         <Icons.Zap className="size-4" />
-        <h2 className="font-light text-sm">Stacks</h2>
+        <h2 className="text-sm font-light">Stacks</h2>
       </div>
       <Marquee className="my-auto py-4 [--gap:1.5rem]" pauseOnHover>
         {technologies.map((technology) => {

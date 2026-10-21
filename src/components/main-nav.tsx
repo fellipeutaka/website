@@ -4,6 +4,7 @@ import * as m from "motion/react-m";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+
 import { navLinks } from "~/config/site";
 import { useHash } from "~/hooks/use-hash";
 
@@ -15,7 +16,9 @@ export function MainNav() {
   const pathname = usePathname();
   const hash = useHash();
   const currentPath = pathname + (hash ?? "");
-  const [hover, setHover] = useState<{ path: string; href: string } | null>(null);
+  const [hover, setHover] = useState<{ path: string; href: string } | null>(
+    null
+  );
   const hoveredPath = hover?.path === currentPath ? hover.href : currentPath;
 
   return (
@@ -26,8 +29,12 @@ export function MainNav() {
           data-active={isActive(item.href, pathname)}
           href={item.href}
           key={item.href}
-          onMouseLeave={() => { setHover(null); }}
-          onMouseOver={() => { setHover({ path: currentPath, href: item.href }); }}
+          onMouseLeave={() => {
+            setHover(null);
+          }}
+          onMouseOver={() => {
+            setHover({ path: currentPath, href: item.href });
+          }}
         >
           <span>{item.label}</span>
           {isActive(item.href, hoveredPath) && (

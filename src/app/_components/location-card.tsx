@@ -3,6 +3,7 @@
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 import { useSpring } from "react-spring";
+
 import { Icons } from "~/components/ui/icons";
 
 const fadeMask =
@@ -80,7 +81,7 @@ export function LocationCard() {
     <div className="relative flex min-h-60 flex-col gap-6 overflow-hidden rounded-xl border p-4 lg:p-6">
       <div className="flex items-center gap-2">
         <Icons.MapPin className="size-4" />
-        <h2 className="font-light text-sm">São Paulo, Brazil</h2>
+        <h2 className="text-sm font-light">São Paulo, Brazil</h2>
       </div>
       <div className="absolute inset-0 top-0 mx-auto aspect-square h-[388px] [@media(max-width:420px)]:bottom-[-140px] [@media(max-width:420px)]:h-[320px] [@media(min-width:768px)_and_(max-width:858px)]:h-[350px]">
         <div className="flex size-full place-content-center place-items-center overflow-visible">
@@ -122,7 +123,10 @@ export function LocationCard() {
                 }
               }}
               onTouchMove={(e) => {
-                if (pointerInteracting.current !== null && e.touches[0] !== undefined) {
+                if (
+                  pointerInteracting.current !== null &&
+                  e.touches[0] !== undefined
+                ) {
                   const delta =
                     e.touches[0].clientX - pointerInteracting.current;
                   pointerInteractionMovement.current = delta;

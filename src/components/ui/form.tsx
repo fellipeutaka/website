@@ -2,6 +2,7 @@
 
 import { Field } from "@base-ui/react/field";
 import { Form as FormPrimitive } from "@base-ui/react/form";
+
 import { cva } from "~/lib/cva";
 
 export const FormStyles = {
@@ -19,10 +20,10 @@ export const FormStyles = {
     ],
   }),
   Description: cva({
-    base: ["text-pretty text-muted-fg text-sm sm:text-xs"],
+    base: ["text-sm text-pretty text-muted-fg sm:text-xs"],
   }),
   Error: cva({
-    base: ["text-danger text-sm sm:text-xs forced-colors:text-[Mark]"],
+    base: ["text-sm text-danger sm:text-xs forced-colors:text-[Mark]"],
   }),
 };
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { BlurImage } from "~/components/ui/blur-image";
 import type { PostSource } from "~/lib/source";
 import { formatDate } from "~/utils/date";
@@ -22,7 +23,7 @@ export function PostCard({ post }: PostCardProps) {
         src={post.data.cover.src}
         width={post.data.cover.width}
       />
-      <div className="flex items-center justify-between gap-2 px-2 pt-4 text-muted-fg text-sm">
+      <div className="flex items-center justify-between gap-2 px-2 pt-4 text-sm text-muted-fg">
         <time dateTime={postDate.toISOString()}>
           {formatDate(postDate, {
             year: "numeric",
@@ -32,7 +33,7 @@ export function PostCard({ post }: PostCardProps) {
         </time>
       </div>
       <div className="flex flex-col px-2 py-4">
-        <h3 className="font-bold font-title text-2xl">{post.data.title}</h3>
+        <h3 className="font-title text-2xl font-bold">{post.data.title}</h3>
         <p className="mt-2 text-muted-fg">{post.data.description}</p>
       </div>
     </Link>

@@ -1,7 +1,7 @@
 import "~/styles/mdx.css";
-
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+
 import { MDXContent } from "~/components/mdx/mdx-content";
 import { PostContent } from "~/components/mdx/post-content";
 import { PostFooter } from "~/components/mdx/post-footer";

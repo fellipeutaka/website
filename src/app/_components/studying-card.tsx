@@ -16,7 +16,7 @@ export function StudyingCard() {
     <div className="flex flex-col gap-6 rounded-xl border p-4 lg:p-6">
       <div className="flex items-center gap-2">
         <Icons.GraduationCap className="size-4" />
-        <h2 className="font-light text-sm">Currently studying</h2>
+        <h2 className="text-sm font-light">Currently studying</h2>
       </div>
       <div className="flex items-center justify-center">
         <TooltipRoot>

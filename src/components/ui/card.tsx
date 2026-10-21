@@ -8,10 +8,10 @@ export const CardStyles = {
     base: ["flex flex-col space-y-1.5 p-6"],
   }),
   Title: cva({
-    base: ["font-semibold leading-none tracking-tight"],
+    base: ["leading-none font-semibold tracking-tight"],
   }),
   Description: cva({
-    base: ["text-muted-fg text-sm"],
+    base: ["text-sm text-muted-fg"],
   }),
   Content: cva({
     base: ["p-6 pt-0"],
@@ -36,7 +36,11 @@ export function CardHeader({ className, ...props }: CardHeaderProps) {
 export type CardTitleProps = React.ComponentProps<"h3">;
 
 export function CardTitle({ className, children, ...props }: CardTitleProps) {
-  return <h3 {...props} className={CardStyles.Title({ className })}>{children}</h3>;
+  return (
+    <h3 {...props} className={CardStyles.Title({ className })}>
+      {children}
+    </h3>
+  );
 }
 
 export type CardDescriptionProps = React.ComponentProps<"p">;

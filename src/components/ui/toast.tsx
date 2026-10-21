@@ -44,7 +44,9 @@ function ToastList() {
       }
     }
     document.addEventListener("keydown", focusNotifications);
-    return () =>{  document.removeEventListener("keydown", focusNotifications); };
+    return () => {
+      document.removeEventListener("keydown", focusNotifications);
+    };
   }, []);
   return (
     <Toast.Portal>
@@ -78,8 +80,8 @@ function ToastList() {
                 />
               </svg>
               <div className="flex flex-col gap-0.5">
-                <Toast.Title className="font-medium leading-normal" />
-                <Toast.Description className="text-[#3f3f3f] leading-[1.4]" />
+                <Toast.Title className="leading-normal font-medium" />
+                <Toast.Description className="leading-[1.4] text-[#3f3f3f]" />
               </div>
             </Toast.Content>
           </Toast.Root>

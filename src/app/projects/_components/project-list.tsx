@@ -3,6 +3,7 @@
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
 import { Fragment } from "react";
+
 import { BadgeStyles } from "~/components/ui/badge";
 import { Button, LinkButton } from "~/components/ui/button";
 import { Card, CardStyles } from "~/components/ui/card";
@@ -17,8 +18,9 @@ import { TextSearch } from "~/components/ui/text-search";
 import { siteConfig } from "~/config/site";
 import { useFilters } from "~/hooks/use-filters";
 import type { ProjectSource } from "~/lib/source";
-import { getTechnology, technologies } from '~/lib/technologies';
-import type { Technologies } from '~/lib/technologies';
+import { getTechnology, technologies } from "~/lib/technologies";
+import type { Technologies } from "~/lib/technologies";
+
 import { PreviewRecursiveButton } from "./preview-recursive-button";
 
 function filterProjects(
@@ -119,11 +121,13 @@ export function ProjectList({ projects }: ProjectListProps) {
   });
 
   return (
-    <section className="mt-10 animate-delay-75 animate-fade-up">
+    <section className="mt-10 animate-fade-up animate-delay-75">
       <div className="mb-4 flex items-center justify-between gap-4">
         <TextSearch.Root
           className="grow"
-          onValueChange={(q) => { void setFilters({ q }); }}
+          onValueChange={(q) => {
+            void setFilters({ q });
+          }}
           value={filters.q}
         >
           <Form.Field>
@@ -232,7 +236,8 @@ export function ProjectList({ projects }: ProjectListProps) {
                     Read more
                   </LinkButton>
                   <div className="flex items-center gap-4 max-sm:w-full">
-                    {project.data.previewUrl !== undefined && project.data.previewUrl !== "" &&
+                    {project.data.previewUrl !== undefined &&
+                      project.data.previewUrl !== "" &&
                       (project.data.previewUrl === siteConfig.url ? (
                         <PreviewRecursiveButton className="w-full" />
                       ) : (
@@ -281,7 +286,7 @@ export function ProjectList({ projects }: ProjectListProps) {
 
 export function ProjectListSkeleton() {
   return (
-    <section className="mt-10 animate-delay-75 animate-fade-up">
+    <section className="mt-10 animate-fade-up animate-delay-75">
       <div className="mb-4 flex items-center justify-between gap-4">
         <TextSearch.Root className="grow" disabled>
           <Form.Field>
@@ -301,9 +306,7 @@ export function ProjectListSkeleton() {
 
       <div className="grid w-full gap-4 md:grid-cols-2">
         {Array.from({ length: 6 }).map((_, index) => (
-          <Card.Root
-            key={index}
-          >
+          <Card.Root key={index}>
             <Card.Header>
               <Skeleton className="h-6 w-64" />
             </Card.Header>

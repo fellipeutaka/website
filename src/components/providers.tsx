@@ -3,6 +3,7 @@
 import { domMax, LazyMotion } from "motion/react";
 import { ThemeProvider } from "next-themes";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+
 import { Toaster } from "./ui/toast";
 
 interface ProvidersProps {

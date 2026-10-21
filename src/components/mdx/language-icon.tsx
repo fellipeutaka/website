@@ -1,6 +1,7 @@
 import { cn } from "~/lib/cva";
-import { Icons } from '../ui/icons';
-import type { IconProps } from '../ui/icons';
+
+import { Icons } from "../ui/icons";
+import type { IconProps } from "../ui/icons";
 
 const titleMap = new Map([
   ["tailwind.config.{js,cjs,mjs,ts}", Icons.TailwindCSS],
@@ -24,7 +25,7 @@ const extensionMap = new Map([
 function convertPatternToRegex(pattern: string): string {
   return pattern.replaceAll(
     /\{(?<extensions>[^}]+)\}/gu,
-    (_: string, group: string) => `(${group.replaceAll(',', "|")})`
+    (_: string, group: string) => `(${group.replaceAll(",", "|")})`
   );
 }
 

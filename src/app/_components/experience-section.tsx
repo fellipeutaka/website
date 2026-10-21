@@ -1,4 +1,5 @@
 import * as m from "motion/react-m";
+
 import { Badge } from "~/components/ui/badge";
 import { Card } from "~/components/ui/card";
 import { TracingBeam } from "~/components/ui/tracing-beam";
@@ -9,10 +10,10 @@ import { formatRange } from "~/utils/date";
 export function ExperienceSection() {
   return (
     <section
-      className="container max-w-6xl animate-delay-700 animate-fade-up scroll-m-32"
+      className="container max-w-6xl animate-fade-up scroll-m-32 animate-delay-700"
       id="experience"
     >
-      <h2 className="mb-10 font-semibold text-2xl md:text-3xl">Experience</h2>
+      <h2 className="mb-10 text-2xl font-semibold md:text-3xl">Experience</h2>
 
       <TracingBeam className="hidden px-6 md:flex md:flex-col">
         <ExperienceList />

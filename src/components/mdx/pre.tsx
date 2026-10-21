@@ -1,14 +1,15 @@
 "use client";
 
 import { cn } from "~/lib/cva";
+
 import {
   ScrollAreaRoot,
   ScrollAreaScrollbar,
   ScrollAreaThumb,
   ScrollAreaViewport,
 } from "../ui/scroll-area";
-import { CopyButton, CopyNpmButton } from './copy-button';
-import type { CopyButtonProps, CopyNpmButtonProps } from './copy-button';
+import { CopyButton, CopyNpmButton } from "./copy-button";
+import type { CopyButtonProps, CopyNpmButtonProps } from "./copy-button";
 import { LanguageIcon } from "./language-icon";
 
 export type NpmCommands = {
@@ -38,15 +39,19 @@ export function Pre({
   "data-bun": bunCommand,
   ...props
 }: PreProps) {
-  const commands: NpmCommands = npmCommand !== undefined && npmCommand !== "" &&
-    yarnCommand !== undefined && pnpmCommand !== undefined && bunCommand !== undefined
-    ? {
-        npm: npmCommand,
-        yarn: yarnCommand,
-        pnpm: pnpmCommand,
-        bun: bunCommand,
-      }
-    : null;
+  const commands: NpmCommands =
+    npmCommand !== undefined &&
+    npmCommand !== "" &&
+    yarnCommand !== undefined &&
+    pnpmCommand !== undefined &&
+    bunCommand !== undefined
+      ? {
+          npm: npmCommand,
+          yarn: yarnCommand,
+          pnpm: pnpmCommand,
+          bun: bunCommand,
+        }
+      : null;
 
   return (
     <figure
@@ -95,8 +100,7 @@ export function Pre({
 }
 
 interface CopyBtnProps
-  extends CopyButtonProps,
-    Omit<CopyNpmButtonProps, "commands"> {
+  extends CopyButtonProps, Omit<CopyNpmButtonProps, "commands"> {
   commands: NpmCommands;
 }
 
