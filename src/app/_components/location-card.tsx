@@ -1,8 +1,8 @@
 "use client";
 
+import { useSpring } from "@react-spring/web";
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
-import { useSpring } from "react-spring";
 
 import { Icons } from "~/components/ui/icons";
 
