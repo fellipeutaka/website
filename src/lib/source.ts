@@ -60,5 +60,5 @@ export function mapSourceData<TName extends keyof SourceDataMap>(
     ...serializableData
   } = doc;
 
-  return serializableData as SerializableDocData<SourceDataMap[TName]>;
+  return serializableData;
 }

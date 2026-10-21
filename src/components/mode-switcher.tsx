@@ -20,15 +20,15 @@ export function ModeSwitcher() {
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Content align="end" className="min-w-32">
-        <DropdownMenu.Item onClick={() => setTheme("light")}>
+        <DropdownMenu.Item onClick={() =>{  setTheme("light"); }}>
           <Icons.Sun aria-hidden="true" className="size-4" />
           Light
         </DropdownMenu.Item>
-        <DropdownMenu.Item onClick={() => setTheme("dark")}>
+        <DropdownMenu.Item onClick={() =>{  setTheme("dark"); }}>
           <Icons.Moon aria-hidden="true" className="size-4" />
           Dark
         </DropdownMenu.Item>
-        <DropdownMenu.Item onClick={() => setTheme("system")}>
+        <DropdownMenu.Item onClick={() =>{  setTheme("system"); }}>
           <Icons.Laptop aria-hidden="true" className="size-4" />
           System
         </DropdownMenu.Item>

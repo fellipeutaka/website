@@ -3,7 +3,8 @@
 import { Autocomplete } from "@base-ui/react/autocomplete";
 import { useState } from "react";
 import { cva } from "~/lib/cva";
-import { Dialog, type DialogRootProps } from "./dialog";
+import { Dialog } from './dialog';
+import type { DialogRootProps } from './dialog';
 import { Icons } from "./icons";
 
 export const CommandStyles = {
@@ -29,6 +30,7 @@ export const CommandStyles = {
 };
 
 export type CommandItems<T> = readonly { value: string; items: readonly T[] }[];
+const emptyItems = [] as const;
 export type CommandRootProps<T> = Omit<Autocomplete.Root.Props<T>, "items"> & {
   className?: string;
   items?: CommandItems<T>;
@@ -36,7 +38,7 @@ export type CommandRootProps<T> = Omit<Autocomplete.Root.Props<T>, "items"> & {
 
 export function CommandRoot<T>({
   className,
-  items = [],
+  items = emptyItems,
   value,
   defaultValue = "",
   onValueChange,
@@ -162,7 +164,7 @@ export function CommandGroup({
       }
       data-slot="command-group"
     >
-      {heading && (
+      {Boolean(heading) && (
         <Autocomplete.GroupLabel data-slot="command-group-heading">
           {heading}
         </Autocomplete.GroupLabel>

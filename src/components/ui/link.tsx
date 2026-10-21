@@ -1,7 +1,8 @@
 "use client";
 
 import LinkPrimitive from "next/link";
-import { cva, type VariantProps } from "~/lib/cva";
+import { cva } from '~/lib/cva';
+import type { VariantProps } from '~/lib/cva';
 
 export const LinkStyles = cva({
   base: [
@@ -35,4 +36,4 @@ export function Link({ className, variant, ...props }: LinkProps) {
   );
 }
 
-export { LinkPrimitive };
+export { default as LinkPrimitive } from "next/link";

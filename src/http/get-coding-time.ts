@@ -12,7 +12,7 @@ export async function getCodingTime() {
           authorization: `Basic ${API_KEY}`,
         },
         next: {
-          revalidate: 3600, // 1 hour
+          revalidate: 3600,
         },
       }
     );

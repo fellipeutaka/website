@@ -18,6 +18,7 @@ const config: NextConfig = {
       },
     ],
   },
+  // oxlint-disable-next-line require-await -- Next.js requires redirects to return a Promise.
   redirects: async () => [
     {
       source: "/github",

@@ -1,15 +1,16 @@
 "use client";
 
-import {
-  ScrollProvider,
-  type TableOfContents,
-  TOCItem,
-} from "fumadocs-core/toc";
+import { ScrollProvider, TOCItem } from 'fumadocs-core/toc';
+import type { TableOfContents } from 'fumadocs-core/toc';
 import { useRef } from "react";
 import { cx } from "~/lib/cva";
 
 interface TocTreeProps {
   tree: TableOfContents;
+}
+
+function indentStyle(depth: number): React.CSSProperties & { "--indent": string } {
+  return { "--indent": `${depth}rem` };
 }
 
 export function TocTree({ tree }: TocTreeProps) {
@@ -28,11 +29,7 @@ export function TocTree({ tree }: TocTreeProps) {
                 "pl-[calc(var(--indent)-2rem)]"
               )}
               href={item.url}
-              style={
-                {
-                  "--indent": `${item.depth}rem`,
-                } as React.CSSProperties
-              }
+              style={indentStyle(item.depth)}
             >
               {item.title}
             </TOCItem>

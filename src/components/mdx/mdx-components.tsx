@@ -7,8 +7,8 @@ import { Heading } from "./heading";
 import { Pre } from "./pre";
 
 export const mdxComponents = {
-  h1: (props) => (
-    <h1 className="mt-2 font-bold text-4xl tracking-tight" {...props} />
+  h1: ({ children, ...props }) => (
+    <h1 className="mt-2 font-bold text-4xl tracking-tight" {...props}>{children}</h1>
   ),
   h2: (props) => (
     <Heading
@@ -45,11 +45,11 @@ export const mdxComponents = {
       {...props}
     />
   ),
-  a: ({ className, ...props }: React.ComponentProps<"a">) => (
+  a: ({ className, children, ...props }: React.ComponentProps<"a">) => (
     <a
       className={cn("font-medium underline underline-offset-4", className)}
       {...props}
-    />
+    >{children}</a>
   ),
   p: ({ className, ...props }: React.ComponentProps<"p">) => (
     <p className={cn("not-first:mt-6 leading-7", className)} {...props} />
@@ -76,7 +76,7 @@ export const mdxComponents = {
     height,
     ...props
   }: React.ComponentProps<"img">) => (
-    // biome-ignore lint/performance/noImgElement: For MDX compatibility
+    // oxlint-disable-next-line next/no-img-element -- MDX supplies native image properties, including remote sources.
     <img
       {...props}
       alt={alt}
@@ -134,5 +134,5 @@ export const mdxComponents = {
   DisplayAge,
 } satisfies Record<string, React.FunctionComponent<SAFE_ANY>>;
 
-// biome-ignore lint/suspicious/noExplicitAny: This is a type alias for any
+// oxlint-disable-next-line typescript/no-explicit-any -- MDX maps heterogeneous intrinsic and custom component props.
 type SAFE_ANY = any;

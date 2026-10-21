@@ -46,7 +46,7 @@ export function FeaturedProjectsSection() {
               </BentoGrid.Description>
             </BentoGrid.Body>
             <div className="mt-4 flex items-center justify-between">
-              {project.data.previewUrl && (
+              {project.data.previewUrl !== undefined && project.data.previewUrl !== "" && (
                 <LinkButton
                   className="rounded-full"
                   href={project.data.previewUrl}

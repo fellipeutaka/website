@@ -14,7 +14,7 @@ export const BlurImage = ({
   containerClassName,
   ...props
 }: BlurImageProps) => {
-  const [isLoading, setLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   return (
     <div
@@ -33,7 +33,7 @@ export const BlurImage = ({
             : "scale-100 blur-0 grayscale-0",
           className
         )}
-        onLoad={() => setLoading(false)}
+        onLoad={() =>{  setIsLoading(false); }}
       />
     </div>
   );

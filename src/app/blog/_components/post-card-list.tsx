@@ -42,7 +42,7 @@ export function PostCardList({ posts }: PostCardListProps) {
     <section className="mt-10 animate-delay-75 animate-fade-up">
       <TextSearch.Root
         className="mb-4 grow"
-        onValueChange={(q) => setFilters({ q })}
+        onValueChange={(q) => { void setFilters({ q }); }}
         value={filters.q}
       >
         <Form.Field>
@@ -103,7 +103,6 @@ export function PostCardListSkeleton() {
         {Array.from({ length: 6 }).map((_, index) => (
           <div
             className="block rounded-xl border px-2 py-4"
-            // biome-ignore lint/suspicious/noArrayIndexKey: This is a skeleton loader
             key={index}
           >
             <Skeleton className="h-96 rounded-lg" />

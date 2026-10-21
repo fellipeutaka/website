@@ -53,7 +53,8 @@ export function LocationCard() {
       baseColor: [0.8, 0.8, 0.8],
       markerColor: [235 / 255, 35 / 255, 35 / 255],
       glowColor: [0.5, 0.5, 0.5],
-      markers: [{ location: [-23.5505, -46.6333], size: 0.1 }], // Sao Paulo coordinates
+      // São Paulo coordinates.
+      markers: [{ location: [-23.5505, -46.6333], size: 0.1 }],
       scale: 1,
     });
 
@@ -96,7 +97,7 @@ export function LocationCard() {
                 if (pointerInteracting.current !== null) {
                   const delta = e.clientX - pointerInteracting.current;
                   pointerInteractionMovement.current = delta;
-                  api.start({
+                  void api.start({
                     r: delta / 200,
                   });
                 }
@@ -121,11 +122,11 @@ export function LocationCard() {
                 }
               }}
               onTouchMove={(e) => {
-                if (pointerInteracting.current !== null && e.touches[0]) {
+                if (pointerInteracting.current !== null && e.touches[0] !== undefined) {
                   const delta =
                     e.touches[0].clientX - pointerInteracting.current;
                   pointerInteractionMovement.current = delta;
-                  api.start({
+                  void api.start({
                     r: delta / 100,
                   });
                 }

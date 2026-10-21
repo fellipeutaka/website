@@ -1,19 +1,22 @@
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
-const getHash = () =>
-  typeof window !== "undefined" ? window.location.hash : undefined;
+function subscribe(onChange: () => void) {
+  window.addEventListener("hashchange", onChange);
+  window.addEventListener("popstate", onChange);
+  return () => {
+    window.removeEventListener("hashchange", onChange);
+    window.removeEventListener("popstate", onChange);
+  };
+}
+
+function getHash() {
+  return window.location.hash;
+}
+
+function getServerHash() {
+  return null;
+}
 
 export function useHash() {
-  const [isClient, setIsClient] = useState(false);
-  const [hash, setHash] = useState(getHash());
-  const params = useParams();
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: This hook is only used client-side
-  useEffect(() => {
-    setIsClient(true);
-    setHash(getHash());
-  }, [params]);
-
-  return isClient ? hash : null;
+  return useSyncExternalStore(subscribe, getHash, getServerHash);
 }

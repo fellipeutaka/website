@@ -2,7 +2,6 @@
 
 import { Drawer } from "@base-ui/react/drawer";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { navLinks } from "~/config/site";
 import { cx } from "~/lib/cva";
@@ -73,14 +72,11 @@ interface MobileLinkProps extends React.ComponentProps<typeof Link> {
 }
 
 function MobileLink({ href, onOpenChange, ...props }: MobileLinkProps) {
-  const router = useRouter();
-
   return (
     <Link
       className="border-b py-3"
       href={href}
       onClick={() => {
-        router.push(href.toString());
         onOpenChange?.(false);
       }}
       {...props}

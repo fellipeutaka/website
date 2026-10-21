@@ -136,5 +136,6 @@ type TechnologyMap = {
 };
 
 export function getTechnology<T extends TechnologyName>(name: T) {
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- Literal name uniquely determines this entry in the readonly catalog.
   return technologies.find((t) => t.name === name) as TechnologyMap[T];
 }

@@ -7,12 +7,8 @@ import {
   ScrollAreaThumb,
   ScrollAreaViewport,
 } from "../ui/scroll-area";
-import {
-  CopyButton,
-  type CopyButtonProps,
-  CopyNpmButton,
-  type CopyNpmButtonProps,
-} from "./copy-button";
+import { CopyButton, CopyNpmButton } from './copy-button';
+import type { CopyButtonProps, CopyNpmButtonProps } from './copy-button';
 import { LanguageIcon } from "./language-icon";
 
 export type NpmCommands = {
@@ -42,13 +38,14 @@ export function Pre({
   "data-bun": bunCommand,
   ...props
 }: PreProps) {
-  const commands = npmCommand
-    ? ({
+  const commands: NpmCommands = npmCommand !== undefined && npmCommand !== "" &&
+    yarnCommand !== undefined && pnpmCommand !== undefined && bunCommand !== undefined
+    ? {
         npm: npmCommand,
         yarn: yarnCommand,
         pnpm: pnpmCommand,
         bun: bunCommand,
-      } as NpmCommands)
+      }
     : null;
 
   return (
@@ -60,7 +57,7 @@ export function Pre({
       data-figure="code"
       {...props}
     >
-      {title ? (
+      {title !== undefined && title !== "" ? (
         <figcaption
           className={cn(
             "flex items-center gap-2 border-b px-4 py-1.5",
@@ -75,7 +72,7 @@ export function Pre({
       ) : null}
 
       <ScrollAreaRoot>
-        {title ? null : (
+        {title !== undefined && title !== "" ? null : (
           <CopyBtn
             className="absolute top-2.5 right-4 z-10 max-sm:group-has-[[data-state=visible]]:opacity-0"
             commands={commands}

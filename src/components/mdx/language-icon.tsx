@@ -1,5 +1,6 @@
 import { cn } from "~/lib/cva";
-import { type IconProps, Icons } from "../ui/icons";
+import { Icons } from '../ui/icons';
+import type { IconProps } from '../ui/icons';
 
 const titleMap = new Map([
   ["tailwind.config.{js,cjs,mjs,ts}", Icons.TailwindCSS],
@@ -21,16 +22,16 @@ const extensionMap = new Map([
 ]);
 
 function convertPatternToRegex(pattern: string): string {
-  return pattern.replace(
-    /{([^}]+)}/g,
-    (_, group) => `(${group.replace(/,/g, "|")})`
+  return pattern.replaceAll(
+    /\{(?<extensions>[^}]+)\}/gu,
+    (_: string, group: string) => `(${group.replaceAll(',', "|")})`
   );
 }
 
 function getIconByTitle(title: string) {
   for (const [pattern, icon] of titleMap) {
     const regexPattern = convertPatternToRegex(pattern);
-    const regex = new RegExp(`^${regexPattern}$`);
+    const regex = new RegExp(`^${regexPattern}$`, "u");
     if (regex.test(title)) {
       return icon;
     }
@@ -50,7 +51,8 @@ export function LanguageIcon({
   ...props
 }: LanguageIconProps) {
   const IconComponent =
-    getIconByTitle(title) || extensionMap.get(language) || Icons.File;
+    getIconByTitle(title) ?? extensionMap.get(language) ?? Icons.File;
 
+  // oxlint-disable-next-line react/static-components -- Lookup returns existing module-level icon components.
   return <IconComponent className={cn("size-3.5", className)} {...props} />;
 }

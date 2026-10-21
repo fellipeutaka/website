@@ -59,7 +59,7 @@ export function PostHeader({ title, date, cover }: PostHeaderProps) {
           alt={title}
           className="rounded-lg"
           height={cover.height}
-          priority
+          preload
           quality={100}
           src={cover.src}
           width={cover.width}

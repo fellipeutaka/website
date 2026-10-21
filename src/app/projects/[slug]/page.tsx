@@ -47,7 +47,7 @@ export default async function Page({ params }: PageProps<"/projects/[slug]">) {
         {project.data.name}
       </h1>
       <div className="mb-16 flex items-center justify-center gap-4">
-        {project.data.previewUrl &&
+        {project.data.previewUrl !== undefined && project.data.previewUrl !== "" &&
           (project.data.previewUrl === siteConfig.url ? (
             <PreviewRecursiveButton />
           ) : (

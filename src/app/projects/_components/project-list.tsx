@@ -17,11 +17,8 @@ import { TextSearch } from "~/components/ui/text-search";
 import { siteConfig } from "~/config/site";
 import { useFilters } from "~/hooks/use-filters";
 import type { ProjectSource } from "~/lib/source";
-import {
-  getTechnology,
-  type Technologies,
-  technologies,
-} from "~/lib/technologies";
+import { getTechnology, technologies } from '~/lib/technologies';
+import type { Technologies } from '~/lib/technologies';
 import { PreviewRecursiveButton } from "./preview-recursive-button";
 
 function filterProjects(
@@ -93,10 +90,10 @@ export function ProjectList({ projects }: ProjectListProps) {
         key={item.value}
         onClick={() => {
           if (!technology) {
-            setFilters({ techs: [] });
+            void setFilters({ techs: [] });
             return;
           }
-          setFilters(({ techs }) => ({
+          void setFilters(({ techs }) => ({
             techs: techs.includes(technology.name)
               ? techs.filter((name) => name !== technology.name)
               : [...techs, technology.name],
@@ -126,7 +123,7 @@ export function ProjectList({ projects }: ProjectListProps) {
       <div className="mb-4 flex items-center justify-between gap-4">
         <TextSearch.Root
           className="grow"
-          onValueChange={(q) => setFilters({ q })}
+          onValueChange={(q) => { void setFilters({ q }); }}
           value={filters.q}
         >
           <Form.Field>
@@ -235,7 +232,7 @@ export function ProjectList({ projects }: ProjectListProps) {
                     Read more
                   </LinkButton>
                   <div className="flex items-center gap-4 max-sm:w-full">
-                    {project.data.previewUrl &&
+                    {project.data.previewUrl !== undefined && project.data.previewUrl !== "" &&
                       (project.data.previewUrl === siteConfig.url ? (
                         <PreviewRecursiveButton className="w-full" />
                       ) : (
@@ -305,7 +302,6 @@ export function ProjectListSkeleton() {
       <div className="grid w-full gap-4 md:grid-cols-2">
         {Array.from({ length: 6 }).map((_, index) => (
           <Card.Root
-            // biome-ignore lint/suspicious/noArrayIndexKey: This is a skeleton loader
             key={index}
           >
             <Card.Header>

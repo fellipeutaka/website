@@ -182,7 +182,7 @@ export function DropdownMenuSeparator({
   );
 }
 
-interface DropdownMenuLabelProps extends React.ComponentProps<"span"> {}
+type DropdownMenuLabelProps = React.ComponentProps<"span">;
 
 export function DropdownMenuLabel(props: DropdownMenuLabelProps) {
   return <span {...props} data-slot="label" />;

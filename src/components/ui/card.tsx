@@ -35,8 +35,8 @@ export function CardHeader({ className, ...props }: CardHeaderProps) {
 
 export type CardTitleProps = React.ComponentProps<"h3">;
 
-export function CardTitle({ className, ...props }: CardTitleProps) {
-  return <h3 {...props} className={CardStyles.Title({ className })} />;
+export function CardTitle({ className, children, ...props }: CardTitleProps) {
+  return <h3 {...props} className={CardStyles.Title({ className })}>{children}</h3>;
 }
 
 export type CardDescriptionProps = React.ComponentProps<"p">;

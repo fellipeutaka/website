@@ -1,4 +1,5 @@
-import { cva, type VariantProps } from "~/lib/cva";
+import { cva } from '~/lib/cva';
+import type { VariantProps } from '~/lib/cva';
 import { FocusRingStyles } from "~/styles/focus-ring";
 
 export const BadgeStyles = cva({

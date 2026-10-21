@@ -1,7 +1,8 @@
 "use client";
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
-import { cva, type VariantProps } from "~/lib/cva";
+import { cva } from '~/lib/cva';
+import type { VariantProps } from '~/lib/cva';
 
 export const DialogStyles = {
   Overlay: cva({

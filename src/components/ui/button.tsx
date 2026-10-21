@@ -2,7 +2,8 @@
 
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import Link from "next/link";
-import { cva, type VariantProps } from "~/lib/cva";
+import { cva } from '~/lib/cva';
+import type { VariantProps } from '~/lib/cva';
 
 export const ButtonStyles = cva({
   base: [
@@ -103,4 +104,4 @@ export function LinkButton({
   );
 }
 
-export { ButtonPrimitive };
+export { Button as ButtonPrimitive } from "@base-ui/react/button";

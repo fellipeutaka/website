@@ -1,9 +1,10 @@
 "use client";
 
 import { Field } from "@base-ui/react/field";
-import { createContext, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import { cva } from "~/lib/cva";
-import { Button, type ButtonProps } from "./button";
+import { Button } from './button';
+import type { ButtonProps } from './button';
 import { Icons } from "./icons";
 import { Spinner } from "./spinner";
 
@@ -45,19 +46,21 @@ export function TextSearchRoot({
   ...props
 }: TextSearchRootProps) {
   const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue);
-  function updateValue(next: string) {
+  const updateValue = useCallback((next: string) => {
     if (value === undefined) {
       setUncontrolledValue(next);
     }
     onValueChange?.(next);
-  }
+  }, [value, onValueChange]);
+  const label = props["aria-label"] ?? "Search...";
+  const context = useMemo(() => ({
+    value: value ?? uncontrolledValue,
+    onValueChange: updateValue,
+    label,
+  }), [value, uncontrolledValue, updateValue, label]);
   return (
     <SearchContext
-      value={{
-        value: value ?? uncontrolledValue,
-        onValueChange: updateValue,
-        label: props["aria-label"] ?? "Search...",
-      }}
+      value={context}
     >
       <Field.Root
         {...props}

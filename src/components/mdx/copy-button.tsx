@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useCopyToClipboard } from "~/hooks/use-copy-to-clipboard";
 import { cx } from "~/lib/cva";
-import { Button, type ButtonProps } from "../ui/button";
+import { Button } from '../ui/button';
+import type { ButtonProps } from '../ui/button';
 import { DropdownMenu } from "../ui/dropdown-menu";
 import { Icons } from "../ui/icons";
 import type { NpmCommands } from "./pre";
@@ -22,7 +23,7 @@ export function CopyButton({ text, className, ...props }: CopyButtonProps) {
         "size-8 bg-secondary opacity-0 hover:bg-bg focus-visible:opacity-100 group-hover:opacity-100",
         className
       )}
-      onClick={() => copy({ text })}
+      onClick={() => { void copy({ text }); }}
       size="icon"
       variant="outline"
       {...props}
@@ -79,19 +80,19 @@ export function CopyNpmButton({
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Content align="end" className="min-w-32">
-        <DropdownMenu.Item onClick={() => copy({ text: commands.npm })}>
+        <DropdownMenu.Item onClick={() => { void copy({ text: commands.npm }); }}>
           <Icons.Npm aria-hidden="true" className="mr-2 size-4" />
           npm
         </DropdownMenu.Item>
-        <DropdownMenu.Item onClick={() => copy({ text: commands.yarn })}>
+        <DropdownMenu.Item onClick={() => { void copy({ text: commands.yarn }); }}>
           <Icons.Yarn aria-hidden="true" className="mr-2 size-4" />
           yarn
         </DropdownMenu.Item>
-        <DropdownMenu.Item onClick={() => copy({ text: commands.pnpm })}>
+        <DropdownMenu.Item onClick={() => { void copy({ text: commands.pnpm }); }}>
           <Icons.Pnpm aria-hidden="true" className="mr-2 size-4" />
           pnpm
         </DropdownMenu.Item>
-        <DropdownMenu.Item onClick={() => copy({ text: commands.bun })}>
+        <DropdownMenu.Item onClick={() => { void copy({ text: commands.bun }); }}>
           <Icons.Bun aria-hidden="true" className="mr-2 size-4" />
           bun
         </DropdownMenu.Item>

@@ -1,7 +1,8 @@
 "use client";
 
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
-import { cva, type VariantProps } from "~/lib/cva";
+import { cva } from '~/lib/cva';
+import type { VariantProps } from '~/lib/cva';
 
 export const TooltipStyles = cva({
   base: [

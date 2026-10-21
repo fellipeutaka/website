@@ -50,7 +50,7 @@ export function FormDescription({
       className={(state) =>
         FormStyles.Description({
           className: [
-            isWarning && "text-warning",
+            isWarning === true && "text-warning",
             typeof className === "function" ? className(state) : className,
           ],
         })
@@ -64,6 +64,7 @@ export function FormError({ className, ...props }: Field.Error.Props) {
     <Field.Error
       {...props}
       className={(values) =>
+        // oxlint-disable-next-line unicorn/throw-new-error -- CVA style factory, not an Error constructor.
         FormStyles.Error({
           className:
             typeof className === "function" ? className(values) : className,

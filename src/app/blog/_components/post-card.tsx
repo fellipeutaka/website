@@ -8,6 +8,7 @@ interface PostCardProps {
 }
 
 export function PostCard({ post }: PostCardProps) {
+  // oxlint-disable-next-line react/purity -- Server component computes the publication fallback at render time.
   const postDate = post.data.lastModified ?? new Date();
 
   return (

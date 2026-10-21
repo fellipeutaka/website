@@ -77,7 +77,7 @@ export function TracingBeam({ children, className, offset }: TracingBeamProps) {
         <svg
           aria-hidden="true"
           className="ml-4 block"
-          height={svgHeight} // Set the SVG height
+          height={svgHeight}
           viewBox={`0 0 20 ${svgHeight}`}
           width="20"
         >

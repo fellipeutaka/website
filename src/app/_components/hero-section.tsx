@@ -12,7 +12,7 @@ export function HeroSection() {
 
       <div className="container max-w-6xl space-y-4">
         <div className="grid animate-fade-up justify-items-center gap-4">
-          {!!env.AVAILABLE_FOR_WORK && (
+          {env.AVAILABLE_FOR_WORK && (
             <BadgeAnimated className="flex items-center gap-2 text-sm">
               <Icons.Circle className="size-2 animate-pulse fill-success text-success" />
               Available for work
