@@ -1,18 +1,9 @@
 "use client";
 
-import {
-  Header,
-  Keyboard,
-  Menu,
-  MenuItem,
-  MenuTrigger,
-  Section,
-  Separator,
-  SubmenuTrigger,
-  Text,
-} from "react-aria-components";
+import { Menu } from "@base-ui/react/menu";
+import { useCallback } from "react";
 import { cva } from "~/lib/cva";
-import { Icons } from "./icons";
+import { PopoverStyles } from "./popover";
 import { SeparatorStyles } from "./separator";
 
 export const DropdownMenuStyles = {
@@ -25,7 +16,7 @@ export const DropdownMenuStyles = {
   }),
   Item: cva({
     base: [
-      "group relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden transition-colors [&>svg]:size-4 [&>svg]:shrink-0",
+      "group relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden transition-colors focus:bg-accent focus:text-accent-fg [&>svg]:size-4 [&>svg]:shrink-0",
     ],
     variants: {
       isDisabled: {
@@ -61,92 +52,111 @@ export const DropdownMenuStyles = {
   }),
 };
 
-export const DropdownMenuRoot = MenuTrigger;
+export const DropdownMenuRoot = Menu.Root;
+export const DropdownMenuTrigger = Menu.Trigger;
 
-export function DropdownMenuContent<T extends object>({
+interface DropdownMenuContentProps
+  extends Menu.Popup.Props,
+    Pick<
+      Menu.Positioner.Props,
+      "side" | "align" | "sideOffset" | "alignOffset"
+    > {}
+
+export function DropdownMenuContent({
   className,
+  children,
+  side = "bottom",
+  align = "center",
+  sideOffset = 9,
+  alignOffset = -1,
   ...props
-}: React.ComponentProps<typeof Menu<T>>) {
+}: DropdownMenuContentProps) {
+  const focusFirstItem = useCallback((element: HTMLDivElement | null) => {
+    element
+      ?.querySelector<HTMLElement>('[role="menuitem"]:not([data-disabled])')
+      ?.focus();
+  }, []);
   return (
-    <Menu
-      {...props}
-      className={DropdownMenuStyles.Content({
-        className,
-      })}
-    />
+    <Menu.Portal>
+      <Menu.Positioner
+        align={align}
+        alignOffset={alignOffset}
+        className="z-50"
+        side={side}
+        sideOffset={sideOffset}
+      >
+        <Menu.Popup
+          {...props}
+          className={(state) =>
+            PopoverStyles.Content({
+              isMenu: true,
+              className:
+                typeof className === "function" ? className(state) : className,
+            })
+          }
+        >
+          <div className={DropdownMenuStyles.Content()} ref={focusFirstItem}>
+            {children}
+          </div>
+        </Menu.Popup>
+      </Menu.Positioner>
+    </Menu.Portal>
   );
 }
 
-interface DropdownMenuItemProps<T extends object>
-  extends React.ComponentProps<typeof MenuItem<T>> {
+interface DropdownMenuItemProps extends Menu.Item.Props {
   isDanger?: boolean;
-  type?: "default" | "checkbox" | "radio";
 }
 
-export function DropdownMenuItem<T extends object>({
+export function DropdownMenuItem({
   className,
   children,
-  textValue,
   isDanger,
-  type = "default",
   ...props
-}: DropdownMenuItemProps<T>) {
-  const _textValue =
-    textValue ?? (typeof children === "string" ? children : undefined);
-
+}: DropdownMenuItemProps) {
   return (
-    <MenuItem
+    <Menu.Item
       {...props}
       className={(values) =>
         DropdownMenuStyles.Item({
-          isFocused: values.isFocused,
-          isDisabled: values.isDisabled,
-          type,
+          isFocused: values.highlighted,
+          isDisabled: values.disabled,
           className:
             typeof className === "function" ? className(values) : className,
         })
       }
       data-danger={isDanger}
-      textValue={_textValue}
     >
-      {(values) => (
-        <>
-          {type === "checkbox" && (
-            <Icons.Check className={DropdownMenuStyles.CheckboxIcon()} />
-          )}
-          {type === "radio" && (
-            <Icons.DotFilled className={DropdownMenuStyles.CheckboxIcon()} />
-          )}
-          {typeof children === "function" ? children(values) : children}
-          {values.hasSubmenu && (
-            <Icons.ChevronRight className="ml-auto size-3.5" />
-          )}
-        </>
-      )}
-    </MenuItem>
+      {children}
+    </Menu.Item>
   );
 }
 
 export function DropdownMenuHeader({
   className,
   ...props
-}: React.ComponentProps<typeof Header>) {
+}: Menu.GroupLabel.Props) {
   return (
-    <Header {...props} className={DropdownMenuStyles.Header({ className })} />
+    <Menu.GroupLabel
+      {...props}
+      className={(state) =>
+        DropdownMenuStyles.Header({
+          className:
+            typeof className === "function" ? className(state) : className,
+        })
+      }
+    />
   );
 }
 
-export const DropdownMenuGroup = Section;
+export const DropdownMenuGroup = Menu.Group;
 
 export function DropdownMenuShortcut({
   className,
   ...props
-}: React.ComponentProps<typeof Keyboard>) {
+}: React.ComponentProps<"kbd">) {
   return (
-    <Keyboard
-      {...props}
-      className={DropdownMenuStyles.Shortcut({ className })}
-    />
+    <kbd {...props} className={DropdownMenuStyles.Shortcut({ className })} />
   );
 }
 
@@ -154,28 +164,32 @@ export function DropdownMenuSeparator({
   className,
   orientation = "horizontal",
   ...props
-}: React.ComponentProps<typeof Separator>) {
+}: Menu.Separator.Props) {
   return (
-    <Separator
+    <Menu.Separator
       {...props}
-      className={SeparatorStyles({
-        className: ["my-1", className],
-        orientation,
-      })}
+      className={(state) =>
+        SeparatorStyles({
+          className: [
+            "my-1",
+            typeof className === "function" ? className(state) : className,
+          ],
+          orientation,
+        })
+      }
       orientation={orientation}
     />
   );
 }
 
-interface DropdownMenuLabelProps
-  extends Omit<React.ComponentProps<typeof Text>, "slot"> {}
+interface DropdownMenuLabelProps extends React.ComponentProps<"span"> {}
 
 export function DropdownMenuLabel(props: DropdownMenuLabelProps) {
-  return <Text {...props} slot="label" />;
+  return <span {...props} data-slot="label" />;
 }
 
 export function DropdownMenuDescription(props: DropdownMenuLabelProps) {
-  return <Text {...props} slot="description" />;
+  return <span {...props} data-slot="description" />;
 }
 
 export function DropdownMenuItemDetails({
@@ -187,10 +201,12 @@ export function DropdownMenuItemDetails({
   );
 }
 
-export const DropdownMenuSub = SubmenuTrigger;
+export const DropdownMenuSub = Menu.SubmenuRoot;
+export const DropdownMenuSubTrigger = Menu.SubmenuTrigger;
 
 export const DropdownMenu = {
   Root: DropdownMenuRoot,
+  Trigger: DropdownMenuTrigger,
   Content: DropdownMenuContent,
   Item: DropdownMenuItem,
   Header: DropdownMenuHeader,
@@ -198,6 +214,7 @@ export const DropdownMenu = {
   Shortcut: DropdownMenuShortcut,
   Separator: DropdownMenuSeparator,
   Sub: DropdownMenuSub,
+  SubTrigger: DropdownMenuSubTrigger,
   Label: DropdownMenuLabel,
   Description: DropdownMenuDescription,
   ItemDetails: DropdownMenuItemDetails,

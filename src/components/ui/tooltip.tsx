@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  OverlayArrow,
-  Tooltip as TooltipPrimitive,
-  type TooltipProps as TooltipPrimitiveProps,
-  TooltipTrigger,
-} from "react-aria-components";
+import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 import { cva, type VariantProps } from "~/lib/cva";
 
 export const TooltipStyles = cva({
@@ -31,39 +26,48 @@ export const TooltipStyles = cva({
   },
 });
 
-export const TooltipRoot = TooltipTrigger;
+export const TooltipRoot = TooltipPrimitive.Root;
+export const TooltipTrigger = TooltipPrimitive.Trigger;
 
 export interface TooltipContentProps
-  extends TooltipPrimitiveProps,
+  extends TooltipPrimitive.Popup.Props,
+    Pick<TooltipPrimitive.Positioner.Props, "side" | "align" | "sideOffset">,
     VariantProps<typeof TooltipStyles> {}
 
 export function TooltipContent({
   className,
   intent = "default",
-  offset = 10,
+  sideOffset = 10,
+  side = "top",
+  align = "center",
   ...props
 }: TooltipContentProps) {
   return (
-    <TooltipPrimitive
-      {...props}
-      className={(values) =>
-        TooltipStyles({
-          intent,
-          className:
-            typeof className === "function" ? className(values) : className,
-        })
-      }
-      offset={offset}
-    />
+    <TooltipPrimitive.Portal>
+      <TooltipPrimitive.Positioner
+        align={align}
+        className="z-50"
+        side={side}
+        sideOffset={sideOffset}
+      >
+        <TooltipPrimitive.Popup
+          {...props}
+          className={(values) =>
+            TooltipStyles({
+              intent,
+              className:
+                typeof className === "function" ? className(values) : className,
+            })
+          }
+        />
+      </TooltipPrimitive.Positioner>
+    </TooltipPrimitive.Portal>
   );
 }
 
-export function TooltipArrow({
-  className,
-  ...props
-}: React.ComponentProps<typeof OverlayArrow>) {
+export function TooltipArrow({ ...props }: TooltipPrimitive.Arrow.Props) {
   return (
-    <OverlayArrow {...props}>
+    <TooltipPrimitive.Arrow {...props}>
       <svg
         aria-hidden="true"
         className="arx group-placement-bottom:rotate-180 group-placement-left:-rotate-90 group-placement-right:rotate-90 forced-colors:fill-[Canvas] forced-colors:stroke-[ButtonBorder]"
@@ -73,12 +77,13 @@ export function TooltipArrow({
       >
         <path d="M0 0 L6 6 L12 0" />
       </svg>
-    </OverlayArrow>
+    </TooltipPrimitive.Arrow>
   );
 }
 
 export const Tooltip = {
   Root: TooltipRoot,
+  Trigger: TooltipTrigger,
   Content: TooltipContent,
   Arrow: TooltipArrow,
 };

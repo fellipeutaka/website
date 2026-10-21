@@ -14,7 +14,7 @@ export function PreviewRecursiveButton(props: ButtonProps) {
     <Button
       {...props}
       className={cx("rounded-full", props.className)}
-      onPress={handleClick}
+      onClick={handleClick}
       size="sm"
       variant="outline"
     >

@@ -1,10 +1,26 @@
 "use client";
 
-import { SearchField, type SearchFieldProps } from "react-aria-components";
+import { Field } from "@base-ui/react/field";
+import { createContext, useContext, useState } from "react";
 import { cva } from "~/lib/cva";
 import { Button, type ButtonProps } from "./button";
 import { Icons } from "./icons";
 import { Spinner } from "./spinner";
+
+interface SearchState {
+  label: string;
+  onValueChange: (value: string) => void;
+  value: string;
+}
+
+export const SearchContext = createContext<SearchState | null>(null);
+
+interface TextSearchRootProps
+  extends Omit<Field.Root.Props, "onChange" | "defaultValue"> {
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  value?: string;
+}
 
 export const TextFieldStyles = {
   Root: cva({
@@ -20,18 +36,42 @@ export const TextFieldStyles = {
   }),
 };
 
-export function TextSearchRoot({ className, ...props }: SearchFieldProps) {
+export function TextSearchRoot({
+  className,
+  value,
+  defaultValue = "",
+  onValueChange,
+  children,
+  ...props
+}: TextSearchRootProps) {
+  const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue);
+  function updateValue(next: string) {
+    if (value === undefined) {
+      setUncontrolledValue(next);
+    }
+    onValueChange?.(next);
+  }
   return (
-    <SearchField
-      {...props}
-      aria-label={props["aria-label"] ?? "Search..."}
-      className={(values) =>
-        TextFieldStyles.Root({
-          className:
-            typeof className === "function" ? className(values) : className,
-        })
-      }
-    />
+    <SearchContext
+      value={{
+        value: value ?? uncontrolledValue,
+        onValueChange: updateValue,
+        label: props["aria-label"] ?? "Search...",
+      }}
+    >
+      <Field.Root
+        {...props}
+        className={(values) =>
+          TextFieldStyles.Root({
+            className:
+              typeof className === "function" ? className(values) : className,
+          })
+        }
+        data-empty={(value ?? uncontrolledValue).length === 0 ? "" : undefined}
+      >
+        {children}
+      </Field.Root>
+    </SearchContext>
   );
 }
 
@@ -54,16 +94,27 @@ export function TextSearchSpinner({
 export function TextSearchClearButton({
   className,
   children,
+  onClick,
   ...props
 }: ButtonProps) {
+  const search = useContext(SearchContext);
   return (
     <Button
+      aria-label="Clear search"
       className={(values) =>
         TextFieldStyles.ClearButton({
           className:
             typeof className === "function" ? className(values) : className,
         })
       }
+      onClick={(event) => {
+        onClick?.(event);
+        if (event.defaultPrevented) {
+          return;
+        }
+        search?.onValueChange("");
+        event.currentTarget.parentElement?.querySelector("input")?.focus();
+      }}
       size="icon"
       variant="ghost"
       {...props}

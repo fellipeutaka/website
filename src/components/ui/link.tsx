@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  Link as LinkPrimitive,
-  type LinkProps as LinkPrimitiveProps,
-} from "react-aria-components";
+import LinkPrimitive from "next/link";
 import { cva, type VariantProps } from "~/lib/cva";
 
 export const LinkStyles = cva({
@@ -29,21 +26,12 @@ export const LinkStyles = cva({
 });
 
 export interface LinkProps
-  extends LinkPrimitiveProps,
+  extends React.ComponentProps<typeof LinkPrimitive>,
     VariantProps<typeof LinkStyles> {}
 
 export function Link({ className, variant, ...props }: LinkProps) {
   return (
-    <LinkPrimitive
-      {...props}
-      className={(values) =>
-        LinkStyles({
-          variant,
-          className:
-            typeof className === "function" ? className(values) : className,
-        })
-      }
-    />
+    <LinkPrimitive {...props} className={LinkStyles({ variant, className })} />
   );
 }
 

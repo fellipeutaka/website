@@ -1,15 +1,7 @@
-import { cloneElement, useContext } from "react";
-import {
-  Dialog as DialogPrimitive,
-  type DialogProps,
-  DialogTrigger,
-  Heading,
-  Modal,
-  ModalOverlay,
-  OverlayTriggerStateContext,
-} from "react-aria-components";
+"use client";
+
+import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { cva, type VariantProps } from "~/lib/cva";
-import { ButtonPrimitive } from "./button";
 
 export const DialogStyles = {
   Overlay: cva({
@@ -96,41 +88,30 @@ export const DialogStyles = {
   }),
 };
 
-export type DialogRootProps = React.ComponentProps<typeof DialogTrigger>;
-export const DialogRoot = DialogTrigger;
+export type DialogRootProps = DialogPrimitive.Root.Props;
+export const DialogRoot = DialogPrimitive.Root;
+export const DialogTrigger = DialogPrimitive.Trigger;
 
 interface DialogContentProps
-  extends Omit<React.ComponentProps<typeof Modal>, "children">,
-    Omit<React.ComponentProps<typeof ModalOverlay>, "className">,
-    Pick<DialogProps, "role">,
+  extends DialogPrimitive.Popup.Props,
     VariantProps<(typeof DialogStyles)["Overlay"]>,
     VariantProps<(typeof DialogStyles)["Content"]> {}
 
 export function DialogContent({
   className,
   children,
-  role = "dialog",
-  isDismissable = true,
   isBlurred,
   side = "center",
   ...props
 }: DialogContentProps) {
-  const _isDismissable = role === "alertdialog" ? false : isDismissable;
   const isSheet = side !== "center";
 
   return (
-    <ModalOverlay
-      className={(values) =>
-        DialogStyles.Overlay({
-          isBlurred,
-          isSheet,
-          className:
-            typeof className === "function" ? className(values) : className,
-        })
-      }
-      isDismissable={_isDismissable}
-    >
-      <Modal
+    <DialogPrimitive.Portal>
+      <DialogPrimitive.Backdrop
+        className={DialogStyles.Overlay({ isBlurred, isSheet })}
+      />
+      <DialogPrimitive.Popup
         {...props}
         className={(values) =>
           DialogStyles.Content({
@@ -141,15 +122,10 @@ export function DialogContent({
           })
         }
         data-side={side}
-        isDismissable={_isDismissable}
       >
-        {(values) => (
-          <DialogPrimitive className="outline-hidden" role={role}>
-            {typeof children === "function" ? children(values) : children}
-          </DialogPrimitive>
-        )}
-      </Modal>
-    </ModalOverlay>
+        {children}
+      </DialogPrimitive.Popup>
+    </DialogPrimitive.Portal>
   );
 }
 
@@ -176,12 +152,16 @@ export function DialogFooter({
 export function DialogTitle({
   className,
   ...props
-}: React.ComponentProps<typeof Heading>) {
+}: DialogPrimitive.Title.Props) {
   return (
-    <Heading
-      level={2}
+    <DialogPrimitive.Title
       {...props}
-      className={DialogStyles.Title({ className })}
+      className={(state) =>
+        DialogStyles.Title({
+          className:
+            typeof className === "function" ? className(state) : className,
+        })
+      }
       data-slot="dialog-title"
     />
   );
@@ -190,48 +170,39 @@ export function DialogTitle({
 export function DialogDescription({
   className,
   ...props
-}: React.ComponentProps<typeof Heading>) {
+}: DialogPrimitive.Description.Props) {
   return (
-    <Heading
-      level={3}
+    <DialogPrimitive.Description
       {...props}
-      className={DialogStyles.Description({ className })}
+      className={(state) =>
+        DialogStyles.Description({
+          className:
+            typeof className === "function" ? className(state) : className,
+        })
+      }
     />
   );
 }
 
-export interface DialogCloseProps {
-  asChild?: boolean;
-  children: React.ReactElement;
-}
+export type DialogCloseProps = DialogPrimitive.Close.Props;
 
-export function DialogClose({ children, asChild, ...props }: DialogCloseProps) {
-  const ctx = useContext(OverlayTriggerStateContext);
-
-  if (!ctx) {
-    throw new Error("DialogClose must be a descendant of DialogRoot");
-  }
-
-  if (asChild) {
-    return cloneElement(children, {
-      ...props,
-      onPress: ctx.close,
-    } as React.Attributes);
-  }
-
+export function DialogClose({ className, ...props }: DialogCloseProps) {
   return (
-    <ButtonPrimitive
+    <DialogPrimitive.Close
       {...props}
-      className={DialogStyles.Close()}
-      onPress={ctx.close}
-    >
-      {children}
-    </ButtonPrimitive>
+      className={(state) =>
+        DialogStyles.Close({
+          className:
+            typeof className === "function" ? className(state) : className,
+        })
+      }
+    />
   );
 }
 
 export const Dialog = {
   Root: DialogRoot,
+  Trigger: DialogTrigger,
   Content: DialogContent,
   Header: DialogHeader,
   Footer: DialogFooter,

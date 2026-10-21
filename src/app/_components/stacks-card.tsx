@@ -5,6 +5,7 @@ import {
   TooltipArrow,
   TooltipContent,
   TooltipRoot,
+  TooltipTrigger,
 } from "~/components/ui/tooltip";
 import { technologies } from "~/lib/technologies";
 
@@ -20,15 +21,21 @@ export function StacksCard() {
           const Icon = Icons[technology.icon];
 
           return (
-            <TooltipRoot closeDelay={0} delay={300} key={technology.url}>
-              <LinkPrimitive
-                aria-label={technology.name}
-                href={technology.url}
-                rel="noopener noreferrer"
-                target="_blank"
+            <TooltipRoot key={technology.url}>
+              <TooltipTrigger
+                closeDelay={0}
+                delay={300}
+                render={
+                  <LinkPrimitive
+                    aria-label={technology.name}
+                    href={technology.url}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  />
+                }
               >
                 <Icon className="size-10" />
-              </LinkPrimitive>
+              </TooltipTrigger>
 
               <TooltipContent>
                 <TooltipArrow />

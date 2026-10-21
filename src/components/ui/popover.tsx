@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  DialogTrigger,
-  OverlayArrow,
-  PopoverContext,
-  Popover as PopoverPrimitive,
-  type PopoverProps,
-  useSlottedContext,
-} from "react-aria-components";
+import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { cva } from "~/lib/cva";
 
 export const PopoverStyles = {
@@ -42,31 +35,44 @@ export const PopoverStyles = {
   }),
 };
 
-export const PopoverRoot = DialogTrigger;
+export const PopoverRoot = PopoverPrimitive.Root;
+export const PopoverTrigger = PopoverPrimitive.Trigger;
+
+interface PopoverContentProps
+  extends PopoverPrimitive.Popup.Props,
+    Pick<
+      PopoverPrimitive.Positioner.Props,
+      "side" | "align" | "sideOffset" | "alignOffset"
+    > {}
 
 export function PopoverContent({
   className,
-  placement,
+  side = "bottom",
+  align = "center",
+  sideOffset = 8,
+  alignOffset = 0,
   ...props
-}: PopoverProps) {
-  const popoverContext = useSlottedContext(PopoverContext);
-  const isMenuTrigger = popoverContext?.trigger === "MenuTrigger";
-  const isSubmenuTrigger = popoverContext?.trigger === "SubmenuTrigger";
-  const isMenu = isMenuTrigger || isSubmenuTrigger;
-  const _placement = placement ?? (isSubmenuTrigger ? "right" : "bottom");
-
+}: PopoverContentProps) {
   return (
-    <PopoverPrimitive
-      {...props}
-      className={(values) =>
-        PopoverStyles.Content({
-          isMenu,
-          className:
-            typeof className === "function" ? className(values) : className,
-        })
-      }
-      placement={_placement}
-    />
+    <PopoverPrimitive.Portal>
+      <PopoverPrimitive.Positioner
+        align={align}
+        alignOffset={alignOffset}
+        className="z-50"
+        side={side}
+        sideOffset={sideOffset}
+      >
+        <PopoverPrimitive.Popup
+          {...props}
+          className={(values) =>
+            PopoverStyles.Content({
+              className:
+                typeof className === "function" ? className(values) : className,
+            })
+          }
+        />
+      </PopoverPrimitive.Positioner>
+    </PopoverPrimitive.Portal>
   );
 }
 
@@ -75,7 +81,7 @@ export function PopoverArrow({
   ...props
 }: React.ComponentProps<"svg">) {
   return (
-    <OverlayArrow className="group">
+    <PopoverPrimitive.Arrow className="group">
       <svg
         aria-hidden="true"
         height={12}
@@ -86,12 +92,13 @@ export function PopoverArrow({
       >
         <path d="M0 0 L6 6 L12 0" />
       </svg>
-    </OverlayArrow>
+    </PopoverPrimitive.Arrow>
   );
 }
 
 export const Popover = {
   Root: PopoverRoot,
+  Trigger: PopoverTrigger,
   Content: PopoverContent,
   Arrow: PopoverArrow,
 };

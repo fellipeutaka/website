@@ -1,7 +1,5 @@
 "use client";
 
-import { use } from "react";
-import { DisclosureStateContext } from "react-aria-components";
 import { cn } from "~/lib/cva";
 import {
   ScrollAreaRoot,
@@ -44,8 +42,6 @@ export function Pre({
   "data-bun": bunCommand,
   ...props
 }: PreProps) {
-  const state = use(DisclosureStateContext);
-
   const commands = npmCommand
     ? ({
         npm: npmCommand,
@@ -90,16 +86,12 @@ export function Pre({
         <ScrollAreaViewport className="max-h-[40rem]">
           <pre className={cn("py-4", className)} {...props} tabIndex={-1} />
         </ScrollAreaViewport>
-        {state && !state.isExpanded ? null : (
-          <ScrollAreaScrollbar orientation="vertical">
-            <ScrollAreaThumb />
-          </ScrollAreaScrollbar>
-        )}
-        {state && !state.isExpanded ? null : (
-          <ScrollAreaScrollbar orientation="horizontal">
-            <ScrollAreaThumb />
-          </ScrollAreaScrollbar>
-        )}
+        <ScrollAreaScrollbar orientation="vertical">
+          <ScrollAreaThumb />
+        </ScrollAreaScrollbar>
+        <ScrollAreaScrollbar orientation="horizontal">
+          <ScrollAreaThumb />
+        </ScrollAreaScrollbar>
       </ScrollAreaRoot>
     </figure>
   );

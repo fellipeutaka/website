@@ -4,6 +4,7 @@ import {
   TooltipArrow,
   TooltipContent,
   TooltipRoot,
+  TooltipTrigger,
 } from "~/components/ui/tooltip";
 import { getTechnology } from "~/lib/technologies";
 
@@ -18,16 +19,22 @@ export function StudyingCard() {
         <h2 className="font-light text-sm">Currently studying</h2>
       </div>
       <div className="flex items-center justify-center">
-        <TooltipRoot closeDelay={200} delay={150}>
-          <LinkPrimitive
-            className="outline-hidden"
-            href={technology.url}
-            rel="noopener noreferrer"
-            target="_blank"
+        <TooltipRoot>
+          <TooltipTrigger
+            closeDelay={200}
+            delay={150}
+            render={
+              <LinkPrimitive
+                className="outline-hidden"
+                href={technology.url}
+                rel="noopener noreferrer"
+                target="_blank"
+              />
+            }
           >
             <TechIcon className="size-20" />
             <span className="sr-only">{technology.name}</span>
-          </LinkPrimitive>
+          </TooltipTrigger>
 
           <TooltipContent>
             <TooltipArrow />

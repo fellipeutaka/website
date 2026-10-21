@@ -42,7 +42,7 @@ export function PostCardList({ posts }: PostCardListProps) {
     <section className="mt-10 animate-delay-75 animate-fade-up">
       <TextSearch.Root
         className="mb-4 grow"
-        onChange={(q) => setFilters({ q })}
+        onValueChange={(q) => setFilters({ q })}
         value={filters.q}
       >
         <Form.Field>
@@ -89,7 +89,7 @@ export function PostCardList({ posts }: PostCardListProps) {
 export function PostCardListSkeleton() {
   return (
     <section className="mt-10 animate-delay-75 animate-fade-up">
-      <TextSearch.Root className="mb-4 grow" isDisabled>
+      <TextSearch.Root className="mb-4 grow" disabled>
         <Form.Field>
           <TextSearch.Icon />
 

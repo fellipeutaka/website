@@ -3,9 +3,92 @@
 @import "tw-animate-css";
 @import "./typography.css";
 
-@plugin "tailwindcss-react-aria-components";
+@custom-variant pressed (&:is(:active, [data-pressed]));
+@custom-variant disabled (
+  &:is(:disabled, [data-disabled], [aria-disabled="true"])
+);
+@custom-variant group-disabled (
+  &:is(:where(.group):is(:disabled, [data-disabled], [aria-disabled="true"]) *)
+);
+@custom-variant group-empty (&:is(:where(.group)[data-empty] *));
+@custom-variant group-invalid (&:is(:where(.group)[data-invalid] *));
+@custom-variant entering (&[data-open]);
+@custom-variant exiting (&[data-ending-style]);
+@custom-variant placement-top (&[data-side="top"]);
+@custom-variant placement-bottom (&[data-side="bottom"]);
+@custom-variant placement-left (&[data-side="left"]);
+@custom-variant placement-right (&[data-side="right"]);
+@custom-variant group-placement-bottom (
+  &:is(:where(.group)[data-side="bottom"] *)
+);
+@custom-variant group-placement-left (&:is(:where(.group)[data-side="left"] *));
+@custom-variant group-placement-right (
+  &:is(:where(.group)[data-side="right"] *)
+);
 
 @custom-variant dark (&:is(.dark *));
+
+.toast-viewport {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 999999999;
+  width: 356px;
+  font-family:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 13px;
+  line-height: 1.5;
+  outline: none;
+}
+
+.toast-root {
+  position: absolute;
+  bottom: 0;
+  z-index: calc(100 - var(--toast-index));
+  width: 100%;
+  padding: 16px;
+  color: #171717;
+  background: white;
+  border: 1px solid #ededed;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px #0000001a;
+  transform: translateY(calc(var(--toast-index) * -14px))
+    scale(calc(1 - var(--toast-index) * 0.05));
+  transform-origin: bottom center;
+  transition:
+    transform 200ms,
+    opacity 200ms;
+}
+
+.toast-root[data-expanded] {
+  transform: translateY(
+      calc(-1 * (var(--toast-offset-y) + var(--toast-index) * 14px))
+    )
+    translate(var(--toast-swipe-movement-x), var(--toast-swipe-movement-y));
+}
+
+.toast-root[data-starting-style],
+.toast-root[data-ending-style] {
+  opacity: 0;
+  transform: translateY(calc(100% + 24px));
+}
+
+.toast-root[data-limited] {
+  pointer-events: none;
+  opacity: 0;
+}
+.toast-root[data-swiping] {
+  transition: none;
+}
+
+@media (width < 600px) {
+  .toast-viewport {
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    width: auto;
+  }
+}
 
 @theme inline {
   --breakpoint-xs: 480px;

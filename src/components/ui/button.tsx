@@ -1,6 +1,7 @@
 "use client";
 
-import { Button as ButtonPrimitive, Link } from "react-aria-components";
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
+import Link from "next/link";
 import { cva, type VariantProps } from "~/lib/cva";
 
 export const ButtonStyles = cva({
@@ -75,12 +76,12 @@ export function Button({ className, variant, size, ...props }: ButtonProps) {
   return (
     <ButtonPrimitive
       {...props}
-      className={(values) =>
+      className={(state) =>
         ButtonStyles({
           variant,
           size,
           className:
-            typeof className === "function" ? className(values) : className,
+            typeof className === "function" ? className(state) : className,
         })
       }
     />
@@ -98,17 +99,7 @@ export function LinkButton({
   ...props
 }: LinkButtonProps) {
   return (
-    <Link
-      {...props}
-      className={(values) =>
-        ButtonStyles({
-          variant,
-          size,
-          className:
-            typeof className === "function" ? className(values) : className,
-        })
-      }
-    />
+    <Link {...props} className={ButtonStyles({ variant, size, className })} />
   );
 }
 
