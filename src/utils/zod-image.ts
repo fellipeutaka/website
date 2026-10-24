@@ -54,7 +54,10 @@ export function zodImage(options: {
 
       const hashedName = getHashedFilename(buffer, value);
 
-      const outputPath = path.join(process.cwd(), ".next/static/media");
+      // Next.js isolates development output in .next/dev.
+      const distDir =
+        process.env.NODE_ENV === "development" ? ".next/dev" : ".next";
+      const outputPath = path.join(process.cwd(), distDir, "static/media");
       await fs.mkdir(outputPath, { recursive: true });
       await fs.writeFile(path.join(outputPath, hashedName), buffer);
 
