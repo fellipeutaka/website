@@ -9,6 +9,7 @@ import { siteConfig } from "~/config/site";
 import { cx } from "~/lib/cva";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     template: `%s | ${siteConfig.name}`,
     default: siteConfig.name,
@@ -22,7 +23,16 @@ export const metadata: Metadata = {
     name: siteConfig.name,
     url: siteConfig.url,
   },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: siteConfig.name,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+  },
   twitter: {
+    card: "summary_large_image",
     creator: "@fellipeutaka",
   },
 };

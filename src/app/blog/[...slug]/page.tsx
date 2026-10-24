@@ -6,6 +6,7 @@ import { MDXContent } from "~/components/mdx/mdx-content";
 import { PostContent } from "~/components/mdx/post-content";
 import { PostFooter } from "~/components/mdx/post-footer";
 import { PostHeader } from "~/components/mdx/post-header";
+import { siteConfig } from "~/config/site";
 import { postsSource } from "~/lib/source";
 
 export function generateStaticParams() {
@@ -24,6 +25,28 @@ export async function generateMetadata({
 
   return {
     title: post.data.title,
+    description: post.data.description,
+    alternates: {
+      canonical: post.url,
+    },
+    openGraph: {
+      type: "article",
+      locale: "en_US",
+      siteName: siteConfig.name,
+      title: post.data.title,
+      description: post.data.description ?? siteConfig.description,
+      url: post.url,
+      authors: [siteConfig.name],
+      images: [
+        {
+          url: `/og/${post.slugs.map(encodeURIComponent).join("/")}`,
+          width: 1200,
+          height: 630,
+          type: "image/png",
+          alt: post.data.title,
+        },
+      ],
+    },
   };
 }
 
