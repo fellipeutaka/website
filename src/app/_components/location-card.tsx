@@ -36,11 +36,12 @@ export function LocationCard() {
     onResize();
     window.addEventListener("resize", onResize);
 
-    if (!canvasRef.current) {
+    const canvas = canvasRef.current;
+    if (!canvas) {
       return;
     }
 
-    const globe = createGlobe(canvasRef.current, {
+    const globe = createGlobe(canvas, {
       devicePixelRatio: 2,
       width: width * 2,
       height: width * 2,
@@ -58,6 +59,7 @@ export function LocationCard() {
       markers: [{ location: [-23.5505, -46.6333], size: 0.1 }],
       scale: 1,
     });
+    const gl = canvas.getContext("webgl2") ?? canvas.getContext("webgl");
 
     let frame: number;
     const render = () => {
@@ -74,6 +76,14 @@ export function LocationCard() {
       cancelAnimationFrame(frame);
       window.removeEventListener("resize", onResize);
       globe.destroy();
+      // Cobe deletes buffers without disabling their vertex attributes.
+      // Reset them before React Strict Mode reuses the canvas.
+      if (gl) {
+        const attributeCount = Number(gl.getParameter(gl.MAX_VERTEX_ATTRIBS));
+        for (let index = 0; index < attributeCount; index += 1) {
+          gl.disableVertexAttribArray(index);
+        }
+      }
     };
   }, [r]);
 

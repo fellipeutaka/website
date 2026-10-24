@@ -55,23 +55,19 @@ export function TracingBeam({ children, className, offset }: TracingBeamProps) {
                 ? "none"
                 : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
           }}
-          className="border-netural-200 ml-[27px] flex size-4 items-center justify-center rounded-full border shadow-xs"
+          className="border-netural-200 ml-6.75 flex size-4 items-center justify-center rounded-full border shadow-xs"
           transition={{
             duration: 0.2,
             delay: 0.5,
           }}
         >
-          <motion.div
-            animate={{
+          <div
+            className="size-2 rounded-full border border-neutral-300 bg-white transition-colors delay-500 duration-200 motion-reduce:transition-none"
+            style={{
               backgroundColor:
                 scrollYProgress.get() > 0 ? "white" : "oklch(var(--success))",
               borderColor:
                 scrollYProgress.get() > 0 ? "white" : "oklch(var(--success))",
-            }}
-            className="size-2 rounded-full border border-neutral-300 bg-white"
-            transition={{
-              duration: 0.2,
-              delay: 0.5,
             }}
           />
         </motion.div>
