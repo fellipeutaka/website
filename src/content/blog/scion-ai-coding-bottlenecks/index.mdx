@@ -1,0 +1,81 @@
+---
+title: "What Anthropic's Scion teaches us about coding with agents"
+description: "Anthropic built source control for an unusual workload. Smaller teams can learn from the constraints without copying the infrastructure."
+date: 2026-10-24
+cover: cover.svg
+---
+
+What happens after generating code becomes easier?
+
+One possible answer is that the rest of the development process starts feeling slower. More proposed changes need environments, tests, reviews, and a path into production. The team has more work in flight, but customers may still be waiting just as long.
+
+Anthropic's Scion announcement offers an unusually large example of that pressure. It is worth reading as a case study in changing constraints, especially if your own team is adding coding agents to an existing workflow.
+
+## What Anthropic actually reported
+
+On October 13, 2026, Anthropic [described Scion](https://www.anthropic.com/research/redesigning-source-control), its internal source control system, and [announced it on X](https://x.com/AnthropicAI/status/2110047081414987957).
+
+According to that account, daily merged changes grew from roughly 2,500 in May to more than 30,000 in September. CI performed about 25 million checkouts per day. Seven engineers built Scion, the Antique review tool, and related systems, completing the migration in five months.
+
+Scion puts operations such as commits and merges on the server and fetches repository data as needed. Anthropic explicitly describes its workload as unusual and says Git's design fits the vast majority of repositories. These are company-reported results from a particular environment, rather than a general productivity benchmark. ([Source](https://www.anthropic.com/research/redesigning-source-control))
+
+My takeaway is to examine the path a change follows through a team before increasing the number of agents producing changes.
+
+## Measure delivery, including the waiting
+
+Imagine an agent finishes an implementation in ten minutes. It then waits forty minutes for CI and a day for review. Making implementation twice as fast saves five minutes from a process still dominated by waiting.
+
+That hypothetical example suggests a useful measurement: track a change from the moment work starts until the intended behavior reaches users. Split the elapsed time into active work and waiting. Include failed attempts and rework, rather than measuring only the final successful run.
+
+Start with a small set of observations:
+
+| Observation | Question it helps answer |
+| --- | --- |
+| Time to a usable workspace | Is environment preparation delaying every attempt? |
+| Time to the first useful test result | Does feedback arrive early enough to guide the work? |
+| Time waiting for review | Is proposed work arriving faster than people can evaluate it? |
+| Revisions after review | Are agents missing requirements or architectural boundaries? |
+| Reverts and production failures | Is faster implementation creating more recovery work? |
+
+Do not combine these into a single score immediately. A team needs to see which part changed when it experiments with a new workflow.
+
+## Give parallel work clear boundaries
+
+Adding agents increases the opportunity for overlapping edits. Two changes can each be reasonable in isolation and still conflict in their assumptions about a shared interface.
+
+For a first experiment, choose tasks with small, explicit ownership boundaries. Give each task an acceptance condition and identify shared contracts before work begins. If two agents need to redesign the same contract, resolve that decision before asking both to implement it.
+
+Git already provides useful building blocks. [Worktrees](https://git-scm.com/docs/git-worktree) allow multiple working trees associated with one repository. [Sparse checkout](https://git-scm.com/docs/git-sparse-checkout) can limit the paths present in a working directory. Those features address different needs: worktrees separate working state, while sparse checkout narrows the files on disk. Neither is an access control boundary.
+
+The decision to use either should follow an observed problem. If checkout time is already negligible, improving it will have little effect on delivery.
+
+## Make intent and evidence easy to review
+
+Before an agent starts a task, define what a reviewer needs to see when it finishes. For a bug fix, that might include the failing behavior, the condition that triggers it, the reason the change addresses it, and the verification result.
+
+This creates a practical review packet:
+
+- The requested behavior and the scope of the change.
+- The relevant invariant, such as which operation must remain atomic.
+- The evidence that the behavior works, including a regression check when appropriate.
+- Any tradeoff or unresolved limitation that affects the decision to merge.
+
+A reviewer can use that packet to orient themselves, then inspect the code at the depth the change requires. Generated explanations should be checked against the diff and actual command results.
+
+Keep changes small enough that this comparison is feasible. A long description cannot compensate for a diff that mixes several unrelated decisions.
+
+## Improve feedback before multiplying throughput
+
+A fast local check can prevent an agent from spending the rest of its task building on a broken assumption. Identify the cheapest check that would reveal the likely failure, then keep the broader checks required for release.
+
+If targeted CI depends on a dependency graph, treat the correctness of that graph as part of the system. Missing an affected package can turn a reassuring green result into misleading evidence. Use a broader fallback when the impact of a change is uncertain.
+
+It is also useful to measure total verification cost per delivered change. A short test suite rerun many times may consume more resources than a longer run that gives a clear answer on the first attempt.
+
+## Try one change to the workflow
+
+Pick a recurring task and record its current implementation time, waiting time, and rework. Change one part of the workflow: workspace setup, the handoff to review, or the timing of feedback. Compare a small batch of similar tasks, and inspect failures alongside the successful cases.
+
+If review is the longest queue, try clearer acceptance conditions and smaller changes before increasing agent concurrency. If environment setup dominates, improve that path first. If requirements repeatedly change during review, clarify the task earlier.
+
+The useful question is where a correct change gets stuck. Answering it gives a team a specific next improvement, whether it uses one coding agent or many.
