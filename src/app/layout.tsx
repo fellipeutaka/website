@@ -52,6 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         fonts.sans.variable,
         fonts.mono.variable
       )}
+      data-scroll-behavior="smooth"
       lang="en"
       suppressHydrationWarning
     >

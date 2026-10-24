@@ -14,7 +14,11 @@ figure.shiki.shiki-themes .line {
 }
 
 .shiki.shiki-themes span {
-  color: light-dark(var(--shiki-light), var(--shiki-dark));
+  color: var(--shiki-light);
+}
+
+.dark .shiki.shiki-themes span {
+  color: var(--shiki-dark);
 }
 
 .mdx > .steps:first-child > h3:first-child {
