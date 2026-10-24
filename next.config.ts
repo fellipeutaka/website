@@ -11,6 +11,7 @@ const config: NextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
+    qualities: [75, 100],
     remotePatterns: [
       {
         hostname: "github.com",
