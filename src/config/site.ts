@@ -3,7 +3,7 @@ import type { IconComponent } from "~/components/ui/icons";
 
 export const siteConfig = {
   name: "Fellipe Utaka",
-  url: "https://fellipeutaka.vercel.app",
+  url: "https://www.fellipeutaka.com",
   description: "Fellipe Utaka's personal website",
   keywords:
     "Fellipe Utaka, Fellipe, Utaka, Software Engineer, Software Developer, Developer, Engineer, Frontend Engineer, Frontend Developer, Frontend, Front-end, Front end, Front, Frontend Development, Frontend Engineering, Frontend Developer",
