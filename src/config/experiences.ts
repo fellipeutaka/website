@@ -1,11 +1,35 @@
 export const experiences = [
   {
     title: "Full-Stack Engineer",
-    company: "HP via Wipro Consultancy",
-    startedAt: new Date(2025, 7, 1),
+    company: "Grupo Permaneo",
+    startedAt: new Date(2026, 1, 1),
     endedAt: null,
     description:
-      "Develop enterprise-scale developer platforms and AI-integrated backend services for HP's Internal Platform (HPIP). Design and implement a Backstage-based service catalog and developer portal with custom backend plugins, REST APIs, hierarchical entity modeling, and real-time GitHub webhook processing. Increase automated test coverage from 47% to 86%, improving code reliability, maintainability, and confidence in large-scale refactors. Develop a Go-based MCP server enabling secure AI access to internal catalogs and documentation, integrating OAuth 2.1 (PKCE), JWT validation, Redis sessions, and Kubernetes deployments. Work across Node.js, TypeScript, Go, React, PostgreSQL, Docker, and cloud-native infrastructure, collaborating with global teams.",
+      "Develop SubidoPRO, a gamified paid-traffic mentoring platform, across its student experience, admin tools, and backend services using TypeScript, React, Next.js, NestJS, and PostgreSQL. Build live consultation scheduling, video rooms, recordings, and replay workflows with LiveKit. Implement self-hosted LiveKit infrastructure on AWS using Terraform, EC2 Auto Scaling, ElastiCache, and S3, with recording orchestration through Step Functions and Lambda. Improve reliability with durable webhooks, idempotent background jobs, automated tests, and production troubleshooting.",
+    skills: [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Node.js",
+      "NestJS",
+      "PostgreSQL",
+      "Prisma",
+      "Redis",
+      "BullMQ",
+      "LiveKit",
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Vitest",
+    ],
+  },
+  {
+    title: "Full-Stack Engineer",
+    company: "HP via Wipro Consultancy",
+    startedAt: new Date(2025, 7, 1),
+    endedAt: new Date(2026, 1, 1),
+    description:
+      "Developed enterprise-scale developer platforms and AI-integrated backend services for HP's Internal Platform (HPIP). Designed and implemented a Backstage-based service catalog and developer portal with custom backend plugins, REST APIs, hierarchical entity modeling, and real-time GitHub webhook processing. Increased automated test coverage from 47% to 86%, improving code reliability, maintainability, and confidence in large-scale refactors. Developed a Go-based MCP server enabling secure AI access to internal catalogs and documentation, integrating OAuth 2.1 (PKCE), JWT validation, Redis sessions, and Kubernetes deployments. Worked across Node.js, TypeScript, Go, React, PostgreSQL, Docker, and cloud-native infrastructure, collaborating with global teams.",
     skills: [
       "TypeScript",
       "Go",
