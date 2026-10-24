@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">After the code is written</title>
+  <desc id="desc">A dark editorial cover with several incoming changes flowing toward a narrow review queue.</desc>
+  <rect width="1600" height="900" fill="#17120f"/>
+  <path d="M0 150H1600M0 750H1600M110 0V900M1490 0V900" stroke="#33271f" stroke-width="2"/>
+  <text x="160" y="230" fill="#d4ae8f" font-family="sans-serif" font-size="24" letter-spacing="5">ENGINEERING WITH AGENTS</text>
+  <text x="150" y="365" fill="#fff2e6" font-family="sans-serif" font-size="96" font-weight="700">After the code</text>
+  <text x="150" y="475" fill="#fff2e6" font-family="sans-serif" font-size="96" font-weight="700">is written.</text>
+  <g fill="none" stroke="#82624b" stroke-width="3">
+    <path d="M1010 300H1090L1180 450H1260"/>
+    <path d="M1010 400H1120L1180 450"/>
+    <path d="M1010 500H1120L1180 450"/>
+    <path d="M1010 600H1090L1180 450"/>
+  </g>
+  <g fill="#f6b278">
+    <rect x="970" y="281" width="40" height="38" rx="8"/>
+    <rect x="970" y="381" width="40" height="38" rx="8"/>
+    <rect x="970" y="481" width="40" height="38" rx="8"/>
+    <rect x="970" y="581" width="40" height="38" rx="8"/>
+  </g>
+  <rect x="1240" y="360" width="140" height="180" rx="16" fill="#35271e" stroke="#f6b278" stroke-width="2"/>
+  <path d="M1270 405H1350M1270 435H1350M1270 465H1325" stroke="#f6b278" stroke-width="7" stroke-linecap="round"/>
+  <text x="1310" y="584" text-anchor="middle" fill="#d4ae8f" font-family="sans-serif" font-size="20" letter-spacing="3">REVIEW</text>
+  <text x="160" y="682" fill="#e5cbb4" font-family="sans-serif" font-size="26">Scion · source control · delivery bottlenecks</text>
+</svg>

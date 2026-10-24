@@ -1,93 +1,122 @@
 ---
 title: Radix UI vs React Aria Components
+description: "Compare Radix Primitives and React Aria Components, including component coverage, equivalent patterns, hooks, and release status."
 date: 2024-11-04
 cover: cover.webp
 ---
 
 ## Introduction
 
-Radix UI and React Aria Components are two libraries that provide a set of accessible UI components for React applications. Both libraries aim to make it easier for developers to create accessible user interfaces by providing a set of components that are designed to be accessible out of the box.
+Radix Primitives and React Aria Components provide unstyled, accessible building blocks for React applications. Both handle interaction details such as keyboard navigation and screen reader support while leaving visual design to you.
 
-In this article, we'll compare Radix UI and React Aria Components to help you decide which library is the best fit for your project.
+This comparison focuses on Radix Primitives and the `react-aria-components` package. Radix Themes and React Spectrum are separate libraries and are outside its scope. React Aria hooks are identified explicitly where a component equivalent is unavailable.
+
+_Last reviewed: October 24, 2026. Release labels reflect the documentation on that date._
 
 ## Radix UI
 
-Radix UI is a collection of low-level UI components that are designed to be accessible, composable, and unstyled. The library provides a set of components that can be used to build custom UI components that are accessible by default.
+Radix Primitives provides composable components for patterns such as dialogs, menus, popovers, and tooltips. Components are split into parts so you can choose their structure and appearance.
 
-Radix UI components are designed to be composable, which means that you can combine them to create more complex UI components. The library provides a set of hooks that can be used to build custom components that are accessible and performant.
+The primitives are [unstyled and compatible with different styling solutions](https://www.radix-ui.com/primitives/docs/guides/styling). Radix Themes is a separate styled component library; its components, such as Button, should not be counted as Primitives exports.
 
-Radix UI components are unstyled, which means that they don't come with any default styles. This allows you to style the components however you like, using your own CSS or a CSS-in-JS library like Emotion or Styled Components.
+The [Primitives catalog](https://www.radix-ui.com/primitives/docs/overview/introduction) also includes preview components. Their availability and release status are listed separately below.
 
 ## React Aria Components
 
-React Aria Components is a collection of accessible UI components that are designed to be used in React applications. The library provides a set of components that are designed to be accessible out of the box, with support for keyboard navigation, screen readers, and other assistive technologies.
+React Aria Components covers interaction patterns as well as collections, date and time inputs, color controls, and form fields. Its composable parts let you reuse elements across different patterns.
 
-React Aria Components provides a set of high-level UI components that are designed to be easy to use and customize. The library provides a set of hooks that can be used to build custom components that are accessible and performant.
+It [does not include styles by default](https://react-aria.adobe.com/styling). The styled examples in the documentation demonstrate customization; they are not default themes bundled with the component package.
 
-React Aria Components comes with default styles that are designed to be accessible and responsive. The library provides a set of themes that can be used to customize the appearance of the components, or you can use your own CSS to style the components however you like.
+React Aria also exposes a [lower-level hooks API](https://react-aria.adobe.com/hooks). Hooks return behavior and DOM props for your own elements. A hook can help you build an interaction, but it is a different starting point from a composed component.
 
 ## Comparison
 
-| Component           | Radix UI | React Aria Components  |
-| ------------------- | -------- | ---------------------- |
-| Accordion           | ✅       | ✅ (DisclosureGroup)   |
-| Alert Dialog        | ✅       | ✅                     |
-| Aspect Ratio        | ✅       | ❌                     |
-| Avatar              | ✅       | ⚠️ (react-spectrum)    |
-| Checkbox            | ✅       | ✅                     |
-| Collapsible         | ✅       | ✅ (Disclosure)        |
-| Context Menu        | ✅       | ❌                     |
-| Dialog              | ✅       | ✅                     |
-| Dropdown Menu       | ✅       | ✅                     |
-| Form                | ✅       | ✅                     |
-| Hover Card          | ✅       | ❌                     |
-| Label               | ✅       | ✅                     |
-| Menu Bar            | ✅       | ❌                     |
-| Navigation Menu     | ✅       | ❌                     |
-| Popover             | ✅       | ✅                     |
-| Progress            | ✅       | ✅                     |
-| Radio Group         | ✅       | ✅                     |
-| Scroll Area         | ✅       | ❌                     |
-| Select              | ✅       | ✅                     |
-| Separator           | ✅       | ⚠️ (useSeparator hook) |
-| Slider              | ✅       | ✅                     |
-| Switch              | ✅       | ✅                     |
-| Tabs                | ✅       | ✅                     |
-| Toast               | ✅       | ✅                     |
-| Toggle              | ✅       | ✅                     |
-| Toggle Group        | ✅       | ✅ (ToggleButtonGroup) |
-| Toolbar             | ✅       | ✅                     |
-| Tooltip             | ✅       | ✅                     |
-| Button              | ❌       | ✅                     |
-| File Trigger        | ❌       | ✅                     |
-| Grid List           | ❌       | ✅                     |
-| List Box            | ❌       | ✅                     |
-| Table               | ❌       | ✅                     |
-| Tag Group           | ❌       | ✅                     |
-| Tree                | ❌       | ✅                     |
-| Color Area          | ❌       | ✅                     |
-| Color Field         | ❌       | ✅                     |
-| Color Picker        | ❌       | ✅                     |
-| Color Slider        | ❌       | ✅                     |
-| Color Swatch        | ❌       | ✅                     |
-| Color Swatch Picker | ❌       | ✅                     |
-| Color Wheel         | ❌       | ✅                     |
-| Calendar            | ❌       | ✅                     |
-| Date Field          | ❌       | ✅                     |
-| Date Picker         | ❌       | ✅                     |
-| Date Range Picker   | ❌       | ✅                     |
-| Range Calendar      | ❌       | ✅                     |
-| Time Field          | ❌       | ✅                     |
-| Dropzone            | ❌       | ✅                     |
-| Checkbox Group      | ❌       | ✅                     |
-| Number Field        | ❌       | ✅                     |
-| Search Field        | ❌       | ✅                     |
-| Text Field          | ❌       | ✅                     |
-| Breadcrumbs         | ❌       | ✅                     |
-| Disclosure          | ❌       | ✅                     |
-| Disclosure Group    | ❌       | ✅                     |
-| Link                | ❌       | ✅                     |
-| Combobox            | ❌       | ✅                     |
-| Meter               | ❌       | ✅                     |
+The table compares documented components and equivalent patterns. Names in parentheses identify a different API name or a composition of parts, rather than an identical implementation.
 
-Note: ✅ = supported, ❌ = not supported, ⚠️ = partially supported
+- ✅ = a component or documented component composition is available. Preview, alpha, and release candidate (rc) labels indicate release status.
+- ⚠️ = a lower-level hook is available, with additional implementation required.
+- ❌ = no dedicated equivalent is documented in the compared library. This does not mean the behavior cannot be built with native elements or other components.
+
+| Component | Radix Primitives | React Aria Components |
+| --- | --- | --- |
+| Accordion | ✅ | ✅ (DisclosureGroup) |
+| Alert Dialog | ✅ | ✅ (Dialog with `role="alertdialog"`) |
+| Aspect Ratio | ✅ | ❌ |
+| Avatar | ✅ | ❌ |
+| Checkbox | ✅ | ✅ |
+| Collapsible | ✅ | ✅ (Disclosure) |
+| Context Menu | ✅ | ⚠️ (useContextMenu hook only) |
+| Dialog | ✅ | ✅ (Dialog + Modal for modal behavior) |
+| Dropdown Menu | ✅ | ✅ (Menu + MenuTrigger) |
+| Form | ✅ (preview) | ✅ |
+| Hover Card | ✅ | ✅ (PreviewTrigger + Popover) |
+| Label | ✅ | ✅ |
+| Menubar | ✅ | ❌ |
+| Navigation Menu | ✅ | ❌ |
+| One-Time Password Field | ✅ (preview) | ❌ |
+| Password Toggle Field | ✅ (preview) | ❌ |
+| Popover | ✅ | ✅ |
+| Progress | ✅ | ✅ (ProgressBar) |
+| Radio Group | ✅ | ✅ |
+| Scroll Area | ✅ | ❌ |
+| Select | ✅ | ✅ |
+| Separator | ✅ | ✅ (Separator) |
+| Slider | ✅ | ✅ |
+| Switch | ✅ | ✅ |
+| Tabs | ✅ | ✅ |
+| Toast | ✅ | ✅ (alpha) |
+| Toggle | ✅ | ✅ (ToggleButton) |
+| Toggle Group | ✅ | ✅ (ToggleButtonGroup) |
+| Toolbar | ✅ | ✅ |
+| Tooltip | ✅ | ✅ |
+| Autocomplete | ❌ | ✅ (rc) |
+| Button | ❌ | ✅ |
+| File Trigger | ❌ | ✅ |
+| Grid List | ❌ | ✅ |
+| Group | ❌ | ✅ |
+| List Box | ❌ | ✅ |
+| Table | ❌ | ✅ |
+| Tag Group | ❌ | ✅ |
+| Tree | ❌ | ✅ |
+| Navigation Tree | ❌ | ✅ (alpha) |
+| Color Area | ❌ | ✅ |
+| Color Field | ❌ | ✅ |
+| Color Picker | ❌ | ✅ |
+| Color Slider | ❌ | ✅ |
+| Color Swatch | ❌ | ✅ |
+| Color Swatch Picker | ❌ | ✅ |
+| Color Wheel | ❌ | ✅ |
+| Calendar | ❌ | ✅ |
+| Date Field | ❌ | ✅ |
+| Date Picker | ❌ | ✅ |
+| Date Range Picker | ❌ | ✅ |
+| Range Calendar | ❌ | ✅ |
+| Time Field | ❌ | ✅ |
+| Drop Zone | ❌ | ✅ (DropZone) |
+| Checkbox Group | ❌ | ✅ |
+| Number Field | ❌ | ✅ |
+| Search Field | ❌ | ✅ |
+| Text Field | ❌ | ✅ |
+| Breadcrumbs | ❌ | ✅ |
+| Disclosure | ✅ (Collapsible) | ✅ |
+| Disclosure Group | ✅ (Accordion) | ✅ |
+| Link | ❌ | ✅ |
+| ComboBox | ❌ | ✅ |
+| Meter | ❌ | ✅ |
+| Sheet | ❌ | ✅ |
+| Token Field | ❌ | ✅ (alpha) |
+| Virtualizer | ❌ | ✅ |
+
+## Important differences behind the checkmarks
+
+[useContextMenu](https://react-aria.adobe.com/useContextMenu) handles context menu events across input methods. It does not provide the complete menu: positioning, open state, and menu rendering still need to be implemented or composed with other building blocks.
+
+[PreviewTrigger](https://react-aria.adobe.com/PreviewTrigger) opens a non-modal popover on hover, focus, or long press, and allows interactive content. It covers the preview pattern associated with a hover card, but its interaction behavior should be evaluated separately from Radix Hover Card.
+
+[Separator](https://react-aria.adobe.com/Separator) is a component in its own right. React Aria support is no longer limited to the `useSeparator` hook.
+
+[Dialog](https://react-aria.adobe.com/Modal) supports both `dialog` and `alertdialog` roles. React Aria composes modal behavior with Modal and ModalOverlay instead of exporting a separate AlertDialog component.
+
+Disclosure and DisclosureGroup appear under their own names and under the equivalent Collapsible and Accordion patterns. Their Radix equivalents are therefore marked consistently in both places. NavigationTree is a hierarchical navigation pattern; it is listed separately from Navigation Menu.
+
+The release labels for [Autocomplete](https://react-aria.adobe.com/Autocomplete), [NavigationTree](https://react-aria.adobe.com/NavigationTree), [TokenField](https://react-aria.adobe.com/TokenField), and [Toast](https://react-aria.adobe.com/Toast) matter when evaluating production requirements. A checkmark records availability, not a promise that every API has reached a stable release.

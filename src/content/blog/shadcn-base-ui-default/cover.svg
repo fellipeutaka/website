@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">A new default for UI components</title>
+  <desc id="desc">A dark editorial cover showing an application interface supported by a replaceable primitive layer.</desc>
+  <rect width="1600" height="900" fill="#101312"/>
+  <path d="M0 150H1600M0 750H1600M110 0V900M1490 0V900" stroke="#252d28" stroke-width="2"/>
+  <text x="160" y="230" fill="#a7bea9" font-family="sans-serif" font-size="24" letter-spacing="5">INTERFACE ENGINEERING</text>
+  <text x="150" y="365" fill="#f3f5ef" font-family="sans-serif" font-size="104" font-weight="700">A new default.</text>
+  <text x="155" y="455" fill="#a7bea9" font-family="sans-serif" font-size="48">A deliberate choice.</text>
+  <g transform="translate(950 270)">
+    <rect x="0" y="0" width="430" height="230" rx="18" fill="#1c241f" stroke="#526756" stroke-width="2"/>
+    <circle cx="30" cy="28" r="5" fill="#bce7a0"/>
+    <circle cx="48" cy="28" r="5" fill="#526756"/>
+    <circle cx="66" cy="28" r="5" fill="#526756"/>
+    <rect x="30" y="66" width="190" height="14" rx="7" fill="#e1ebd9"/>
+    <rect x="30" y="101" width="350" height="9" rx="4" fill="#526756"/>
+    <rect x="30" y="124" width="285" height="9" rx="4" fill="#526756"/>
+    <rect x="30" y="166" width="126" height="36" rx="8" fill="#bce7a0"/>
+    <path d="M215 250V287" stroke="#bce7a0" stroke-width="3" stroke-dasharray="6 6"/>
+    <rect x="0" y="306" width="430" height="88" rx="14" fill="#bce7a0"/>
+    <text x="215" y="360" text-anchor="middle" fill="#172112" font-family="sans-serif" font-size="24" font-weight="700" letter-spacing="3">PRIMITIVES</text>
+  </g>
+  <text x="160" y="682" fill="#d2dfcb" font-family="sans-serif" font-size="26">shadcn/ui · Base UI · component boundaries</text>
+</svg>

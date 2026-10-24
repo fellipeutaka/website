@@ -1,0 +1,99 @@
+---
+title: "shadcn/ui defaults to Base UI. Should your app follow?"
+description: "What shadcn/ui's new default changes, how Base UI composition works, and how to evaluate a migration without turning it into a rewrite."
+date: 2026-10-24
+cover: cover.svg
+---
+
+A new default can make a perfectly functional codebase feel outdated overnight. A CLI starts generating different imports, the documentation changes, and suddenly a component library migration looks like the next item on the backlog.
+
+That is a good moment to pause and ask what problem the migration would solve.
+
+In July 2026, [shadcn/ui made Base UI the default for new projects](https://ui.shadcn.com/docs/changelog/2026-07-base-ui-default). The announcement also confirmed continued support for Radix and said existing projects do not need to migrate. The corresponding [announcement on X](https://x.com/shadcn/status/2073021577575170556) is a useful starting point for the discussion; the changelog is the source to use when making a technical decision.
+
+For a new project, I would evaluate Base UI first. For an existing application, I would want a concrete benefit before changing the primitives underneath working interactions.
+
+## Separate the layers before choosing a library
+
+It helps to evaluate three things separately:
+
+| Layer | Question to ask |
+| --- | --- |
+| Interactive primitive | How does the dialog manage focus, dismissal, and keyboard input? |
+| Application component | How does the product expose that behavior through its own API? |
+| Visual design | How should the dialog look in this application? |
+
+A migration gets expensive when all three change together. Renaming an internal primitive should not require every feature team to rethink how it opens a confirmation dialog.
+
+Before evaluating a replacement, write down the public API of your own components. Which props do consumers actually use? Which behaviors do they depend on? Which details should stay inside the wrapper?
+
+If application code reaches directly into primitive internals everywhere, reducing that coupling may be the most useful first change.
+
+## Composition is a real API difference
+
+Base UI uses a [`render` prop](https://base-ui.com/react/handbook/composition) to compose a primitive with another element or React component. Radix exposes composition through [`asChild`](https://www.radix-ui.com/primitives/docs/guides/composition). Both approaches require custom components to pass received props and the ref through to the underlying element.
+
+That contract deserves more attention than the prop name. A button that drops an incoming event handler or ref can look correct while breaking an interaction.
+
+Here is a small Base UI dialog using its documented [Dialog API](https://base-ui.com/react/components/dialog), checked against version 1.9.0. This example assumes `@base-ui/react` is installed and Tailwind CSS utilities are available. The `render` prop is optional here: it makes the composition point explicit while keeping a native button.
+
+```tsx
+"use client";
+
+import { Dialog } from "@base-ui/react/dialog";
+
+export function WorkspaceDetails() {
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger
+        render={<button type="button" className="rounded border px-3 py-2" />}
+      >
+        Workspace details
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Backdrop className="fixed inset-0 z-50 bg-black/40" />
+        <Dialog.Popup className="fixed top-1/2 left-1/2 z-50 w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-6 text-black shadow-xl">
+          <Dialog.Title className="text-lg font-semibold">
+            Design workspace
+          </Dialog.Title>
+          <Dialog.Description className="mt-2 text-sm text-gray-600">
+            Shared components and design resources for this project.
+          </Dialog.Description>
+          <Dialog.Close className="mt-6 rounded border px-3 py-2">
+            Close
+          </Dialog.Close>
+        </Dialog.Popup>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+}
+```
+
+When replacing that native button with your design system's `Button`, inspect the rendered DOM and try the keyboard path. A successful TypeScript check is useful evidence, but it cannot tell you whether focus ends up in the right place.
+
+## Run a small evaluation in your actual product
+
+I would choose one dialog with a real trigger, meaningful content, and at least one application state change. A demo that opens an empty box proves very little about integration cost.
+
+Keep the wrapper's consumer API stable during the experiment. Then check:
+
+- Opening with the keyboard, moving focus through the content, and closing with Escape.
+- Returning focus to the trigger after dismissal.
+- Announcing the dialog's title and description with a screen reader.
+- Rendering inside the application's actual portal and stacking setup.
+- Handling narrow screens, browser zoom, and content taller than the viewport.
+- Preserving any controlled state and form behavior the application already relies on.
+
+These are acceptance checks for the finished component. They remain necessary whichever primitive library you choose.
+
+Record the code and behavior changes the experiment required. If a supposedly internal replacement forces changes across many call sites, that is a cost to account for before expanding the migration.
+
+## Decide based on the application you have
+
+For a new project, the current shadcn/ui default makes Base UI a sensible starting point. Still evaluate your hardest interaction early: a nested overlay or complicated selection flow will teach you more than a button gallery.
+
+For an established Radix application, write a short migration hypothesis: “Moving this component will solve this specific problem, and we will verify it this way.” If that sentence is difficult to finish, the migration probably needs more investigation.
+
+A good result from the evaluation might be a gradual migration. It might also be a decision to keep the existing implementation and revisit it when a real requirement changes.
+
+The default is useful information. The behavior of your product is the deciding evidence.
